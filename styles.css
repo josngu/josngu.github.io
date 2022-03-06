@@ -1,0 +1,128 @@
+@charset "utf-8";
+/* CSS Document */
+@keyframes page-load {
+  from {
+    opacity: 0;
+    filter: brightness(0) saturate(0);
+  }
+  to {
+    opactiy: 1;
+    filter: brightness(1) saturate(1);
+  }
+}
+* {
+  box-sizing: border-box;
+  transition: ease all 0.5s;
+}
+html {
+  scroll-behavior: smooth;
+}
+h1, h2, h3 {
+  font-family: "Josefin Sans";
+  font-weight: 300;
+  margin: 12px;
+}
+body {
+  animation: page-load 1.5s;
+  margin: 0;
+  padding: 0;
+  background-color: #16181A;
+}
+img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+#name-container {
+  background-color: #111111;
+  width: 100%;
+  padding: 96px 0 96px 0;
+}
+#name {
+  display: block;
+  margin: auto;
+  width: 66%;
+  background-color: #111111;
+}
+main {
+  column-count: 3;
+  column-gap: 0px;
+  margin: 16px;
+  padding: 16px;
+  text-align: center;
+}
+figure {
+  position: relative;
+  margin: 0px;
+  padding: 16px 10px 0px 10px;
+  display: inline-block;
+}
+figure:after {
+  content: "";
+  background-color: rgba(255,255,255,0);
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+figcaption {
+  margin: 8px 0 8px 0;
+  font-family: "Raleway";
+  background: white;
+  border-radius: 128px;
+}
+.picture {
+  width: 100%;
+  box-shadow: 0 0 16px -2px rgba(0, 0, 0, 0.8);
+}
+address {
+  font-style: normal;
+  margin: 12px;
+}
+footer {
+  display: block;
+  background-color: #111111;
+  text-align: center;
+  font-family: "Raleway";
+  font-weight: 300;
+  font-size: 16px;
+  color: white;
+  margin: 32px 0 0 0;
+  padding: 32px 10% 32px 10%;
+}
+@media screen and (max-width: 1200px) {
+  main {
+    column-count: 2;
+    margin: 8px;
+  }
+  #name-container {
+    padding: 64px;
+  }
+  #name {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 850px) {
+  main {
+    column-count: 1;
+    margin: 0px;
+  }
+  #name-container {
+    padding: 32px;
+  }
+  #name {
+    width: 100%;
+  }
+  figure {
+    padding: 8px 4px;
+  }
+}
+@media screen and (orientation:landscape) and (max-width: 1200px) {
+  main {
+    column-count: 2;
+    margin: 8px;
+  }
+}
