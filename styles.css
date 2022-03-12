@@ -123,6 +123,5 @@ footer {
 @media screen and (orientation:landscape) and (max-width: 1200px) {
   main {
     column-count: 2;
-    margin: 8px;
   }
 }
