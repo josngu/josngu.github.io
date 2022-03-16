@@ -10,9 +10,8 @@
     filter: brightness(1) saturate(1);
   }
 }
-* {
+*, ::before, ::after {
   box-sizing: border-box;
-  transition: ease all 0.5s;
 }
 html {
   scroll-behavior: smooth;
@@ -29,9 +28,8 @@ body {
   background-color: #16181A;
 }
 img {
-  display: block;
+  max-width: 100%;
   height: auto;
-  width: 100%;
 }
 #name-container {
   background-color: #111111;
