@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stew Fusion | Joseph's Kitchen</title>
+<link rel="icon" type="image/x-icon" href="favicon.svg">
+<link href="styles.css" rel="stylesheet" type="text/css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script type="text/javascript" src="script.js"></script>
+</head>
+
+<body>
+  <nav class="menu-bar"> <a href="index.html"><img src="images/logo.svg"  id="logo" alt="Logo of Joseph's Kitchen"></a> <a href="fusion.html" class="menu-item">Stew Fusion</a> <a href="beverages.html" class="menu-item">Beverages</a> <a href="desserts.html" class="menu-item">Desserts</a> <a href="appetizers.html" class="menu-item">Appetizers</a> <a href="entrees.html" class="menu-item">Entrées</a>
+    
+  <a href="index.html" class="menu-item-mobile">Joseph's Kitchen</a>
+  <a href="entrees.html" class="menu-item-mobile">Entrées</a>
+  <a href="appetizers.html" class="menu-item-mobile">Appetizers</a>
+  <a href="fusion.html" class="menu-item-mobile">Stew Fusion</a>
+  <a href="desserts.html" class="menu-item-mobile">Desserts</a>
+  <a href="beverages.html" class="menu-item-mobile">Beverages</a>
+  </nav>
+<p id="box-spacer"></p>
+<section>
+  <h1 id="stew-fusion-title">STEW FUSION</h1>
+<h3 class="ingredient-type" id="stew-title">The Rules of Stew Fusion</h3>
+  <p id="stew-description">You must have 6 ingredients in your stew.<br>No more than 1 of the same ingredient may be added to the stew.<br>All stews will contain salt and pepper.
+  </p>
+
+  <div id="fusion-two-columns">
+    <img id="stew-fusion-image" src="images/stew-soup.png" alt="Red stew">
+    <table id="stew-fusion-stats">
+      <tr>
+        <td>Calories:</td><td id="calories">??</td>
+      </tr>
+      <tr>
+        <td>Carbohydrates:</td><td id="carbohydrates">??</td>
+      </tr>
+      <tr>
+        <td>Proteins:</td><td id="proteins">??</td>
+      </tr>
+      <tr>
+        <td>Fat:</td><td id="fat">??</td>
+      </tr>
+    </table>
+  </div>
+<button id="stew-fusion-button" onClick="finalizeStew();">FINALIZE STEW</button>
+
+<h2>CHOOSE YOUR INGREDIENTS</h2>
+<div id="ingredient-list">
+  <h3 class="ingredient-type">Meats</h3>
+  <div class="ingredient-list">
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/bacon.png">
+          <label><input type="checkbox" id="bacon" name="bacon" value="bacon"><span class="checkbox">Bacon</span></label>
+      </div>
+	  <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/bacon-bits.png">
+          <label><input type="checkbox" id="baconBits" name="baconBits" value="bacon bits"><span class="checkbox">Bacon Bits</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/beef-jerky.png">
+          <label><input type="checkbox" id="beefJerky" name="beefJerky" value="beef jerky"><span class="checkbox">Beef Jerky</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/chicken.png">
+          <label><input type="checkbox" id="chicken" name="chicken" value="chicken"><span class="checkbox">Chicken</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/fish-fillet.png">
+          <label><input type="checkbox" id="fishFillet" name="fishFillet" value="fish fillet"><span class="checkbox">Fish Fillet</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/frog-meat.png">
+          <label><input type="checkbox" id="frogMeat" name="frogMeat" value="frog meat"><span class="checkbox">Frog Meat</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/meat-patty.png">
+          <label><input type="checkbox" id="meatPatty" name="meatPatty" value="meat patty"><span class="checkbox">Meat Patty</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/minced-meat.png">
+          <label><input type="checkbox" id="mincedMeat" name="mincedMeat" value="minced meat"><span class="checkbox">Minced Meat</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/mutton-chop.png">
+          <label><input type="checkbox" id="muttonChop" name="muttonChop" value="mutton chop"><span class="checkbox">Mutton Chop</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/pork-chop.png">
+          <label><input type="checkbox" id="porkChop" name="porkChop" value="pork chop"><span class="checkbox">Pork Chop</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/rabbit-meat.png">
+          <label><input type="checkbox" id="rabbitMeat" name="rabbitMeat" value="rabbit meat"><span class="checkbox">Rabbit Meat</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/salmon.png">
+          <label><input type="checkbox" id="salmon" name="salmon" value="salmon"><span class="checkbox">Salmon</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/steak.png">
+          <label><input type="checkbox" id="steak" name="steak" value="steak"><span class="checkbox">Steak</span></label>
+      </div>
+    </div>
+    <h3 class="ingredient-type">Vegetables</h3>
+    <div class="ingredient-list">
+	  <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/avocado.png">
+          <label><input type="checkbox" id="avocado" name="avocado" value="avocado"><span class="checkbox">Avocado</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/broccoli.png">
+          <label><input type="checkbox" id="broccoli" name="broccoli" value="broccoli"><span class="checkbox">Broccoli</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/cabbage.png">
+          <label><input type="checkbox" id="cabbage" name="cabbage" value="cabbage"><span class="checkbox">Cabbage</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/carrots.png">
+          <label><input type="checkbox" id="carrots" name="carrots" value="carrots"><span class="checkbox">Carrots</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/corn.png">
+          <label><input type="checkbox" id="corn" name="corn" value="corn"><span class="checkbox">Corn</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/eggplant.png">
+          <label><input type="checkbox" id="eggplant" name="eggplant" value="eggplant"><span class="checkbox">Eggplant</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/jalapeno.png">
+          <label><input type="checkbox" id="jalapeno" name="jalapeno" value="jalapeno"><span class="checkbox">Jalapeno</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/leek.png">
+          <label><input type="checkbox" id="leek" name="leek" value="leek"><span class="checkbox">Leek</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/onion.png">
+          <label><input type="checkbox" id="onion" name="onion" value="onion"><span class="checkbox">Onion</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/peas.png">
+          <label><input type="checkbox" id="peas" name="peas" value="peas"><span class="checkbox">Peas</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/potato.png">
+          <label><input type="checkbox" id="potato" name="potato" value="potato"><span class="checkbox">Potato</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/radish.png">
+          <label><input type="checkbox" id="radish" name="radish" value="radish"><span class="checkbox">Radish</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/tofu.png">
+          <label><input type="checkbox" id="tofu" name="tofu" value="tofu"><span class="checkbox">Tofu</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/tomato.png">
+          <label><input type="checkbox" id="tomato" name="tomato" value="tomato"><span class="checkbox">Tomato</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/zucchini.png">
+          <label><input type="checkbox" id="zucchini" name="zucchini" value="zucchini"><span class="checkbox">Zucchini</span></label>
+      </div>
+  </div>
+  <h3 class="ingredient-type">Other</h3>
+  <div class="ingredient-list">
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/bread.png">
+          <label><input type="checkbox" id="bread" name="Bread" value="bread"><span class="checkbox">Bread</span></label>
+      </div>
+      <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/canned-spaghetti-bolognese.png">
+          <label><input type="checkbox" id="cannedSpaghettiBolognese" name="cannedSpaghettiBolognese" value="canned spaghetti bolognese"><span class="checkbox">Canned Spaghetti Bolognese</span></label>
+      </div>
+	  <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/canned-carrots.png">
+          <label><input type="checkbox" id="cannedCarrots" name="cannedCarrots" value="canned carrots"><span class="checkbox">Canned Carrots</span></label>
+      </div>
+	  <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/canned-chili.png">
+          <label><input type="checkbox" id="cannedChili" name="cannedChili" value="canned chili"><span class="checkbox">Canned Chili</span></label>
+      </div>
+	  <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/canned-corn.png">
+          <label><input type="checkbox" id="cannedCorn" name="cannedCorn" value="canned corn"><span class="checkbox">Canned Corn</span></label>
+      </div>
+	  <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/canned-corned-beef.png">
+          <label><input type="checkbox" id="cannedCornedBeef" name="cannedCornedBeef" value="canned corned beef"><span class="checkbox">Canned Corned Beef</span></label>
+      </div>
+	  <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/canned-peas.png">
+          <label><input type="checkbox" id="cannedPeas" name="cannedPeas" value="canned peas"><span class="checkbox">Canned Peas</span></label>
+      </div>
+	  <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/canned-potato.png">
+          <label><input type="checkbox" id="cannedPotato" name="cannedPotato" value="canned potato"><span class="checkbox">Canned Potato</span></label>
+      </div>
+	  <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/canned-sardines.png">
+          <label><input type="checkbox" id="cannedSardines" name="cannedSardines" value="canned sardines"><span class="checkbox">Canned Sardines</span></label>
+      </div>
+	  <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/canned-tomato.png">
+          <label><input type="checkbox" id="cannedTomato" name="cannedTomato" value="canned tomato"><span class="checkbox">Canned Tomato</span></label>
+      </div>
+	  <div class="ingredient-container">
+          <img class="ingredient-icon" src="images/canned-tuna.png">
+          <label><input type="checkbox" id="cannedTuna" name="cannedTuna" value="canned tuna"><span class="checkbox">Canned Tuna</span></label>
+      </div>
+  </div>
+</div>
+<h2>NUTRITION VALUES</h2>
+<div id="table-container">
+  <table id="stew-fusion-table">
+    <th rowspan="15" class="table-ingredient-type">MEATS</th>
+    <tr><th id="table-ingredient-heading">Ingredient</th><th class="table-general-heading">Calories</th><th class="table-general-heading">Carbohydrates</th><th class="table-general-heading">Proteins</th><th class="table-general-heading">Fat</th></tr>
+    <tr><td>Bacon</td><td>186.67</td><td>0</td><td>11.67</td><td>16.33</td></tr>
+    <tr><td>Bacon Bits</td><td>11.67</td><td>0</td><td>0.82</td><td>1.17</td></tr>
+    <tr><td>Beef Jerky</td><td>87.5</td><td>5.25</td><td>0.88</td><td>0.88</td></tr>
+    <tr><td>Chicken</td><td>75</td><td>0</td><td>9</td><td>4.5</td></tr>
+    <tr><td>Fish Fillet</td><td>143.5</td><td>0.7</td><td>19.96</td><td>8.4</td></tr>
+    <tr><td>Frog Meat</td><td>77</td><td>0</td><td>17.03</td><td>0.33</td></tr>
+    <tr><td>Meat Patty</td><td>166.25</td><td>0</td><td>20.13</td><td>13.13</td></tr>
+    <tr><td>Minced Meat</td><td>131.25</td><td>0</td><td>20.12</td><td>13.13</td></tr>
+    <tr><td>Mutton Chop</td><td>136.5</td><td>0.05</td><td>19.25</td><td>6.42</td></tr>
+    <tr><td>Pork Chop</td><td>87.5</td><td>0</td><td>14.58</td><td>3.5</td></tr>
+    <tr><td>Rabbit Meat</td><td>565.25</td><td>11.67</td><td>107.92</td><td>11.67</td></tr>
+    <tr><td>Salmon</td><td>157.5</td><td>0</td><td>20</td><td>6.15</td></tr>
+    <tr><td>Steak</td><td>128.33</td><td>0</td><td>18.45</td><td>5.45</td></tr>
+    <th rowspan="16" id="table-ingredient-type" class="table-ingredient-type">VEGETABLES</th>
+    <tr><td>Avocado</td><td>264.83</td><td>13.71</td><td>3.12</td><td>24.45</td></tr>
+    <tr><td>Broccoli</td><td>12.83</td><td>2.4</td><td>1.02</td><td>0.13</td></tr>
+    <tr><td>Cabbage</td><td>124.6</td><td>28.99</td><td>6.4</td><td>0.5</td></tr>
+    <tr><td>Carrots</td><td>29.17</td><td>6.81</td><td>0.67</td><td>0.18</td></tr>
+    <tr><td>Corn</td><td>102.67</td><td>31.2</td><td>5.46</td><td>2.25</td></tr>
+    <tr><td>Eggplant</td><td>133</td><td>31.42</td><td>5.24</td><td>0.96</td></tr>
+    <tr><td>Jalapeno</td><td>17.5</td><td>0</td><td>0</td><td>0.24</td></tr>
+    <tr><td>Leek</td><td>63</td><td>14.69</td><td>1.56</td><td>0.32</td></tr>
+    <tr><td>Onion</td><td>32.67</td><td>7.63</td><td>0.9</td><td>0.08</td></tr>
+    <tr><td>Peas</td><td>69.42</td><td>11.93</td><td>4.64</td><td>0.5</td></tr>
+    <tr><td>Potato</td><td>81.67</td><td>16.94</td><td>3.36</td><td>0.18</td></tr>
+    <tr><td>Radish</td><td>1.17</td><td>0.18</td><td>0</td><td>0</td></tr>
+    <tr><td>Tofu</td><td>35</td><td>1.17</td><td>5.83</td><td>1.17</td></tr>
+    <tr><td>Tomato</td><td>16.33</td><td>4.12</td><td>1.5</td><td>0.24</td></tr>
+    <tr><td>Zucchini</td><td>38.5</td><td>7.12</td><td>2.77</td><td>0.74</td></tr>
+    <th rowspan="12" class="table-ingredient-type">OTHER</th>
+    <tr><td>Bread</td><td>103.44</td><td>19.25</td><td>3.44</td><td>1.29</td></tr>
+    <tr><td>Canned Spaghetti Bolognese</td><td>252</td><td>31.73</td><td>8.4</td><td>10.27</td></tr>
+    <tr><td>Canned Carrots</td><td>12.25</td><td>32.67</td><td>0</td><td>0</td></tr>
+    <tr><td>Canned Chili</td><td>303.33</td><td>38.5</td><td>18.67</td><td>8.17</td></tr>
+    <tr><td>Canned Corn</td><td>367.5</td><td>81.67</td><td>8.17</td><td>2.04</td></tr>
+    <tr><td>Canned Corned Beef</td><td>504</td><td>0</td><td>54.6</td><td>33.6</td></tr>
+    <tr><td>Canned Peas</td><td>326.67</td><td>61.25</td><td>16.33</td><td>0</td></tr>
+    <tr><td>Canned Potato</td><td>204.17</td><td>40.83</td><td>2.92</td><td>0</td></tr>
+    <tr><td>Canned Sardines</td><td>175</td><td>0</td><td>16.33</td><td>12.83</td></tr>
+    <tr><td>Canned Tomato</td><td>105</td><td>21</td><td>3.5</td><td>0</td></tr>
+    <tr><td>Canned Tuna</td><td>431.67</td><td>0</td><td>17.5</td><td>39.67</td></tr>
+  </table>
+</div>
+</section>
+<footer>This is not a real restaurant. If you want to join our Project Zomboid server, please connect to <b>38.172.945.69</b>.</footer>
+</body>
+</html>

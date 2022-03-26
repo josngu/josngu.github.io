@@ -1,0 +1,841 @@
+@charset "utf-8";
+/* CSS Document */
+@keyframes page-load {
+  from {
+    opacity: 0%;
+    transform: translateY(-5%);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0px);
+  }
+}
+@keyframes page-load-home {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+@keyframes landing-title {
+  from {
+    transform: scale(25) translate(-50%, -50%);
+  }
+  to {
+    transform: scale(1) translate(-50%, -50%);
+  }
+}
+@keyframes door-open {
+  from {
+    width: 50%;
+    outline: 12px solid white;
+  }
+  to {
+    width: 0%;
+    outline: 0px solid transparent;
+  }
+}
+@keyframes background {
+    0%{background-position: 0% 50%}
+    50%{background-position: 100% 50%}
+    100%{background-position: 0% 50%}
+}
+@keyframes stew-fusion-text {
+    from {
+        letter-spacing: 1em;
+    }
+    to {
+        letter-spacing: 0px;
+    }
+}
+/* ===========
+BEGIN STYLING
+=========== */
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+body {
+  margin: auto;
+  padding: 0;
+  background-color: #111111;
+}
+.dark-mode {
+  background-color: #111111;
+  color: white;
+}
+#home-body {
+  animation: page-load-home 1.5s;
+  transform-origin: 50% 25%;
+}
+section {
+  animation: page-load .75s;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+h1 {
+  font-family: "Josefin Sans";
+  font-size: clamp(48px,5vw,5vw);
+  text-align: center;
+  padding: 44px 0 32px 0;
+  margin: 0;
+}
+h2 {
+  font-family: "Josefin Sans";
+  font-weight: 300;
+  font-size: clamp(32px,3vw,3vw);
+  text-align: center;
+  line-height: 1.15;
+  width: 100%;
+  color: white;
+  margin: 0;
+  padding: 38px 8px 32px 8px;
+  background-image: linear-gradient(309deg, rgba(187, 187, 187, 0.03) 0%, rgba(187, 187, 187, 0.03) 22%,rgba(207, 207, 207, 0.03) 22%, rgba(207, 207, 207, 0.03) 43%,rgba(148, 148, 148, 0.03) 43%, rgba(148, 148, 148, 0.03) 62%,rgba(90, 90, 90, 0.03) 62%, rgba(90, 90, 90, 0.03) 68%,rgba(195, 195, 195, 0.03) 68%, rgba(195, 195, 195, 0.03) 88%,rgba(34, 34, 34, 0.03) 88%, rgba(34, 34, 34, 0.03) 95%,rgba(215, 215, 215, 0.03) 95%, rgba(215, 215, 215, 0.03) 100%),linear-gradient(35deg, rgba(100, 100, 100, 0.03) 0%, rgba(100, 100, 100, 0.03) 9%,rgba(5, 5, 5, 0.03) 9%, rgba(5, 5, 5, 0.03) 40%,rgba(89, 89, 89, 0.03) 40%, rgba(89, 89, 89, 0.03) 44%,rgba(5, 5, 5, 0.03) 44%, rgba(5, 5, 5, 0.03) 69%,rgba(130, 130, 130, 0.03) 69%, rgba(130, 130, 130, 0.03) 79%,rgba(204, 204, 204, 0.03) 79%, rgba(204, 204, 204, 0.03) 88%,rgba(247, 247, 247, 0.03) 88%, rgba(247, 247, 247, 0.03) 100%),linear-gradient(90deg, rgb(53, 53, 53),rgb(0, 0, 0));
+  box-shadow: inset 0 0 16px -4px rgba(0,0,0,1);
+}
+h3 {
+  font-family: "Josefin Sans";
+  font-weight: 100;
+  font-size: clamp(24px, 2vw, 2vw);
+  line-height: 1.15;
+  border-bottom: 1px solid rgba(0,0,0,0.5);
+  text-align: center;
+  margin: 16px 0 16px 0;
+  padding: 8px 0 8px 0;
+}
+#box-spacer {
+  padding: 54px 0 0 0;
+  width: 100%;
+  font-size: 0;
+  background-color: black;
+}
+#left-door {
+  animation: door-open 1.5s;
+  background-color: #111111;
+  transform-origin: center;
+  outline: 0px solid white;
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+}
+#right-door {
+  animation: door-open 1.5s;
+  background-color: #111111;
+  transform-origin: center;
+  outline: 0px solid white;
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+  top: 0;
+  right: 0;
+  width: 0%;
+  height: 100%;
+}
+img {
+  display: block;
+  width: 100%;
+}
+/*Do not touch this part of the code because I have no idea how I got this to work*/
+.standalone-image-container {
+  position: relative;
+}
+.standalone-image {
+  position: relative;
+}
+.standalone-image-container .standalone-image-front {
+  opacity: 0%;
+  transition: opacity .25s;
+}
+.standalone-image-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.standalone-image-container:hover .standalone-image-front {
+  opacity: 100%;
+}
+#stew-description {
+  font-family: "Outfit";
+  font-size: 18px;
+  margin: 0px 10%;
+  padding: 4px 0 14px 0;
+  text-align: center;
+  border-bottom: 1px solid rgba(0,0,0,0.5);
+}
+li {
+  list-style-type: none;
+}
+/* ========
+SCROLL BAR
+======== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #222222;
+}
+::-webkit-scrollbar-thumb {
+  background: #999;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+/* ===================
+BACKGROUND HOME PAGE
+=================== */
+.bg-button {
+  position: absolute;
+  padding: 0.8rem 1.2rem 0.8rem 1.2rem;
+  text-align: center;
+  width: auto;
+  outline: solid white 2px;
+  outline-offset: -1px;
+  font-family: "Outfit";
+  font-size: 20px;
+  font-weight: 400;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 0px 16px -2px black;
+  backdrop-filter: blur(16px) saturate(150%) opacity(100%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%) opacity(100%);
+  transition-duration: 0.2s;
+}
+.bg-button:after {
+  content: "";
+  height: 0%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 1);
+  z-index: -1;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition-duration: 0.2s;
+}
+.bg-button:hover {
+  color: black;
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 16px -4px white;
+  backdrop-filter: blur(16px) saturate(150%) opacity(100%);
+}
+.bg-button:hover:after {
+  height: 100%;
+}
+.bg {
+  filter: brightness(0.33);
+  object-fit: cover;
+  height: clamp(480px,100vh,100vh);
+  z-index: -100;
+}
+.bg-container {
+  position: relative;
+  overflow-x: hidden;
+}
+.bg-title {
+  animation: landing-title 1s;
+  transform: translate(-50%, -50%);
+  transform-origin: left;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  font-family: "Josefin Sans";
+  font-size: 5vw;
+  font-weight: 400;
+  color: white;
+  top: 45%;
+  left: 50%;
+}
+/* ========
+NAVIGATION
+=========*/
+.menu-bar {
+  background-color: rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 16px -2px black;
+  padding: 4px 10% 4px 10%;
+  /*"Overflow: hidden;" prevents menu items from appearing after the menu bar*/
+  overflow: hidden;
+  align-content: center;
+  border-bottom: solid 1px white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  backdrop-filter: blur(8px) saturate(200%) opacity(100%);
+  -webkit-backdrop-filter: blur(8px) saturate(200%) opacity(100%);
+  transition: ease all 0.5s;
+}
+#logo {
+  width: 256px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  float: left;
+  cursor: pointer;
+}
+.menu-item {
+  font-family: "Outfit";
+  font-weight: 100;
+  font-size: 16px;
+  color: white;
+  z-index: 100;
+  float: right;
+  margin: 12px 16px 12px 16px;
+  text-align: center;
+  text-decoration: none;
+  transition-duration: 0.2s;
+}
+.menu-item:hover {
+  padding: 6px 16px 6px 16px;
+  margin: 6px 0px 2px 0px;
+  color: black;
+  background-color: white;
+  border-color: white;
+}
+.menu-item-mobile {
+  display: none;
+  font-family: "Outfit";
+  font-weight: 100;
+  font-size: 16px;
+  padding: 8px 0 8px 0;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  transition: ease all 0.5s;
+}
+.menu-item-mobile:hover {
+  border-left: solid 1px white;
+  border-right: solid 1px white;
+}
+#menu-bg {
+  margin: 54px;
+  background-color: white;
+}
+/* ===================
+CONTAINERS AND COLUMNS
+=================== */
+.four-columns {
+  background: linear-gradient(45deg, #bce7ff, #e3ceff, #ffd6d7, #feffd4);
+  background-size: 800% 800%;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  padding: 0px 7.5% 0px 7.5%;
+  text-align: center;
+  animation: background 15s ease infinite;
+}
+.two-columns {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  background-color: white;
+  margin: 0px 10% 0px 10%;
+  padding: 16px 0px 16px 0px;
+  text-align: center;
+}
+#two-columns-home {
+  column-gap: 0%;
+  margin: 0;
+  padding: 0;
+}
+.food-two-columns {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  column-gap: 10%;
+  margin: 0px 15% 0px 15%;
+  padding: 0px 0px 0px 0px;
+  text-align: center;
+}
+#food-categories {
+  display: flex;
+  flex-direction: column;
+  background-color: #111111;
+  min-height: 100vh;
+}
+.food-categories {
+  display: flex;
+  flex: 1 1 auto;
+  margin: 0px 0px 0px 0px;
+  padding: 0;
+  line-height: 0;
+}
+.special-menu-container {
+  display: block;
+  margin: 16px 5% 16px 5%;
+}
+.food-menu-container {
+  display: block;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  transition-duration: 0.2s;
+}
+.food-menu-container:hover {
+  width: 200%;
+}
+.food-menu-image {
+  display: block;
+  filter: brightness(0.5) saturate(0);
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  transform: scale(1.25) translate(0%, -10%);
+  transition-duration: 0.2s;
+}
+.food-menu-image:hover {
+  filter: brightness(1) saturate(1);
+  transform: scale(1.3) translate(0%, -10%);
+}
+figcaption {
+  background: rgba(255,255,255,0.5);
+  border-radius: 8px;
+  backdrop-filter: blur(8px) saturate(200%) opacity(100%);
+  -webkit-backdrop-filter: blur(8px) saturate(200%) opacity(100%);
+  font-family: "Outfit";
+  font-weight: 400;
+  text-align: center;
+  font-size: clamp(1em,calc(0.5vw + 10px),1.2em);
+  color: black;
+  padding: 6px 4px 6px 4px;
+  margin: 12px 0 12px 0;
+  border: 1px solid rgba(255,255,255,0.5);
+  box-shadow: inset 0px 0px 4px -2px rgba(0,0,0,1);
+}
+.food-menu-text {
+  font-family: "Josefin Sans";
+  position: relative;
+  transform: translate(-50%, 0%);
+  font-weight: 100;
+  pointer-events: none;
+  left: 50%;
+  width: 200%;
+  bottom: 0;
+  z-index: 1;
+  font-size: 1.5em;
+  margin: 0;
+  padding: 1.15em 0em 1em 0em;
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16px) saturate(150%) opacity(100%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%) opacity(100%);
+  border: 0;
+  color: white;
+}
+.special {
+  image-rendering: pixelated;
+  cursor: pointer;
+  padding: 10%;
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  transition-duration: 0.1s;
+}
+.special:hover {
+  border: 1px solid rgba(255,255,255,0.5);
+  backdrop-filter: saturate(300%) opacity(100%);
+  -webkit-backdrop-filter: saturate(300%) opacity(100%);
+}
+.food-item-container {
+  width: 100%;
+  margin: 0;
+  padding: 12px 5% 12px 5%;
+}
+.food-image {
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  width: 100%;
+  height: auto;
+  margin: auto;
+  image-rendering: pixelated;
+  filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
+}
+.food-info {
+  font-family: "Outfit";
+  font-weight: 100;
+  display: table;
+  table-layout: fixed;
+  height: 100%;
+  border-spacing: 0px;
+  border-collapse: collapse;
+  text-align: left;
+  margin: auto auto auto auto;
+  line-height: 1;
+  font-size: clamp(1.2em,1.5vw,32px);
+}
+.food-info td {
+  border: none;
+  padding: 4px 8px;
+}
+.food-description {
+  font-family: "Outfit";
+  font-weight: 100;
+  margin: 24px 0 0 0;
+  font-size: clamp(18px,1.25vw,32px);
+}
+#table-container {
+  overflow-x: auto;
+}
+#stew-fusion-table {
+  font-family: "Outfit";
+  table-layout: auto;
+  text-align: center;
+  border-spacing: 0px;
+  border-collapse: collapse;
+  margin: auto;
+  min-width: 800px;
+  box-shadow: 0 0 8px -2px rgba(0,0,0,0.33);
+}
+th {
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 4px;
+}
+td {
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 4px;
+}
+td:hover {
+  background-color: #DDDDDD;
+}
+.table-ingredient-type {
+  background-color: white;
+  color: black;
+  font-family: "Josefin Sans";
+  font-size: 32px;
+  letter-spacing: 8px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  min-width: 80px;
+  padding: 0 24px 0 16px;
+  border: 0px transparent;
+  box-shadow: inset 0 0 16px -4px rgba(0,0,0,1);
+}
+#table-ingredient-type {
+  background-color: #222222;
+  color: white;
+}
+.table-general-heading {
+  min-width: 128px;
+}
+#table-ingredient-heading {
+  min-width: 240px;
+}
+footer {
+  display: block;
+  width: 100%;
+  background-color: #222222;
+  text-align: center;
+  font-family: "Outfit";
+  font-weight: 100;
+  font-size: 14px;
+  color: white;
+  margin: 0;
+  padding: 24px 5%;
+}
+/* =========
+STEW FUSION
+========= */
+#stew-fusion-image {
+  image-rendering: pixelated;
+  height: 200px;
+  width: auto;
+  margin: auto 16px auto auto;
+}
+#stew-fusion-title {
+  background: linear-gradient(45deg, #bce7ff, #e3ceff, #ffd6d7, #feffd4);
+  background-size: 1000% 1000%;
+  animation: background 15s ease infinite, stew-fusion-text 3s;
+  font-size: clamp(32px,4vw,4vw);
+  white-space: nowrap;
+  color: rgba(0,0,0,0.9);
+  box-shadow: inset 0 0 16px -4px rgba(0,0,0,1);
+  margin: 0 0 32px 0;
+}
+#stew-fusion-button {
+  background: linear-gradient(45deg, #bce7ff, #e3ceff, #ffd6d7, #feffd4);
+  background-size: 1000% 1000%;
+  animation: background 15s ease infinite;
+  color: rgba(0,0,0,0.9);
+  width: 280px;
+  text-align: center;
+  padding: 1.5rem 0px 1.25rem 0;
+  font-family: "Josefin Sans";
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 1;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 32px auto;
+  display: flex;
+  justify-content: center;
+  box-shadow: inset 0 0 16px 0px rgba(255,255,255,0);
+  transition-duration: 0.33s;
+}
+#stew-fusion-button-error {
+  cursor: not-allowed;
+  background: red;
+  color: white;
+}
+#stew-fusion-button:hover {
+  filter: saturate(800%);
+  box-shadow: inset 0 0 16px 0px rgba(255,255,255,0);
+  border-radius: 0px;
+  letter-spacing: 8px;
+  width: 100%;
+  color: white;
+}
+#stew-fusion-button:active {
+  box-shadow: inset 0 0 16px 0px rgba(0,0,0,0.5);
+}
+#stew-fusion-stats {
+  display: block;
+  font-family: "Outfit";
+  border-spacing: 0px;
+  border-collapse: collapse;
+  line-height: 1.5;
+  font-size: 28px;
+  margin: auto auto auto 16px;
+  padding: 0;
+}
+#stew-fusion-stats td {
+  padding: 0 16px;
+  border: none;
+}
+#fusion-two-columns {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  width: 100%;
+  margin: 32px auto;
+}
+#ingredient-list {
+  padding: 16px 0;
+}
+.ingredient-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding: 8px 10% 16px 10%;
+}
+.ingredient-icon {
+  display: block;
+  width: auto;
+  height: auto;
+  margin: auto 4px auto 16px;
+  image-rendering: pixelated;
+  filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.5));
+}
+.ingredient-container {
+  display: inline-flex;
+}
+.ingredient-type {
+  background-image: none;
+  color: black;
+  border-bottom: 1px solid rgba(0,0,0,0.5);
+  padding: 4px;
+  margin: 16px 10% 8px 10%;
+  box-shadow: none;
+}
+input[type="checkbox"] {
+  display: none;
+}
+label {
+  display: flex;
+  color: black;
+  font-family: "Outfit";
+  font-size: 18px;
+  border: 1px solid rgba(0,0,0,0.5);
+  border-radius: 4px;
+  margin: 4px 4px;
+  padding: 0px 0px 0px 0px;
+  cursor: pointer;
+  user-select: none;
+  transition-duration: 0.2s;
+}
+input[type="checkbox"]:checked + .checkbox{
+  background-color: #222222;
+  color: white;
+  box-shadow: inset 0 0 4px 0 rgba(0,0,0,1);
+}
+.checkbox {
+  padding: 2px 8px;
+  box-shadow: 0 0 4px 0 rgba(0,0,0,0);
+  transition-duration: 0.2s;
+}
+label:hover > .checkbox {
+  box-shadow: 0 0 4px 0 rgba(0,0,0,1);
+}
+/* ===========
+MEDIA QUERIES
+=========== */
+@media screen and (max-width: 1050px) {
+  .menu-bar {
+    column-count: 3;
+    padding: 4px 20% 4px 20%;
+  }
+  .menu-item {
+    display: none;
+  }
+  .menu-item-mobile {
+    display: block;
+  }
+  .four-columns {
+    padding: 0px 5% 0px 5%;
+  }
+  .two-columns {
+    margin: 0px 5% 0px 5%;
+  }
+  .food-two-columns {
+    margin: 0px 5% 0px 5%;
+  }
+  .special {
+    padding: 7.5%;
+  }
+  #logo {
+    display: none;
+  }
+  #box-spacer {
+    padding: 80px 0 0 0;
+    font-size: 0;
+  }
+  .food-info {
+    font-size: 2vw;
+  }
+  h3 {
+    font-size: 24px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .menu-bar {
+    padding: 4px 5% 4px 5%;
+  }
+  .four-columns {
+    grid-template-columns: 50% 50%;
+  }
+  .two-columns {
+    margin: 0px 2.5% 0px 2.5%;
+  }
+  .food-two-columns {
+    column-gap: 5%;
+    margin: 0px 0% 0px 0%;
+  }
+  .food-description {
+    font-size: 16px;
+  }
+  .food-categories {
+    flex-wrap: wrap;
+  }
+  #food-categories {
+    flex-wrap: wrap;
+  }
+  .food-menu-container {
+    width: 50%;
+    height: auto;
+  }
+  .food-menu-container:hover {
+    width: 50%;
+    height: auto;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  .bg-title {
+    font-size: 10vw;
+    line-height: calc(10vw + 2px);
+    width: 80%;
+  }
+  .food-info {
+    font-size: 16px;
+  }
+  figcaption {
+    font-size: 18px;
+  }
+  .ingredient-list {
+    padding: 8px 5%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .menu-bar {
+    column-count: 2;
+    padding: 4px 5% 4px 5%;
+  }
+  .two-columns {
+    display: block;
+  }
+  .food-two-columns {
+    display: block;
+  }
+  .food-image {
+    width: 33%;
+    height: auto;
+    margin: 24px auto;
+    image-rendering: pixelated;
+}
+  .food-description {
+    font-size: 18px;
+  }
+  .food-info {
+    font-size: 18px;
+  }
+  .food-menu-container {
+    width: 100%;
+  }
+  .food-menu-container:hover {
+    width: 100%;
+  }
+  #box-spacer {
+    padding: 116px 0 0 0;
+  }
+  h3 {
+    font-size: 28px;
+  }    
+  figcaption {
+    font-size: 16px;
+  }
+  #fusion-two-columns {
+    grid-template-columns: 100%;
+    margin-bottom: 0;
+  }
+  #stew-fusion-button {
+    margin-top: 0;
+  }
+  #stew-fusion-image {
+    height: 128px;
+    margin: auto;
+  }
+  #stew-fusion-stats {
+    display: table;
+    table-layout: fixed;
+    margin: 32px auto;
+    font-size: clamp(18px,5vw,24px);
+  }
+  footer {
+    padding: 24px 5% 24px 5%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none;
+  }
+}
