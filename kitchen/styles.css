@@ -3,7 +3,7 @@
 @keyframes page-load {
   from {
     opacity: 0%;
-    transform: translateY(-5%);
+    transform: translateY(-64px);
   }
   to {
     opacity: 100%;
@@ -180,9 +180,9 @@ li {
 SCROLL BAR
 ======== */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
+  height: 4px;
 }
-
 ::-webkit-scrollbar-track {
   background: #222222;
 }
@@ -208,7 +208,7 @@ BACKGROUND HOME PAGE
   text-decoration: none;
   color: white;
   cursor: pointer;
-  top: 60%;
+  top: 66%;
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0px 0px 16px -2px black;
@@ -256,7 +256,7 @@ BACKGROUND HOME PAGE
   text-align: center;
   position: absolute;
   font-family: "Josefin Sans";
-  font-size: 5vw;
+  font-size: clamp(48px,5vw,5vw);
   font-weight: 400;
   color: white;
   top: 45%;
@@ -761,8 +761,6 @@ MEDIA QUERIES
     padding-right: 32px;
   }
   .bg-title {
-    font-size: 10vw;
-    line-height: calc(10vw + 2px);
     width: 80%;
   }
   .food-info {
@@ -816,6 +814,9 @@ MEDIA QUERIES
   #fusion-two-columns {
     grid-template-columns: 100%;
     margin-bottom: 0;
+  }
+  #stew-fusion-title {
+    animation: background 15s ease infinite;
   }
   #stew-fusion-button {
     margin-top: 0;
