@@ -234,6 +234,7 @@ BACKGROUND HOME PAGE
   background-color: rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 16px -4px white;
   backdrop-filter: blur(16px) saturate(150%) opacity(100%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%) opacity(100%);
 }
 .bg-button:hover:after {
   height: 100%;

@@ -31,18 +31,18 @@ html {
   scroll-behavior: smooth;
 }
 h1 {
-  font-family: "Josefin Sans";
+  font-family: "Josefin Sans", sans-serif;
   color: white;
   text-align: center;
-  font-size: clamp(54px,10vw,128px);
+  font-size: clamp(5vw,9vw,120px);
   font-weight: 500;
-  padding-top: 2.5%;
+  padding-top: 2%;
   margin: 0;
 }
-h2, h3 {
-  font-family: "Josefin Sans";
+h2 {
+  font-family: "Josefin Sans", sans-serif;
   font-weight: 300;
-  margin: 12px;
+  color: white;
 }
 body {
   animation: page-load 1s;
@@ -52,17 +52,17 @@ body {
 }
 p {
   color: white;
-  font-family: "Raleway";
+  font-family: "Raleway", sans-serif;
   text-align: center;
 }
 nav {
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0,0,0,0.75);
   position: sticky;
   position: -webkit-sticky;
   top: 0;
   padding: 4px 0;
-  border-top: 1px solid rgba(255,255,255,0.25);
-  border-bottom: 1px solid rgba(255,255,255,0.25);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
   text-align: center;
   z-index: 1000;
   backdrop-filter: blur(16px) saturate(200%) opacity(100%);
@@ -74,19 +74,22 @@ ul {
 }
 li {
   display: inline-block;
-  font-family: "Raleway";
+  font-family: "Raleway", sans-serif;
   letter-spacing: 1px;
   list-style: none;
   margin: auto 16px;
   padding: 12px 0 10px 0;
 }
 a {
-  text-decoration: none;
+  color: rgba(175,200,255);
+}
+.menu-link {
   color: white;
+  text-decoration: none;
   filter: drop-shadow(0 0 6px rgba(255,255,255,0));
   transition-duration: 0.2s;
 }
-a:hover {
+.menu-link:hover {
   filter: drop-shadow(0 0 6px rgba(255,255,255,1));
 }
 img {
@@ -113,9 +116,6 @@ main {
   padding: 16px;
   text-align: center;
 }
-#attributions-page {
-  column-count: 1;
-}
 figure {
   position: relative;
   margin: 0px;
@@ -135,7 +135,7 @@ figure:after {
 }
 figcaption {
   margin: 8px 0 8px 0;
-  font-family: "Raleway";
+  font-family: "Raleway", sans-serif;
   background: white;
   border-radius: 128px;
 }
@@ -143,15 +143,44 @@ figcaption {
   width: 100%;
   box-shadow: 0 0 16px -2px rgba(0, 0, 0, 0.8);
 }
+#attributions-page {
+  column-count: 2;
+  margin: 0 5%;
+}
+.references-container {
+  padding: 0 5%;
+  break-inside: avoid-column;
+  -webkit-column-break-inside: avoid;
+  overflow: hidden;
+}
+.references-container p {
+  margin: 0;
+  line-height: 1.5;
+  text-align: left;
+  font-size: 1em;
+}
+.references-container > div {
+  margin: 0 0 1em 0;
+}
+.references-title {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 1.5em;
+  text-align: left;
+}
 address {
   font-style: normal;
   margin: 12px;
+}
+address > a {
+  color: white;
+  text-decoration: none;
 }
 footer {
   display: block;
   background-color: #111111;
   text-align: center;
-  font-family: "Raleway";
+  font-family: "Raleway", sans-serif;
   font-weight: 300;
   font-size: 16px;
   color: white;
@@ -168,6 +197,18 @@ footer {
   main {
     column-count: 1;
     margin: 0px;
+  }
+  #attributions-page {
+    column-count: 1;
+    margin: 0;
+  }
+  .references-container p {
+    line-height: 1.5;
+    font-size: 1.2em;
+  }
+  .references-title {
+    text-align: center;
+    font-size: clamp(1.5em,4vw,1.8em);
   }
   figure {
     padding: 8px 4px;
