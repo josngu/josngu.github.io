@@ -14,15 +14,25 @@
 </head>
 
 <body>
-  <nav class="menu-bar"> <a href="index.html"><img src="images/logo.svg"  id="logo" alt="Logo of Joseph's Kitchen"></a> <a href="fusion.html" class="menu-item">Stew Fusion</a> <a href="beverages.html" class="menu-item">Beverages</a> <a href="desserts.html" class="menu-item">Desserts</a> <a href="appetizers.html" class="menu-item">Appetizers</a> <a href="entrees.html" class="menu-item">Entrées</a>
+<nav id="menu-bar"> <a href="index.html"><img src="images/logo.svg"  id="logo" alt="Logo of Joseph's Kitchen"></a> 
+    <div id="menu-items">
+    <a href="entrees.html" class="menu-item">Entrées</a>
+    <a href="appetizers.html" class="menu-item">Appetizers</a>
+    <a href="desserts.html" class="menu-item">Desserts</a>
+    <a href="beverages.html" class="menu-item">Beverages</a>
+    <a href="fusion.html" class="menu-item">Stew Fusion</a>
+    </div>
+    <img id="hamburger-menu" alt="Menu button" src="images/hamburger-menu.svg" onClick="showMenu();">
+</nav>
     
-  <a href="index.html" class="menu-item-mobile">Joseph's Kitchen</a>
+<nav id="menu-bar-mobile">
   <a href="entrees.html" class="menu-item-mobile">Entrées</a>
   <a href="appetizers.html" class="menu-item-mobile">Appetizers</a>
-  <a href="fusion.html" class="menu-item-mobile">Stew Fusion</a>
   <a href="desserts.html" class="menu-item-mobile">Desserts</a>
   <a href="beverages.html" class="menu-item-mobile">Beverages</a>
-  </nav>
+  <a href="fusion.html" class="menu-item-mobile">Stew Fusion</a>
+</nav>
+
 <p id="box-spacer"></p>
 <section>
   <h1 id="stew-fusion-title">STEW FUSION</h1>

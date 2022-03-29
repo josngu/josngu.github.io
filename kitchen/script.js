@@ -1,4 +1,18 @@
 // JavaScript Document
+function showMenu(){
+    var element = document.getElementById("menu-bar-mobile");
+    
+    if (element.classList.contains("menu-slide-in") != true){
+      element.classList.remove("menu-slide-out");
+      element.classList.add("menu-slide-in");
+      document.getElementById("hamburger-menu").src = "images/close-button.svg";
+    } else {
+      element.classList.remove("menu-slide-in");
+      element.classList.add("menu-slide-out");
+      document.getElementById("hamburger-menu").src = "images/hamburger-menu.svg";
+    }
+}
+
 function finalizeStew(){
   var adjectives = ["Shuman","Magnificent","Supreme","Spectacular","Stupendous","Sanguine","Succulent","Stunning","Striking","Suspicious","Demonic","Mystical","Trustworthy","Mysterious","Nefarious","2nd","Odd","Ancient","Evil","Peculiar","Prosperous","Rancid","Garbage","Gratuitous","Omnibenevolent","Abysmal","Beautiful","Handsome","Horrifying","Attractive","Illustrious","Illuminating","Sentient","Shimmering","Sickly","Sinister","Strange","Spooky","Stylish","Supernatural","Surreal","Delightful","Stinky","Deceptive","Crunchy"];
 
@@ -82,7 +96,7 @@ for (let i = 0; i < otherList.length; i++){
   //Automatically generate the stew description
   document.getElementById("stew-description").innerHTML = "A delicious stew with " + ingredients[0] + ", " + ingredients[1] + ", " + ingredients[2] + ", " + ingredients[3] + ", " + ingredients[4] + ", and " + ingredients[5] + ".";
   
-  //Round the numbers (due to floating point imprecision), probably not a proper fix but this works
+  //Round the numbers (due to floating point imprecision), probably not a proper fix but this will work for now
   document.getElementById("calories").innerHTML = calories.toFixed(2);
   document.getElementById("carbohydrates").innerHTML = carbohydrates.toFixed(2);
   document.getElementById("proteins").innerHTML = proteins.toFixed(2);

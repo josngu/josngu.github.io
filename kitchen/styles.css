@@ -36,6 +36,22 @@
     outline: 0px solid transparent;
   }
 }
+@keyframes menu-slide-in {
+    from {
+        transform: translate(110%,-320px);
+    }
+    to {
+        transform: translate(0%,-320px);
+    }
+}
+@keyframes menu-slide-out {
+    from {
+        transform: translate(0%,-320px);
+    }
+    to {
+        transform: translate(110%,-320px);
+    }
+}
 @keyframes background {
     0%{background-position: 0% 50%}
     50%{background-position: 100% 50%}
@@ -102,7 +118,7 @@ h2 {
 h3 {
   font-family: "Josefin Sans";
   font-weight: 100;
-  font-size: clamp(24px, 2vw, 2vw);
+  font-size: clamp(28px, 2vw, 2vw);
   line-height: 1.15;
   border-bottom: 1px solid rgba(0,0,0,0.5);
   text-align: center;
@@ -115,31 +131,26 @@ h3 {
   font-size: 0;
   background-color: black;
 }
-#left-door {
-  animation: door-open 1.5s;
-  background-color: #111111;
+#left-door, #right-door {
+  animation: door-open forwards 2s;
+  animation-delay: 0.25s;
+  background-color: rgba(0,0,0,0.5);
   transform-origin: center;
-  outline: 0px solid white;
+  outline: 12px solid white;
   position: fixed;
+  width: 50%;
   z-index: 1000;
   pointer-events: none;
   top: 0;
-  left: 0;
-  width: 0%;
   height: 100%;
+  backdrop-filter: blur(16px) saturate(200%) opacity(100%);
+  -webkit-backdrop-filter: blur(16px) saturate(200%) opacity(100%);
+}
+#left-door {
+  left: 0;
 }
 #right-door {
-  animation: door-open 1.5s;
-  background-color: #111111;
-  transform-origin: center;
-  outline: 0px solid white;
-  position: fixed;
-  z-index: 1000;
-  pointer-events: none;
-  top: 0;
   right: 0;
-  width: 0%;
-  height: 100%;
 }
 img {
   display: block;
@@ -167,7 +178,7 @@ img {
 }
 #stew-description {
   font-family: "Outfit";
-  font-size: 18px;
+  font-size: 1.2em;
   margin: 0px 10%;
   padding: 4px 0 14px 0;
   text-align: center;
@@ -197,18 +208,18 @@ BACKGROUND HOME PAGE
 =================== */
 .bg-button {
   position: absolute;
-  padding: 0.8rem 1.2rem 0.8rem 1.2rem;
+  padding: 0.5em 1em 0.55em 1em;
   text-align: center;
   width: auto;
   outline: solid white 2px;
   outline-offset: -1px;
   font-family: "Outfit";
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 1.5em;
+  font-weight: 300;
   text-decoration: none;
   color: white;
   cursor: pointer;
-  top: 66%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0px 0px 16px -2px black;
@@ -250,8 +261,9 @@ BACKGROUND HOME PAGE
   overflow-x: hidden;
 }
 .bg-title {
-  animation: landing-title 1s;
-  transform: translate(-50%, -50%);
+  animation: landing-title forwards 1s;
+  animation-delay: 0.5s;
+  transform: scale(25) translate(-50%, -50%);
   transform-origin: left;
   width: 100%;
   text-align: center;
@@ -262,17 +274,18 @@ BACKGROUND HOME PAGE
   color: white;
   top: 45%;
   left: 50%;
+  filter: drop-shadow(0 0 16px rgba(255,255,255,1));
 }
 /* ========
 NAVIGATION
 =========*/
-.menu-bar {
+#menu-bar {
+  display: flex;
   background-color: rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 16px -2px black;
-  padding: 4px 10% 4px 10%;
-  /*"Overflow: hidden;" prevents menu items from appearing after the menu bar*/
-  overflow: hidden;
-  align-content: center;
+  padding: 8px 7.5%;
+  justify-content: space-between;
+  align-items: center;
   border-bottom: solid 1px white;
   position: fixed;
   top: 0;
@@ -282,42 +295,70 @@ NAVIGATION
   -webkit-backdrop-filter: blur(8px) saturate(200%) opacity(100%);
   transition: ease all 0.5s;
 }
+#menu-bar-mobile {
+  position: fixed;
+  background-color: rgba(0,0,0,0.8);
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.2);
+  transform: translate(110%,-320px);
+  top: 50%;
+  right: 0;
+  padding: 16px;
+  width: auto;
+  height: auto;
+  z-index: 500;
+  box-shadow: 0 0 16px 0 rgba(0,0,0,1);
+  backdrop-filter: blur(16px) saturate(200%) opacity(100%);
+  -webkit-backdrop-filter: blur(16px) saturate(200%) opacity(100%);
+}
+.menu-slide-in {
+  animation: menu-slide-in forwards 0.33s;
+}
+.menu-slide-out {
+  animation: menu-slide-out 0.33s;
+}
+#hamburger-menu {
+  display: none;
+  cursor: pointer;
+  width: 24px;
+  height: auto;
+}
 #logo {
   width: 256px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  float: left;
   cursor: pointer;
+}
+#menu-items {
+  
 }
 .menu-item {
   font-family: "Outfit";
   font-weight: 100;
-  font-size: 16px;
+  font-size: 1.2em;
   color: white;
   z-index: 100;
-  float: right;
-  margin: 12px 16px 12px 16px;
+  margin: 0px 16px;
   text-align: center;
   text-decoration: none;
   transition-duration: 0.2s;
 }
 .menu-item:hover {
-  padding: 6px 16px 6px 16px;
-  margin: 6px 0px 2px 0px;
+  padding: 4px 16px 4px 16px;
+  margin: 0;
   color: black;
   background-color: white;
   border-color: white;
 }
 .menu-item-mobile {
-  display: none;
+  display: block;
   font-family: "Outfit";
   font-weight: 100;
-  font-size: 16px;
-  padding: 8px 0 8px 0;
+  font-size: 1.5em;
+  padding: 16px;
   text-align: center;
   text-decoration: none;
   color: white;
-  transition: ease all 0.5s;
+  border-left: solid 1px transparent;
+  border-right: solid 1px transparent;
 }
 .menu-item-mobile:hover {
   border-left: solid 1px white;
@@ -335,6 +376,7 @@ CONTAINERS AND COLUMNS
   background-size: 800% 800%;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
+  align-items: end;
   padding: 0px 7.5% 0px 7.5%;
   text-align: center;
   animation: background 15s ease infinite;
@@ -403,19 +445,18 @@ CONTAINERS AND COLUMNS
   transform: scale(1.3) translate(0%, -10%);
 }
 figcaption {
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0);
   border-radius: 8px;
-  backdrop-filter: blur(8px) saturate(200%) opacity(100%);
-  -webkit-backdrop-filter: blur(8px) saturate(200%) opacity(100%);
+  backdrop-filter: saturate(300%) opacity(100%);
+  -webkit-backdrop-filter: saturate(300%) opacity(100%);
+  border: 1px solid rgba(255,255,255,0.5);
   font-family: "Outfit";
   font-weight: 400;
   text-align: center;
-  font-size: clamp(1em,calc(0.5vw + 10px),1.2em);
+  font-size: clamp(1.2em,2vw,1.5em);
   color: black;
   padding: 6px 4px 6px 4px;
   margin: 12px 0 12px 0;
-  border: 1px solid rgba(255,255,255,0.5);
-  box-shadow: inset 0px 0px 4px -2px rgba(0,0,0,1);
 }
 .food-menu-text {
   font-family: "Josefin Sans";
@@ -444,12 +485,12 @@ figcaption {
   width: 100%;
   border: 1px solid transparent;
   border-radius: 12px;
-  transition-duration: 0.1s;
+  transition-duration: 0.2s;
 }
 .special:hover {
   border: 1px solid rgba(255,255,255,0.5);
-  backdrop-filter: saturate(300%) opacity(100%);
-  -webkit-backdrop-filter: saturate(300%) opacity(100%);
+  backdrop-filter: saturate(400%) opacity(100%);
+  background-color: rgba(255,255,255,0.33);
 }
 .food-item-container {
   width: 100%;
@@ -561,7 +602,7 @@ STEW FUSION
   background: linear-gradient(45deg, #bce7ff, #e3ceff, #ffd6d7, #feffd4);
   background-size: 1000% 1000%;
   animation: background 15s ease infinite, stew-fusion-text 3s;
-  font-size: clamp(32px,4vw,4vw);
+  font-size: clamp(32px,5vw,64px);
   white-space: nowrap;
   color: rgba(0,0,0,0.9);
   box-shadow: inset 0 0 16px -4px rgba(0,0,0,1);
@@ -660,7 +701,7 @@ label {
   display: flex;
   color: black;
   font-family: "Outfit";
-  font-size: 18px;
+  font-size: 1.2em;
   border: 1px solid rgba(0,0,0,0.5);
   border-radius: 4px;
   margin: 4px 4px;
@@ -685,15 +726,16 @@ label:hover > .checkbox {
 /* ===========
 MEDIA QUERIES
 =========== */
-@media screen and (max-width: 1050px) {
-  .menu-bar {
-    column-count: 3;
-    padding: 4px 20% 4px 20%;
+@media screen and (min-width: 1050px) {
+  #menu-bar-mobile {
+    display: none;
   }
+}
+@media screen and (max-width: 1050px) {
   .menu-item {
     display: none;
   }
-  .menu-item-mobile {
+  #hamburger-menu {
     display: block;
   }
   .four-columns {
@@ -708,9 +750,6 @@ MEDIA QUERIES
   .special {
     padding: 7.5%;
   }
-  #logo {
-    display: none;
-  }
   #box-spacer {
     padding: 80px 0 0 0;
     font-size: 0;
@@ -723,9 +762,6 @@ MEDIA QUERIES
   }
 }
 @media screen and (max-width: 800px) {
-  .menu-bar {
-    padding: 4px 5% 4px 5%;
-  }
   .four-columns {
     grid-template-columns: 50% 50%;
   }
@@ -767,18 +803,11 @@ MEDIA QUERIES
   .food-info {
     font-size: 16px;
   }
-  figcaption {
-    font-size: 18px;
-  }
   .ingredient-list {
     padding: 8px 5%;
   }
 }
 @media screen and (max-width: 600px) {
-  .menu-bar {
-    column-count: 2;
-    padding: 4px 5% 4px 5%;
-  }
   .two-columns {
     display: block;
   }
@@ -809,9 +838,6 @@ MEDIA QUERIES
   h3 {
     font-size: 28px;
   }    
-  figcaption {
-    font-size: 16px;
-  }
   #fusion-two-columns {
     grid-template-columns: 100%;
     margin-bottom: 0;
