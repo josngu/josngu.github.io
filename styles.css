@@ -116,7 +116,7 @@ img {
 }
 #overlay p {
   font-family: "Josefin Sans", sans-serif;
-  font-size: 10vw;
+  font-size: clamp(2em,8vw,6em);
 }
 #name-container {
   display: flex;
