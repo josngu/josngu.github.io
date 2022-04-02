@@ -32,14 +32,13 @@
   <a href="beverages.html" class="menu-item-mobile">Beverages</a>
   <a href="fusion.html" class="menu-item-mobile">Stew Fusion</a>
 </nav>
-
-<p id="box-spacer"></p>
-<section>
-  <h1 id="stew-fusion-title">STEW FUSION</h1>
-<h3 class="ingredient-type" id="stew-title">The Rules of Stew Fusion</h3>
-  <p id="stew-description">You must have 6 ingredients in your stew.<br>No more than 1 of the same ingredient may be added to the stew.<br>All stews will contain salt and pepper.
-  </p>
-
+    
+<div id="backdrop"></div>
+    
+<div id="dialog-box-container">
+<div id="stew-fusion-dialog-box" class="stew-fusion-dialog-box">
+  <h3 class="ingredient-type" id="stew-title">STEW NAME</h3>
+  <p id="stew-description"></p>
   <div id="fusion-two-columns">
     <img id="stew-fusion-image" src="images/stew-soup.png" alt="Red stew">
     <table id="stew-fusion-stats">
@@ -57,6 +56,20 @@
       </tr>
     </table>
   </div>
+  <button id="close-dialog" onClick="closeDialog();">Close</button>
+</div>
+</div>
+    
+<p id="box-spacer"></p>
+<section>
+  <h1 id="stew-fusion-title">STEW FUSION</h1>
+<div id="stew-fusion-container">
+  <h3 class="ingredient-type">The Rules of Stew Fusion</h3>
+  <ul class="rule-list"><li id="rule-one">You must have 6 ingredients in your stew.</li><li>No more than 1 of the same ingredient may be added to the stew.</li>
+  </ul>
+  <p>Add your ingredients below, then finalize your stew once you have selected your desired ingredients.</p>
+</div>
+
 <button id="stew-fusion-button" onClick="finalizeStew();">FINALIZE STEW</button>
 
 <h2>CHOOSE YOUR INGREDIENTS</h2>
@@ -276,6 +289,6 @@
   </table>
 </div>
 </section>
-<footer>This is not a real restaurant. If you want to join our Project Zomboid server, please connect to <b>38.172.945.69</b>.</footer>
+<footer>This is not a real restaurant. If you want to join our Project Zomboid server, please connect to <b>XX.XXX.XXX.XX</b>.</footer>
 </body>
 </html>

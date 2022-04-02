@@ -14,6 +14,7 @@ function showMenu(){
 }
 
 function finalizeStew(){
+  //var dialogBox = document.getElementById("stew-fusion-dialog-box");
   var adjectives = ["Shuman","Magnificent","Supreme","Spectacular","Stupendous","Sanguine","Succulent","Stunning","Striking","Suspicious","Demonic","Mystical","Trustworthy","Mysterious","Nefarious","2nd","Odd","Ancient","Evil","Peculiar","Prosperous","Rancid","Garbage","Gratuitous","Omnibenevolent","Abysmal","Beautiful","Handsome","Horrifying","Attractive","Illustrious","Illuminating","Sentient","Shimmering","Sickly","Sinister","Strange","Spooky","Stylish","Supernatural","Surreal","Delightful","Stinky","Deceptive","Crunchy"];
 
 //These 4 variables will be unused for now
@@ -81,15 +82,18 @@ for (let i = 0; i < otherList.length; i++){
     }
 }
   //Check array length. If it's too long or short, stop the function.
-  if (ingredients.length < 6) {
-      //alert("INSUFFICIENT INGREDIENTS");
-      document.getElementById("stew-fusion-button").classList.add("stew-fusion-button-error");
+  if (ingredients.length != 6) {
+      
       return;
   }
-  if (ingredients.length > 6) {
-      alert("TOO MANY INGREDIENTS");
-      return;
-  }
+  //Show dialog box
+  document.getElementById("stew-fusion-dialog-box").style.display = "flex";
+  document.getElementById("backdrop").style.display = "block";
+    
+  document.getElementById("stew-fusion-image").style.animation = "stew-fusion-image 1s";
+  document.getElementById("stew-fusion-dialog-box").style.animation = "dialog-box 1s";
+  document.getElementById("backdrop").style.animation = "backdrop 0.5s";
+  
   //Randomly generate the stew name
   document.getElementById("stew-title").innerHTML = "The " + adjectives[Math.floor(Math.random()*adjectives.length)] + " Stew";
 
@@ -108,5 +112,8 @@ for (let i = 0; i < otherList.length; i++){
   document.getElementById("boredom").innerHTML = "Boredom: " + boredom;
   document.getElementById("unhappiness").innerHTML = "Unhappiness: " + unhappiness;
 */
-
+}
+function closeDialog(){
+  document.getElementById("stew-fusion-dialog-box").style.display = "none";
+  document.getElementById("backdrop").style.display = "none";
 }
