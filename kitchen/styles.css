@@ -15,17 +15,21 @@
 @keyframes page-load-home {
   from {
     opacity: 0%;
+    transform: scale(1.25);
   }
   to {
     opacity: 100%;
+    transform: scale(1);
   }
 }
 @keyframes landing-title {
   from {
-    transform: scale(25) translate(-50%, -50%);
+    transform: scale(1.25) translate(-50%, -50%);
+    opacity: 0%;
   }
   to {
     transform: scale(1) translate(-50%, -50%);
+    opacity: 100%;
   }
 }
 @keyframes door-open {
@@ -36,6 +40,17 @@
   to {
     width: 0%;
     outline: 0px solid transparent;
+  }
+}
+@keyframes overlay {
+  0% {
+    height: 100%;
+  }
+  20% {
+    height: 100%;
+  }
+  100% {
+    height: 0%;
   }
 }
 @keyframes menu-slide-in {
@@ -143,21 +158,17 @@
 @keyframes backdrop {
   from {
     opacity: 0%;
-    backdrop-filter: blur(0px);
   }
   to {
     opacity: 100%;
-    backdrop-filter: blur(8px);
   }
 }
 @keyframes backdrop-reverse {
   from {
     opacity: 100%;
-    backdrop-filter: blur(8px);
   }
   to {
     opacity: 0%;
-    backdrop-filter: blur(0px);
   }
 }
 @keyframes close-dialog-box {
@@ -192,10 +203,6 @@ p {
   background-color: #111111;
   color: white;
 }
-#home-body {
-  animation: page-load-home 1.5s;
-  transform-origin: 50% 25%;
-}
 section {
   animation: page-load .75s;
   background-color: white;
@@ -222,6 +229,7 @@ h2 {
   padding: 38px 24px 32px 24px;
   background-image: linear-gradient(309deg, rgba(187, 187, 187, 0.03) 0%, rgba(187, 187, 187, 0.03) 22%, rgba(207, 207, 207, 0.03) 22%, rgba(207, 207, 207, 0.03) 43%, rgba(148, 148, 148, 0.03) 43%, rgba(148, 148, 148, 0.03) 62%, rgba(90, 90, 90, 0.03) 62%, rgba(90, 90, 90, 0.03) 68%, rgba(195, 195, 195, 0.03) 68%, rgba(195, 195, 195, 0.03) 88%, rgba(34, 34, 34, 0.03) 88%, rgba(34, 34, 34, 0.03) 95%, rgba(215, 215, 215, 0.03) 95%, rgba(215, 215, 215, 0.03) 100%), linear-gradient(35deg, rgba(100, 100, 100, 0.03) 0%, rgba(100, 100, 100, 0.03) 9%, rgba(5, 5, 5, 0.03) 9%, rgba(5, 5, 5, 0.03) 40%, rgba(89, 89, 89, 0.03) 40%, rgba(89, 89, 89, 0.03) 44%, rgba(5, 5, 5, 0.03) 44%, rgba(5, 5, 5, 0.03) 69%, rgba(130, 130, 130, 0.03) 69%, rgba(130, 130, 130, 0.03) 79%, rgba(204, 204, 204, 0.03) 79%, rgba(204, 204, 204, 0.03) 88%, rgba(247, 247, 247, 0.03) 88%, rgba(247, 247, 247, 0.03) 100%), linear-gradient(90deg, rgb(53, 53, 53), rgb(0, 0, 0));
   box-shadow: inset 0 0 16px -4px rgba(0, 0, 0, 1);
+  z-index: 2;
 }
 h3 {
   font-family: "Josefin Sans", sans-serif;
@@ -263,6 +271,15 @@ h3 {
 img {
   display: block;
   width: 100%;
+}
+#overlay {
+  animation: overlay forwards 2s;
+  position: fixed;
+  background-image: linear-gradient(309deg, rgba(187, 187, 187, 0.03) 0%, rgba(187, 187, 187, 0.03) 22%, rgba(207, 207, 207, 0.03) 22%, rgba(207, 207, 207, 0.03) 43%, rgba(148, 148, 148, 0.03) 43%, rgba(148, 148, 148, 0.03) 62%, rgba(90, 90, 90, 0.03) 62%, rgba(90, 90, 90, 0.03) 68%, rgba(195, 195, 195, 0.03) 68%, rgba(195, 195, 195, 0.03) 88%, rgba(34, 34, 34, 0.03) 88%, rgba(34, 34, 34, 0.03) 95%, rgba(215, 215, 215, 0.03) 95%, rgba(215, 215, 215, 0.03) 100%), linear-gradient(35deg, rgba(100, 100, 100, 0.03) 0%, rgba(100, 100, 100, 0.03) 9%, rgba(5, 5, 5, 0.03) 9%, rgba(5, 5, 5, 0.03) 40%, rgba(89, 89, 89, 0.03) 40%, rgba(89, 89, 89, 0.03) 44%, rgba(5, 5, 5, 0.03) 44%, rgba(5, 5, 5, 0.03) 69%, rgba(130, 130, 130, 0.03) 69%, rgba(130, 130, 130, 0.03) 79%, rgba(204, 204, 204, 0.03) 79%, rgba(204, 204, 204, 0.03) 88%, rgba(247, 247, 247, 0.03) 88%, rgba(247, 247, 247, 0.03) 100%), linear-gradient(90deg, rgb(53, 53, 53), rgb(0, 0, 0));
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  z-index: 1;
 }
 /*Do not touch this part of the code because I have no idea how I got this to work*/
 .standalone-image-container {
@@ -306,7 +323,10 @@ SCROLL BAR
 BACKGROUND HOME PAGE
 =================== */
 .bg-button {
+  animation: backdrop forwards 1s;
+  animation-delay: 0.5s;
   position: absolute;
+  opacity: 0%;
   padding: 0.5em 1em 0.55em 1em;
   text-align: center;
   width: auto;
@@ -356,6 +376,7 @@ BACKGROUND HOME PAGE
   z-index: -100;
 }
 .bg-container {
+  animation: page-load-home 2s;
   position: relative;
   overflow-x: hidden;
 }
@@ -373,7 +394,6 @@ BACKGROUND HOME PAGE
   color: white;
   top: 45%;
   left: 50%;
-  filter: drop-shadow(0 0 16px rgba(255, 255, 255, 1));
 }
 /* ========
 NAVIGATION
@@ -435,7 +455,6 @@ NAVIGATION
   width: clamp(180px, 50vw, 256px);
   cursor: pointer;
 }
-#menu-items {}
 .menu-item {
   font-family: "Outfit", sans-serif;
   font-weight: 100;
@@ -635,7 +654,7 @@ figcaption {
   font-weight: 100;
   margin: 24px 0 0 0;
   padding: 4px 0;
-  font-size: clamp(1.25em, 2vw, 1.6em);
+  font-size: clamp(1.3em, 2vw, 1.6em);
 }
 #table-container {
   overflow-x: auto;
@@ -647,14 +666,18 @@ figcaption {
   border-spacing: 0px;
   border-collapse: collapse;
   margin: auto;
-  min-width: 800px;
   box-shadow: 0 0 8px -2px rgba(0, 0, 0, 0.33);
 }
+#stew-fusion-table td {
+  min-width: 180px;
+}
 th {
+  font-size: clamp(1.2em, 3vw, 1.4em);
   border: 1px solid rgba(0, 0, 0, 0.15);
   padding: 4px;
 }
 td {
+  font-size: clamp(1.2em, 3vw, 1.4em);
   border: 1px solid rgba(0, 0, 0, 0.15);
   padding: 4px;
 }
@@ -697,13 +720,14 @@ footer {
   color: white;
   margin: 0;
   padding: 24px 5%;
+  z-index: 2;
 }
 /* =========
 STEW FUSION
 ========= */
 #stew-fusion-container .rule-list, #stew-fusion-container p {
   font-family: "Outfit", sans-serif;
-  font-size: clamp(1.4em, 2vw, 1.6em);
+  font-size: clamp(1.2em, 3vw, 1.5em);
   text-align: center;
   padding: 0 8px;
   margin: 16px 0 16px 0;
@@ -712,7 +736,7 @@ STEW FUSION
   image-rendering: pixelated;
   height: clamp(144px, 18vw, 160px);
   width: auto;
-  margin: auto 16px auto auto;
+  margin: auto 12px auto auto;
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
 }
 .stew-fusion-image {
@@ -742,7 +766,7 @@ STEW FUSION
   font-weight: 600;
   letter-spacing: 2px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  border-radius: 16px;
   cursor: pointer;
   margin: 32px auto;
   display: flex;
@@ -767,12 +791,10 @@ STEW FUSION
   font-family: "Outfit", sans-serif;
   border-spacing: 0px;
   border-collapse: collapse;
-  line-height: 1.5;
-  font-size: clamp(24px, 3vw, 28px);
-  margin: auto auto auto 16px;
+  line-height: 1.4;
+  font-size: clamp(1em, 3.5vw, 1.3em);
+  margin: auto auto auto 12px;
   padding: 0;
-  backdrop-filter: saturate(300%) opacity(100%);
-  -webkit-backdrop-filter: saturate(300%) opacity(100%);
 }
 #stew-fusion-stats td {
   padding: 0 16px;
@@ -785,20 +807,17 @@ STEW FUSION
 }
 #stew-title {
   background-color: rgba(255, 255, 255, 0.5);
+  font-size: clamp(1.6em, 4vw, 2.4em);
   margin: 24px 0 8px 0;
   padding: 12px 0 4px 0;
-  backdrop-filter: saturate(300%) opacity(100%);
-  -webkit-backdrop-filter: saturate(300%) opacity(100%);
 }
 #stew-description {
   background-color: rgba(255, 255, 255, 0.5);
   font-family: "Outfit", sans-serif;
-  font-size: clamp(1.3em, 3vw, 1.5em);
+  font-size: clamp(1.25em, 3vw, 1.5em);
   margin: 0px;
   padding: 4px 0;
   text-align: center;
-  backdrop-filter: saturate(300%) opacity(100%);
-  -webkit-backdrop-filter: saturate(300%) opacity(100%);
 }
 #dialog-box-container {
   position: fixed;
@@ -824,9 +843,6 @@ STEW FUSION
   background-color: rgba(255, 255, 255, 1);
   padding: 0 32px;
   border-radius: 24px;
-  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(16px) saturate(200%) opacity(100%);
-  -webkit-backdrop-filter: blur(16px) saturate(200%) opacity(100%);
 }
 #close-dialog {
   background-color: rgba(0, 0, 0, 0.8);
@@ -836,17 +852,15 @@ STEW FUSION
   margin: 0 auto 32px auto;
   padding: 0.25em 1em 0.30em 1em;
   border: 2px solid transparent;
-  border-radius: 128px;
-  width: 128px;
+  border-radius: 120px;
+  width: 120px;
   cursor: pointer;
-  box-shadow: 0 0 8px -2px rgba(0, 0, 0, 0.8);
   transition-duration: 0.2s;
 }
 #close-dialog:hover {
   color: black;
   background-color: transparent;
   border: 2px solid rgba(0, 0, 0, 0.8);
-  box-shadow: 0 0 16px -4px rgba(0, 0, 0, 0.8);
 }
 #ingredient-list {
   padding: 16px 0;
@@ -912,6 +926,7 @@ MEDIA QUERIES
 @media screen and (min-width: 1050px) {
   #menu-bar-mobile {
     z-index: -100;
+    visibility: hidden;
   }
 }
 @media screen and (max-width: 1050px) {
@@ -980,6 +995,7 @@ MEDIA QUERIES
   }
   #fusion-two-columns {
     display: block;
+    margin-top: 16px;
     margin-bottom: 0;
   }
   #stew-fusion-title {
@@ -992,10 +1008,7 @@ MEDIA QUERIES
     margin: auto;
   }
   #stew-fusion-stats {
-    display: table;
-    table-layout: fixed;
-    margin: 32px auto;
-    font-size: clamp(18px, 5vw, 24px);
+    margin: 24px auto;
   }
   footer {
     padding: 24px 5% 24px 5%;

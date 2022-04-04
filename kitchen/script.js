@@ -15,7 +15,7 @@ function showMenu() {
 
 function finalizeStew() {
   var hueValue = Math.floor(Math.random() * 360);
-  var adjectives = ["Shuman", "Magnificent", "Supreme", "Spectacular", "Stupendous", "Sanguine", "Succulent", "Stunning", "Striking", "Suspicious", "Demonic", "Mystical", "Trustworthy", "Mysterious", "Nefarious", "2nd", "Odd", "Ancient", "Evil", "Peculiar", "Prosperous", "Rancid", "Garbage", "Gratuitous", "Omnibenevolent", "Abysmal", "Beautiful", "Handsome", "Horrifying", "Attractive", "Illustrious", "Illuminating", "Sentient", "Shimmering", "Sickly", "Sinister", "Strange", "Spooky", "Stylish", "Supernatural", "Surreal", "Delightful", "Stinky", "Deceptive", "Crunchy"];
+  var adjectives = ["Shuman", "Magnificent", "Supreme", "Spectacular", "Stupendous", "Tasty", "Succulent", "Mouthwatering", "Striking", "Suspicious", "Demonic", "Mystical", "Trustworthy", "Mysterious", "Abhorrent", "Weird", "Odd", "Ancient", "Evil", "Peculiar", "Atrocious", "Rancid", "Garbage", "Smelly", "Rubbish", "Abysmal", "Beautiful", "Sticky", "Horrifying", "Luscious", "Illustrious", "Illuminating", "Terrible", "Shimmering", "Sickly", "Sinister", "Strange", "Exquisite", "Stylish", "Repulsive", "Repugnant", "Delightful", "Stinky", "Deceptive", "Crunchy", "Revolting", "Juicy", "Dreadful"];
 
   //These 4 variables will be unused for now
   var hunger = 0;
@@ -28,7 +28,7 @@ function finalizeStew() {
   var proteins = 0;
   var fat = 0;
 
-  //The list must be in order as shown in the table
+  //The list items must be in order as shown in the table
   var meatList = ["bacon", "baconBits", "beefJerky", "chicken", "fishFillet", "frogMeat", "meatPatty", "mincedMeat", "muttonChop", "porkChop", "rabbitMeat", "salmon", "steak"];
   var vegetableList = ["avocado", "broccoli", "cabbage", "carrots", "corn", "eggplant", "jalapeno", "leek", "onion", "peas", "potato", "radish", "tofu", "tomato", "zucchini"];
   var otherList = ["bread", "cannedSpaghettiBolognese", "cannedCarrots", "cannedChili", "cannedCorn", "cannedCornedBeef", "cannedPeas", "cannedPotato", "cannedSardines", "cannedTomato", "cannedTuna"];
@@ -42,7 +42,7 @@ function finalizeStew() {
   */
 
 
-  /*Scan the table. For each row, scan each column. Turn the data value into a floating point number. This method isn't accurate but I don't know what to do.*/
+  /*Scan every row in the table. For each row, scan each column. Turn the data value into a floating point number. This method isn't accurate but I don't know what to do.*/
   var table = document.getElementById("stew-fusion-table");
 
   for (let i = 0; i < meatList.length; i++) {
@@ -123,22 +123,14 @@ function finalizeStew() {
   //Randomly generate the stew name
   document.getElementById("stew-title").innerHTML = "The " + adjectives[Math.floor(Math.random() * adjectives.length)] + " Stew";
 
-
   //Automatically generate the stew description
   document.getElementById("stew-description").innerHTML = "A delicious stew with " + ingredients[0] + ", " + ingredients[1] + ", " + ingredients[2] + ", " + ingredients[3] + ", " + ingredients[4] + ", and " + ingredients[5] + ".";
 
-  //Round the numbers (due to floating point imprecision), probably not a proper fix but this will work for now
+  //Round the numbers to hide the floating point imprecision
   document.getElementById("calories").innerHTML = calories.toFixed(2);
   document.getElementById("carbohydrates").innerHTML = carbohydrates.toFixed(2);
   document.getElementById("proteins").innerHTML = proteins.toFixed(2);
   document.getElementById("fat").innerHTML = fat.toFixed(2);
-
-  /* MAY ADD THIS IN ONE DAY BUT IS NOT NEEDED FOR THE PROJECT
-    document.getElementById("hunger").innerHTML = "Hunger: " + hunger;
-    document.getElementById("thirst").innerHTML = "Thirst: " + thirst;
-    document.getElementById("boredom").innerHTML = "Boredom: " + boredom;
-    document.getElementById("unhappiness").innerHTML = "Unhappiness: " + unhappiness;
-  */
 }
 
 function closeDialog() {
