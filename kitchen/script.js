@@ -17,7 +17,7 @@ function finalizeStew() {
   var hueValue = Math.floor(Math.random() * 360);
   var adjectives = ["Shuman", "Magnificent", "Supreme", "Spectacular", "Stupendous", "Tasty", "Succulent", "Mouthwatering", "Striking", "Suspicious", "Demonic", "Mystical", "Trustworthy", "Mysterious", "Abhorrent", "Weird", "Odd", "Ancient", "Evil", "Peculiar", "Atrocious", "Rancid", "Garbage", "Smelly", "Rubbish", "Abysmal", "Beautiful", "Sticky", "Horrifying", "Luscious", "Illustrious", "Illuminating", "Terrible", "Shimmering", "Sickly", "Sinister", "Strange", "Exquisite", "Stylish", "Repulsive", "Repugnant", "Delightful", "Stinky", "Deceptive", "Crunchy", "Revolting", "Juicy", "Dreadful"];
 
-  //These 4 variables will be unused for now
+  //The following 4 variables will be unused for now
   var hunger = 0;
   var thirst = -40;
   var boredom = -4;
@@ -117,7 +117,7 @@ function finalizeStew() {
   document.getElementById("stew-title").style.animation = "dialog-text 1.25s";
   document.getElementById("stew-description").style.animation = "dialog-text 1.25s";
   document.getElementById("stew-fusion-stats").style.animation = "dialog-text-alt 1.25s";
-  document.getElementById("close-dialog").style.animation = "backdrop 1.25s";
+  document.getElementById("close-dialog").style.animation = "generic-fade 1.25s";
   document.getElementById("backdrop").style.animation = "backdrop 0.5s forwards";
 
   //Randomly generate the stew name

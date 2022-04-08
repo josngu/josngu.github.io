@@ -2,6 +2,14 @@
 /* CSS Document */ :root {
   --ending-hue: 0deg;
 }
+@keyframes generic-fade {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
 @keyframes page-load {
   from {
     opacity: 0%;
@@ -13,13 +21,18 @@
   }
 }
 @keyframes page-load-home {
-  from {
+  0% {
     opacity: 0%;
     transform: scale(1.25);
+	z-index: -1;
   }
-  to {
+  99% {
+	z-index: -1;
+  }
+  100% {
     opacity: 100%;
     transform: scale(1);
+	z-index: 0;
   }
 }
 @keyframes landing-title {
@@ -160,12 +173,12 @@
     opacity: 0%;
   }
   to {
-    opacity: 100%;
+    opacity: 66%;
   }
 }
 @keyframes backdrop-reverse {
   from {
-    opacity: 100%;
+    opacity: 66%;
   }
   to {
     opacity: 0%;
@@ -210,6 +223,9 @@ section {
   padding: 0;
   width: 100%;
 }
+#section-home {
+  animation: none;
+}
 h1 {
   font-family: "Josefin Sans", sans-serif;
   font-size: clamp(48px, 5vw, 5vw);
@@ -234,7 +250,7 @@ h2 {
 h3 {
   font-family: "Josefin Sans", sans-serif;
   font-weight: 100;
-  font-size: clamp(28px, 2vw, 2vw);
+  font-size: clamp(2em, 2vw, 2.5em);
   line-height: 1.15;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   text-align: center;
@@ -250,7 +266,7 @@ h3 {
 #left-door, #right-door {
   animation: door-open forwards 2s;
   animation-delay: 0.25s;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.33);
   transform-origin: center;
   outline: 12px solid white;
   position: fixed;
@@ -323,7 +339,7 @@ SCROLL BAR
 BACKGROUND HOME PAGE
 =================== */
 .bg-button {
-  animation: backdrop forwards 1s;
+  animation: generic-fade forwards 1s;
   animation-delay: 0.5s;
   position: absolute;
   opacity: 0%;
@@ -376,20 +392,22 @@ BACKGROUND HOME PAGE
   z-index: -100;
 }
 .bg-container {
-  animation: page-load-home 2s;
+  animation: page-load-home 2s forwards;
   position: relative;
   overflow-x: hidden;
+  z-index: -1;
 }
 .bg-title {
   animation: landing-title forwards 1s;
   animation-delay: 0.5s;
-  transform: scale(25) translate(-50%, -50%);
+  transform: scale(1.25) translate(-50%, -50%);
   transform-origin: left;
+  opacity: 0%;
   width: 100%;
   text-align: center;
   position: absolute;
   font-family: "Josefin Sans", sans-serif;
-  font-size: clamp(48px, 5vw, 5vw);
+  font-size: clamp(3em, 5vw, 6em);
   font-weight: 400;
   color: white;
   top: 45%;
@@ -654,7 +672,7 @@ figcaption {
   font-weight: 100;
   margin: 24px 0 0 0;
   padding: 4px 0;
-  font-size: clamp(1.3em, 2vw, 1.6em);
+  font-size: clamp(1.4em, 3vw, 1.6em);
 }
 #table-container {
   overflow-x: auto;
@@ -690,9 +708,8 @@ tr:hover {
   font-family: "Josefin Sans", sans-serif;
   font-size: 32px;
   letter-spacing: 8px;
-  writing-mode: vertical-rl;
   -webkit-writing-mode: vertical-rl;
-  text-orientation: mixed;
+  writing-mode: vertical-rl;
   transform: rotate(180deg);
   min-width: 80px;
   padding: 0 24px 0 16px;
@@ -833,7 +850,7 @@ STEW FUSION
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.66);
+  background-color: black;
   z-index: 99;
 }
 #stew-fusion-dialog-box {
@@ -845,7 +862,7 @@ STEW FUSION
   border-radius: 24px;
 }
 #close-dialog {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #222222;
   font-family: "Outfit", sans-serif;
   font-size: 1.5em;
   color: white;
@@ -859,8 +876,8 @@ STEW FUSION
 }
 #close-dialog:hover {
   color: black;
-  background-color: transparent;
-  border: 2px solid rgba(0, 0, 0, 0.8);
+  background-color: white;
+  border: 2px solid #222222;
 }
 #ingredient-list {
   padding: 16px 0;
@@ -899,10 +916,10 @@ label {
   color: black;
   font-family: "Outfit", sans-serif;
   font-size: clamp(1.2em, 2vw, 1.4em);
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  outline: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 4px;
   margin: 4px 4px;
-  padding: 0px 0px 0px 0px;
+  padding: 0;
   cursor: pointer;
   user-select: none;
   transition-duration: 0.2s;
@@ -913,6 +930,7 @@ input[type="checkbox"]:checked + .checkbox {
   box-shadow: inset 0 0 4px 0 rgba(0, 0, 0, 1);
 }
 .checkbox {
+  border-radius: 4px;
   padding: 2px 8px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0);
   transition-duration: 0.2s;
@@ -982,6 +1000,9 @@ MEDIA QUERIES
   .ingredient-list {
     padding: 8px 5%;
   }
+  #overlay {
+	visibility: hidden; 
+  }
 }
 @media screen and (max-width: 600px) {
   .two-columns {
@@ -993,6 +1014,11 @@ MEDIA QUERIES
   .food-menu-container:hover {
     width: 100%;
   }
+  #left-door, #right-door {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+}
   #fusion-two-columns {
     display: block;
     margin-top: 16px;
