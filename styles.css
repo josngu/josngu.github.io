@@ -57,7 +57,7 @@ body {
   animation: page-load 1s;
   margin: 0;
   padding: 0;
-  background-color: #16181A;
+  background-color: #111111;
 }
 p {
   color: white;
@@ -83,8 +83,8 @@ ul {
 }
 li {
   display: inline-block;
-  font-family: "Raleway", sans-serif;
-  letter-spacing: 1px;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
   list-style: none;
   margin: auto 16px;
   padding: 12px 0 10px 0;
@@ -129,26 +129,23 @@ img {
 #name {
   display: block;
   width: clamp(96px, 75vw, 1024px);
-  background-color: #111111;
 }
 main {
   column-count: 3;
   column-gap: 0px;
   margin: 16px;
   padding: 16px;
-  text-align: center;
 }
 figure {
   position: relative;
-  margin: 0px;
-  padding: 16px 10px 0px 10px;
-  display: inline-block;
+  padding: 6px 0;
+  margin: 0px 8px;
+  object-fit: cover;
 }
-figure:after {
+figure::after {
   content: "";
   background-color: rgba(255, 255, 255, 0);
   position: absolute;
-  display: inline-block;
   top: 0;
   left: 0;
   width: 100%;
@@ -156,10 +153,28 @@ figure:after {
   z-index: 100;
 }
 figcaption {
-  margin: 8px 0 8px 0;
-  font-family: "Raleway", sans-serif;
-  background: white;
-  border-radius: 128px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 14px;
+  color: white;
+  margin: 8px 0 10px 0;
+  padding: 12px 8px 8px 8px;
+  opacity: 0%;
+  filter: brightness(0%);
+  /*
+  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.25),rgba(0,0,0,0.5));
+  */
+  text-shadow: 0 0 8px rgba(0,0,0,1), 0 0 6px rgba(0,0,0,1), 0 0 4px rgba(0,0,0,1), 0 0 2px rgba(0,0,0,1);
+  z-index: 101;
+  transition-duration: 0.33s;
+}
+figure:hover figcaption {
+  opacity: 100%;
+  filter: brightness(100%);
 }
 .picture {
   width: 100%;
@@ -200,7 +215,7 @@ address > a {
 }
 footer {
   display: block;
-  background-color: #111111;
+  background-color: #0A0A0A;
   text-align: center;
   font-family: "Raleway", sans-serif;
   font-weight: 300;
@@ -212,13 +227,12 @@ footer {
 @media screen and (max-width: 1200px) {
   main {
     column-count: 2;
-    margin: 8px;
+    margin: 0px;
   }
 }
 @media screen and (max-width: 850px) {
   main {
     column-count: 1;
-    margin: 0px;
   }
   #attributions-page {
     column-count: 1;
@@ -231,9 +245,6 @@ footer {
   .references-title {
     text-align: center;
     font-size: clamp(1.5em, 4vw, 1.8em);
-  }
-  figure {
-    padding: 8px 4px;
   }
   li {
     display: block;

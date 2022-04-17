@@ -1,5 +1,6 @@
 @charset "utf-8";
-/* CSS Document */ :root {
+/* CSS Document */
+:root {
   --ending-hue: 0deg;
 }
 @keyframes generic-fade {
@@ -663,7 +664,7 @@ figcaption {
   line-height: 1;
 }
 .food-info td {
-  font-size: clamp(1.4em, 3vw, 1.6em);
+  font-size: clamp(1.4em, 2vw, 1.6em);
   border: none;
   padding: 4px 8px;
 }
@@ -672,7 +673,7 @@ figcaption {
   font-weight: 100;
   margin: 24px 0 0 0;
   padding: 4px 0;
-  font-size: clamp(1.4em, 3vw, 1.6em);
+  font-size: clamp(1.3em, 3vw, 1.4em);
 }
 #table-container {
   overflow-x: auto;
@@ -751,7 +752,7 @@ STEW FUSION
 }
 #stew-fusion-image {
   image-rendering: pixelated;
-  height: clamp(144px, 18vw, 160px);
+  height: clamp(120px, 16vw, 160px);
   width: auto;
   margin: auto 12px auto auto;
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
@@ -864,13 +865,13 @@ STEW FUSION
 #close-dialog {
   background-color: #222222;
   font-family: "Outfit", sans-serif;
-  font-size: 1.5em;
+  font-size: 1.4rem;
   color: white;
   margin: 0 auto 32px auto;
-  padding: 0.25em 1em 0.30em 1em;
+  padding: 0.25rem 1rem 0.30rem 1rem;
   border: 2px solid transparent;
   border-radius: 120px;
-  width: 120px;
+  width: 100px;
   cursor: pointer;
   transition-duration: 0.2s;
 }
@@ -1015,9 +1016,7 @@ MEDIA QUERIES
     width: 100%;
   }
   #left-door, #right-door {
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
+    visibility: hidden;
 }
   #fusion-two-columns {
     display: block;
