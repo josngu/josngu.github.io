@@ -1,11 +1,10 @@
-:root {
-    --clr-light: hsl(0, 0%, 100%);
-    --clr-dark: hsl(0, 0%, 5%);
-    --font-h1: "Plus Jakarta Sans", sans-serif;
-    --font-h2: "Plus Jakarta Sans", sans-serif;
-    --font-body: "Plus Jakarta Sans", sans-serif;
-    --font-size-body: 1.2em;
-}
+$clr-light: hsl(0, 0%, 100%);
+$clr-dark: hsl(0, 0%, 5%);
+$font-h1: "Plus Jakarta Sans", sans-serif;
+$font-h2: "Plus Jakarta Sans", sans-serif;
+$font-body: "Plus Jakarta Sans", sans-serif;
+$font-size-body: 1.2em;
+
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -20,7 +19,7 @@
 }
 *, ::before, ::after {
     box-sizing: border-box;
-  }
+}
 html {
     scroll-behavior: smooth;
     background-color: hsl(230, 20%, 17%);
@@ -29,7 +28,6 @@ html {
 body {
     margin: 0;
     padding: 0;
-    
 }
 main {
     display: flex;
@@ -42,24 +40,24 @@ main {
         text-align: center;
     }
     > h2 {
-        font-family: var(--font-h2);
+        font-family: $font-h2;
         font-weight: 600;
-        color: var(--clr-light);
+        color: $clr-light;
         margin: 1em 0 0 0;
         text-align: center;
     }
 }
 h1 {
-    font-family: var(--font-h1);
-    color: var(--clr-light);
+    font-family: $font-h1;
+    color: $clr-light;
     text-align: center;
     font-size: clamp(2em, 4vw, 3em);
     font-weight: 600;
     margin: 2em auto 0.5em auto;
 }
 p {
-    color: var(--clr-light);
-    font-family: var(--font-body);
+    color: $clr-light;
+    font-family: $font-body;
 }
 .img-container {
     img {
@@ -82,9 +80,9 @@ p {
     display: flex;
     flex-direction: column;
     h2 {
-        font-family: var(--font-h2);
+        font-family: $font-h2;
         font-weight: 600;
-        color: var(--clr-light);
+        color: $clr-light;
         margin: 24px;
         text-align: center;
     }
@@ -103,9 +101,9 @@ p {
     }
     a {
         display: block;
-        color: var(--clr-light);
+        color: $clr-light;
         text-decoration: none;
-        font-family: var(--font-body);
+        font-family: $font-body;
         font-weight: 500;
         border-top: 1px solid white;
         border-left: 1px solid white;
@@ -114,23 +112,23 @@ p {
         text-align: center;
         transition-duration: 0.2s;
         &:hover {
-            background-color: var(--clr-light);
-            color: var(--clr-dark);
+            background-color: $clr-light;
+            color: $clr-dark;
         }
     }
 }
 address {
     margin: 1em 0 2em 0;
     a {
-        color: var(--clr-light);
-        font-family: var(--font-body);
+        color: $clr-light;
+        font-family: $font-body;
         font-style: normal;
     }
 }
 footer {
     background-color: hsl(230, 20%, 12%);
-    color: var(--clr-light);
-    font-family: var(--font-body);
+    color: $clr-light;
+    font-family: $font-body;
     font-size: 14px;
     text-align: center;
     width: 100%;
@@ -141,9 +139,9 @@ footer {
     .three-columns {
         grid-template-columns: 50% 50%;
     }
-  }
+}
 @media screen and (max-width: 750px) {
     .three-columns {
         grid-template-columns: 100%;
     }
-  }
+}

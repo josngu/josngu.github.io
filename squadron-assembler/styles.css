@@ -1,0 +1,598 @@
+@-webkit-keyframes overlay-effect {
+  0% {
+    width: 100%;
+    height: 0%;
+  }
+  33% {
+    width: 100%;
+    height: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+@keyframes overlay-effect {
+  0% {
+    width: 100%;
+    height: 0%;
+  }
+  33% {
+    width: 100%;
+    height: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+@-webkit-keyframes alert-enter {
+  from {
+    opacity: 0%;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0%);
+  }
+}
+@keyframes alert-enter {
+  from {
+    opacity: 0%;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0%);
+  }
+}
+@-webkit-keyframes alert-leave {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}
+@keyframes alert-leave {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+@font-face {
+  font-family: "Aces07";
+  src: url("aces07.ttf");
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  outline: 1px solid hsl(196deg, 100%, 53%);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(196deg, 100%, 53%);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(180deg, 100%, 83%);
+}
+
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-color: hsl(196deg, 100%, 53%) transparent;
+  overflow-x: hidden;
+}
+
+body {
+  background-image: url(images/bg.jpeg);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  justify-content: space-around;
+}
+
+main {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+h1 {
+  font-family: "Aces07", sans-serif;
+  color: hsl(180deg, 100%, 83%);
+  letter-spacing: 1px;
+  text-shadow: 0 0 4px hsl(196deg, 100%, 53%), 0 0 8px hsl(196deg, 100%, 53%), 0 0 0px hsl(196deg, 100%, 53%), 0 0 24px hsl(196deg, 100%, 53%), 0 0 32px hsl(196deg, 100%, 53%);
+  font-weight: 400;
+  text-align: right;
+  font-size: 2em;
+  margin: 2em 0.5em 1em 0.5em;
+  position: relative;
+}
+h1::after {
+  content: "";
+  -webkit-animation: overlay-effect 0.75s forwards;
+          animation: overlay-effect 0.75s forwards;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: radial-gradient(circle, rgb(15, 191, 255) 80%, rgb(17, 125, 238) 100%);
+  box-shadow: 0 0 32px hsl(196deg, 100%, 53%);
+}
+
+h2 {
+  font-family: "Aces07", sans-serif;
+  color: hsl(180deg, 100%, 83%);
+  letter-spacing: 1px;
+  text-shadow: 0 0 4px hsl(196deg, 100%, 53%), 0 0 8px hsl(196deg, 100%, 53%), 0 0 0px hsl(196deg, 100%, 53%), 0 0 24px hsl(196deg, 100%, 53%), 0 0 32px hsl(196deg, 100%, 53%);
+  font-weight: 400;
+  font-size: 1.5em;
+  position: relative;
+}
+h2::after {
+  content: "";
+  -webkit-animation: overlay-effect 0.75s forwards;
+          animation: overlay-effect 0.75s forwards;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: radial-gradient(circle, rgb(15, 191, 255) 80%, rgb(17, 125, 238) 100%);
+  box-shadow: 0 0 32px hsl(196deg, 100%, 53%);
+}
+
+p {
+  font-family: "Aces07", sans-serif;
+  color: hsl(180deg, 100%, 83%);
+  letter-spacing: 1px;
+  text-shadow: 0 0 4px hsl(196deg, 100%, 53%), 0 0 8px hsl(196deg, 100%, 53%), 0 0 0px hsl(196deg, 100%, 53%), 0 0 24px hsl(196deg, 100%, 53%), 0 0 32px hsl(196deg, 100%, 53%);
+  font-size: 2em;
+}
+
+button {
+  font-family: "Aces07", sans-serif;
+  color: hsl(180deg, 100%, 83%);
+  letter-spacing: 1px;
+  text-shadow: 0 0 4px hsl(196deg, 100%, 53%), 0 0 8px hsl(196deg, 100%, 53%), 0 0 0px hsl(196deg, 100%, 53%), 0 0 24px hsl(196deg, 100%, 53%), 0 0 32px hsl(196deg, 100%, 53%);
+  background-color: transparent;
+  border: 1px solid hsla(204deg, 100%, 62%, 0.15);
+  padding: 8px 12px;
+  font-size: 1.26em;
+  text-align: center;
+  flex-grow: 1;
+  cursor: pointer;
+  margin: 1em 0;
+  position: relative;
+}
+button:hover {
+  border: 1px solid hsl(180deg, 100%, 83%);
+  box-shadow: 0 0 2px 0 hsl(196deg, 100%, 53%);
+}
+button::after {
+  content: "";
+  -webkit-animation: overlay-effect 0.75s forwards;
+          animation: overlay-effect 0.75s forwards;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: radial-gradient(circle, rgb(15, 191, 255) 80%, rgb(17, 125, 238) 100%);
+  box-shadow: 0 0 32px hsl(196deg, 100%, 53%);
+}
+
+.alert {
+  font-family: "Aces07", sans-serif;
+  color: hsl(180deg, 100%, 83%);
+  letter-spacing: 1px;
+  text-shadow: 0 0 4px hsl(196deg, 100%, 53%), 0 0 8px hsl(196deg, 100%, 53%), 0 0 0px hsl(196deg, 100%, 53%), 0 0 24px hsl(196deg, 100%, 53%), 0 0 32px hsl(196deg, 100%, 53%);
+  -webkit-animation: alert-enter 0.25s forwards;
+          animation: alert-enter 0.25s forwards;
+  background-color: hsl(220deg, 40%, 8%);
+  border-top: 1px solid hsl(196deg, 100%, 53%);
+  font-size: 1.5em;
+  letter-spacing: 0px;
+  position: fixed;
+  bottom: 0;
+  padding: 1em;
+  text-align: center;
+  width: 100%;
+}
+.alert::after {
+  content: "";
+  -webkit-animation: overlay-effect 0.75s forwards;
+          animation: overlay-effect 0.75s forwards;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: radial-gradient(circle, rgb(15, 191, 255) 80%, rgb(17, 125, 238) 100%);
+  box-shadow: 0 0 32px hsl(196deg, 100%, 53%);
+}
+
+#timer {
+  width: 240px;
+  margin: 2em 0.5em 1em 0.5em;
+  position: relative;
+}
+#timer::after {
+  content: "";
+  -webkit-animation: overlay-effect 0.75s forwards;
+          animation: overlay-effect 0.75s forwards;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: radial-gradient(circle, rgb(15, 191, 255) 80%, rgb(17, 125, 238) 100%);
+  box-shadow: 0 0 32px hsl(196deg, 100%, 53%);
+}
+
+#instructions {
+  margin: 0 1em;
+  width: 364px;
+}
+#instructions p {
+  margin: 0;
+  font-size: 1.5em;
+  letter-spacing: 0px;
+  line-height: 1.2;
+  position: relative;
+}
+#instructions p::after {
+  content: "";
+  -webkit-animation: overlay-effect 0.75s forwards;
+          animation: overlay-effect 0.75s forwards;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: radial-gradient(circle, rgb(15, 191, 255) 80%, rgb(17, 125, 238) 100%);
+  box-shadow: 0 0 32px hsl(196deg, 100%, 53%);
+}
+
+#profile-editor {
+  display: none;
+  margin: 0 1em;
+}
+
+#profile-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 2px;
+}
+#profile-buttons > label {
+  font-family: "Aces07", sans-serif;
+  color: hsl(180deg, 100%, 83%);
+  letter-spacing: 1px;
+  text-shadow: 0 0 4px hsl(196deg, 100%, 53%), 0 0 8px hsl(196deg, 100%, 53%), 0 0 0px hsl(196deg, 100%, 53%), 0 0 24px hsl(196deg, 100%, 53%), 0 0 32px hsl(196deg, 100%, 53%);
+  background-color: transparent;
+  border: 1px solid hsla(204deg, 100%, 62%, 0.15);
+  padding: 8px 12px;
+  font-size: 1.26em;
+  text-align: center;
+  flex-grow: 1;
+  cursor: pointer;
+  width: auto;
+  margin: 1em 0;
+  position: relative;
+}
+#profile-buttons > label:hover {
+  border: 1px solid hsl(180deg, 100%, 83%);
+  box-shadow: 0 0 2px 0 hsl(196deg, 100%, 53%);
+}
+#profile-buttons > label::after {
+  content: "";
+  -webkit-animation: overlay-effect 0.75s forwards;
+          animation: overlay-effect 0.75s forwards;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: radial-gradient(circle, rgb(15, 191, 255) 80%, rgb(17, 125, 238) 100%);
+  box-shadow: 0 0 32px hsl(196deg, 100%, 53%);
+}
+#profile-buttons > input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+.button-container p {
+  font-size: 1.26em;
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.button-group > p {
+  position: relative;
+  text-align: center;
+}
+.button-group > p::after {
+  content: "";
+  -webkit-animation: overlay-effect 0.75s forwards;
+          animation: overlay-effect 0.75s forwards;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: radial-gradient(circle, rgb(15, 191, 255) 80%, rgb(17, 125, 238) 100%);
+  box-shadow: 0 0 32px hsl(196deg, 100%, 53%);
+}
+
+#editor-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
+  gap: 4em;
+}
+.row::after {
+  content: "";
+  -webkit-animation: overlay-effect 0.75s forwards;
+          animation: overlay-effect 0.75s forwards;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: radial-gradient(circle, rgb(15, 191, 255) 80%, rgb(17, 125, 238) 100%);
+  box-shadow: 0 0 32px hsl(196deg, 100%, 53%);
+}
+.row p {
+  font-family: "Aces07", sans-serif;
+  color: hsl(180deg, 100%, 83%);
+  letter-spacing: 1px;
+  text-shadow: 0 0 4px hsl(196deg, 100%, 53%), 0 0 8px hsl(196deg, 100%, 53%), 0 0 0px hsl(196deg, 100%, 53%), 0 0 24px hsl(196deg, 100%, 53%), 0 0 32px hsl(196deg, 100%, 53%);
+  font-size: 1.5em;
+  margin: 0;
+}
+.row p:empty:not(:focus)::before {
+  content: attr(data-placeholder);
+  pointer-events: none;
+}
+.row p:hover {
+  background-color: hsla(0deg, 0%, 100%, 0.1);
+}
+.row p:focus {
+  outline: none;
+}
+
+label {
+  font-family: "Aces07", sans-serif;
+  color: hsl(180deg, 100%, 83%);
+  letter-spacing: 1px;
+  text-shadow: 0 0 4px hsl(196deg, 100%, 53%), 0 0 8px hsl(196deg, 100%, 53%), 0 0 0px hsl(196deg, 100%, 53%), 0 0 24px hsl(196deg, 100%, 53%), 0 0 32px hsl(196deg, 100%, 53%);
+  font-size: 1.5em;
+  width: 256px;
+}
+
+#squadron-list {
+  margin: 0 1em;
+}
+#squadron-list h2 {
+  text-align: right;
+}
+
+#squadron-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 1px 2px 1px 1px;
+  gap: 1px;
+  max-height: 552px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: hsl(220deg, 40%, 8%);
+  border: 1px solid hsl(196deg, 100%, 53%);
+  box-shadow: 0 0 4px 0 hsl(196deg, 100%, 53%);
+}
+
+.person-container {
+  padding: 8px;
+  outline: 1px solid hsla(204deg, 100%, 62%, 0.15);
+  width: 144px;
+  cursor: pointer;
+  overflow: hidden;
+}
+.person-container:hover {
+  outline: 1px solid hsl(180deg, 100%, 83%);
+}
+.person-container h3 {
+  font-family: "Aces07", sans-serif;
+  color: hsl(180deg, 100%, 83%);
+  letter-spacing: 1px;
+  text-shadow: 0 0 4px hsl(196deg, 100%, 53%), 0 0 8px hsl(196deg, 100%, 53%), 0 0 0px hsl(196deg, 100%, 53%), 0 0 24px hsl(196deg, 100%, 53%), 0 0 32px hsl(196deg, 100%, 53%);
+  color: hsl(0deg, 0%, 100%);
+  font-weight: 400;
+  font-size: 17px;
+  margin: 1px 0;
+  text-shadow: -2px 2px 0 hsla(0deg, 0%, 100%, 0.25);
+}
+.person-container h3:empty:not(:focus)::before {
+  content: attr(data-placeholder);
+  pointer-events: none;
+}
+.person-container p {
+  font-size: 11px;
+  font-weight: 400;
+  color: hsl(170deg, 50%, 50%);
+  margin: 1px 0;
+  text-shadow: -2px 2px 0 hsla(170deg, 50%, 50%, 0.33);
+}
+.person-container p:empty:not(:focus)::before {
+  content: attr(data-placeholder);
+  pointer-events: none;
+}
+
+.add-person {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  outline: 1px solid hsla(204deg, 100%, 62%, 0.15);
+  cursor: pointer;
+  height: 182px;
+  width: 144px;
+}
+.add-person:hover {
+  outline: 1px solid hsl(180deg, 100%, 83%);
+}
+.add-person #add-person {
+  font-family: "Aces07", sans-serif;
+  color: hsl(180deg, 100%, 83%);
+  letter-spacing: 1px;
+  text-shadow: 0 0 4px hsl(196deg, 100%, 53%), 0 0 8px hsl(196deg, 100%, 53%), 0 0 0px hsl(196deg, 100%, 53%), 0 0 24px hsl(196deg, 100%, 53%), 0 0 32px hsl(196deg, 100%, 53%);
+  font-family: sans-serif;
+  line-height: 0.5;
+  font-size: 6em;
+  margin: 0.2em 0em;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.add-person #add-person + p {
+  position: relative;
+}
+.add-person #add-person + p::after {
+  content: "";
+  -webkit-animation: overlay-effect 0.75s forwards;
+          animation: overlay-effect 0.75s forwards;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: radial-gradient(circle, rgb(15, 191, 255) 80%, rgb(17, 125, 238) 100%);
+  box-shadow: 0 0 32px hsl(196deg, 100%, 53%);
+}
+.add-person p {
+  font-size: 1.26em;
+  text-align: center;
+  margin: 0.5em;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.person-container {
+  height: 182px;
+  flex-shrink: 0;
+}
+
+.person-image {
+  width: 128px;
+  height: 128px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.person-container-selected {
+  outline: 1px solid white;
+}
+
+@media screen and (max-width: 1100px) {
+  header {
+    flex-direction: column-reverse;
+  }
+  header h1 {
+    margin: 1em 0.5em 0 0.5em;
+    text-align: left;
+  }
+  header #timer {
+    margin: 0.25em 0.5em 0.25em 0.5em;
+  }
+
+  main {
+    flex-direction: column;
+  }
+
+  #instructions {
+    width: 100%;
+  }
+
+  #squadron-container {
+    display: flex;
+    padding: 1px;
+    gap: 1px;
+    max-height: 552px;
+    overflow-y: auto;
+    overflow-x: scroll;
+  }
+}
+@media screen and (max-width: 500px) {
+  header h1 {
+    font-size: 1.5em;
+  }
+  header #timer {
+    font-size: 1.5em;
+  }
+
+  .row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25em;
+    margin-bottom: 1em;
+  }
+
+  .button-group p {
+    margin-bottom: 0;
+  }
+
+  .button-container {
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 1em;
+  }
+  .button-container button {
+    margin-bottom: 0;
+  }
+}/*# sourceMappingURL=styles.css.map */

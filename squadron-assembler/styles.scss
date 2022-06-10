@@ -1,0 +1,430 @@
+@keyframes overlay-effect {
+    0% {
+        width: 100%;
+        height: 0%;
+    }
+    33% {
+        width: 100%;
+        height: 100%;
+    }
+    100% {
+        width: 0%;
+    }
+}
+@keyframes alert-enter {
+    from {
+        opacity: 0%;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 100%;
+        transform: translateY(0%);
+    }
+}
+@keyframes alert-leave {
+    from {
+        opacity: 100%;
+    }
+    to {
+        opacity: 0%;
+    }
+}
+@keyframes fade-in {
+    from {
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;
+    }
+}
+@font-face {
+    font-family: "Aces07";
+    src: url("aces07.ttf");
+}
+$clr-light: hsl(0, 0%, 100%);
+$clr-dark: hsl(0, 0%, 5%);
+$font-family: "Aces07", sans-serif;
+$font-size-small: 1.26em;
+$font-size-body: 1.5em;
+$font-size-large: 2em;
+$clr-primary: hsl(180, 100%, 83%);
+$clr-primary-translucent: hsla(204, 100%, 62%, 0.15);
+$clr-primary-shadow: hsl(196, 100%, 53%);
+$clr-bg: hsl(220, 40%, 8%);
+$gradient-text-overlay: radial-gradient(circle, rgba(15,191,255,1) 80%, rgba(17,125,238,1) 100%);
+$overlay-animation: overlay-effect 0.75s forwards;
+$fade-in: fade-in 0.5s forwards;
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    outline: 1px solid $clr-primary-shadow;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: $clr-primary-shadow;
+    &:hover {
+        background: $clr-primary;
+    }
+}
+@mixin typeface {
+    font-family: $font-family;
+    color: $clr-primary;
+    letter-spacing: 1px;
+    text-shadow: 0 0 4px $clr-primary-shadow,
+    0 0 8px $clr-primary-shadow,
+    0 0 0px $clr-primary-shadow,
+    0 0 24px $clr-primary-shadow,
+    0 0 32px $clr-primary-shadow;
+}
+@mixin button {
+    @include typeface;
+    background-color: transparent;
+    border: 1px solid $clr-primary-translucent;
+    padding: 8px 12px;
+    font-size: $font-size-small;
+    text-align: center;
+    flex-grow: 1;
+    cursor: pointer;
+    &:hover {
+        border: 1px solid $clr-primary;
+        box-shadow: 0 0 2px 0 $clr-primary-shadow;
+    }
+}
+@mixin overlay-effect {
+    content: "";
+    animation: $overlay-animation;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: $gradient-text-overlay;
+    box-shadow: 0 0 32px $clr-primary-shadow;;
+}
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+    scrollbar-color: $clr-primary-shadow transparent;
+    overflow-x: hidden;
+}
+body {
+    background-image: url(images/bg.jpeg);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+header {
+    display: flex;
+    justify-content: space-around;
+}
+main {
+    display: flex;
+    justify-content: space-evenly;
+}
+h1 {
+    @include typeface;
+    font-weight: 400;
+    text-align: right;
+    font-size: $font-size-large;
+    margin: 2em 0.5em 1em 0.5em;
+    position: relative;
+    &::after {
+        @include overlay-effect;
+    }
+}
+h2 {
+    @include typeface;
+    font-weight: 400;
+    font-size: $font-size-body;
+    position: relative;
+    &::after {
+        @include overlay-effect;
+    }
+}
+p {
+    @include typeface;
+    font-size: $font-size-large;
+}
+button {
+    @include button;
+    margin: 1em 0;
+    position: relative;
+    &::after {
+        @include overlay-effect;
+    }
+}
+.alert {
+    @include typeface;
+    animation: alert-enter 0.25s forwards;
+    background-color: $clr-bg;
+    border-top: 1px solid $clr-primary-shadow;
+    font-size: $font-size-body;
+    letter-spacing: 0px;
+    position: fixed;
+    bottom: 0;
+    padding: 1em;
+    text-align: center;
+    width: 100%;
+    &::after {
+        @include overlay-effect;
+    }
+}
+#timer {
+    width: 240px;
+    margin: 2em 0.5em 1em 0.5em;
+    position: relative;
+    &::after {
+        @include overlay-effect;
+    }
+}
+#instructions {
+    margin: 0 1em;
+    width: 364px;
+    p {
+        margin: 0;
+        font-size: $font-size-body;
+        letter-spacing: 0px;
+        line-height: 1.2;
+        position: relative;
+        &::after {
+            @include overlay-effect;
+        }
+    }
+}
+#profile-editor {
+    display: none;
+    margin: 0 1em;
+}
+#profile-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 2px;
+    > label {
+        @include button;
+        width: auto;
+        margin: 1em 0;
+        position: relative;
+        &::after {
+            @include overlay-effect;
+        }
+    }
+    > input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 4px;
+    p {
+        font-size: $font-size-small;
+    }
+}
+.button-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    > p {
+        position: relative;
+        text-align: center;
+        &::after {
+            @include overlay-effect;
+        }
+    }
+}
+//COLUMN 1
+#editor-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+.row {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    align-items: center;
+    gap: 4em;
+    &::after {
+        @include overlay-effect;
+    }
+    p {
+        @include typeface;
+        font-size: $font-size-body;
+        margin: 0;
+        &:empty:not(:focus)::before {
+            content: attr(data-placeholder);
+            pointer-events: none;
+        }
+        &:hover {
+            background-color: hsl(0, 0%, 100%, 0.1);
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+}
+label {
+    @include typeface;
+    font-size: $font-size-body;
+    width: 256px;
+}
+//COLUMN 2
+#squadron-list {
+    margin: 0 1em;
+    h2 {
+        text-align: right;
+    }
+}
+#squadron-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1px 2px 1px 1px;
+    gap: 1px;
+    max-height: 552px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: $clr-bg;
+    border: 1px solid $clr-primary-shadow;
+    box-shadow: 0 0 4px 0 $clr-primary-shadow;
+}
+.person-container {
+    padding: 8px;
+    outline: 1px solid $clr-primary-translucent;
+    width: 144px;
+    cursor: pointer;
+    overflow: hidden;
+    &:hover {
+        outline: 1px solid $clr-primary;
+    }
+    h3 {
+        @include typeface;
+        color:hsl(0, 0%, 100%);
+        font-weight: 400;
+        font-size: 17px;
+        margin: 1px 0;
+        text-shadow: -2px 2px 0 hsl(0, 0%, 100%, 0.25);
+        &:empty:not(:focus)::before {
+            content: attr(data-placeholder);
+            pointer-events: none;
+        }
+    }
+    p {
+        font-size: 11px;
+        font-weight: 400;
+        color: hsl(170, 50%, 50%);
+        margin: 1px 0;
+        text-shadow: -2px 2px 0 hsl(170, 50%, 50%, 0.33);
+        &:empty:not(:focus)::before {
+            content: attr(data-placeholder);
+            pointer-events: none;
+        }
+    }
+}
+.add-person {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    outline: 1px solid $clr-primary-translucent;
+    cursor: pointer;
+    height: 182px;
+    width: 144px;
+    &:hover {
+        outline: 1px solid $clr-primary;
+    }
+    #add-person {
+        @include typeface;
+        font-family: sans-serif;
+        line-height: 0.5;
+        font-size: 6em;
+        margin: 0.2em 0em;
+        user-select: none;
+        + p {
+            position: relative;
+            &::after {
+                @include overlay-effect;
+            }
+        }
+    }
+    p {
+        font-size: $font-size-small;
+        text-align: center;
+        margin: 0.5em;
+        user-select: none;
+    }
+}
+.person-container {
+    height: 182px;
+    flex-shrink: 0;
+}
+.person-image {
+    width: 128px;
+    height: 128px;
+    object-fit: cover;
+}
+//Classes that are not bound to HTML elements
+.person-container-selected {
+    outline: 1px solid white;
+}
+@media screen and (max-width: 1100px) {
+    header {
+        flex-direction: column-reverse;
+        h1 {
+            margin: 1em 0.5em 0 0.5em;
+            text-align: left;
+        }
+        #timer {
+            margin: 0.25em 0.5em 0.25em 0.5em;
+        }
+    }
+    main {
+        flex-direction: column;
+    }
+    #instructions {
+        width: 100%;
+    }
+    #squadron-container {
+        display: flex;
+        padding: 1px;
+        gap: 1px;
+        max-height: 552px;
+        overflow-y: auto;
+        overflow-x: scroll;
+    }
+}
+@media screen and (max-width: 500px) {
+    header {
+        h1 {
+            font-size: $font-size-body;
+        }
+        #timer {
+            font-size: $font-size-body;
+        }
+    }
+    .row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25em;
+        margin-bottom: 1em;
+    }
+    .button-group {
+        p {
+            margin-bottom: 0;
+        }
+    }
+    .button-container {
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 1em;
+        button {
+            margin-bottom: 0;
+        }
+    }
+}
