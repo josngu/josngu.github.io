@@ -57,15 +57,16 @@
                 </div>
             </form>
             <div id="profile-buttons">
-                <label for="upload-picture">UPLOAD PHOTO</label>
-                <input id="upload-picture" onchange="uploadPicture();" type="file" accept=".png, .jpg, .jpeg, .webm">
+                <label for="upload-picture">UPLOAD PHOTO
+                    <input id="upload-picture" onchange="uploadPicture();" type="file" accept=".png, .jpg, .jpeg, .webm">
+                </label>
                 <button onclick="deleteProfile();">DELETE PROFILE</button>
             </div>
         </section>
         <section id="squadron-list">
             <h2>[ YOUR SQUADRON ]</h2>
             <div id="squadron-container">
-                <div class="add-person" onclick="addPerson();">
+                <div class="add-person" onclick="addPerson();" onkeypress="addPerson();" tabindex="0">
                     <p id="add-person">+</p>
                     <p>ADD PERSON</p>
                 </div>

@@ -39,7 +39,7 @@ function checkFormChanges() {
     });
 }
 function addPerson() {
-    $("#squadron-container > .add-person").before('<div id="person-' + people + '" class="person-container" onclick="selectPerson(' + people + ');"><img id="profile-picture-' + people + '" src="images/person.webp" alt="" class="person-image"><h3 id="unit-callsign-' + people + '" data-placeholder="UNIT CALLSIGN"></h3><p id="affiliation-' + people + '" data-placeholder="AFFILIATION"></p></div>');
+    $("#squadron-container > .add-person").before('<div id="person-' + people + '" class="person-container" onclick="selectPerson(' + people + ');" onkeypress="selectPerson(' + people + ');" tabindex="0"><img id="profile-picture-' + people + '" src="images/person.webp" alt="" class="person-image"><h3 id="unit-callsign-' + people + '" data-placeholder="UNIT CALLSIGN"></h3><p id="affiliation-' + people + '" data-placeholder="AFFILIATION"></p></div>');
     $("#instructions > p").text("Add or select a person.");
     squadron[people] = {
         name: "",

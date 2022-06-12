@@ -152,6 +152,12 @@
   box-sizing: border-box;
 }
 
+*:focus {
+  outline: 2px solid white !important;
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+
 html {
   scroll-behavior: smooth;
   scrollbar-color: hsl(196deg, 100%, 53%) transparent;
@@ -430,7 +436,12 @@ button::after {
   background: radial-gradient(circle, rgb(15, 191, 255) 80%, rgb(17, 125, 238) 100%);
   box-shadow: 0 0 32px hsl(196deg, 100%, 53%);
 }
-#profile-buttons > input {
+#profile-buttons > label:focus-within {
+  outline: 2px solid white !important;
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+#profile-buttons input {
   opacity: 0;
   width: 0;
   height: 0;
