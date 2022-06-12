@@ -20,6 +20,9 @@ $font-size-body: 1.2em;
 *, ::before, ::after {
     box-sizing: border-box;
 }
+:root {
+    background: hsl(211, 100%, 11%);
+}
 html {
     scroll-behavior: smooth;
     background-color: hsl(230, 20%, 17%);

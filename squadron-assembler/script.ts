@@ -138,11 +138,11 @@ function movePersonRight(){
 
 function uploadPicture(){
     const reader: any = new FileReader();
-    var file = $("input[type=file]").get(0).files[0];
+    var file = $("input[type=file]").get(0) as HTMLInputElement;
     reader.onload = function(){
         $("#profile-picture-" + selection).attr("src", reader.result);
     }
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file.files[0]);
 }
 
 function save(){
