@@ -441,7 +441,9 @@ button::after {
   outline-offset: -2px;
   border-radius: 4px;
 }
-#profile-buttons input {
+
+#upload-picture {
+  position: absolute;
   opacity: 0;
   width: 0;
   height: 0;
