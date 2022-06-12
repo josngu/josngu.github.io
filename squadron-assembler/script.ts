@@ -96,6 +96,7 @@ function deleteProfile(){
     $("#person-" + selection).remove();
     $(".row p").text("");
     $("#profile-editor").css("display", "none");
+    $("#instructions > p").text("Add or select a person.");
     $("#instructions").css("display", "block");
     numberOfPeople--;
 }
@@ -106,6 +107,7 @@ function deleteSquadron(){
         $(".person-container").remove();
         $(".row p").text("");
         $("#profile-editor").css("display", "none");
+        $("#instructions > p").text("Add or select a person.");
         $("#instructions").css("display", "block");
         people = 0;
         numberOfPeople = 0;
@@ -118,13 +120,20 @@ function deleteSquadron(){
 }
 
 function movePersonLeft(){
-    $("#person-" + selection).prev().insertAfter($("#person-" + selection));
+    //Prevents the .person-container animation from playing again
+    $(".person-container h3, p, img").css("animation", "none");
+    setTimeout(function(){
+        $("#person-" + selection).prev().insertAfter($("#person-" + selection));
+    }, 1);
 }
 
 function movePersonRight(){
-    if ($("#person-" + selection).next().text() != $(".add-person").text()){
-        $("#person-" + selection).next().insertBefore($("#person-" + selection));
-    }
+    $(".person-container h3, p, img").css("animation", "none");
+    setTimeout(function(){
+        if ($("#person-" + selection).next().text() != $(".add-person").text()){
+            $("#person-" + selection).next().insertBefore($("#person-" + selection));
+        }
+    }, 1);
 }
 
 function uploadPicture(){
@@ -138,7 +147,8 @@ function uploadPicture(){
 
 function save(){
     try {
-        localStorage.setItem("webpage", JSON.stringify(document.documentElement.innerHTML));
+        localStorage.setItem("squadron-list", JSON.stringify($("#squadron-container").html()));
+        localStorage.setItem("profile", JSON.stringify($("#editor-container").html()));
         localStorage.setItem("people", JSON.stringify(people));
         localStorage.setItem("numberOfPeople", JSON.stringify(numberOfPeople));
         localStorage.setItem("squadron", JSON.stringify(squadron));
@@ -163,11 +173,14 @@ function save(){
 
 function load(){
     if (localStorage.getItem("people") !== null){
-        document.documentElement.innerHTML = JSON.parse(localStorage.getItem("webpage"));
+        $("#squadron-container").html(JSON.parse(localStorage.getItem("squadron-list")));
+        $("#editor-container").html(JSON.parse(localStorage.getItem("profile")));
         people = JSON.parse(localStorage.getItem("people"));
         numberOfPeople = JSON.parse(localStorage.getItem("numberOfPeople"));
         squadron = JSON.parse(localStorage.getItem("squadron"));
         selection = JSON.parse(localStorage.getItem("selection"));
+        $("#profile-editor").css("display", "block");
+        $("#instructions").css("display", "none");
         checkFormChanges();
     }
 }
