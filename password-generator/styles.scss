@@ -292,7 +292,7 @@ button {
     font-family: var(--font-body);
     font-size: var(--font-size-body);
     border-radius: 8px;
-    box-shadow: 0 0 16px 0 hsl(0, 0%, 0%, 0.1);
+    backdrop-filter: blur(8px);
 }
 @media screen and (max-width: 800px) {
     body {
