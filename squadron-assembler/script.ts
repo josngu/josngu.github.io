@@ -9,6 +9,9 @@ var numberOfPeople = 0;
 var squadron = [];
 var selection = 0;
 
+var longAlert = 5000;
+var shortAlert = 2500;
+
 $(function() {
     checkFormChanges();
 });
@@ -147,6 +150,16 @@ function uploadPicture(){
 
 function save(){
     try {
+        if (numberOfPeople == 0){
+            $(".alert").remove();
+            $("main").append('<div class="alert" role="alert">You cannot save a squadron with no people in it.</div>');
+            $(".alert").delay(longAlert).queue(function(){
+                $(this).css("animation", "alert-leave 0.25s forwards").delay(250).queue(function(){
+                    $(this).remove();
+                }).dequeue();
+            });
+            return;
+        }
         localStorage.setItem("squadron-list", JSON.stringify($("#squadron-container").html()));
         localStorage.setItem("profile", JSON.stringify($("#editor-container").html()));
         localStorage.setItem("people", JSON.stringify(people));
@@ -155,18 +168,18 @@ function save(){
         localStorage.setItem("selection", JSON.stringify(selection));
         $(".alert").remove();
         $("main").append('<div class="alert" role="alert">Save successful.</div>');
-        $(".alert").delay(2500).queue(function(){
-        $(this).css("animation", "alert-leave 0.25s forwards").delay(250).queue(function(){
-            $(this).remove();
-        }).dequeue();
+        $(".alert").delay(shortAlert).queue(function(){
+            $(this).css("animation", "alert-leave 0.25s forwards").delay(250).queue(function(){
+                $(this).remove();
+            }).dequeue();
         });
     } catch(e) {
         $(".alert").remove();
         $("main").append('<div class="alert" role="alert">Cannot save squadron. Photos must be cumulatively less than 5MB in size.</div>');
-        $(".alert").delay(5000).queue(function(){
+        $(".alert").delay(longAlert).queue(function(){
         $(this).css("animation", "alert-leave 0.25s forwards").delay(250).queue(function(){
-            $(this).remove();
-        }).dequeue();
+                $(this).remove();
+            }).dequeue();
         });
     }
 }
