@@ -137,10 +137,13 @@ $fade-in: fade-in 0.5s forwards;
     background: $gradient-text-overlay;
     box-shadow: 0 0 32px $clr-primary-shadow;;
 }
+:root {
+    background: hsl(211, 100%, 0%);
+}
 *, ::before, ::after {
     box-sizing: border-box;
 }
-*:focus {
+*:focus-visible {
     outline: 2px solid white !important;
     outline-offset: -2px;
     border-radius: 4px;
@@ -152,7 +155,9 @@ html {
 }
 body {
     background-image: url(images/bg.webp);
-    background-size: auto 100%;
+    background-size: auto 100vh;
+    background-position: 50%;
+    background-repeat: no-repeat;
     margin: 0;
     padding: 0;
     min-height: 100vh;

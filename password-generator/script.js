@@ -60,7 +60,7 @@ function generatePassword() {
 
     $("#generated-password").text(generatedPassword);
     //Creates a new <p> tag, then adds the text into it.
-    passwordHistory = '<p class="password-item" id="password-' + timesGenerated + '" onclick="copyText(' + timesGenerated + ')"></p>';
+    passwordHistory = '<p class="password-item" id="password-' + timesGenerated + '" onclick="copyText(' + timesGenerated + ')" tabindex="0"></p>';
     $("#password-history-container div").prepend(passwordHistory);
     $("#password-" + timesGenerated).text(generatedPassword);
 }
