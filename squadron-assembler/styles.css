@@ -588,7 +588,17 @@ label {
 .add-person:hover {
   outline: 1px solid hsl(180deg, 100%, 83%);
 }
-.add-person #add-person {
+.add-person p {
+  font-size: 1.26em;
+  text-align: center;
+  margin: 0.5em;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+#add-person {
   font-family: "Aces07", sans-serif;
   color: hsl(180deg, 100%, 83%);
   letter-spacing: 1px;
@@ -602,12 +612,12 @@ label {
       -ms-user-select: none;
           user-select: none;
 }
-.add-person #add-person + p {
+#add-person + p {
   -webkit-animation: overlay-effect-text 0.75s forwards;
           animation: overlay-effect-text 0.75s forwards;
   position: relative;
 }
-.add-person #add-person + p::after {
+#add-person + p::after {
   content: "";
   -webkit-animation: overlay-effect 0.75s forwards;
           animation: overlay-effect 0.75s forwards;
@@ -619,15 +629,6 @@ label {
   height: 100%;
   background: radial-gradient(circle, rgb(15, 191, 255) 80%, rgb(17, 125, 238) 100%);
   box-shadow: 0 0 32px hsl(196deg, 100%, 53%);
-}
-.add-person p {
-  font-size: 1.26em;
-  text-align: center;
-  margin: 0.5em;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
 }
 
 .person-image {
@@ -693,6 +694,8 @@ label {
   }
 
   #instructions > p {
+    -webkit-animation: none;
+            animation: none;
     font-size: 1.26em;
   }
 
@@ -702,8 +705,24 @@ label {
     gap: 0.25em;
     margin-bottom: 1em;
   }
+  .row p {
+    -webkit-animation: none;
+            animation: none;
+  }
+
+  label, h1, h2, button, #timer {
+    -webkit-animation: none;
+            animation: none;
+  }
+
+  #add-person + p {
+    -webkit-animation: none;
+            animation: none;
+  }
 
   .button-group p {
+    -webkit-animation: none;
+            animation: none;
     margin-bottom: 0;
   }
 
@@ -714,6 +733,10 @@ label {
   }
   .button-container button {
     margin-bottom: 0;
+  }
+
+  *::after {
+    display: none;
   }
 }
 html {

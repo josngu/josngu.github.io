@@ -404,26 +404,26 @@ label {
     &:hover {
         outline: 1px solid $clr-primary;
     }
-    #add-person {
-        @include typeface;
-        font-family: sans-serif;
-        line-height: 0.5;
-        font-size: 6em;
-        margin: 0.2em 0em;
-        user-select: none;
-        + p {
-            animation: $overlay-text-animation;
-            position: relative;
-            &::after {
-                @include overlay-effect;
-            }
-        }
-    }
     p {
         font-size: $font-size-small;
         text-align: center;
         margin: 0.5em;
         user-select: none;
+    }
+}
+#add-person {
+    @include typeface;
+    font-family: sans-serif;
+    line-height: 0.5;
+    font-size: 6em;
+    margin: 0.2em 0em;
+    user-select: none;
+    + p {
+        animation: $overlay-text-animation;
+        position: relative;
+        &::after {
+            @include overlay-effect;
+        }
     }
 }
 .person-image {
@@ -483,6 +483,7 @@ label {
         }
     }
     #instructions > p {
+        animation: none;
         font-size: $font-size-small;
     }
     .row {
@@ -490,9 +491,19 @@ label {
         align-items: flex-start;
         gap: 0.25em;
         margin-bottom: 1em;
+        p {
+            animation: none;
+        }
+    }
+    label, h1, h2, button, #timer {
+        animation: none;
+    }
+    #add-person + p {
+        animation: none;
     }
     .button-group {
         p {
+            animation: none;
             margin-bottom: 0;
         }
     }
@@ -503,6 +514,9 @@ label {
         button {
             margin-bottom: 0;
         }
+    }
+    *::after {
+        display: none;
     }
 }
 //Used to prevent a flash of unstyled content on page load
