@@ -204,7 +204,7 @@ function timer() {
     if (minute < 10 || minute == 0) {
         minute = "0" + minute;
     }
-    $("#timer").text("TIME " + minute + ":" + sec + ":" + msec);
+    $("#timer").text(`TIME ${minute}:${sec}:${msec}`);
     setTimeout("timer()", 10);
 }
 timer();

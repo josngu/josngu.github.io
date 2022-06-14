@@ -6,7 +6,7 @@ var msec: any = 0;
 var people = 0;
 
 var numberOfPeople = 0;
-var squadron = [];
+var squadron: any = [];
 var selection = 0;
 
 var longAlert = 5000;
@@ -69,7 +69,7 @@ function addPerson(){
     numberOfPeople++;
 }
 
-function selectPerson(personNum){
+function selectPerson(personNum: number){
     //Allows the person to show that they are being currently selected
     $(".person-container").removeClass("person-container-selected");
     setTimeout(function(){
@@ -223,7 +223,7 @@ function timer(){
         minute = "0" + minute;
     }
     
-    $("#timer").text("TIME " + minute + ":" + sec + ":" + msec);
+    $("#timer").text(`TIME ${minute}:${sec}:${msec}`);
     setTimeout("timer()", 10);
 }
 
