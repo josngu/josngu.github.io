@@ -119,6 +119,7 @@ function movePersonLeft() {
 function movePersonRight() {
     $(".person-container h3, p, img").css("animation", "none");
     setTimeout(function () {
+        //Prevent the person from being moved past the "Add Person" button
         if ($("#person-" + selection).next().text() != $(".add-person").text()) {
             $("#person-" + selection).next().insertBefore($("#person-" + selection));
         }
