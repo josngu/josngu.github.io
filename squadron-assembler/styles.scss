@@ -495,8 +495,11 @@ label {
             animation: none;
         }
     }
-    label, h1, h2, button, .alert, #timer {
+    label, h1, h2, button, #timer {
         animation: none;
+    }
+    .alert {
+        animation: alert-enter 0.25s forwards;
     }
     #add-person + p {
         animation: none;

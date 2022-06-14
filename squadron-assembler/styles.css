@@ -715,6 +715,11 @@ label {
             animation: none;
   }
 
+  .alert {
+    -webkit-animation: alert-enter 0.25s forwards;
+            animation: alert-enter 0.25s forwards;
+  }
+
   #add-person + p {
     -webkit-animation: none;
             animation: none;
