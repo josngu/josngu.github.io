@@ -1,0 +1,457 @@
+$clr-light: hsl(0, 0%, 100%);
+$clr-dark: hsl(0, 0%, 5%);
+$font-family: "Crimson Text", serif;
+$font-size-small: 1.2em;
+$font-size-body: 1.5em;
+$font-size-large: 2em;
+$clr-primary: hsl(180, 100%, 100%);
+$clr-primary-translucent: hsla(204, 100%, 62%, 0.15);
+$clr-primary-shadow: hsl(180, 1%, 13%);
+$clr-bg: hsl(220, 12%, 0%);
+$fade-in: fade-in 0.5s forwards;
+$duration-short: 0.2s;
+$duration-medium: 0.5s;
+$duration-long: 1s;
+
+@keyframes alert-enter {
+    from {
+        opacity: 0%;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 100%;
+        transform: translateY(0%);
+    }
+}
+@keyframes alert-leave {
+    from {
+        opacity: 100%;
+    }
+    to {
+        opacity: 0%;
+    }
+}
+@keyframes fade-in {
+    from {
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;
+    }
+}
+@keyframes add-person {
+    0% {
+        opacity: 0%;
+        line-height: 0;
+        padding: 0px;
+    }
+    50% {
+        opacity: 0%;
+        line-height: auto;
+        padding: 8px;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+@keyframes enter {
+    from {
+        opacity: 0%;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 100%;
+        transform: translateY(0px);
+    }
+}
+@keyframes enter-image {
+    from {
+        height: 0px;
+    }
+    to {
+        height: 128px;
+    }
+}
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    outline: 1px solid $clr-primary-shadow;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: $clr-primary-shadow;
+    &:hover {
+        background: $clr-primary;
+    }
+}
+@mixin shadow {
+    box-shadow: -2px -2px 4px 0 hsl(0, 0%, 100%, 0.05), 2px 2px 4px 0 hsl(0, 0%, 0%, 0.33);
+}
+@mixin shadow-inset {
+    box-shadow: inset -2px -2px 4px 0 hsl(0, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsl(0, 0%, 0%, 0.33);
+}
+@mixin typeface {
+    font-family: $font-family;
+    color: $clr-primary;
+    text-shadow: 0px 0px 2px $clr-dark, 0px 0px 4px $clr-dark;
+}
+@mixin button {
+    @include typeface;
+    background-color: $clr-dark;
+    border: 1px solid hsl(240, 3%, 15%);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: $font-size-small;
+    text-align: center;
+    flex-grow: 1;
+    cursor: pointer;
+    transition-duration: $duration-short;
+    &:hover {
+        border: 1px solid hsl(240, 3%, 30%);
+    }
+}
+:root {
+    background: rgb(19, 21, 24);
+}
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+*:focus-visible {
+    outline: 1px solid white !important;
+    outline-offset: -2px;
+    border-radius: 4px;
+}
+html {
+    scroll-behavior: smooth;
+    scrollbar-color: $clr-primary-shadow transparent;
+    overflow: hidden;
+}
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+header {
+    display: flex;
+    justify-content: space-around;
+}
+main {
+    display: flex;
+    justify-content: space-evenly;
+}
+h1 {
+    @include typeface;
+    font-weight: 600;
+    text-align: right;
+    font-size: $font-size-large;
+    margin: 1.5em 0.5em 0.75em 0.5em;
+    position: relative;
+}
+h2 {
+    @include typeface;
+    animation: enter $duration-medium forwards;
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid hsl(0, 0%, 100%, 0.5);
+    font-weight: 400;
+    font-size: $font-size-body;
+    position: relative;
+}
+p {
+    @include typeface;
+    font-size: $font-size-large;
+}
+button {
+    @include button;
+    @include shadow;
+    margin: 1em 0;
+    position: relative;
+}
+.alert {
+    @include typeface;
+    animation: alert-enter 0.25s forwards;
+    background-color: $clr-bg;
+    border-top: 1px solid $clr-primary-shadow;
+    font-size: $font-size-body;
+    letter-spacing: 0px;
+    position: fixed;
+    bottom: 0;
+    padding: 1em;
+    text-align: center;
+    width: 100%;
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    p {
+        font-size: $font-size-small;
+    }
+}
+.button-group {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    > p {
+        position: relative;
+        text-align: center;
+    }
+}
+//COLUMN 1
+#instructions {
+    margin: 0 1em;
+    width: 364px;
+    p {
+        animation: enter $duration-medium forwards;
+        margin: 0;
+        font-size: $font-size-body;
+        letter-spacing: 0px;
+        line-height: 1.2;
+        position: relative;
+    }
+}
+#character-editor {
+    display: none;
+    margin: 0 1em;
+}
+#editor-container {
+    animation: enter $duration-medium forwards;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+#profile-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    > label {
+        @include button;
+        @include shadow;
+        width: auto;
+        margin: 1em 0;
+        position: relative;
+    }
+    > label:focus-within {
+        outline: 1px solid white !important;
+        outline-offset: -2px;
+        border-radius: 4px;
+    }
+}
+#upload-picture {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.row {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    align-items: center;
+    gap: 1em;
+    input {
+        @include typeface;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid hsl(0, 0%, 100%, 0.5);
+        font-size: $font-size-body;
+        margin: 0;
+        padding: 2px 4px;
+        transition-duration: $duration-short;
+        &:hover {
+            background-color: hsl(0, 0%, 100%, 0.05);
+        }
+    }
+}
+label {
+    @include typeface;
+    font-size: $font-size-body;
+    text-align: right;
+    width: 100%;
+}
+//COLUMN 2
+#character-list {
+    animation: enter $duration-medium forwards;
+    margin: 0 1em;
+}
+#character-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1px 2px 1px 1px;
+    gap: 1px;
+    max-height: 438px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: $clr-bg;
+    border: 1px solid $clr-primary-shadow;
+    box-shadow: 0 0 4px 0 $clr-primary-shadow;
+}
+.person-container {
+    animation: add-person $duration-long forwards;
+    display: flex;
+    flex-shrink: 0;
+    gap: 8px;
+    padding: 8px;
+    outline: 1px solid $clr-primary-translucent;
+    cursor: pointer;
+    overflow: hidden;
+    &:hover {
+        outline: 1px solid $clr-primary;
+    }
+    img {
+        animation: enter-image $duration-medium forwards;
+    }
+    h3 {
+        @include typeface;
+        color:hsl(0, 0%, 100%);
+        font-weight: 400;
+        font-size: $font-size-body;
+        margin: 0;
+        &:empty:not(:focus)::before {
+            content: attr(data-placeholder);
+            pointer-events: none;
+        }
+    }
+    p {
+        font-size: $font-size-small;
+        font-weight: 400;
+        color: hsl(170, 50%, 50%);
+        margin: 0;
+        &:empty:not(:focus)::before {
+            content: attr(data-placeholder);
+            pointer-events: none;
+        }
+    }
+}
+.add-person {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    outline: 1px solid $clr-primary-translucent;
+    cursor: pointer;
+    height: 182px;
+    &:hover {
+        outline: 1px solid $clr-primary;
+    }
+    p {
+        font-size: $font-size-small;
+        text-align: center;
+        margin: 0.5em;
+        user-select: none;
+    }
+}
+#add-person {
+    @include typeface;
+    font-family: sans-serif;
+    line-height: 0.5;
+    font-size: 6em;
+    margin: 0.2em 0em;
+    user-select: none;
+    + p {
+        position: relative;
+    }
+}
+.person-image {
+    width: 128px;
+    height: 128px;
+    object-fit: cover;
+}
+//Classes that are not bound to HTML elements
+.person-container-selected {
+    outline: 1px solid white;
+}
+//Media queries
+@media screen and (min-height: 1000px) {
+    #squadron-container {
+        max-height: 552px;
+    }
+}
+@media screen and (max-width: 1100px) {
+    html {
+        overflow-y: auto;
+    }
+    header {
+        flex-direction: column-reverse;
+        h1 {
+            margin: 1em 0.5em 0 0.5em;
+            text-align: left;
+        }
+        #timer {
+            margin: 0.25em 0.5em 0.25em 0.5em;
+        }
+    }
+    main {
+        flex-direction: column;
+    }
+    #instructions {
+        width: auto;
+    }
+    h2, #squadron-list > h2 {
+        margin-top: 2em;
+        text-align: left;
+    }
+    #squadron-container {
+        display: flex;
+        padding: 1px;
+        gap: 1px;
+        max-height: 552px;
+        overflow-y: auto;
+        overflow-x: scroll;
+    }
+}
+@media screen and (max-width: 500px) {
+    header {
+        h1 {
+            font-size: $font-size-body;
+        }
+        #timer {
+            font-size: $font-size-body;
+        }
+    }
+    #instructions > p {
+        animation: none;
+        font-size: $font-size-small;
+    }
+    .row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25em;
+        margin-bottom: 1em;
+        p {
+            animation: none;
+        }
+    }
+    label, h1, h2, button, #timer {
+        animation: none;
+    }
+    .alert {
+        animation: alert-enter 0.25s forwards;
+    }
+    #add-person + p {
+        animation: none;
+    }
+    .button-group {
+        p {
+            animation: none;
+            margin-bottom: 0;
+        }
+    }
+    .button-container {
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 1em;
+        button {
+            margin-bottom: 0;
+        }
+    }
+    *::after {
+        display: none;
+    }
+}
+//Used to prevent a flash of unstyled content on page load
+html {
+    visibility: visible;
+    opacity: 1;
+}

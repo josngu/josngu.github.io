@@ -1,0 +1,574 @@
+@-webkit-keyframes alert-enter {
+  from {
+    opacity: 0%;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0%);
+  }
+}
+@keyframes alert-enter {
+  from {
+    opacity: 0%;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0%);
+  }
+}
+@-webkit-keyframes alert-leave {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}
+@keyframes alert-leave {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+@-webkit-keyframes add-person {
+  0% {
+    opacity: 0%;
+    line-height: 0;
+    padding: 0px;
+  }
+  50% {
+    opacity: 0%;
+    line-height: auto;
+    padding: 8px;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@keyframes add-person {
+  0% {
+    opacity: 0%;
+    line-height: 0;
+    padding: 0px;
+  }
+  50% {
+    opacity: 0%;
+    line-height: auto;
+    padding: 8px;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@-webkit-keyframes enter {
+  from {
+    opacity: 0%;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0px);
+  }
+}
+@keyframes enter {
+  from {
+    opacity: 0%;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0px);
+  }
+}
+@-webkit-keyframes enter-image {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 128px;
+  }
+}
+@keyframes enter-image {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 128px;
+  }
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  outline: 1px solid hsl(180deg, 1%, 13%);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(180deg, 1%, 13%);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(180deg, 100%, 100%);
+}
+
+:root {
+  background: rgb(19, 21, 24);
+}
+
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+*:focus-visible {
+  outline: 1px solid white !important;
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-color: hsl(180deg, 1%, 13%) transparent;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  justify-content: space-around;
+}
+
+main {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+h1 {
+  font-family: "Crimson Text", serif;
+  color: hsl(180deg, 100%, 100%);
+  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  font-weight: 600;
+  text-align: right;
+  font-size: 2em;
+  margin: 1.5em 0.5em 0.75em 0.5em;
+  position: relative;
+}
+
+h2 {
+  font-family: "Crimson Text", serif;
+  color: hsl(180deg, 100%, 100%);
+  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  -webkit-animation: enter 0.5s forwards;
+          animation: enter 0.5s forwards;
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid hsla(0deg, 0%, 100%, 0.5);
+  font-weight: 400;
+  font-size: 1.5em;
+  position: relative;
+}
+
+p {
+  font-family: "Crimson Text", serif;
+  color: hsl(180deg, 100%, 100%);
+  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  font-size: 2em;
+}
+
+button {
+  font-family: "Crimson Text", serif;
+  color: hsl(180deg, 100%, 100%);
+  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  background-color: hsl(0deg, 0%, 5%);
+  border: 1px solid hsl(240deg, 3%, 15%);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 1.2em;
+  text-align: center;
+  flex-grow: 1;
+  cursor: pointer;
+  transition-duration: 0.2s;
+  box-shadow: -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
+  margin: 1em 0;
+  position: relative;
+}
+button:hover {
+  border: 1px solid hsl(240deg, 3%, 30%);
+}
+
+.alert {
+  font-family: "Crimson Text", serif;
+  color: hsl(180deg, 100%, 100%);
+  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  -webkit-animation: alert-enter 0.25s forwards;
+          animation: alert-enter 0.25s forwards;
+  background-color: hsl(220deg, 12%, 0%);
+  border-top: 1px solid hsl(180deg, 1%, 13%);
+  font-size: 1.5em;
+  letter-spacing: 0px;
+  position: fixed;
+  bottom: 0;
+  padding: 1em;
+  text-align: center;
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+}
+.button-container p {
+  font-size: 1.2em;
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+.button-group > p {
+  position: relative;
+  text-align: center;
+}
+
+#instructions {
+  margin: 0 1em;
+  width: 364px;
+}
+#instructions p {
+  -webkit-animation: enter 0.5s forwards;
+          animation: enter 0.5s forwards;
+  margin: 0;
+  font-size: 1.5em;
+  letter-spacing: 0px;
+  line-height: 1.2;
+  position: relative;
+}
+
+#character-editor {
+  display: none;
+  margin: 0 1em;
+}
+
+#editor-container {
+  -webkit-animation: enter 0.5s forwards;
+          animation: enter 0.5s forwards;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#profile-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+}
+#profile-buttons > label {
+  font-family: "Crimson Text", serif;
+  color: hsl(180deg, 100%, 100%);
+  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  background-color: hsl(0deg, 0%, 5%);
+  border: 1px solid hsl(240deg, 3%, 15%);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 1.2em;
+  text-align: center;
+  flex-grow: 1;
+  cursor: pointer;
+  transition-duration: 0.2s;
+  box-shadow: -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
+  width: auto;
+  margin: 1em 0;
+  position: relative;
+}
+#profile-buttons > label:hover {
+  border: 1px solid hsl(240deg, 3%, 30%);
+}
+#profile-buttons > label:focus-within {
+  outline: 1px solid white !important;
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+
+#upload-picture {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
+  gap: 1em;
+}
+.row input {
+  font-family: "Crimson Text", serif;
+  color: hsl(180deg, 100%, 100%);
+  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid hsla(0deg, 0%, 100%, 0.5);
+  font-size: 1.5em;
+  margin: 0;
+  padding: 2px 4px;
+  transition-duration: 0.2s;
+}
+.row input:hover {
+  background-color: hsla(0deg, 0%, 100%, 0.05);
+}
+
+label {
+  font-family: "Crimson Text", serif;
+  color: hsl(180deg, 100%, 100%);
+  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  font-size: 1.5em;
+  text-align: right;
+  width: 100%;
+}
+
+#character-list {
+  -webkit-animation: enter 0.5s forwards;
+          animation: enter 0.5s forwards;
+  margin: 0 1em;
+}
+
+#character-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1px 2px 1px 1px;
+  gap: 1px;
+  max-height: 438px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: hsl(220deg, 12%, 0%);
+  border: 1px solid hsl(180deg, 1%, 13%);
+  box-shadow: 0 0 4px 0 hsl(180deg, 1%, 13%);
+}
+
+.person-container {
+  -webkit-animation: add-person 1s forwards;
+          animation: add-person 1s forwards;
+  display: flex;
+  flex-shrink: 0;
+  gap: 8px;
+  padding: 8px;
+  outline: 1px solid hsla(204deg, 100%, 62%, 0.15);
+  cursor: pointer;
+  overflow: hidden;
+}
+.person-container:hover {
+  outline: 1px solid hsl(180deg, 100%, 100%);
+}
+.person-container img {
+  -webkit-animation: enter-image 0.5s forwards;
+          animation: enter-image 0.5s forwards;
+}
+.person-container h3 {
+  font-family: "Crimson Text", serif;
+  color: hsl(180deg, 100%, 100%);
+  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  color: hsl(0deg, 0%, 100%);
+  font-weight: 400;
+  font-size: 1.5em;
+  margin: 0;
+}
+.person-container h3:empty:not(:focus)::before {
+  content: attr(data-placeholder);
+  pointer-events: none;
+}
+.person-container p {
+  font-size: 1.2em;
+  font-weight: 400;
+  color: hsl(170deg, 50%, 50%);
+  margin: 0;
+}
+.person-container p:empty:not(:focus)::before {
+  content: attr(data-placeholder);
+  pointer-events: none;
+}
+
+.add-person {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  outline: 1px solid hsla(204deg, 100%, 62%, 0.15);
+  cursor: pointer;
+  height: 182px;
+}
+.add-person:hover {
+  outline: 1px solid hsl(180deg, 100%, 100%);
+}
+.add-person p {
+  font-size: 1.2em;
+  text-align: center;
+  margin: 0.5em;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+#add-person {
+  font-family: "Crimson Text", serif;
+  color: hsl(180deg, 100%, 100%);
+  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  font-family: sans-serif;
+  line-height: 0.5;
+  font-size: 6em;
+  margin: 0.2em 0em;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+#add-person + p {
+  position: relative;
+}
+
+.person-image {
+  width: 128px;
+  height: 128px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.person-container-selected {
+  outline: 1px solid white;
+}
+
+@media screen and (min-height: 1000px) {
+  #squadron-container {
+    max-height: 552px;
+  }
+}
+@media screen and (max-width: 1100px) {
+  html {
+    overflow-y: auto;
+  }
+
+  header {
+    flex-direction: column-reverse;
+  }
+  header h1 {
+    margin: 1em 0.5em 0 0.5em;
+    text-align: left;
+  }
+  header #timer {
+    margin: 0.25em 0.5em 0.25em 0.5em;
+  }
+
+  main {
+    flex-direction: column;
+  }
+
+  #instructions {
+    width: auto;
+  }
+
+  h2, #squadron-list > h2 {
+    margin-top: 2em;
+    text-align: left;
+  }
+
+  #squadron-container {
+    display: flex;
+    padding: 1px;
+    gap: 1px;
+    max-height: 552px;
+    overflow-y: auto;
+    overflow-x: scroll;
+  }
+}
+@media screen and (max-width: 500px) {
+  header h1 {
+    font-size: 1.5em;
+  }
+  header #timer {
+    font-size: 1.5em;
+  }
+
+  #instructions > p {
+    -webkit-animation: none;
+            animation: none;
+    font-size: 1.2em;
+  }
+
+  .row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25em;
+    margin-bottom: 1em;
+  }
+  .row p {
+    -webkit-animation: none;
+            animation: none;
+  }
+
+  label, h1, h2, button, #timer {
+    -webkit-animation: none;
+            animation: none;
+  }
+
+  .alert {
+    -webkit-animation: alert-enter 0.25s forwards;
+            animation: alert-enter 0.25s forwards;
+  }
+
+  #add-person + p {
+    -webkit-animation: none;
+            animation: none;
+  }
+
+  .button-group p {
+    -webkit-animation: none;
+            animation: none;
+    margin-bottom: 0;
+  }
+
+  .button-container {
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 1em;
+  }
+  .button-container button {
+    margin-bottom: 0;
+  }
+
+  *::after {
+    display: none;
+  }
+}
+html {
+  visibility: visible;
+  opacity: 1;
+}/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>html{visibility: hidden; opacity:0;}</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D&D Companion App</title>
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Dungeons & Dragons Companion App</h1>
+    </header>
+    <main>
+        <section id="instructions">
+            <h2>INSTRUCTIONS</h2>
+            <p>Add a person to begin.</p>
+        </section>
+        <section id="character-editor">
+            <h2>CHARACTER EDITOR</h2>
+            <form id="editor-container">
+                <div class="row">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" autocomplete="off">
+                </div>
+                <div class="row">
+                    <label for="race">Race</label>
+                    <input type="text" id="race" autocomplete="off">
+                </div>
+                <div class="row">
+                    <label for="class">Class</label>
+                    <input type="text" id="class" autocomplete="off">
+                </div>
+                <div class="row">
+                    <label for="alignment">Alignment</label>
+                    <input type="text" id="alignment" autocomplete="off">
+                </div>
+                <div class="row">
+                    <label for="background">Background</label>
+                    <input type="text" id="background" autocomplete="off">
+                </div>
+                <div class="row">
+                    <label for="age">Age</label>
+                    <input type="text" id="age" autocomplete="off">
+                </div>
+                <div class="row">
+                    <label for="height">Height</label>
+                    <input type="text" id="height" autocomplete="off">
+                </div>
+                <div class="row">
+                    <label for="weight">Weight</label>
+                    <input type="text" id="weight" autocomplete="off">
+                </div>
+                <div class="row">
+                    <label for="eyes">Eyes</label>
+                    <input type="text" id="eyes" autocomplete="off">
+                </div>
+                <div class="row">
+                    <label for="skin">Skin</label>
+                    <input type="text" id="skin" autocomplete="off">
+                </div>
+                <div class="row">
+                    <label for="hair">Hair</label>
+                    <input type="text" id="hair" autocomplete="off">
+                </div>
+            </form>
+            <div id="profile-buttons">
+                <label for="upload-picture">Upload Photo
+                    <input id="upload-picture" onchange="uploadPicture();" type="file" accept=".png, .jpg, .jpeg, .webm">
+                </label>
+                <button onclick="deleteProfile();">Delete Character</button>
+            </div>
+        </section>
+        <section id="character-list">
+            <h2>CHARACTER LIST</h2>
+            <div id="character-container">
+                <div class="add-person" onclick="addPerson();" onkeypress="addPerson();" tabindex="0">
+                    <p id="add-person">+</p>
+                    <p>ADD PERSON</p>
+                </div>
+            </div>
+            <div class="button-container">
+                <div class="button-group">
+                    <button onclick="movePersonLeft();"><</button>
+                    <p>MOVE PERSON</p>
+                    <button onclick="movePersonRight();">></button>
+                </div>
+                <button id="delete-squadron" onclick="deleteSquadron();">Delete All Characters</button>
+            </div>
+            <div class="button-container">
+                <button onclick="load();">Load Character List</button>
+                <button onclick="save();">Save Character List</button>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
