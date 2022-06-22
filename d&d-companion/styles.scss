@@ -11,7 +11,7 @@ $clr-bg: hsl(220, 12%, 0%);
 $fade-in: fade-in 0.5s forwards;
 $duration-short: 0.2s;
 $duration-medium: 0.5s;
-$duration-long: 1s;
+$duration-long: 0.8s;
 
 @keyframes alert-enter {
     from {
@@ -72,6 +72,26 @@ $duration-long: 1s;
         height: 128px;
     }
 }
+@keyframes enter-stats {
+    0% {
+        opacity: 0%;
+        line-height: 0;
+        padding: 0px;
+        width: 0px;
+    }
+    50% {
+        opacity: 0%;
+        line-height: auto;
+        padding: 8px;
+        width: 273px;
+    }
+    75% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -85,6 +105,14 @@ $duration-long: 1s;
     &:hover {
         background: $clr-primary;
     }
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
 }
 @mixin shadow {
     box-shadow: -2px -2px 4px 0 hsl(0, 0%, 100%, 0.05), 2px 2px 4px 0 hsl(0, 0%, 0%, 0.33);
@@ -198,10 +226,45 @@ button {
         text-align: center;
     }
 }
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    input[type=text] {
+        @include typeface;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid hsl(0, 0%, 100%, 0.5);
+        font-size: $font-size-small;
+        margin: 0;
+        padding: 2px 4px;
+        transition-duration: $duration-short;
+        &:hover {
+            background-color: hsl(0, 0%, 100%, 0.05);
+        }
+    }
+    input[type=number] {
+        @include typeface;
+        background-color: transparent;
+        border: 1px solid hsl(0, 0%, 100%, 0.5);
+        padding: 2px;
+        width: 37px;
+        font-size: $font-size-body;
+        text-align: center;
+        border-radius: 32px;
+    }
+}
+label {
+    @include typeface;
+    font-size: $font-size-small;
+    text-align: right;
+    width: 96px;
+}
 //COLUMN 1
 #instructions {
     margin: 0 1em;
-    width: 364px;
+    width: 324px;
     p {
         animation: enter $duration-medium forwards;
         margin: 0;
@@ -230,7 +293,6 @@ button {
         @include shadow;
         width: auto;
         margin: 1em 0;
-        position: relative;
     }
     > label:focus-within {
         outline: 1px solid white !important;
@@ -244,38 +306,37 @@ button {
     width: 0;
     height: 0;
 }
-.row {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    align-items: center;
-    gap: 1em;
-    input {
-        @include typeface;
-        background-color: transparent;
-        border: none;
-        border-bottom: 1px solid hsl(0, 0%, 100%, 0.5);
-        font-size: $font-size-body;
-        margin: 0;
-        padding: 2px 4px;
-        transition-duration: $duration-short;
-        &:hover {
-            background-color: hsl(0, 0%, 100%, 0.05);
-        }
-    }
-}
-label {
-    @include typeface;
-    font-size: $font-size-body;
-    text-align: right;
-    width: 100%;
-}
 //COLUMN 2
+#character-stats {
+    display: none;
+}
+#stats-container {
+    display: flex;
+    animation: enter $duration-medium forwards;
+    flex-direction: column;
+    gap: 4px;
+}
+.stat-modifier {
+    font-size: $font-size-body;
+    margin: 0;
+    width: 1.5em;
+    text-align: right;
+}
+.btn-minus-plus {
+    margin: 0;
+    width: 32px;
+}
+.btn-stats-container {
+    display: flex;
+    gap: 4px;
+}
+//COLUMN 3
 #character-list {
     animation: enter $duration-medium forwards;
     margin: 0 1em;
 }
 #character-container {
+    animation: enter $duration-medium forwards;
     display: flex;
     flex-direction: column;
     padding: 1px 2px 1px 1px;
@@ -288,7 +349,7 @@ label {
     box-shadow: 0 0 4px 0 $clr-primary-shadow;
 }
 .person-container {
-    animation: add-person $duration-long forwards;
+    animation: add-person $duration-medium forwards;
     display: flex;
     flex-shrink: 0;
     gap: 8px;

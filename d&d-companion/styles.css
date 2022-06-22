@@ -116,6 +116,46 @@
     height: 128px;
   }
 }
+@-webkit-keyframes enter-stats {
+  0% {
+    opacity: 0%;
+    line-height: 0;
+    padding: 0px;
+    width: 0px;
+  }
+  50% {
+    opacity: 0%;
+    line-height: auto;
+    padding: 8px;
+    width: 273px;
+  }
+  75% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@keyframes enter-stats {
+  0% {
+    opacity: 0%;
+    line-height: 0;
+    padding: 0px;
+    width: 0px;
+  }
+  50% {
+    opacity: 0%;
+    line-height: auto;
+    padding: 8px;
+    width: 273px;
+  }
+  75% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -131,6 +171,17 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(180deg, 100%, 100%);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+          appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 :root {
@@ -257,9 +308,52 @@ button:hover {
   text-align: center;
 }
 
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+}
+.row input[type=text] {
+  font-family: "Crimson Text", serif;
+  color: hsl(180deg, 100%, 100%);
+  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid hsla(0deg, 0%, 100%, 0.5);
+  font-size: 1.2em;
+  margin: 0;
+  padding: 2px 4px;
+  transition-duration: 0.2s;
+}
+.row input[type=text]:hover {
+  background-color: hsla(0deg, 0%, 100%, 0.05);
+}
+.row input[type=number] {
+  font-family: "Crimson Text", serif;
+  color: hsl(180deg, 100%, 100%);
+  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  background-color: transparent;
+  border: 1px solid hsla(0deg, 0%, 100%, 0.5);
+  padding: 2px;
+  width: 37px;
+  font-size: 1.5em;
+  text-align: center;
+  border-radius: 32px;
+}
+
+label {
+  font-family: "Crimson Text", serif;
+  color: hsl(180deg, 100%, 100%);
+  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  font-size: 1.2em;
+  text-align: right;
+  width: 96px;
+}
+
 #instructions {
   margin: 0 1em;
-  width: 364px;
+  width: 324px;
 }
 #instructions p {
   -webkit-animation: enter 0.5s forwards;
@@ -305,7 +399,6 @@ button:hover {
   box-shadow: -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
   width: auto;
   margin: 1em 0;
-  position: relative;
 }
 #profile-buttons > label:hover {
   border: 1px solid hsl(240deg, 3%, 30%);
@@ -323,36 +416,33 @@ button:hover {
   height: 0;
 }
 
-.row {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  align-items: center;
-  gap: 1em;
-}
-.row input {
-  font-family: "Crimson Text", serif;
-  color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid hsla(0deg, 0%, 100%, 0.5);
-  font-size: 1.5em;
-  margin: 0;
-  padding: 2px 4px;
-  transition-duration: 0.2s;
-}
-.row input:hover {
-  background-color: hsla(0deg, 0%, 100%, 0.05);
+#character-stats {
+  display: none;
 }
 
-label {
-  font-family: "Crimson Text", serif;
-  color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+#stats-container {
+  display: flex;
+  -webkit-animation: enter 0.5s forwards;
+          animation: enter 0.5s forwards;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-modifier {
   font-size: 1.5em;
+  margin: 0;
+  width: 1.5em;
   text-align: right;
-  width: 100%;
+}
+
+.btn-minus-plus {
+  margin: 0;
+  width: 32px;
+}
+
+.btn-stats-container {
+  display: flex;
+  gap: 4px;
 }
 
 #character-list {
@@ -362,6 +452,8 @@ label {
 }
 
 #character-container {
+  -webkit-animation: enter 0.5s forwards;
+          animation: enter 0.5s forwards;
   display: flex;
   flex-direction: column;
   padding: 1px 2px 1px 1px;
@@ -375,8 +467,8 @@ label {
 }
 
 .person-container {
-  -webkit-animation: add-person 1s forwards;
-          animation: add-person 1s forwards;
+  -webkit-animation: add-person 0.5s forwards;
+          animation: add-person 0.5s forwards;
   display: flex;
   flex-shrink: 0;
   gap: 8px;

@@ -3,6 +3,7 @@
 var people = 0;
 var numberOfPeople = 0;
 var characterList = [];
+var statList = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"];
 var selection = 0;
 var longAlert = 5000;
 var shortAlert = 2500;
@@ -11,19 +12,35 @@ $(function () {
 });
 function checkFormChanges() {
     $(".row").on("focusout", function () {
-        for (var property in characterList[0]) {
-            characterList[selection][property] = $("#" + property).val();
-        }
-        //Binds the input data to the playercard/character card data
-        $("#name-" + selection).text($("#name").val().toString());
-        if ($("#race").val() || $("#class").val() != "") {
-            $("#race-class" + selection).text($("#race").val() + " " + $("#class").val());
-            $("#race-class" + selection).text($("#race").val() + " " + $("#class").val());
+        updateForm();
+    });
+}
+function updateForm() {
+    for (var property in characterList[0]) {
+        characterList[selection][property] = $("#" + property).val();
+    }
+    //Binds the input data to the playercard/character card data
+    $("#name-" + selection).text($("#name").val().toString());
+    if ($("#race").val() || $("#class").val() != "") {
+        $("#race-class" + selection).text($("#race").val() + " " + $("#class").val());
+        $("#race-class" + selection).text($("#race").val() + " " + $("#class").val());
+    }
+    else {
+        $("#race-class" + selection).text("");
+    }
+    //Updates the character stats on focusout
+    for (let i = 0; i < statList.length; i++) {
+        let x = $("#" + statList[i]).val();
+        let y = +x;
+        $("#" + statList[i]).val(y);
+        //Add a plus prefix if the number is positive
+        if (Math.floor((y - 10) / 2) > 0) {
+            $("#" + statList[i] + "-modifier").text("+" + Math.floor((y - 10) / 2));
         }
         else {
-            $("#race-class" + selection).text("");
+            $("#" + statList[i] + "-modifier").text(Math.floor((y - 10) / 2));
         }
-    });
+    }
 }
 function addPerson() {
     $("#character-container > .add-person").before('<div id="person-' + people + '" class="person-container" onclick="selectPerson(' + people + ');" onkeypress="selectPerson(' + people + ');" tabindex="0"><img id="profile-picture-' + people + '" src="images/person.webp" alt="" class="person-image"><div><h3 id="name-' + people + '" data-placeholder="Name"></h3><p id="race-class' + people + '" data-placeholder="Race and Class"></p></div></div>');
@@ -39,56 +56,94 @@ function addPerson() {
         weight: "",
         eyes: "",
         skin: "",
-        hair: ""
+        hair: "",
+        strength: 0,
+        dexterity: 0,
+        constitution: 0,
+        intelligence: 0,
+        wisdom: 0,
+        charisma: 0
     };
     //Have the first person be automatically selected
     if (numberOfPeople == 0) {
         selectPerson(people);
-        $("#instructions").css("display", "none");
     }
     people++;
     numberOfPeople++;
 }
 function selectPerson(personNum) {
+    $("#instructions").css("display", "none");
     //Allows the character to show that they are being currently selected
     $(".person-container").removeClass("person-container-selected");
     setTimeout(function () {
         $("#person-" + personNum).addClass("person-container-selected");
     }, 1);
-    //I forgot what this did but it's required; something about an animation or something
+    //This plays an animation whenever a person is selected
     $("#editor-container").after($("#editor-container").clone(true));
     $("#editor-container:last").remove();
-    $("#character-editor").css("display", "block");
+    $("#stats-container").after($("#stats-container").clone(true));
+    $("#stats-container:last").remove();
     //
+    $("#character-editor").css("display", "block");
+    $("#character-stats").css("display", "block");
     selection = personNum;
     //Loads the object values into the character editor
     for (var property in characterList[0]) {
         $("#" + property).val(characterList[personNum][property]);
     }
-    $("#instructions").css("display", "none");
+    updateForm();
 }
-function deleteProfile() {
+function deleteCharacter() {
     $("#person-" + selection).remove();
     $("#character-editor").css("display", "none");
+    $("#character-stats").css("display", "none");
     $("#instructions > p").text("Add or select a person.");
     $("#instructions").css("display", "block");
     numberOfPeople--;
 }
-function deleteSquadron() {
-    if ($("#delete-squadron").text() == "Are you sure?") {
-        $("#delete-squadron").text("Delete All Characters");
+function increaseStat(statType) {
+    let x = $("#" + statType).val();
+    let y = +x;
+    if (y != 99) {
+        y++;
+    }
+    $("#" + statType).val(y);
+    if (Math.floor((y - 10) / 2) > 0) {
+        $("#" + statType + "-modifier").text("+" + Math.floor((y - 10) / 2));
+    }
+    else {
+        $("#" + statType + "-modifier").text(Math.floor((y - 10) / 2));
+    }
+}
+function decreaseStat(statType) {
+    let x = $("#" + statType).val();
+    let y = +x;
+    if (y != 0) {
+        y--;
+    }
+    $("#" + statType).val(y);
+    if (Math.floor((y - 10) / 2) > 0) {
+        $("#" + statType + "-modifier").text("+" + Math.floor((y - 10) / 2));
+    }
+    else {
+        $("#" + statType + "-modifier").text(Math.floor((y - 10) / 2));
+    }
+}
+function deleteCharacterList() {
+    if ($("#delete-character-list").text() == "Are you sure?") {
+        $("#delete-character-list").text("Delete All Characters");
         $(".person-container").remove();
-        $(".row p").text("");
         $("#character-editor").css("display", "none");
+        $("#character-stats").css("display", "none");
         $("#instructions > p").text("Add or select a person.");
         $("#instructions").css("display", "block");
         people = 0;
         numberOfPeople = 0;
     }
     else {
-        $("#delete-squadron").text("Are you sure?");
-        $("#delete-squadron").on("focusout", function () {
-            $("#delete-squadron").text("Delete All Characters");
+        $("#delete-character-list").text("Are you sure?");
+        $("#delete-character-list").on("focusout", function () {
+            $("#delete-character-list").text("Delete All Characters");
         });
     }
 }
@@ -130,6 +185,7 @@ function save() {
         }
         localStorage.setItem("character-list", JSON.stringify($("#character-container").html()));
         localStorage.setItem("profile", JSON.stringify($("#editor-container").html()));
+        localStorage.setItem("stats", JSON.stringify($("#stats-container").html()));
         localStorage.setItem("people", JSON.stringify(people));
         localStorage.setItem("numberOfPeople", JSON.stringify(numberOfPeople));
         localStorage.setItem("character", JSON.stringify(characterList));
@@ -160,15 +216,23 @@ function load() {
     if (localStorage.getItem("people") !== null) {
         $("#character-container").html(JSON.parse(localStorage.getItem("character-list")));
         $("#editor-container").html(JSON.parse(localStorage.getItem("profile")));
+        $("#stats-container").html(JSON.parse(localStorage.getItem("stats")));
         people = JSON.parse(localStorage.getItem("people"));
         numberOfPeople = JSON.parse(localStorage.getItem("numberOfPeople"));
         characterList = JSON.parse(localStorage.getItem("character"));
         selection = JSON.parse(localStorage.getItem("selection"));
         $("#character-editor").css("display", "block");
+        $("#character-stats").css("display", "block");
         $("#instructions").css("display", "none");
         for (var property in characterList[0]) {
             $("#" + property).val(JSON.parse(localStorage.getItem("saved-" + property)));
         }
+        //This plays an animation whenever a person is selected
+        $("#editor-container").after($("#editor-container").clone(true));
+        $("#editor-container:last").remove();
+        $("#stats-container").after($("#stats-container").clone(true));
+        $("#stats-container:last").remove();
+        //
         checkFormChanges();
     }
 }

@@ -70,13 +70,72 @@
                     <label for="hair">Hair</label>
                     <input type="text" id="hair" autocomplete="off">
                 </div>
+                <div id="profile-buttons">
+                    <label for="upload-picture">Upload Photo
+                        <input id="upload-picture" onchange="uploadPicture();" type="file" accept=".png, .jpg, .jpeg, .webm">
+                    </label>
+                    <button type="button" onclick="deleteCharacter();">Delete Character</button>
+                </div>
             </form>
-            <div id="profile-buttons">
-                <label for="upload-picture">Upload Photo
-                    <input id="upload-picture" onchange="uploadPicture();" type="file" accept=".png, .jpg, .jpeg, .webm">
-                </label>
-                <button onclick="deleteProfile();">Delete Character</button>
-            </div>
+        </section>
+        <section id="character-stats">
+            <h2>CHARACTER STATS</h2>
+            <form id="stats-container">
+                <div class="row">
+                    <label for="strength">Strength</label>
+                    <input type="number" id="strength">
+                    <div class="btn-stats-container">
+                        <button class="btn-minus-plus" type="button" onclick="decreaseStat('strength')">–</button>
+                        <button class="btn-minus-plus" type="button" onclick="increaseStat('strength')">+</button>
+                    </div>
+                    <p id="strength-modifier" class="stat-modifier">-5</p>
+                </div>
+                <div class="row">
+                    <label for="dexterity">Dexterity</label>
+                    <input type="number" id="dexterity">
+                    <div class="btn-stats-container">
+                        <button class="btn-minus-plus" type="button" onclick="decreaseStat('dexterity')">–</button>
+                        <button class="btn-minus-plus" type="button" onclick="increaseStat('dexterity')">+</button>
+                    </div>
+                    <p id="dexterity-modifier" class="stat-modifier">-5</p>
+                </div>
+                <div class="row">
+                    <label for="constitution">Constitution</label>
+                    <input type="number" id="constitution">
+                    <div class="btn-stats-container">
+                        <button class="btn-minus-plus" type="button" onclick="decreaseStat('constitution')">–</button>
+                        <button class="btn-minus-plus" type="button" onclick="increaseStat('constitution')">+</button>
+                    </div>
+                    <p id="constitution-modifier" class="stat-modifier">-5</p>
+                </div>
+                <div class="row">
+                    <label for="intelligence">Intelligence</label>
+                    <input type="number" id="intelligence">
+                    <div class="btn-stats-container">
+                        <button class="btn-minus-plus" type="button" onclick="decreaseStat('intelligence')">–</button>
+                        <button class="btn-minus-plus" type="button" onclick="increaseStat('intelligence')">+</button>
+                    </div>
+                    <p id="intelligence-modifier" class="stat-modifier">-5</p>
+                </div>
+                <div class="row">
+                    <label for="wisdom">Wisdom</label>
+                    <input type="number" id="wisdom">
+                    <div class="btn-stats-container">
+                        <button class="btn-minus-plus" type="button" onclick="decreaseStat('wisdom')">–</button>
+                        <button class="btn-minus-plus" type="button" onclick="increaseStat('wisdom')">+</button>
+                    </div>
+                    <p id="wisdom-modifier" class="stat-modifier">-5</p>
+                </div>
+                <div class="row">
+                    <label for="charisma">Charisma</label>
+                    <input type="number" id="charisma">
+                    <div class="btn-stats-container">
+                        <button class="btn-minus-plus" type="button" onclick="decreaseStat('charisma')">–</button>
+                        <button class="btn-minus-plus" type="button" onclick="increaseStat('charisma')">+</button>
+                    </div>
+                    <p id="charisma-modifier" class="stat-modifier">-5</p>
+                </div>
+            </form>
         </section>
         <section id="character-list">
             <h2>CHARACTER LIST</h2>
@@ -92,7 +151,7 @@
                     <p>MOVE PERSON</p>
                     <button onclick="movePersonRight();">></button>
                 </div>
-                <button id="delete-squadron" onclick="deleteSquadron();">Delete All Characters</button>
+                <button id="delete-character-list" onclick="deleteCharacterList();">Delete All Characters</button>
             </div>
             <div class="button-container">
                 <button onclick="load();">Load Character List</button>
