@@ -1,14 +1,16 @@
 $clr-light: hsl(0, 0%, 100%);
 $clr-dark: hsl(0, 0%, 5%);
 $font-family: "Crimson Text", serif;
+$font-size-smallest: 1em;
 $font-size-small: 1.2em;
 $font-size-body: 1.5em;
 $font-size-large: 2em;
 $clr-primary: hsl(180, 100%, 100%);
-$clr-primary-translucent: hsla(204, 100%, 62%, 0.15);
+$clr-primary-translucent: hsl(0, 0%, 100%, 0.5);
 $clr-primary-shadow: hsl(180, 1%, 13%);
-$clr-bg: hsl(220, 12%, 0%);
+$clr-bg: hsl(216, 12%, 8%);
 $fade-in: fade-in 0.5s forwards;
+$border-radius: 4px;
 $duration-short: 0.2s;
 $duration-medium: 0.5s;
 $duration-long: 0.8s;
@@ -72,47 +74,44 @@ $duration-long: 0.8s;
         height: 128px;
     }
 }
-@keyframes enter-stats {
+@keyframes enter-freetext {
     0% {
         opacity: 0%;
         line-height: 0;
         padding: 0px;
         width: 0px;
+        margin-left: 0em;
+        margin-right: 0em;
     }
     50% {
         opacity: 0%;
         line-height: auto;
         padding: 8px;
-        width: 273px;
-    }
-    75% {
-        opacity: 0%;
+        width: 300px;
+        margin-left: 2em;
+        margin-right: 2em;
     }
     100% {
         opacity: 100%;
     }
 }
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-    outline: 1px solid $clr-primary-shadow;
-}
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-::-webkit-scrollbar-thumb {
-    background: $clr-primary-shadow;
-    &:hover {
-        background: $clr-primary;
+@keyframes leave-freetext {
+    0% {
+        opacity: 0%;
+        line-height: auto;
+        padding: 8px;
+        width: 300px;
+        margin-left: 2em;
+        margin-right: 2em;
     }
-}
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    appearance: none;
-    margin: 0;
-}
-input[type=number] {
-    -moz-appearance: textfield;
+    100% {
+        opacity: 0%;
+        line-height: 0;
+        padding: 0px;
+        width: 0px;
+        margin-left: 0em;
+        margin-right: 0em;
+    }
 }
 @mixin shadow {
     box-shadow: -2px -2px 4px 0 hsl(0, 0%, 100%, 0.05), 2px 2px 4px 0 hsl(0, 0%, 0%, 0.33);
@@ -129,7 +128,7 @@ input[type=number] {
     @include typeface;
     background-color: $clr-dark;
     border: 1px solid hsl(240, 3%, 15%);
-    border-radius: 4px;
+    border-radius: $border-radius;
     padding: 4px 8px;
     font-size: $font-size-small;
     text-align: center;
@@ -140,8 +139,32 @@ input[type=number] {
         border: 1px solid hsl(240, 3%, 30%);
     }
 }
+::-webkit-scrollbar {
+    @include shadow-inset;
+    border-radius: 2px;
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: $clr-primary-shadow;
+    border-radius: 2px;
+    &:hover {
+        background: $clr-primary;
+    }
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
 :root {
-    background: rgb(19, 21, 24);
+    background: hsl(216, 12%, 8%);
 }
 *, ::before, ::after {
     box-sizing: border-box;
@@ -149,7 +172,7 @@ input[type=number] {
 *:focus-visible {
     outline: 1px solid white !important;
     outline-offset: -2px;
-    border-radius: 4px;
+    border-radius: $border-radius;
 }
 html {
     scroll-behavior: smooth;
@@ -163,25 +186,57 @@ body {
 }
 header {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+nav {
+    width: fit-content;
+    border: 4px;
+}
+nav ul {
+    @include shadow;
+    display: flex;
+    justify-content: center;
+    background-color: $clr-dark;
+    margin: 0;
+    padding: 0;
+    border-radius: 4px;
+    list-style: none;
+    font-family: $font-family;
+    font-size: $font-size-small;
+    color: $clr-light;
+    li {
+        cursor: pointer;
+        border-radius: 4px;
+    }
+    a {
+        display: block;
+        background-color: $clr-dark;
+        padding: 4px 16px;
+        border-radius: 4px;
+        transition-duration: $duration-short;
+        text-shadow: 0 0 8px transparent;
+        &:hover {
+            text-shadow: 0 0 8px $clr-light;
+        }
+    }
 }
 main {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 h1 {
     @include typeface;
     font-weight: 600;
-    text-align: right;
+    text-align: center;
     font-size: $font-size-large;
     margin: 1.5em 0.5em 0.75em 0.5em;
-    position: relative;
 }
 h2 {
     @include typeface;
     animation: enter $duration-medium forwards;
     margin-bottom: 0.5em;
-    border-bottom: 1px solid hsl(0, 0%, 100%, 0.5);
+    border-bottom: 1px solid $clr-primary-translucent;
     font-weight: 400;
     font-size: $font-size-body;
     position: relative;
@@ -228,14 +283,14 @@ button {
 }
 .row {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     gap: 1em;
     input[type=text] {
         @include typeface;
         background-color: transparent;
+        flex-shrink: 4;
         border: none;
-        border-bottom: 1px solid hsl(0, 0%, 100%, 0.5);
+        border-bottom: 1px solid $clr-primary-translucent;
         font-size: $font-size-small;
         margin: 0;
         padding: 2px 4px;
@@ -247,7 +302,7 @@ button {
     input[type=number] {
         @include typeface;
         background-color: transparent;
-        border: 1px solid hsl(0, 0%, 100%, 0.5);
+        border: 1px solid $clr-primary-translucent;
         padding: 2px;
         width: 37px;
         font-size: $font-size-body;
@@ -264,7 +319,7 @@ label {
 //COLUMN 1
 #instructions {
     margin: 0 1em;
-    width: 324px;
+    width: 320px;
     p {
         animation: enter $duration-medium forwards;
         margin: 0;
@@ -277,6 +332,7 @@ label {
 #character-editor {
     display: none;
     margin: 0 1em;
+    width: 320px;
 }
 #editor-container {
     animation: enter $duration-medium forwards;
@@ -297,7 +353,7 @@ label {
     > label:focus-within {
         outline: 1px solid white !important;
         outline-offset: -2px;
-        border-radius: 4px;
+        border-radius: $border-radius;
     }
 }
 #upload-picture {
@@ -306,9 +362,12 @@ label {
     width: 0;
     height: 0;
 }
-//COLUMN 2
+//COLUMN 1 (ANOTHER TAB)
 #character-stats {
     display: none;
+    width: 300px;
+    margin-left: 2em;
+    margin-right: 2em;
 }
 #stats-container {
     display: flex;
@@ -319,44 +378,85 @@ label {
 .stat-modifier {
     font-size: $font-size-body;
     margin: 0;
-    width: 1.5em;
     text-align: right;
 }
 .btn-minus-plus {
     margin: 0;
-    width: 32px;
+    width: 35px;
 }
 .btn-stats-container {
     display: flex;
     gap: 4px;
 }
+//COLUMN 2
+#character-freetext {
+    display: none;
+    margin: 0 1em;
+    width: 320px;
+}
+#traits-container, #traits-container-2 {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    padding-right: 8px;
+    max-height: 66vh;
+    label {
+        width: 100%;
+        text-align: left;
+    }
+    button {
+        margin: 0.5em 0;
+    }
+}
+#traits-container-2 {
+    display: none;
+}
+textarea {
+    @include shadow-inset;
+    background-color: $clr-dark;
+    color: $clr-light;
+    border-radius: 4px;
+    border: none;
+    flex-shrink: 0;
+    font-family: $font-family;
+    font-size: $font-size-smallest;
+    width: 100%;
+    height: 5em;
+    resize: vertical;
+    padding: 4px;
+    margin: 4px 0 8px 0;
+}
+
 //COLUMN 3
 #character-list {
     animation: enter $duration-medium forwards;
     margin: 0 1em;
 }
 #character-container {
+    @include shadow;
     animation: enter $duration-medium forwards;
     display: flex;
     flex-direction: column;
     padding: 1px 2px 1px 1px;
     gap: 1px;
+    border-radius: $border-radius;
     max-height: 438px;
+    width: 440px;
     overflow-y: scroll;
     overflow-x: hidden;
-    background-color: $clr-bg;
+    background-color: $clr-dark;
     border: 1px solid $clr-primary-shadow;
-    box-shadow: 0 0 4px 0 $clr-primary-shadow;
 }
 .person-container {
     animation: add-person $duration-medium forwards;
     display: flex;
     flex-shrink: 0;
     gap: 8px;
+    outline: 1px solid transparent;
     padding: 8px;
-    outline: 1px solid $clr-primary-translucent;
     cursor: pointer;
     overflow: hidden;
+    transition-duration: $duration-short;
     &:hover {
         outline: 1px solid $clr-primary;
     }
@@ -390,9 +490,9 @@ label {
     flex-direction: column;
     justify-content: center;
     flex-shrink: 0;
-    outline: 1px solid $clr-primary-translucent;
+    outline: 1px solid transparent;
     cursor: pointer;
-    height: 182px;
+    transition-duration: $duration-short;
     &:hover {
         outline: 1px solid $clr-primary;
     }
@@ -423,6 +523,11 @@ label {
 .person-container-selected {
     outline: 1px solid white;
 }
+.selected-tab {
+    @include shadow-inset;
+    background-color: hsl(204, 72%, 38%);
+    color: $clr-light;
+}
 //Media queries
 @media screen and (min-height: 1000px) {
     #squadron-container {
@@ -434,13 +539,9 @@ label {
         overflow-y: auto;
     }
     header {
-        flex-direction: column-reverse;
         h1 {
             margin: 1em 0.5em 0 0.5em;
             text-align: left;
-        }
-        #timer {
-            margin: 0.25em 0.5em 0.25em 0.5em;
         }
     }
     main {

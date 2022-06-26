@@ -17,6 +17,13 @@
 <body>
     <header>
         <h1>Dungeons & Dragons Companion App</h1>
+        <nav>
+            <ul>
+                <li><a class="selected-tab" onclick="">Character Info</a></li>
+                <li><a onclick="">Character Stats</a></li>
+                <li><a onclick="">Equipment and Inventory</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
         <section id="instructions">
@@ -24,7 +31,7 @@
             <p>Add a person to begin.</p>
         </section>
         <section id="character-editor">
-            <h2>CHARACTER EDITOR</h2>
+            <h2>CHARACTER FEATURES</h2>
             <form id="editor-container">
                 <div class="row">
                     <label for="name">Name</label>
@@ -71,11 +78,36 @@
                     <input type="text" id="hair" autocomplete="off">
                 </div>
                 <div id="profile-buttons">
-                    <label for="upload-picture">Upload Photo
+                    <label for="upload-picture">Upload Picture
                         <input id="upload-picture" onchange="uploadPicture();" type="file" accept=".png, .jpg, .jpeg, .webm">
                     </label>
                     <button type="button" onclick="deleteCharacter();">Delete Character</button>
                 </div>
+            </form>
+        </section>
+        <section id="character-freetext">
+            <h2>CHARACTER PROFILE</h2>
+            <form id="traits-container">
+                <label for="">Personality Traits</label>
+                <textarea></textarea>
+                <label for="">Ideals</label>
+                <textarea></textarea>
+                <label for="">Bonds</label>
+                <textarea></textarea>
+                <label for="">Flaws</label>
+                <textarea></textarea>      
+                <button type="button" onclick="nextPage();">Next Page</button>
+            </form>
+            <form id="traits-container-2">
+                <label for="">Features and Traits</label>
+                <textarea></textarea>
+                <label for="">Proficiencies and Languages</label>
+                <textarea></textarea>
+                <label for="">Allies and Organizations</label>
+                <textarea></textarea>
+                <label for="">Backstory</label>
+                <textarea></textarea>
+                <button type="button" onclick="previousPage();">Previous Page</button>
             </form>
         </section>
         <section id="character-stats">
@@ -141,8 +173,7 @@
             <h2>CHARACTER LIST</h2>
             <div id="character-container">
                 <div class="add-person" onclick="addPerson();" onkeypress="addPerson();" tabindex="0">
-                    <p id="add-person">+</p>
-                    <p>ADD PERSON</p>
+                    <p>Add Person +</p>
                 </div>
             </div>
             <div class="button-container">

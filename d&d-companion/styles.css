@@ -116,50 +116,89 @@
     height: 128px;
   }
 }
-@-webkit-keyframes enter-stats {
+@-webkit-keyframes enter-freetext {
   0% {
     opacity: 0%;
     line-height: 0;
     padding: 0px;
     width: 0px;
+    margin-left: 0em;
+    margin-right: 0em;
   }
   50% {
     opacity: 0%;
     line-height: auto;
     padding: 8px;
-    width: 273px;
-  }
-  75% {
-    opacity: 0%;
+    width: 300px;
+    margin-left: 2em;
+    margin-right: 2em;
   }
   100% {
     opacity: 100%;
   }
 }
-@keyframes enter-stats {
+@keyframes enter-freetext {
   0% {
     opacity: 0%;
     line-height: 0;
     padding: 0px;
     width: 0px;
+    margin-left: 0em;
+    margin-right: 0em;
   }
   50% {
     opacity: 0%;
     line-height: auto;
     padding: 8px;
-    width: 273px;
-  }
-  75% {
-    opacity: 0%;
+    width: 300px;
+    margin-left: 2em;
+    margin-right: 2em;
   }
   100% {
     opacity: 100%;
+  }
+}
+@-webkit-keyframes leave-freetext {
+  0% {
+    opacity: 0%;
+    line-height: auto;
+    padding: 8px;
+    width: 300px;
+    margin-left: 2em;
+    margin-right: 2em;
+  }
+  100% {
+    opacity: 0%;
+    line-height: 0;
+    padding: 0px;
+    width: 0px;
+    margin-left: 0em;
+    margin-right: 0em;
+  }
+}
+@keyframes leave-freetext {
+  0% {
+    opacity: 0%;
+    line-height: auto;
+    padding: 8px;
+    width: 300px;
+    margin-left: 2em;
+    margin-right: 2em;
+  }
+  100% {
+    opacity: 0%;
+    line-height: 0;
+    padding: 0px;
+    width: 0px;
+    margin-left: 0em;
+    margin-right: 0em;
   }
 }
 ::-webkit-scrollbar {
+  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
+  border-radius: 2px;
   width: 8px;
   height: 8px;
-  outline: 1px solid hsl(180deg, 1%, 13%);
 }
 
 ::-webkit-scrollbar-track {
@@ -168,6 +207,7 @@
 
 ::-webkit-scrollbar-thumb {
   background: hsl(180deg, 1%, 13%);
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(180deg, 100%, 100%);
@@ -185,7 +225,7 @@ input[type=number] {
 }
 
 :root {
-  background: rgb(19, 21, 24);
+  background: hsl(216deg, 12%, 8%);
 }
 
 *, ::before, ::after {
@@ -212,12 +252,49 @@ body {
 
 header {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+
+nav {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: 4px;
+}
+
+nav ul {
+  box-shadow: -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
+  display: flex;
+  justify-content: center;
+  background-color: hsl(0deg, 0%, 5%);
+  margin: 0;
+  padding: 0;
+  border-radius: 4px;
+  list-style: none;
+  font-family: "Crimson Text", serif;
+  font-size: 1.2em;
+  color: hsl(0deg, 0%, 100%);
+}
+nav ul li {
+  cursor: pointer;
+  border-radius: 4px;
+}
+nav ul a {
+  display: block;
+  background-color: hsl(0deg, 0%, 5%);
+  padding: 4px 16px;
+  border-radius: 4px;
+  transition-duration: 0.2s;
+  text-shadow: 0 0 8px transparent;
+}
+nav ul a:hover {
+  text-shadow: 0 0 8px hsl(0deg, 0%, 100%);
 }
 
 main {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 h1 {
@@ -225,10 +302,9 @@ h1 {
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
   font-weight: 600;
-  text-align: right;
+  text-align: center;
   font-size: 2em;
   margin: 1.5em 0.5em 0.75em 0.5em;
-  position: relative;
 }
 
 h2 {
@@ -278,7 +354,7 @@ button:hover {
   text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
   -webkit-animation: alert-enter 0.25s forwards;
           animation: alert-enter 0.25s forwards;
-  background-color: hsl(220deg, 12%, 0%);
+  background-color: hsl(216deg, 12%, 8%);
   border-top: 1px solid hsl(180deg, 1%, 13%);
   font-size: 1.5em;
   letter-spacing: 0px;
@@ -310,7 +386,6 @@ button:hover {
 
 .row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 1em;
 }
@@ -319,6 +394,7 @@ button:hover {
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
   background-color: transparent;
+  flex-shrink: 4;
   border: none;
   border-bottom: 1px solid hsla(0deg, 0%, 100%, 0.5);
   font-size: 1.2em;
@@ -353,7 +429,7 @@ label {
 
 #instructions {
   margin: 0 1em;
-  width: 324px;
+  width: 320px;
 }
 #instructions p {
   -webkit-animation: enter 0.5s forwards;
@@ -368,6 +444,7 @@ label {
 #character-editor {
   display: none;
   margin: 0 1em;
+  width: 320px;
 }
 
 #editor-container {
@@ -418,6 +495,9 @@ label {
 
 #character-stats {
   display: none;
+  width: 300px;
+  margin-left: 2em;
+  margin-right: 2em;
 }
 
 #stats-container {
@@ -431,18 +511,58 @@ label {
 .stat-modifier {
   font-size: 1.5em;
   margin: 0;
-  width: 1.5em;
   text-align: right;
 }
 
 .btn-minus-plus {
   margin: 0;
-  width: 32px;
+  width: 35px;
 }
 
 .btn-stats-container {
   display: flex;
   gap: 4px;
+}
+
+#character-freetext {
+  display: none;
+  margin: 0 1em;
+  width: 320px;
+}
+
+#traits-container, #traits-container-2 {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  padding-right: 8px;
+  max-height: 66vh;
+}
+#traits-container label, #traits-container-2 label {
+  width: 100%;
+  text-align: left;
+}
+#traits-container button, #traits-container-2 button {
+  margin: 0.5em 0;
+}
+
+#traits-container-2 {
+  display: none;
+}
+
+textarea {
+  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
+  background-color: hsl(0deg, 0%, 5%);
+  color: hsl(0deg, 0%, 100%);
+  border-radius: 4px;
+  border: none;
+  flex-shrink: 0;
+  font-family: "Crimson Text", serif;
+  font-size: 1em;
+  width: 100%;
+  height: 5em;
+  resize: vertical;
+  padding: 4px;
+  margin: 4px 0 8px 0;
 }
 
 #character-list {
@@ -452,18 +572,20 @@ label {
 }
 
 #character-container {
+  box-shadow: -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
   -webkit-animation: enter 0.5s forwards;
           animation: enter 0.5s forwards;
   display: flex;
   flex-direction: column;
   padding: 1px 2px 1px 1px;
   gap: 1px;
+  border-radius: 4px;
   max-height: 438px;
+  width: 440px;
   overflow-y: scroll;
   overflow-x: hidden;
-  background-color: hsl(220deg, 12%, 0%);
+  background-color: hsl(0deg, 0%, 5%);
   border: 1px solid hsl(180deg, 1%, 13%);
-  box-shadow: 0 0 4px 0 hsl(180deg, 1%, 13%);
 }
 
 .person-container {
@@ -472,10 +594,11 @@ label {
   display: flex;
   flex-shrink: 0;
   gap: 8px;
+  outline: 1px solid transparent;
   padding: 8px;
-  outline: 1px solid hsla(204deg, 100%, 62%, 0.15);
   cursor: pointer;
   overflow: hidden;
+  transition-duration: 0.2s;
 }
 .person-container:hover {
   outline: 1px solid hsl(180deg, 100%, 100%);
@@ -513,9 +636,9 @@ label {
   flex-direction: column;
   justify-content: center;
   flex-shrink: 0;
-  outline: 1px solid hsla(204deg, 100%, 62%, 0.15);
+  outline: 1px solid transparent;
   cursor: pointer;
-  height: 182px;
+  transition-duration: 0.2s;
 }
 .add-person:hover {
   outline: 1px solid hsl(180deg, 100%, 100%);
@@ -558,6 +681,12 @@ label {
   outline: 1px solid white;
 }
 
+.selected-tab {
+  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
+  background-color: hsl(204deg, 72%, 38%);
+  color: hsl(0deg, 0%, 100%);
+}
+
 @media screen and (min-height: 1000px) {
   #squadron-container {
     max-height: 552px;
@@ -568,15 +697,9 @@ label {
     overflow-y: auto;
   }
 
-  header {
-    flex-direction: column-reverse;
-  }
   header h1 {
     margin: 1em 0.5em 0 0.5em;
     text-align: left;
-  }
-  header #timer {
-    margin: 0.25em 0.5em 0.25em 0.5em;
   }
 
   main {

@@ -66,6 +66,7 @@ function addPerson() {
     };
     //Have the first person be automatically selected
     if (numberOfPeople == 0) {
+        $("#character-freetext").css("animation", "enter-freetext 1s forwards");
         selectPerson(people);
     }
     people++;
@@ -85,7 +86,7 @@ function selectPerson(personNum) {
     $("#stats-container:last").remove();
     //
     $("#character-editor").css("display", "block");
-    $("#character-stats").css("display", "block");
+    $("#character-freetext").css("display", "block");
     selection = personNum;
     //Loads the object values into the character editor
     for (var property in characterList[0]) {
@@ -96,10 +97,18 @@ function selectPerson(personNum) {
 function deleteCharacter() {
     $("#person-" + selection).remove();
     $("#character-editor").css("display", "none");
-    $("#character-stats").css("display", "none");
+    $("#character-freetext").css("display", "none");
     $("#instructions > p").text("Add or select a person.");
     $("#instructions").css("display", "block");
     numberOfPeople--;
+}
+function nextPage() {
+    $("#traits-container").hide();
+    $("#traits-container-2").css("display", "flex");
+}
+function previousPage() {
+    $("#traits-container-2").hide();
+    $("#traits-container").css("display", "flex");
 }
 function increaseStat(statType) {
     let x = $("#" + statType).val();
@@ -134,7 +143,7 @@ function deleteCharacterList() {
         $("#delete-character-list").text("Delete All Characters");
         $(".person-container").remove();
         $("#character-editor").css("display", "none");
-        $("#character-stats").css("display", "none");
+        $("#character-freetext").css("display", "none");
         $("#instructions > p").text("Add or select a person.");
         $("#instructions").css("display", "block");
         people = 0;
@@ -222,7 +231,8 @@ function load() {
         characterList = JSON.parse(localStorage.getItem("character"));
         selection = JSON.parse(localStorage.getItem("selection"));
         $("#character-editor").css("display", "block");
-        $("#character-stats").css("display", "block");
+        $("#character-freetext").css("display", "block");
+        $("#character-freetext").css("animation", "enter-freetext 1s forwards");
         $("#instructions").css("display", "none");
         for (var property in characterList[0]) {
             $("#" + property).val(JSON.parse(localStorage.getItem("saved-" + property)));
