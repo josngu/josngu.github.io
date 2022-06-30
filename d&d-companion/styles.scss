@@ -8,7 +8,7 @@ $font-size-large: 2em;
 $clr-primary: hsl(180, 100%, 100%);
 $clr-primary-translucent: hsl(0, 0%, 100%, 0.5);
 $clr-primary-shadow: hsl(180, 1%, 13%);
-$clr-bg: hsl(216, 12%, 8%);
+$clr-bg: hsl(225, 7%, 11%);
 $fade-in: fade-in 0.5s forwards;
 $border-radius: 4px;
 $duration-short: 0.2s;
@@ -80,16 +80,14 @@ $duration-long: 0.8s;
         line-height: 0;
         padding: 0px;
         width: 0px;
-        margin-left: 0em;
-        margin-right: 0em;
+        margin: 0 0em;
     }
     50% {
         opacity: 0%;
         line-height: auto;
         padding: 8px;
-        width: 300px;
-        margin-left: 2em;
-        margin-right: 2em;
+        width: 320px;
+        margin: 0 clamp(1em, 1.5vw, 2em);
     }
     100% {
         opacity: 100%;
@@ -113,6 +111,19 @@ $duration-long: 0.8s;
         margin-right: 0em;
     }
 }
+@keyframes enter-nav {
+    0% {
+        opacity: 0%;
+        height: 0px;
+    }
+    50% {
+        opacity: 0%;
+        height: 35px;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
 @mixin shadow {
     box-shadow: -2px -2px 4px 0 hsl(0, 0%, 100%, 0.05), 2px 2px 4px 0 hsl(0, 0%, 0%, 0.33);
 }
@@ -127,7 +138,7 @@ $duration-long: 0.8s;
 @mixin button {
     @include typeface;
     background-color: $clr-dark;
-    border: 1px solid hsl(240, 3%, 15%);
+    border: 1px solid $clr-primary-shadow;
     border-radius: $border-radius;
     padding: 4px 8px;
     font-size: $font-size-small;
@@ -149,7 +160,8 @@ $duration-long: 0.8s;
     background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: $clr-primary-shadow;
+    @include shadow-inset;
+    background: $clr-primary;
     border-radius: 2px;
     &:hover {
         background: $clr-primary;
@@ -164,7 +176,7 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 :root {
-    background: hsl(216, 12%, 8%);
+    background: $clr-bg;
 }
 *, ::before, ::after {
     box-sizing: border-box;
@@ -176,7 +188,7 @@ input[type=number] {
 }
 html {
     scroll-behavior: smooth;
-    scrollbar-color: $clr-primary-shadow transparent;
+    scrollbar-color: $clr-primary-shadow white transparent;
     overflow: hidden;
 }
 body {
@@ -185,39 +197,36 @@ body {
     min-height: 100vh;
 }
 header {
+    background-color: $clr-dark;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 nav {
-    width: fit-content;
-    border: 4px;
+    animation: enter-nav $duration-long forwards;
+    display: none;
+    height: 35px;
 }
 nav ul {
-    @include shadow;
     display: flex;
     justify-content: center;
-    background-color: $clr-dark;
     margin: 0;
     padding: 0;
-    border-radius: 4px;
     list-style: none;
     font-family: $font-family;
     font-size: $font-size-small;
     color: $clr-light;
     li {
         cursor: pointer;
-        border-radius: 4px;
     }
     a {
         display: block;
         background-color: $clr-dark;
         padding: 4px 16px;
-        border-radius: 4px;
+        border-bottom: 2px solid transparent;
         transition-duration: $duration-short;
-        text-shadow: 0 0 8px transparent;
         &:hover {
-            text-shadow: 0 0 8px $clr-light;
+            border-bottom: 2px solid $clr-light;
         }
     }
 }
@@ -288,7 +297,6 @@ button {
     input[type=text] {
         @include typeface;
         background-color: transparent;
-        flex-shrink: 4;
         border: none;
         border-bottom: 1px solid $clr-primary-translucent;
         font-size: $font-size-small;
@@ -391,15 +399,18 @@ label {
 //COLUMN 2
 #character-freetext {
     display: none;
-    margin: 0 1em;
+    margin: 0 clamp(1em, 1.5vw, 2em);
     width: 320px;
 }
 #traits-container, #traits-container-2 {
+    animation: enter $duration-medium forwards;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
-    padding-right: 8px;
     max-height: 66vh;
+    div {
+        padding-right: 8px;
+        overflow-y: scroll;
+    }
     label {
         width: 100%;
         text-align: left;
@@ -523,9 +534,8 @@ textarea {
 .person-container-selected {
     outline: 1px solid white;
 }
-.selected-tab {
-    @include shadow-inset;
-    background-color: hsl(204, 72%, 38%);
+.tab-selected {
+    border-bottom: 2px solid hsl(204, 76%, 46%);
     color: $clr-light;
 }
 //Media queries

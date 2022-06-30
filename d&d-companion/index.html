@@ -19,9 +19,10 @@
         <h1>Dungeons & Dragons Companion App</h1>
         <nav>
             <ul>
-                <li><a class="selected-tab" onclick="">Character Info</a></li>
+                <li><a class="tab-selected" onclick="">Character Info</a></li>
                 <li><a onclick="">Character Stats</a></li>
-                <li><a onclick="">Equipment and Inventory</a></li>
+                <li><a onclick="">Equipment & Inventory</a></li>
+                <li><a onclick="">Spellcasting</a></li>
             </ul>
         </nav>
     </header>
@@ -88,25 +89,29 @@
         <section id="character-freetext">
             <h2>CHARACTER PROFILE</h2>
             <form id="traits-container">
-                <label for="">Personality Traits</label>
-                <textarea></textarea>
-                <label for="">Ideals</label>
-                <textarea></textarea>
-                <label for="">Bonds</label>
-                <textarea></textarea>
-                <label for="">Flaws</label>
-                <textarea></textarea>      
+                <div>
+                    <label for="personality">Personality Traits</label>
+                    <textarea id="personality"></textarea>
+                    <label for="ideals">Ideals</label>
+                    <textarea id="ideals"></textarea>
+                    <label for="bonds">Bonds</label>
+                    <textarea id="bonds"></textarea>
+                    <label for="flaws">Flaws</label>
+                    <textarea id="flaws"></textarea>    
+                </div>
                 <button type="button" onclick="nextPage();">Next Page</button>
             </form>
             <form id="traits-container-2">
-                <label for="">Features and Traits</label>
-                <textarea></textarea>
-                <label for="">Proficiencies and Languages</label>
-                <textarea></textarea>
-                <label for="">Allies and Organizations</label>
-                <textarea></textarea>
-                <label for="">Backstory</label>
-                <textarea></textarea>
+                <div>
+                    <label for="features">Features and Traits</label>
+                    <textarea id="features"></textarea>
+                    <label for="proficiencies">Proficiencies and Languages</label>
+                    <textarea id="proficiencies"></textarea>
+                    <label for="allies">Allies and Organizations</label>
+                    <textarea id="allies"></textarea>
+                    <label for="backstory">Character Backstory</label>
+                    <textarea id="backstory"></textarea>
+                </div>
                 <button type="button" onclick="previousPage();">Previous Page</button>
             </form>
         </section>

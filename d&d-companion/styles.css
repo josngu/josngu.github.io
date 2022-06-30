@@ -122,16 +122,14 @@
     line-height: 0;
     padding: 0px;
     width: 0px;
-    margin-left: 0em;
-    margin-right: 0em;
+    margin: 0 0em;
   }
   50% {
     opacity: 0%;
     line-height: auto;
     padding: 8px;
-    width: 300px;
-    margin-left: 2em;
-    margin-right: 2em;
+    width: 320px;
+    margin: 0 clamp(1em, 1.5vw, 2em);
   }
   100% {
     opacity: 100%;
@@ -143,16 +141,14 @@
     line-height: 0;
     padding: 0px;
     width: 0px;
-    margin-left: 0em;
-    margin-right: 0em;
+    margin: 0 0em;
   }
   50% {
     opacity: 0%;
     line-height: auto;
     padding: 8px;
-    width: 300px;
-    margin-left: 2em;
-    margin-right: 2em;
+    width: 320px;
+    margin: 0 clamp(1em, 1.5vw, 2em);
   }
   100% {
     opacity: 100%;
@@ -194,6 +190,32 @@
     margin-right: 0em;
   }
 }
+@-webkit-keyframes enter-nav {
+  0% {
+    opacity: 0%;
+    height: 0px;
+  }
+  50% {
+    opacity: 0%;
+    height: 35px;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@keyframes enter-nav {
+  0% {
+    opacity: 0%;
+    height: 0px;
+  }
+  50% {
+    opacity: 0%;
+    height: 35px;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
 ::-webkit-scrollbar {
   box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
   border-radius: 2px;
@@ -206,7 +228,8 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(180deg, 1%, 13%);
+  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
+  background: hsl(180deg, 100%, 100%);
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -225,7 +248,7 @@ input[type=number] {
 }
 
 :root {
-  background: hsl(216deg, 12%, 8%);
+  background: hsl(225deg, 7%, 11%);
 }
 
 *, ::before, ::after {
@@ -240,7 +263,7 @@ input[type=number] {
 
 html {
   scroll-behavior: smooth;
-  scrollbar-color: hsl(180deg, 1%, 13%) transparent;
+  scrollbar-color: hsl(180deg, 1%, 13%) white transparent;
   overflow: hidden;
 }
 
@@ -251,26 +274,24 @@ body {
 }
 
 header {
+  background-color: hsl(0deg, 0%, 5%);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 nav {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  border: 4px;
+  -webkit-animation: enter-nav 0.8s forwards;
+          animation: enter-nav 0.8s forwards;
+  display: none;
+  height: 35px;
 }
 
 nav ul {
-  box-shadow: -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
   display: flex;
   justify-content: center;
-  background-color: hsl(0deg, 0%, 5%);
   margin: 0;
   padding: 0;
-  border-radius: 4px;
   list-style: none;
   font-family: "Crimson Text", serif;
   font-size: 1.2em;
@@ -278,18 +299,16 @@ nav ul {
 }
 nav ul li {
   cursor: pointer;
-  border-radius: 4px;
 }
 nav ul a {
   display: block;
   background-color: hsl(0deg, 0%, 5%);
   padding: 4px 16px;
-  border-radius: 4px;
+  border-bottom: 2px solid transparent;
   transition-duration: 0.2s;
-  text-shadow: 0 0 8px transparent;
 }
 nav ul a:hover {
-  text-shadow: 0 0 8px hsl(0deg, 0%, 100%);
+  border-bottom: 2px solid hsl(0deg, 0%, 100%);
 }
 
 main {
@@ -332,7 +351,7 @@ button {
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
   background-color: hsl(0deg, 0%, 5%);
-  border: 1px solid hsl(240deg, 3%, 15%);
+  border: 1px solid hsl(180deg, 1%, 13%);
   border-radius: 4px;
   padding: 4px 8px;
   font-size: 1.2em;
@@ -354,7 +373,7 @@ button:hover {
   text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
   -webkit-animation: alert-enter 0.25s forwards;
           animation: alert-enter 0.25s forwards;
-  background-color: hsl(216deg, 12%, 8%);
+  background-color: hsl(225deg, 7%, 11%);
   border-top: 1px solid hsl(180deg, 1%, 13%);
   font-size: 1.5em;
   letter-spacing: 0px;
@@ -394,7 +413,6 @@ button:hover {
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
   background-color: transparent;
-  flex-shrink: 4;
   border: none;
   border-bottom: 1px solid hsla(0deg, 0%, 100%, 0.5);
   font-size: 1.2em;
@@ -465,7 +483,7 @@ label {
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
   background-color: hsl(0deg, 0%, 5%);
-  border: 1px solid hsl(240deg, 3%, 15%);
+  border: 1px solid hsl(180deg, 1%, 13%);
   border-radius: 4px;
   padding: 4px 8px;
   font-size: 1.2em;
@@ -526,16 +544,20 @@ label {
 
 #character-freetext {
   display: none;
-  margin: 0 1em;
+  margin: 0 clamp(1em, 1.5vw, 2em);
   width: 320px;
 }
 
 #traits-container, #traits-container-2 {
+  -webkit-animation: enter 0.5s forwards;
+          animation: enter 0.5s forwards;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
-  padding-right: 8px;
   max-height: 66vh;
+}
+#traits-container div, #traits-container-2 div {
+  padding-right: 8px;
+  overflow-y: scroll;
 }
 #traits-container label, #traits-container-2 label {
   width: 100%;
@@ -681,9 +703,8 @@ textarea {
   outline: 1px solid white;
 }
 
-.selected-tab {
-  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
-  background-color: hsl(204deg, 72%, 38%);
+.tab-selected {
+  border-bottom: 2px solid hsl(204deg, 76%, 46%);
   color: hsl(0deg, 0%, 100%);
 }
 

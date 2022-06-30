@@ -14,6 +14,9 @@ function checkFormChanges() {
     $(".row").on("focusout", function () {
         updateForm();
     });
+    $("textarea").on("focusout", function () {
+        updateForm();
+    });
 }
 function updateForm() {
     for (var property in characterList[0]) {
@@ -57,6 +60,14 @@ function addPerson() {
         eyes: "",
         skin: "",
         hair: "",
+        personality: "",
+        ideals: "",
+        bonds: "",
+        flaws: "",
+        features: "",
+        proficiencies: "",
+        allies: "",
+        backstory: "",
         strength: 0,
         dexterity: 0,
         constitution: 0,
@@ -82,11 +93,16 @@ function selectPerson(personNum) {
     //This plays an animation whenever a person is selected
     $("#editor-container").after($("#editor-container").clone(true));
     $("#editor-container:last").remove();
+    $("#traits-container").after($("#traits-container").clone(true));
+    $("#traits-container:last").remove();
+    $("#traits-container-2").after($("#traits-container-2").clone(true));
+    $("#traits-container-2:last").remove();
     $("#stats-container").after($("#stats-container").clone(true));
     $("#stats-container:last").remove();
     //
-    $("#character-editor").css("display", "block");
-    $("#character-freetext").css("display", "block");
+    $("nav").show();
+    $("#character-editor").show();
+    $("#character-freetext").show();
     selection = personNum;
     //Loads the object values into the character editor
     for (var property in characterList[0]) {
