@@ -6,8 +6,10 @@ var characterList = [];
 var statList = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"];
 var selection = 0;
 
-var longAlert = 5000;
-var shortAlert = 2500;
+const longAlert = 5000;
+const shortAlert = 2500;
+
+const durationMedium = 500;
 
 $(function() {
     checkFormChanges();
@@ -49,7 +51,6 @@ function updateForm(){
 
 function addPerson(){
     $("#character-container > .add-person").before('<div id="person-' + people + '" class="person-container" onclick="selectPerson(' + people + ');" onkeypress="selectPerson(' + people + ');" tabindex="0"><img id="profile-picture-' + people + '" src="images/person.webp" alt="" class="person-image"><div><h3 id="name-' + people + '" data-placeholder="Name"></h3><p id="race-class' + people + '" data-placeholder="Race and Class"></p></div></div>');
-    
     $("#instructions > p").text("Add or select a person.");
 
     characterList[people] = {
@@ -96,7 +97,7 @@ function selectPerson(personNum: number){
         $("#person-" + personNum).addClass("person-container-selected");
     }, 1);
     
-    //This plays an animation whenever a person is selected
+    //The following 8 lines play an animation whenever a person is selected
     $("#editor-container").after($("#editor-container").clone(true));
     $("#editor-container:last").remove();
     $("#traits-container").after($("#traits-container").clone(true));
@@ -105,8 +106,12 @@ function selectPerson(personNum: number){
     $("#traits-container-2:last").remove();
     $("#stats-container").after($("#stats-container").clone(true));
     $("#stats-container:last").remove();
-    //
+
     $("nav").show();
+    //The following 2 lines achieve the same thing but with classes
+    $("nav").removeClass("nav-leave");
+    $("nav").addClass("nav-enter");
+    
     $("#character-editor").show();
     $("#character-freetext").show();
     selection = personNum;
@@ -123,6 +128,8 @@ function deleteCharacter(){
     $("#character-freetext").css("display", "none");
     $("#instructions > p").text("Add or select a person.");
     $("#instructions").css("display", "block");
+    $("nav").removeClass("nav-enter");
+    $("nav").addClass("nav-leave");
     numberOfPeople--;
 }
 function nextPage(){
@@ -167,6 +174,9 @@ function deleteCharacterList(){
         $("#character-freetext").css("display", "none");
         $("#instructions > p").text("Add or select a person.");
         $("#instructions").css("display", "block");
+        $("nav").removeClass("nav-enter");
+        $("nav").addClass("nav-leave");
+        
         people = 0;
         numberOfPeople = 0;
     } else {
@@ -258,6 +268,9 @@ function load(){
         $("#character-freetext").css("display", "block");
         $("#character-freetext").css("animation", "enter-freetext 1s forwards");
         $("#instructions").css("display", "none");
+        $("nav").show();
+        $("nav").removeClass("nav-leave");
+        $("nav").addClass("nav-enter");
 
         for (var property in characterList[0]){
             $("#" + property).val(JSON.parse(localStorage.getItem("saved-" + property)));
