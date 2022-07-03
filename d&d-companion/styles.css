@@ -156,38 +156,44 @@
 }
 @-webkit-keyframes leave-freetext {
   0% {
+    opacity: 100%;
+    line-height: auto;
+    width: 320px;
+    margin: 0 clamp(1em, 1.5vw, 2em);
+  }
+  25% {
     opacity: 0%;
     line-height: auto;
-    padding: 8px;
-    width: 300px;
-    margin-left: 2em;
-    margin-right: 2em;
+    width: 320px;
+    margin: 0 clamp(1em, 1.5vw, 2em);
   }
   100% {
     opacity: 0%;
     line-height: 0;
     padding: 0px;
     width: 0px;
-    margin-left: 0em;
-    margin-right: 0em;
+    margin: 0;
   }
 }
 @keyframes leave-freetext {
   0% {
+    opacity: 100%;
+    line-height: auto;
+    width: 320px;
+    margin: 0 clamp(1em, 1.5vw, 2em);
+  }
+  25% {
     opacity: 0%;
     line-height: auto;
-    padding: 8px;
-    width: 300px;
-    margin-left: 2em;
-    margin-right: 2em;
+    width: 320px;
+    margin: 0 clamp(1em, 1.5vw, 2em);
   }
   100% {
     opacity: 0%;
     line-height: 0;
     padding: 0px;
     width: 0px;
-    margin-left: 0em;
-    margin-right: 0em;
+    margin: 0;
   }
 }
 @-webkit-keyframes enter-nav {
@@ -584,6 +590,16 @@ label {
   display: none;
   margin: 0 clamp(1em, 1.5vw, 2em);
   width: 320px;
+}
+
+.animate-freetext-enter {
+  -webkit-animation: enter-freetext 1s forwards;
+          animation: enter-freetext 1s forwards;
+}
+
+.animate-freetext-leave {
+  -webkit-animation: leave-freetext 1s forwards;
+          animation: leave-freetext 1s forwards;
 }
 
 #traits-container, #traits-container-2 {

@@ -82,7 +82,8 @@ function addPerson(){
     }
     //Have the first person be automatically selected
     if (numberOfPeople == 0){
-        $("#character-freetext").css("animation", "enter-freetext 1s forwards");
+        $("#character-freetext").removeClass("animate-freetext-leave");
+        $("#character-freetext").addClass("animate-freetext-enter");
         selectPerson(people);
     }
     people++;
@@ -113,7 +114,10 @@ function selectPerson(personNum: number){
     $("nav").addClass("nav-enter");
     
     $("#character-editor").show();
+    
     $("#character-freetext").show();
+    $("#character-freetext").removeClass("animate-freetext-leave");
+    $("#character-freetext").addClass("animate-freetext-enter");
     selection = personNum;
     //Loads the object values into the character editor
     for (var property in characterList[0]){
@@ -125,7 +129,8 @@ function selectPerson(personNum: number){
 function deleteCharacter(){
     $("#person-" + selection).remove();
     $("#character-editor").css("display", "none");
-    $("#character-freetext").css("display", "none");
+    $("#character-freetext").removeClass("animate-freetext-enter");
+    $("#character-freetext").addClass("animate-freetext-leave");
     $("#instructions > p").text("Add or select a person.");
     $("#instructions").css("display", "block");
     $("nav").removeClass("nav-enter");
@@ -171,7 +176,8 @@ function deleteCharacterList(){
         $("#delete-character-list").text("Delete All Characters");
         $(".person-container").remove();
         $("#character-editor").css("display", "none");
-        $("#character-freetext").css("display", "none");
+        $("#character-freetext").removeClass("animate-freetext-enter");
+        $("#character-freetext").addClass("animate-freetext-leave");
         $("#instructions > p").text("Add or select a person.");
         $("#instructions").css("display", "block");
         $("nav").removeClass("nav-enter");
@@ -264,9 +270,10 @@ function load(){
         numberOfPeople = JSON.parse(localStorage.getItem("numberOfPeople"));
         characterList = JSON.parse(localStorage.getItem("character"));
         selection = JSON.parse(localStorage.getItem("selection"));
-        $("#character-editor").css("display", "block");
-        $("#character-freetext").css("display", "block");
-        $("#character-freetext").css("animation", "enter-freetext 1s forwards");
+        $("#character-editor").show();
+        $("#character-freetext").show();
+        $("#character-freetext").removeClass("animate-freetext-leave");
+        $("#character-freetext").addClass("animate-freetext-enter");
         $("#instructions").css("display", "none");
         $("nav").show();
         $("nav").removeClass("nav-leave");
@@ -278,6 +285,10 @@ function load(){
         //This plays an animation whenever a person is selected
         $("#editor-container").after($("#editor-container").clone(true));
         $("#editor-container:last").remove();
+        $("#traits-container").after($("#traits-container").clone(true));
+        $("#traits-container:last").remove();
+        $("#traits-container-2").after($("#traits-container-2").clone(true));
+        $("#traits-container-2:last").remove();
         $("#stats-container").after($("#stats-container").clone(true));
         $("#stats-container:last").remove();
         //

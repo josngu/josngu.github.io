@@ -14,6 +14,7 @@ $border-radius: 4px;
 $duration-short: 0.2s;
 $duration-medium: 0.5s;
 $duration-long: 0.8s;
+$duration-longer: 1s;
 
 @keyframes alert-enter {
     from {
@@ -95,20 +96,23 @@ $duration-long: 0.8s;
 }
 @keyframes leave-freetext {
     0% {
+        opacity: 100%;
+        line-height: auto;
+        width: 320px;
+        margin: 0 clamp(1em, 1.5vw, 2em);
+    }
+    25% {
         opacity: 0%;
         line-height: auto;
-        padding: 8px;
-        width: 300px;
-        margin-left: 2em;
-        margin-right: 2em;
+        width: 320px;
+        margin: 0 clamp(1em, 1.5vw, 2em);
     }
     100% {
         opacity: 0%;
         line-height: 0;
         padding: 0px;
         width: 0px;
-        margin-left: 0em;
-        margin-right: 0em;
+        margin: 0;
     }
 }
 @keyframes enter-nav {
@@ -421,6 +425,12 @@ label {
     display: none;
     margin: 0 clamp(1em, 1.5vw, 2em);
     width: 320px;
+}
+.animate-freetext-enter {
+    animation: enter-freetext $duration-longer forwards;
+}
+.animate-freetext-leave {
+    animation: leave-freetext $duration-longer forwards;
 }
 #traits-container, #traits-container-2 {
     animation: enter $duration-medium forwards;
