@@ -119,58 +119,52 @@
 @-webkit-keyframes enter-freetext {
   0% {
     opacity: 0%;
-    line-height: 0;
-    padding: 0px;
     width: 0px;
     margin: 0 0em;
   }
-  50% {
+  66% {
     opacity: 0%;
-    line-height: auto;
-    padding: 8px;
     width: 320px;
     margin: 0 clamp(1em, 1.5vw, 2em);
+    transform: translateY(16px);
   }
   100% {
     opacity: 100%;
+    transform: translateY(0px);
   }
 }
 @keyframes enter-freetext {
   0% {
     opacity: 0%;
-    line-height: 0;
-    padding: 0px;
     width: 0px;
     margin: 0 0em;
   }
-  50% {
+  66% {
     opacity: 0%;
-    line-height: auto;
-    padding: 8px;
     width: 320px;
     margin: 0 clamp(1em, 1.5vw, 2em);
+    transform: translateY(16px);
   }
   100% {
     opacity: 100%;
+    transform: translateY(0px);
   }
 }
 @-webkit-keyframes leave-freetext {
   0% {
     opacity: 100%;
-    line-height: auto;
     width: 320px;
     margin: 0 clamp(1em, 1.5vw, 2em);
+    transform: translateY(0px);
   }
-  25% {
+  33% {
     opacity: 0%;
-    line-height: auto;
     width: 320px;
     margin: 0 clamp(1em, 1.5vw, 2em);
+    transform: translateY(-16px);
   }
   100% {
     opacity: 0%;
-    line-height: 0;
-    padding: 0px;
     width: 0px;
     margin: 0;
   }
@@ -178,20 +172,18 @@
 @keyframes leave-freetext {
   0% {
     opacity: 100%;
-    line-height: auto;
     width: 320px;
     margin: 0 clamp(1em, 1.5vw, 2em);
+    transform: translateY(0px);
   }
-  25% {
+  33% {
     opacity: 0%;
-    line-height: auto;
     width: 320px;
     margin: 0 clamp(1em, 1.5vw, 2em);
+    transform: translateY(-16px);
   }
   100% {
     opacity: 0%;
-    line-height: 0;
-    padding: 0px;
     width: 0px;
     margin: 0;
   }
@@ -593,13 +585,13 @@ label {
 }
 
 .animate-freetext-enter {
-  -webkit-animation: enter-freetext 1s forwards;
-          animation: enter-freetext 1s forwards;
+  -webkit-animation: enter-freetext 0.8s forwards;
+          animation: enter-freetext 0.8s forwards;
 }
 
 .animate-freetext-leave {
-  -webkit-animation: leave-freetext 1s forwards;
-          animation: leave-freetext 1s forwards;
+  -webkit-animation: leave-freetext 0.8s forwards;
+          animation: leave-freetext 0.8s forwards;
 }
 
 #traits-container, #traits-container-2 {

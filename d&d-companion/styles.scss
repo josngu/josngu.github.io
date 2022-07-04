@@ -78,39 +78,35 @@ $duration-longer: 1s;
 @keyframes enter-freetext {
     0% {
         opacity: 0%;
-        line-height: 0;
-        padding: 0px;
         width: 0px;
         margin: 0 0em;
     }
-    50% {
+    66% {
         opacity: 0%;
-        line-height: auto;
-        padding: 8px;
         width: 320px;
         margin: 0 clamp(1em, 1.5vw, 2em);
+        transform: translateY(16px);
     }
     100% {
         opacity: 100%;
+        transform: translateY(0px);
     }
 }
 @keyframes leave-freetext {
     0% {
         opacity: 100%;
-        line-height: auto;
         width: 320px;
         margin: 0 clamp(1em, 1.5vw, 2em);
+        transform: translateY(0px);
     }
-    25% {
+    33% {
         opacity: 0%;
-        line-height: auto;
         width: 320px;
         margin: 0 clamp(1em, 1.5vw, 2em);
+        transform: translateY(-16px);
     }
     100% {
         opacity: 0%;
-        line-height: 0;
-        padding: 0px;
         width: 0px;
         margin: 0;
     }
@@ -427,10 +423,10 @@ label {
     width: 320px;
 }
 .animate-freetext-enter {
-    animation: enter-freetext $duration-longer forwards;
+    animation: enter-freetext $duration-long forwards;
 }
 .animate-freetext-leave {
-    animation: leave-freetext $duration-longer forwards;
+    animation: leave-freetext $duration-long forwards;
 }
 #traits-container, #traits-container-2 {
     animation: enter $duration-medium forwards;
