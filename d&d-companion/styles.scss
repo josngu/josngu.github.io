@@ -11,6 +11,7 @@ $clr-primary-shadow: hsl(180, 1%, 13%);
 $clr-bg: hsl(225, 7%, 11%);
 $fade-in: fade-in 0.5s forwards;
 $border-radius: 4px;
+$margin-section: 0 clamp(1em, 1.5vw, 2em);
 $duration-short: 0.2s;
 $duration-medium: 0.5s;
 $duration-long: 0.8s;
@@ -83,8 +84,8 @@ $duration-longer: 1s;
     }
     66% {
         opacity: 0%;
-        width: 320px;
-        margin: 0 clamp(1em, 1.5vw, 2em);
+        width: 360px;
+        margin: $margin-section;
         transform: translateY(16px);
     }
     100% {
@@ -95,14 +96,14 @@ $duration-longer: 1s;
 @keyframes leave-freetext {
     0% {
         opacity: 100%;
-        width: 320px;
-        margin: 0 clamp(1em, 1.5vw, 2em);
+        width: 360px;
+        margin: $margin-section;
         transform: translateY(0px);
     }
     33% {
         opacity: 0%;
-        width: 320px;
-        margin: 0 clamp(1em, 1.5vw, 2em);
+        width: 360px;
+        margin: $margin-section;
         transform: translateY(-16px);
     }
     100% {
@@ -300,13 +301,24 @@ button {
         font-size: $font-size-small;
     }
 }
-.button-group {
+.move-buttons {
     display: flex;
-    align-items: center;
-    gap: 1em;
-    > p {
-        position: relative;
-        text-align: center;
+    flex-direction: row;
+    button {
+        width: 50%;
+        margin: 0;
+        font-size: $font-size-smallest;
+    }
+    &::after {
+        @include button;
+        content: "Move Character";
+        position: absolute;
+        font-size: $font-size-smallest;
+        width: 100%;
+        pointer-events: none;
+    }
+    &:hover::after {
+        opacity: 0;
     }
 }
 .row {
@@ -321,6 +333,7 @@ button {
         font-size: $font-size-small;
         margin: 0;
         padding: 2px 4px;
+        flex-grow: 2;
         transition-duration: $duration-short;
         &:hover {
             background-color: hsl(0, 0%, 100%, 0.05);
@@ -341,13 +354,13 @@ label {
     @include typeface;
     font-size: $font-size-small;
     text-align: right;
-    width: 96px;
+    width: 92px;
 }
 //COLUMN 1
 #instructions {
     animation: enter $duration-medium forwards;
-    margin: 0 1em;
-    width: 320px;
+    margin: $margin-section;
+    width: 360px;
     p {
         animation: enter $duration-medium forwards;
         margin: 0;
@@ -359,8 +372,8 @@ label {
 }
 #character-editor {
     display: none;
-    margin: 0 1em;
-    width: 320px;
+    margin: $margin-section;
+    width: 360px;
 }
 #editor-container {
     animation: enter $duration-medium forwards;
@@ -375,13 +388,16 @@ label {
     > label {
         @include button;
         @include shadow;
-        width: auto;
+        width: 50%;
         margin: 1em 0;
     }
     > label:focus-within {
         outline: 1px solid white !important;
         outline-offset: -2px;
         border-radius: $border-radius;
+    }
+    > button {
+        width: 50%;
     }
 }
 #upload-picture {
@@ -390,37 +406,12 @@ label {
     width: 0;
     height: 0;
 }
-//COLUMN 1 (ANOTHER TAB)
-#character-stats {
-    display: none;
-    width: 300px;
-    margin-left: 2em;
-    margin-right: 2em;
-}
-#stats-container {
-    display: flex;
-    animation: enter $duration-medium forwards;
-    flex-direction: column;
-    gap: 4px;
-}
-.stat-modifier {
-    font-size: $font-size-body;
-    margin: 0;
-    text-align: right;
-}
-.btn-minus-plus {
-    margin: 0;
-    width: 35px;
-}
-.btn-stats-container {
-    display: flex;
-    gap: 4px;
-}
+
 //COLUMN 2
 #character-freetext {
     display: none;
-    margin: 0 clamp(1em, 1.5vw, 2em);
-    width: 320px;
+    margin: $margin-section;
+    width: 360px;
 }
 .animate-freetext-enter {
     animation: enter-freetext $duration-long forwards;
@@ -464,10 +455,70 @@ textarea {
     margin: 4px 0 8px 0;
 }
 
+//COLUMN 1 (CHARACTER STATS TAB)
+#character-stats {
+    display: none;
+    width: 360px;
+    margin: $margin-section;
+}
+#stats-container {
+    display: flex;
+    animation: enter $duration-medium forwards;
+    flex-direction: column;
+    gap: 4px;
+}
+.stat-modifier {
+    font-size: $font-size-body;
+    margin: 0;
+    text-align: right;
+}
+.btn-minus-plus {
+    margin: 0;
+    width: 35px;
+}
+.btn-stats-container {
+    display: flex;
+    gap: 4px;
+}
+.three-element-group {
+    display: flex;
+    justify-content: center;
+    margin: 1em 0;
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 33%;
+    }
+    label {
+        width: auto;
+        text-align: center;
+        margin: 4px 0;
+    }
+    input {
+        @include typeface;
+        background-color: transparent;
+        border: 1px solid $clr-primary-translucent;
+        padding: 2px;
+        width: 96px;
+        font-size: $font-size-body;
+        text-align: center;
+        border-radius: 32px;
+    }
+}
+
+//COLUMN 2 (CHARACTER SKILLS SECTION)
+#character-skills {
+    display: none;
+    width: 360px;
+    margin: $margin-section;
+}
+
 //COLUMN 3
 #character-list {
     animation: enter $duration-medium forwards;
-    margin: 0 1em;
+    margin: $margin-section;
 }
 #character-container {
     @include shadow;
@@ -477,8 +528,8 @@ textarea {
     padding: 1px 2px 1px 1px;
     gap: 1px;
     border-radius: $border-radius;
-    max-height: 438px;
-    width: 440px;
+    height: 438px;
+    width: 360px;
     overflow-y: scroll;
     overflow-x: hidden;
     background-color: $clr-dark;
@@ -504,7 +555,7 @@ textarea {
         @include typeface;
         color:hsl(0, 0%, 100%);
         font-weight: 400;
-        font-size: $font-size-body;
+        font-size: $font-size-small;
         margin: 0;
         &:empty:not(:focus)::before {
             content: attr(data-placeholder);
@@ -512,7 +563,7 @@ textarea {
         }
     }
     p {
-        font-size: $font-size-small;
+        font-size: $font-size-smallest;
         font-weight: 400;
         color: hsl(170, 50%, 50%);
         margin: 0;
@@ -566,9 +617,7 @@ textarea {
 }
 //Media queries
 @media screen and (min-height: 1000px) {
-    #squadron-container {
-        max-height: 552px;
-    }
+    
 }
 @media screen and (max-width: 1100px) {
     html {
@@ -577,7 +626,6 @@ textarea {
     header {
         h1 {
             margin: 1em 0.5em 0 0.5em;
-            text-align: left;
         }
     }
     main {
@@ -590,7 +638,7 @@ textarea {
         margin-top: 2em;
         text-align: left;
     }
-    #squadron-container {
+    #character-container {
         display: flex;
         padding: 1px;
         gap: 1px;

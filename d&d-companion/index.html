@@ -19,10 +19,10 @@
         <h1>Dungeons & Dragons Companion App</h1>
         <nav>
             <ul>
-                <li><a class="tab-selected" onclick="">Character Info</a></li>
-                <li><a onclick="">Character Stats</a></li>
-                <li><a onclick="">Equipment & Inventory</a></li>
-                <li><a onclick="">Spellcasting</a></li>
+                <li><a id="character-info" class="tab-selected" onclick="selectInfo();">Character Info</a></li>
+                <li><a id="stats-and-skills" onclick="selectStats();">Character Stats & Skills</a></li>
+                <li><a id="equipment-and-inventory" onclick="">Equipment & Inventory</a></li>
+                <li><a id="spellcasting" onclick="">Spellcasting</a></li>
             </ul>
         </nav>
     </header>
@@ -82,7 +82,7 @@
                     <label for="upload-picture">Upload Picture
                         <input id="upload-picture" onchange="uploadPicture();" type="file" accept=".png, .jpg, .jpeg, .webm">
                     </label>
-                    <button type="button" onclick="deleteCharacter();">Delete Character</button>
+                    <button id="delete-character" type="button" onclick="deleteCharacter();">Delete Character</button>
                 </div>
             </form>
         </section>
@@ -172,7 +172,25 @@
                     </div>
                     <p id="charisma-modifier" class="stat-modifier">-5</p>
                 </div>
+
+                <div class="three-element-group">
+                    <div>
+                        <label for="armor-class">Armor Class</label>
+                        <input type="number" id="armor-class">
+                    </div>
+                    <div>
+                        <label for="initiative">Initiative</label>
+                        <input type="number" id="initiative">
+                    </div>
+                    <div>
+                        <label for="speed">Speed</label>
+                        <input type="text" id="speed" autocomplete="off">
+                    </div>
+                </div>
             </form>
+        </section>
+        <section id="character-skills">
+            <h2>CHARACTER SKILLS</h2>
         </section>
         <section id="character-list">
             <h2>CHARACTER LIST</h2>
@@ -181,18 +199,15 @@
                     <p>Add Person +</p>
                 </div>
             </div>
-            <div class="button-container">
-                <div class="button-group">
-                    <button onclick="movePersonLeft();"><</button>
-                    <p>MOVE PERSON</p>
-                    <button onclick="movePersonRight();">></button>
-                </div>
-                <button id="delete-character-list" onclick="deleteCharacterList();">Delete All Characters</button>
+            <div class="move-buttons">
+                <button onclick="movePersonLeft();">▲</button>
+                <button onclick="movePersonRight();">▼</button>
             </div>
             <div class="button-container">
                 <button onclick="load();">Load Character List</button>
                 <button onclick="save();">Save Character List</button>
             </div>
+            <!--<button id="delete-character-list" onclick="deleteCharacterList();">Delete All Characters</button>!-->
         </section>
     </main>
 </body>

@@ -124,7 +124,7 @@
   }
   66% {
     opacity: 0%;
-    width: 320px;
+    width: 360px;
     margin: 0 clamp(1em, 1.5vw, 2em);
     transform: translateY(16px);
   }
@@ -141,7 +141,7 @@
   }
   66% {
     opacity: 0%;
-    width: 320px;
+    width: 360px;
     margin: 0 clamp(1em, 1.5vw, 2em);
     transform: translateY(16px);
   }
@@ -153,13 +153,13 @@
 @-webkit-keyframes leave-freetext {
   0% {
     opacity: 100%;
-    width: 320px;
+    width: 360px;
     margin: 0 clamp(1em, 1.5vw, 2em);
     transform: translateY(0px);
   }
   33% {
     opacity: 0%;
-    width: 320px;
+    width: 360px;
     margin: 0 clamp(1em, 1.5vw, 2em);
     transform: translateY(-16px);
   }
@@ -172,13 +172,13 @@
 @keyframes leave-freetext {
   0% {
     opacity: 100%;
-    width: 320px;
+    width: 360px;
     margin: 0 clamp(1em, 1.5vw, 2em);
     transform: translateY(0px);
   }
   33% {
     opacity: 0%;
-    width: 320px;
+    width: 360px;
     margin: 0 clamp(1em, 1.5vw, 2em);
     transform: translateY(-16px);
   }
@@ -427,14 +427,39 @@ button:hover {
   font-size: 1.2em;
 }
 
-.button-group {
+.move-buttons {
   display: flex;
-  align-items: center;
-  gap: 1em;
+  flex-direction: row;
 }
-.button-group > p {
-  position: relative;
+.move-buttons button {
+  width: 50%;
+  margin: 0;
+  font-size: 1em;
+}
+.move-buttons::after {
+  font-family: "Crimson Text", serif;
+  color: hsl(180deg, 100%, 100%);
+  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  background-color: hsl(0deg, 0%, 5%);
+  border: 1px solid hsl(180deg, 1%, 13%);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 1.2em;
   text-align: center;
+  flex-grow: 1;
+  cursor: pointer;
+  transition-duration: 0.2s;
+  content: "Move Character";
+  position: absolute;
+  font-size: 1em;
+  width: 100%;
+  pointer-events: none;
+}
+.move-buttons::after:hover {
+  border: 1px solid hsl(240deg, 3%, 30%);
+}
+.move-buttons:hover::after {
+  opacity: 0;
 }
 
 .row {
@@ -452,6 +477,7 @@ button:hover {
   font-size: 1.2em;
   margin: 0;
   padding: 2px 4px;
+  flex-grow: 2;
   transition-duration: 0.2s;
 }
 .row input[type=text]:hover {
@@ -476,14 +502,14 @@ label {
   text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
   font-size: 1.2em;
   text-align: right;
-  width: 96px;
+  width: 92px;
 }
 
 #instructions {
   -webkit-animation: enter 0.5s forwards;
           animation: enter 0.5s forwards;
-  margin: 0 1em;
-  width: 320px;
+  margin: 0 clamp(1em, 1.5vw, 2em);
+  width: 360px;
 }
 #instructions p {
   -webkit-animation: enter 0.5s forwards;
@@ -497,8 +523,8 @@ label {
 
 #character-editor {
   display: none;
-  margin: 0 1em;
-  width: 320px;
+  margin: 0 clamp(1em, 1.5vw, 2em);
+  width: 360px;
 }
 
 #editor-container {
@@ -528,7 +554,7 @@ label {
   cursor: pointer;
   transition-duration: 0.2s;
   box-shadow: -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
-  width: auto;
+  width: 50%;
   margin: 1em 0;
 }
 #profile-buttons > label:hover {
@@ -539,6 +565,9 @@ label {
   outline-offset: -2px;
   border-radius: 4px;
 }
+#profile-buttons > button {
+  width: 50%;
+}
 
 #upload-picture {
   position: absolute;
@@ -547,41 +576,10 @@ label {
   height: 0;
 }
 
-#character-stats {
-  display: none;
-  width: 300px;
-  margin-left: 2em;
-  margin-right: 2em;
-}
-
-#stats-container {
-  display: flex;
-  -webkit-animation: enter 0.5s forwards;
-          animation: enter 0.5s forwards;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.stat-modifier {
-  font-size: 1.5em;
-  margin: 0;
-  text-align: right;
-}
-
-.btn-minus-plus {
-  margin: 0;
-  width: 35px;
-}
-
-.btn-stats-container {
-  display: flex;
-  gap: 4px;
-}
-
 #character-freetext {
   display: none;
   margin: 0 clamp(1em, 1.5vw, 2em);
-  width: 320px;
+  width: 360px;
 }
 
 .animate-freetext-enter {
@@ -633,10 +631,76 @@ textarea {
   margin: 4px 0 8px 0;
 }
 
+#character-stats {
+  display: none;
+  width: 360px;
+  margin: 0 clamp(1em, 1.5vw, 2em);
+}
+
+#stats-container {
+  display: flex;
+  -webkit-animation: enter 0.5s forwards;
+          animation: enter 0.5s forwards;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-modifier {
+  font-size: 1.5em;
+  margin: 0;
+  text-align: right;
+}
+
+.btn-minus-plus {
+  margin: 0;
+  width: 35px;
+}
+
+.btn-stats-container {
+  display: flex;
+  gap: 4px;
+}
+
+.three-element-group {
+  display: flex;
+  justify-content: center;
+  margin: 1em 0;
+}
+.three-element-group div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 33%;
+}
+.three-element-group label {
+  width: auto;
+  text-align: center;
+  margin: 4px 0;
+}
+.three-element-group input {
+  font-family: "Crimson Text", serif;
+  color: hsl(180deg, 100%, 100%);
+  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  background-color: transparent;
+  border: 1px solid hsla(0deg, 0%, 100%, 0.5);
+  padding: 2px;
+  width: 96px;
+  font-size: 1.5em;
+  text-align: center;
+  border-radius: 32px;
+}
+
+#character-skills {
+  display: none;
+  width: 360px;
+  margin: 0 clamp(1em, 1.5vw, 2em);
+}
+
 #character-list {
   -webkit-animation: enter 0.5s forwards;
           animation: enter 0.5s forwards;
-  margin: 0 1em;
+  margin: 0 clamp(1em, 1.5vw, 2em);
 }
 
 #character-container {
@@ -648,8 +712,8 @@ textarea {
   padding: 1px 2px 1px 1px;
   gap: 1px;
   border-radius: 4px;
-  max-height: 438px;
-  width: 440px;
+  height: 438px;
+  width: 360px;
   overflow-y: scroll;
   overflow-x: hidden;
   background-color: hsl(0deg, 0%, 5%);
@@ -681,7 +745,7 @@ textarea {
   text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
   color: hsl(0deg, 0%, 100%);
   font-weight: 400;
-  font-size: 1.5em;
+  font-size: 1.2em;
   margin: 0;
 }
 .person-container h3:empty:not(:focus)::before {
@@ -689,7 +753,7 @@ textarea {
   pointer-events: none;
 }
 .person-container p {
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 400;
   color: hsl(170deg, 50%, 50%);
   margin: 0;
@@ -754,11 +818,6 @@ textarea {
   color: hsl(0deg, 0%, 100%);
 }
 
-@media screen and (min-height: 1000px) {
-  #squadron-container {
-    max-height: 552px;
-  }
-}
 @media screen and (max-width: 1100px) {
   html {
     overflow-y: auto;
@@ -766,7 +825,6 @@ textarea {
 
   header h1 {
     margin: 1em 0.5em 0 0.5em;
-    text-align: left;
   }
 
   main {
@@ -782,7 +840,7 @@ textarea {
     text-align: left;
   }
 
-  #squadron-container {
+  #character-container {
     display: flex;
     padding: 1px;
     gap: 1px;

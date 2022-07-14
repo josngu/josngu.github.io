@@ -46,6 +46,23 @@ function updateForm() {
         }
     }
 }
+function selectInfo() {
+    $("a").removeClass("tab-selected");
+    $("#character-info").addClass("tab-selected");
+    $("#character-editor").show();
+    $("#character-freetext").removeClass("animate-freetext-enter");
+    $("#character-freetext").show();
+    $("#character-stats").hide();
+    $("#character-skills").hide();
+}
+function selectStats() {
+    $("a").removeClass("tab-selected");
+    $("#stats-and-skills").addClass("tab-selected");
+    $("#character-stats").show();
+    $("#character-skills").show();
+    $("#character-editor").hide();
+    $("#character-freetext").hide();
+}
 function addPerson() {
     $("#character-container > .add-person").before('<div id="person-' + people + '" class="person-container" onclick="selectPerson(' + people + ');" onkeypress="selectPerson(' + people + ');" tabindex="0"><img id="profile-picture-' + people + '" src="images/person.webp" alt="" class="person-image"><div><h3 id="name-' + people + '" data-placeholder="Name"></h3><p id="race-class' + people + '" data-placeholder="Race and Class"></p></div></div>');
     $("#instructions > p").text("Add or select a person.");
@@ -102,7 +119,7 @@ function selectPerson(personNum) {
     $("#stats-container").after($("#stats-container").clone(true));
     $("#stats-container:last").remove();
     $("nav").show();
-    //The following 2 lines achieve the same thing but with classes
+    //Animation
     $("nav").removeClass("nav-leave");
     $("nav").addClass("nav-enter");
     $("#character-editor").show();
@@ -117,15 +134,24 @@ function selectPerson(personNum) {
     updateForm();
 }
 function deleteCharacter() {
-    $("#person-" + selection).remove();
-    $("#character-editor").css("display", "none");
-    $("#character-freetext").removeClass("animate-freetext-enter");
-    $("#character-freetext").addClass("animate-freetext-leave");
-    $("#instructions > p").text("Add or select a person.");
-    $("#instructions").css("display", "block");
-    $("nav").removeClass("nav-enter");
-    $("nav").addClass("nav-leave");
-    numberOfPeople--;
+    if ($("#delete-character").text() == "Are you sure?") {
+        $("#delete-character").text("Delete Character");
+        $("#person-" + selection).remove();
+        $("#character-editor").css("display", "none");
+        $("#character-freetext").removeClass("animate-freetext-enter");
+        $("#character-freetext").addClass("animate-freetext-leave");
+        $("#instructions > p").text("Add or select a person.");
+        $("#instructions").css("display", "block");
+        $("nav").removeClass("nav-enter");
+        $("nav").addClass("nav-leave");
+        numberOfPeople--;
+    }
+    else {
+        $("#delete-character").text("Are you sure?");
+        $("#delete-character").on("focusout", function () {
+            $("#delete-character").text("Delete Character");
+        });
+    }
 }
 function nextPage() {
     $("#traits-container").hide();
