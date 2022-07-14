@@ -52,20 +52,21 @@ function updateForm(){
 function selectInfo(){
     $("a").removeClass("tab-selected");
     $("#character-info").addClass("tab-selected");
+    $("#character-stats").hide();
+    $("#character-skills").hide();
     $("#character-editor").show();
     $("#character-freetext").removeClass("animate-freetext-enter");
     $("#character-freetext").show();
-    $("#character-stats").hide();
-    $("#character-skills").hide();
 }
 
 function selectStats(){
     $("a").removeClass("tab-selected");
     $("#stats-and-skills").addClass("tab-selected");
-    $("#character-stats").show();
-    $("#character-skills").show();
     $("#character-editor").hide();
     $("#character-freetext").hide();
+    $("#character-stats").show();
+    $("#character-skills").removeClass("animate-freetext-enter");
+    $("#character-skills").show();
 }
 
 function addPerson(){
@@ -132,11 +133,15 @@ function selectPerson(personNum: number){
     $("nav").removeClass("nav-leave");
     $("nav").addClass("nav-enter");
     
-    $("#character-editor").show();
+    if ($("#character-info").hasClass("tab-selected")){
+        $("#character-editor").show();
+        $("#character-freetext").show();
+    }
+    if ($("#stats-and-skills").hasClass("tab-selected")){
+        $("#character-stats").show();
+        $("#character-skills").show(); 
+    }
     
-    $("#character-freetext").show();
-    $("#character-freetext").removeClass("animate-freetext-leave");
-    $("#character-freetext").addClass("animate-freetext-enter");
     selection = personNum;
     //Loads the object values into the character editor
     for (var property in characterList[0]){
@@ -259,6 +264,7 @@ function save(){
             });
             return;
         }
+        localStorage.setItem("nav", JSON.stringify($("nav").html()));
         localStorage.setItem("character-list", JSON.stringify($("#character-container").html()));
         localStorage.setItem("profile", JSON.stringify($("#editor-container").html()));
         localStorage.setItem("stats", JSON.stringify($("#stats-container").html()));
@@ -289,7 +295,17 @@ function save(){
 }
 
 function load(){
+    if ($("#character-freetext").css("display") == "none" && $("#character-skills").css("display") == "none"){
+        $("#character-freetext").addClass("animate-freetext-enter");
+        $("#character-skills").addClass("animate-freetext-enter");
+    }
+    //Hide everything first so that not every column shows up at the same time
+    $("#character-editor").hide();
+    $("#character-freetext").hide();
+    $("#character-stats").hide();
+    $("#character-skills").hide();
     if (localStorage.getItem("people") !== null){
+        $("nav").html(JSON.parse(localStorage.getItem("nav")));
         $("#character-container").html(JSON.parse(localStorage.getItem("character-list")));
         $("#editor-container").html(JSON.parse(localStorage.getItem("profile")));
         $("#stats-container").html(JSON.parse(localStorage.getItem("stats")));
@@ -297,10 +313,16 @@ function load(){
         numberOfPeople = JSON.parse(localStorage.getItem("numberOfPeople"));
         characterList = JSON.parse(localStorage.getItem("character"));
         selection = JSON.parse(localStorage.getItem("selection"));
-        $("#character-editor").show();
-        $("#character-freetext").show();
-        $("#character-freetext").removeClass("animate-freetext-leave");
-        $("#character-freetext").addClass("animate-freetext-enter");
+        if ($("#character-info").hasClass("tab-selected")){
+            $("#character-editor").show();
+            $("#character-freetext").show();
+            
+        }
+        if ($("#stats-and-skills").hasClass("tab-selected")){
+            $("#character-stats").show();
+            $("#character-skills").show();
+            
+        }        
         $("#instructions").css("display", "none");
         $("nav").show();
         $("nav").removeClass("nav-leave");
@@ -309,7 +331,7 @@ function load(){
         for (var property in characterList[0]){
             $("#" + property).val(JSON.parse(localStorage.getItem("saved-" + property)));
         }
-        //This plays an animation whenever a person is selected
+        /*This was in the code before but I don't know why
         $("#editor-container").after($("#editor-container").clone(true));
         $("#editor-container:last").remove();
         $("#traits-container").after($("#traits-container").clone(true));
@@ -318,7 +340,7 @@ function load(){
         $("#traits-container-2:last").remove();
         $("#stats-container").after($("#stats-container").clone(true));
         $("#stats-container:last").remove();
-        //
+        */
         checkFormChanges();
     }
 }
