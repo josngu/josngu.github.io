@@ -18,6 +18,9 @@ function checkFormChanges() {
     $("textarea").on("focusout", function () {
         updateForm();
     });
+    $("input").on("focusout", function () {
+        updateForm();
+    });
 }
 function updateForm() {
     for (var property in characterList[0]) {
@@ -45,6 +48,9 @@ function updateForm() {
             $("#" + statList[i] + "-modifier").text(Math.floor((y - 10) / 2));
         }
     }
+    //Updates the health bars
+    let width = characterList[selection].hpCurrent / characterList[selection].hpMaximum * 100;
+    $(".hp-bar-large").css("width", width + "%");
 }
 function selectInfo() {
     $("a").removeClass("tab-selected");
@@ -92,7 +98,13 @@ function addPerson() {
         constitution: 0,
         intelligence: 0,
         wisdom: 0,
-        charisma: 0
+        charisma: 0,
+        armorClass: 0,
+        initiative: 0,
+        speed: "0ft",
+        hpCurrent: 0,
+        hpMaximum: 0,
+        hpTemporary: 0
     };
     //Have the first person be automatically selected
     if (numberOfPeople == 0) {

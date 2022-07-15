@@ -647,8 +647,9 @@ textarea {
 
 .stat-modifier {
   font-size: 1.5em;
+  border-radius: 4px;
   margin: 0;
-  text-align: right;
+  text-align: center;
 }
 
 .btn-minus-plus {
@@ -659,6 +660,10 @@ textarea {
 .btn-stats-container {
   display: flex;
   gap: 4px;
+}
+.btn-stats-container + p {
+  font-size: 1.2em;
+  margin: 0;
 }
 
 .three-element-group {
@@ -689,6 +694,80 @@ textarea {
   font-size: 1.5em;
   text-align: center;
   border-radius: 32px;
+}
+
+#hp-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+#hp-container input[type=text] {
+  font-family: "Crimson Text", serif;
+  color: hsl(180deg, 100%, 100%);
+  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid hsla(0deg, 0%, 100%, 0.5);
+  font-size: 1.2em;
+  margin: 0;
+  padding: 2px 4px;
+  transition-duration: 0.2s;
+}
+#hp-container input[type=text]:hover {
+  background-color: hsla(0deg, 0%, 100%, 0.05);
+}
+#hp-container input[type=number] {
+  font-family: "Crimson Text", serif;
+  color: hsl(180deg, 100%, 100%);
+  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid hsla(0deg, 0%, 100%, 0.5);
+  padding: 2px;
+  height: 32px;
+  width: 32px;
+  font-size: 1.5em;
+  text-align: center;
+}
+#hp-container label {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+#hp-container div {
+  display: flex;
+  justify-content: space-between;
+}
+#hp-container p {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.hp-bar-container {
+  position: relative;
+  height: 24px;
+}
+
+.hp-bar-large-bg {
+  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
+  position: absolute;
+  background-color: rgba(155, 23, 23, 0.2);
+  width: 100%;
+  height: 24px;
+  border-radius: 4px;
+}
+
+.hp-bar-large {
+  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
+  content: "";
+  position: absolute;
+  background-color: rgb(155, 23, 23);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 24px;
+  border-radius: 4px;
 }
 
 #character-skills {

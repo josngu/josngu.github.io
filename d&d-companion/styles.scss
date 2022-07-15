@@ -469,8 +469,9 @@ textarea {
 }
 .stat-modifier {
     font-size: $font-size-body;
+    border-radius: 4px;
     margin: 0;
-    text-align: right;
+    text-align: center;
 }
 .btn-minus-plus {
     margin: 0;
@@ -479,6 +480,10 @@ textarea {
 .btn-stats-container {
     display: flex;
     gap: 4px;
+    + p {
+        font-size: $font-size-small;
+        margin: 0;
+    }
 }
 .three-element-group {
     display: flex;
@@ -506,6 +511,72 @@ textarea {
         text-align: center;
         border-radius: 32px;
     }
+}
+#hp-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    input[type=text] {
+        @include typeface;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid $clr-primary-translucent;
+        font-size: $font-size-small;
+        margin: 0;
+        padding: 2px 4px;
+        transition-duration: $duration-short;
+        &:hover {
+            background-color: hsl(0, 0%, 100%, 0.05);
+        }
+    }
+    input[type=number] {
+        @include typeface;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid $clr-primary-translucent;
+        padding: 2px;
+        height: 32px;
+        width: 32px;
+        font-size: $font-size-body;
+        text-align: center;
+    }
+    label {
+        width: 0;
+        height: 0;
+        opacity: 0;
+        pointer-events: none;
+    }
+    div {
+        display: flex;
+        justify-content: space-between;
+    }
+    p {
+        margin: 0;
+        font-size: $font-size-body;
+    }
+}
+.hp-bar-container {
+    position: relative;
+    height: 24px;
+}
+.hp-bar-large-bg {
+    @include shadow-inset;
+    position: absolute;
+    background-color: rgba(155, 23, 23, 0.2);
+    width: 100%;
+    height: 24px;
+    border-radius: $border-radius;
+}
+.hp-bar-large {
+    @include shadow-inset;
+    content: "";
+    position: absolute;
+    background-color: rgba(155, 23, 23, 1);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 24px;
+    border-radius: $border-radius;
 }
 
 //COLUMN 2 (CHARACTER SKILLS SECTION)
