@@ -436,31 +436,6 @@ button:hover {
   margin: 0;
   font-size: 1em;
 }
-.move-buttons::after {
-  font-family: "Crimson Text", serif;
-  color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
-  background-color: hsl(0deg, 0%, 5%);
-  border: 1px solid hsl(180deg, 1%, 13%);
-  border-radius: 4px;
-  padding: 4px 8px;
-  font-size: 1.2em;
-  text-align: center;
-  flex-grow: 1;
-  cursor: pointer;
-  transition-duration: 0.2s;
-  content: "Move Character";
-  position: absolute;
-  font-size: 1em;
-  width: 100%;
-  pointer-events: none;
-}
-.move-buttons::after:hover {
-  border: 1px solid hsl(240deg, 3%, 30%);
-}
-.move-buttons:hover::after {
-  opacity: 0;
-}
 
 .row {
   display: flex;
@@ -696,12 +671,19 @@ textarea {
   border-radius: 32px;
 }
 
-#hp-container {
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+
+.hp-container, .exp-container {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-#hp-container input[type=text] {
+.hp-container input[type=text], .exp-container input[type=text] {
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
@@ -713,10 +695,10 @@ textarea {
   padding: 2px 4px;
   transition-duration: 0.2s;
 }
-#hp-container input[type=text]:hover {
+.hp-container input[type=text]:hover, .exp-container input[type=text]:hover {
   background-color: hsla(0deg, 0%, 100%, 0.05);
 }
-#hp-container input[type=number] {
+.hp-container input[type=number], .exp-container input[type=number] {
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
@@ -729,45 +711,63 @@ textarea {
   font-size: 1.5em;
   text-align: center;
 }
-#hp-container label {
+.hp-container div, .exp-container div {
+  display: flex;
+  justify-content: space-between;
+}
+.hp-container p, .exp-container p {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.hp-text label, .exp-text label {
   width: 0;
   height: 0;
   opacity: 0;
   pointer-events: none;
 }
-#hp-container div {
-  display: flex;
-  justify-content: space-between;
-}
-#hp-container p {
-  margin: 0;
-  font-size: 1.5em;
+
+.exp-text input[type=number] {
+  width: 80px;
 }
 
-.hp-bar-container {
+.hp-bar, .exp-bar {
   position: relative;
   height: 24px;
 }
 
-.hp-bar-large-bg {
+.hp-bar-large-bg, .exp-bar-large-bg {
   box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
   position: absolute;
-  background-color: rgba(155, 23, 23, 0.2);
+  background-color: hsla(0deg, 74%, 35%, 0.2);
   width: 100%;
   height: 24px;
   border-radius: 4px;
 }
 
-.hp-bar-large {
+.exp-bar-large-bg {
+  background-color: hsla(212deg, 74%, 35%, 0.2);
+}
+
+.hp-bar-large, .exp-bar-large {
   box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
-  content: "";
   position: absolute;
-  background-color: rgb(155, 23, 23);
+  background-color: hsl(0deg, 74%, 35%);
   top: 0;
   left: 0;
   width: 100%;
   height: 24px;
   border-radius: 4px;
+}
+
+.exp-bar-large {
+  background-color: hsl(212deg, 74%, 35%);
+}
+
+.temporary-hp-container label {
+  display: flex;
+  align-items: center;
+  width: auto;
 }
 
 #character-skills {

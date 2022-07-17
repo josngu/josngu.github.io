@@ -4,10 +4,11 @@ var people = 0;
 var numberOfPeople = 0;
 var characterList = [];
 var statList = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"];
+const EXP_ADVANCEMENTS = [0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000];
 var selection = 0;
-const longAlert = 5000;
-const shortAlert = 2500;
-const durationMedium = 500;
+var longAlert = 5000;
+var shortAlert = 2500;
+var durationMedium = 500;
 $(function () {
     checkFormChanges();
 });
@@ -40,7 +41,7 @@ function updateForm() {
         let x = $("#" + statList[i]).val();
         let y = +x;
         $("#" + statList[i]).val(y);
-        //Add a plus prefix if the number is positive
+        //Add a plus sign prefix if the number is positive
         if (Math.floor((y - 10) / 2) > 0) {
             $("#" + statList[i] + "-modifier").text("+" + Math.floor((y - 10) / 2));
         }
@@ -49,8 +50,24 @@ function updateForm() {
         }
     }
     //Updates the health bars
-    let width = characterList[selection].hpCurrent / characterList[selection].hpMaximum * 100;
-    $(".hp-bar-large").css("width", width + "%");
+    if (characterList[selection].hpMaximum < 1) {
+        characterList[selection].hpMaximum = 1;
+    }
+    if (characterList[selection].hpCurrent > characterList[selection].hpMaximum) {
+        characterList[selection].hpCurrent = characterList[selection].hpMaximum;
+    }
+    let hpWidth = characterList[selection].hpCurrent / characterList[selection].hpMaximum * 100;
+    $(".hp-bar-large").css("width", hpWidth + "%");
+    //Updates the EXP bars
+    if (characterList[selection].expCurrent < 0) {
+        characterList[selection].expCurrent = 0;
+    }
+    if (characterList[selection].expCurrent >= EXP_ADVANCEMENTS[characterList[selection].characterLevel]) {
+        characterList[selection].characterLevel++;
+    }
+    characterList[selection].expMaximum = EXP_ADVANCEMENTS[characterList[selection].characterLevel];
+    let expWidth = characterList[selection].expCurrent / characterList[selection].expMaximum * 100;
+    $(".exp-bar-large").css("width", expWidth + "%");
 }
 function selectInfo() {
     $("a").removeClass("tab-selected");
@@ -102,14 +119,15 @@ function addPerson() {
         armorClass: 0,
         initiative: 0,
         speed: "0ft",
-        hpCurrent: 0,
-        hpMaximum: 0,
-        hpTemporary: 0
+        characterLevel: 1,
+        hpCurrent: 1,
+        hpMaximum: 1,
+        hpTemporary: 0,
+        expCurrent: 0,
+        expMaximum: EXP_ADVANCEMENTS[1]
     };
     //Have the first person be automatically selected
     if (numberOfPeople == 0) {
-        $("#character-freetext").removeClass("animate-freetext-leave");
-        $("#character-freetext").addClass("animate-freetext-enter");
         selectPerson(people);
     }
     people++;
@@ -136,6 +154,8 @@ function selectPerson(personNum) {
     $("nav").removeClass("nav-leave");
     $("nav").addClass("nav-enter");
     if ($("#character-info").hasClass("tab-selected")) {
+        $("#character-freetext").removeClass("animate-freetext-leave");
+        $("#character-freetext").addClass("animate-freetext-enter");
         $("#character-editor").show();
         $("#character-freetext").show();
     }
@@ -227,14 +247,14 @@ function deleteCharacterList() {
         });
     }
 }
-function movePersonLeft() {
+function movePersonUp() {
     //Prevents the .person-container animation from playing again
     $(".person-container, img").css("animation", "none");
     setTimeout(function () {
         $("#person-" + selection).prev().insertAfter($("#person-" + selection));
     }, 1);
 }
-function movePersonRight() {
+function movePersonDown() {
     $(".person-container, img").css("animation", "none");
     setTimeout(function () {
         //Prevent the person from being moved past the "Add Person" button

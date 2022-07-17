@@ -118,6 +118,48 @@
         <section id="character-stats">
             <h2>CHARACTER STATS</h2>
             <form id="stats-container">
+                <div class="bars">
+                    <div class="hp-container">
+                        <div class="hp-text">
+                            <p>Hit Points</p>
+                            <div>
+                                <label for="hpCurrent">Current Hit Points</label>
+                                <input type="number" id="hpCurrent">
+                                <p>/</p>
+                                <label for="hpMaximum">Maximum Hit Points</label>
+                                <input type="number" id="hpMaximum">
+                            </div>
+                        </div>
+                        <div class="hp-bar">
+                            <div class="hp-bar-large-bg"></div>
+                            <div class="hp-bar-large"></div>
+                        </div>
+                        <div class="temporary-hp-container">
+                            <label for="hpTemporary">Temporary Hit Points</label>
+                            <input type="number" id="hpTemporary">
+                        </div>
+                    </div>
+                    <div class="exp-container">
+                        <div class="exp-text">
+                            <p>EXP Points</p>
+                            <div>
+                                <label for="expCurrent">Current Experience Points</label>
+                                <input type="number" id="expCurrent">
+                                <p>/</p>
+                                <label for="expMaximum">Maximum Experience Points</label>
+                                <input type="number" id="expMaximum">
+                            </div>
+                        </div>
+                        <div class="exp-bar">
+                            <div class="exp-bar-large-bg"></div>
+                            <div class="exp-bar-large"></div>
+                        </div>
+                        <div>
+                            <p>Level</p>
+                            <input type="number" id="characterLevel">
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <label for="strength">Strength</label>
                     <input type="number" id="strength">
@@ -178,7 +220,6 @@
                     <p>mod.</p>
                     <p id="charisma-modifier" class="stat-modifier">-5</p>
                 </div>
-
                 <div class="three-element-group">
                     <div>
                         <label for="armorClass">Armor Class</label>
@@ -191,28 +232,6 @@
                     <div>
                         <label for="speed">Speed</label>
                         <input type="text" id="speed" autocomplete="off">
-                    </div>
-                </div>
-
-                <div id="bars">
-                    <div id="hp-container">
-                        <div>
-                            <p>HP</p>
-                            <div>
-                                <label for="hpCurrent">Current Hit Points</label>
-                                <input type="number" id="hpCurrent">
-                                <p>/</p>
-                                <label for="hpMaximum">Maximum Hit Points</label>
-                                <input type="number" id="hpMaximum">
-                            </div>
-                        </div>
-                        <div class="hp-bar-container">
-                            <div class="hp-bar-large-bg"></div>
-                            <div class="hp-bar-large"></div>
-                        </div>
-                        
-                        <label for="hpTemporary">Temporary Hit Points</label>
-                        <input type="number" id="hpTemporary">
                     </div>
                 </div>
             </form>
@@ -228,8 +247,8 @@
                 </div>
             </div>
             <div class="move-buttons">
-                <button onclick="movePersonLeft();">▲</button>
-                <button onclick="movePersonRight();">▼</button>
+                <button onclick="movePersonUp();">▲</button>
+                <button onclick="movePersonDown();">▼</button>
             </div>
             <div class="button-container">
                 <button onclick="load();">Load Character List</button>

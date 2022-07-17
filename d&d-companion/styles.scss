@@ -309,17 +309,6 @@ button {
         margin: 0;
         font-size: $font-size-smallest;
     }
-    &::after {
-        @include button;
-        content: "Move Character";
-        position: absolute;
-        font-size: $font-size-smallest;
-        width: 100%;
-        pointer-events: none;
-    }
-    &:hover::after {
-        opacity: 0;
-    }
 }
 .row {
     display: flex;
@@ -512,7 +501,13 @@ textarea {
         border-radius: 32px;
     }
 }
-#hp-container {
+.bars {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+.hp-container, .exp-container {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -540,12 +535,6 @@ textarea {
         font-size: $font-size-body;
         text-align: center;
     }
-    label {
-        width: 0;
-        height: 0;
-        opacity: 0;
-        pointer-events: none;
-    }
     div {
         display: flex;
         justify-content: space-between;
@@ -555,28 +544,53 @@ textarea {
         font-size: $font-size-body;
     }
 }
-.hp-bar-container {
+.hp-text, .exp-text {
+    label {
+        width: 0;
+        height: 0;
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+.exp-text {
+    input[type=number] {
+        width: 80px;
+    }
+}
+.hp-bar, .exp-bar {
     position: relative;
     height: 24px;
 }
-.hp-bar-large-bg {
+.hp-bar-large-bg, .exp-bar-large-bg {
     @include shadow-inset;
     position: absolute;
-    background-color: rgba(155, 23, 23, 0.2);
+    background-color: hsla(0, 74%, 35%, 0.2);
     width: 100%;
     height: 24px;
     border-radius: $border-radius;
 }
-.hp-bar-large {
+.exp-bar-large-bg {
+    background-color: hsl(212, 74%, 35%, 0.2);
+}
+.hp-bar-large, .exp-bar-large {
     @include shadow-inset;
-    content: "";
     position: absolute;
-    background-color: rgba(155, 23, 23, 1);
+    background-color: hsl(0, 74%, 35%);
     top: 0;
     left: 0;
     width: 100%;
     height: 24px;
     border-radius: $border-radius;
+}
+.exp-bar-large {
+    background-color: hsl(212, 74%, 35%);
+}
+.temporary-hp-container {
+    label {
+        display: flex;
+        align-items: center;
+        width: auto;
+    }
 }
 
 //COLUMN 2 (CHARACTER SKILLS SECTION)
