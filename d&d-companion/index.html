@@ -82,7 +82,7 @@
                     <label for="upload-picture">Upload Picture
                         <input id="upload-picture" onchange="uploadPicture();" type="file" accept=".png, .jpg, .jpeg, .webm">
                     </label>
-                    <button id="delete-character" type="button" onclick="deleteCharacter();">Delete Character</button>
+                    <button id="" type="button" onclick="">Add Second Class</button>
                 </div>
             </form>
         </section>
@@ -141,7 +141,7 @@
                     </div>
                     <div class="exp-container">
                         <div class="exp-text">
-                            <p>EXP Points</p>
+                            <p>Experience Points</p>
                             <div>
                                 <label for="expCurrent">Current Experience Points</label>
                                 <input type="number" id="expCurrent">
@@ -238,17 +238,21 @@
         </section>
         <section id="character-skills">
             <h2>CHARACTER SKILLS</h2>
+            <p>Placeholder Text</p>
         </section>
         <section id="character-list">
             <h2>CHARACTER LIST</h2>
             <div id="character-container">
                 <div class="add-person" onclick="addPerson();" onkeypress="addPerson();" tabindex="0">
-                    <p>Add Person +</p>
+                    <p>Add Character</p>
+                </div>
+                <div class="delete-person" onclick="deleteCharacter();" onkeypress="deleteCharacter();" tabindex="0">
+                    <p>Delete Character</p>
                 </div>
             </div>
             <div class="move-buttons">
-                <button onclick="movePersonUp();">▲</button>
-                <button onclick="movePersonDown();">▼</button>
+                <button aria-label="Move Character Up" onclick="movePersonUp();">▲</button>
+                <button aria-label="Move Character Down" onclick="movePersonDown();">▼</button>
             </div>
             <div class="button-container">
                 <button onclick="load();">Load Character List</button>

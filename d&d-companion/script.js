@@ -4,7 +4,7 @@ var people = 0;
 var numberOfPeople = 0;
 var characterList = [];
 var statList = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"];
-const EXP_ADVANCEMENTS = [0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000];
+const EXP_ADVANCEMENTS = [0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000, 355000];
 var selection = 0;
 var longAlert = 5000;
 var shortAlert = 2500;
@@ -52,21 +52,37 @@ function updateForm() {
     //Updates the health bars
     if (characterList[selection].hpMaximum < 1) {
         characterList[selection].hpMaximum = 1;
+        $("#hpMaximum").val(1);
     }
     if (characterList[selection].hpCurrent > characterList[selection].hpMaximum) {
         characterList[selection].hpCurrent = characterList[selection].hpMaximum;
+        $("#hpCurrent").val(characterList[selection].hpMaximum);
     }
     let hpWidth = characterList[selection].hpCurrent / characterList[selection].hpMaximum * 100;
     $(".hp-bar-large").css("width", hpWidth + "%");
     //Updates the EXP bars
     if (characterList[selection].expCurrent < 0) {
         characterList[selection].expCurrent = 0;
+        $("#expCurrent").val(0);
     }
-    if (characterList[selection].expCurrent >= EXP_ADVANCEMENTS[characterList[selection].characterLevel]) {
+    //Levels up the character once the EXP threshold is hit
+    while (characterList[selection].expCurrent >= EXP_ADVANCEMENTS[characterList[selection].characterLevel]) {
         characterList[selection].characterLevel++;
+        if (characterList[selection].characterLevel > 20) {
+            characterList[selection].characterLevel = 20;
+        }
+        $("#characterLevel").val(characterList[selection].characterLevel);
+        if (characterList[selection].expCurrent >= 355000 && characterList[selection].characterLevel == 20) {
+            break;
+        }
     }
+    //Automatically raise the maximum EXP value once the threshold is hit
     characterList[selection].expMaximum = EXP_ADVANCEMENTS[characterList[selection].characterLevel];
+    $("#expMaximum").val(EXP_ADVANCEMENTS[characterList[selection].characterLevel]);
     let expWidth = characterList[selection].expCurrent / characterList[selection].expMaximum * 100;
+    if (expWidth > 100) {
+        expWidth = 100;
+    }
     $(".exp-bar-large").css("width", expWidth + "%");
 }
 function selectInfo() {
@@ -160,6 +176,8 @@ function selectPerson(personNum) {
         $("#character-freetext").show();
     }
     if ($("#stats-and-skills").hasClass("tab-selected")) {
+        $("#character-skills").removeClass("animate-freetext-leave");
+        $("#character-skills").addClass("animate-freetext-enter");
         $("#character-stats").show();
         $("#character-skills").show();
     }
@@ -171,8 +189,8 @@ function selectPerson(personNum) {
     updateForm();
 }
 function deleteCharacter() {
-    if ($("#delete-character").text() == "Are you sure?") {
-        $("#delete-character").text("Delete Character");
+    if ($(".delete-person p").text() == "Delete the currently selected character?") {
+        $(".delete-person p").text("Delete Character");
         $("#person-" + selection).remove();
         $("#character-editor").css("display", "none");
         $("#character-freetext").removeClass("animate-freetext-enter");
@@ -184,9 +202,9 @@ function deleteCharacter() {
         numberOfPeople--;
     }
     else {
-        $("#delete-character").text("Are you sure?");
-        $("#delete-character").on("focusout", function () {
-            $("#delete-character").text("Delete Character");
+        $(".delete-person p").text("Delete the currently selected character?");
+        $(".delete-person").on("focusout", function () {
+            $(".delete-person p").text("Delete Character");
         });
     }
 }
@@ -275,7 +293,7 @@ function save() {
     try {
         if (numberOfPeople == 0) {
             $(".alert").remove();
-            $("main").append('<div class="alert" role="alert">You cannot save a character list with no people in it.</div>');
+            $("main").append('<div class="alert" role="alert">You cannot save a character list with no one in it.</div>');
             $(".alert").delay(longAlert).queue(function () {
                 $(this).css("animation", "alert-leave 0.25s forwards").delay(250).queue(function () {
                     $(this).remove();

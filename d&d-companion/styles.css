@@ -842,7 +842,7 @@ textarea {
   pointer-events: none;
 }
 
-.add-person {
+.add-person, .delete-person {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -851,10 +851,10 @@ textarea {
   cursor: pointer;
   transition-duration: 0.2s;
 }
-.add-person:hover {
+.add-person:hover, .delete-person:hover {
   outline: 1px solid hsl(180deg, 100%, 100%);
 }
-.add-person p {
+.add-person p, .delete-person p {
   font-size: 1.2em;
   text-align: center;
   margin: 0.5em;
