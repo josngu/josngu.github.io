@@ -56,7 +56,7 @@ function updateForm(){
         characterList[selection].hpMaximum = 1;
         $("#hpMaximum").val(1);
     }
-    if (characterList[selection].hpCurrent > characterList[selection].hpMaximum){
+    if (parseInt(characterList[selection].hpCurrent) > parseInt(characterList[selection].hpMaximum)){
         characterList[selection].hpCurrent = characterList[selection].hpMaximum;
         $("#hpCurrent").val(characterList[selection].hpMaximum);
     }
@@ -77,6 +77,11 @@ function updateForm(){
         if (characterList[selection].expCurrent >= 355000 && characterList[selection].characterLevel == 20){
             break;
         }
+    }
+    //Preventst the user from setting a character level higher than 20
+    if (characterList[selection].characterLevel > 20){
+        characterList[selection].characterLevel = 20;
+        $("#characterLevel").val(20);
     }
     //Automatically raise the maximum EXP value once the threshold is hit
     characterList[selection].expMaximum = EXP_ADVANCEMENTS[characterList[selection].characterLevel];
@@ -180,13 +185,14 @@ function selectPerson(personNum: number){
     $("nav").removeClass("nav-leave");
     $("nav").addClass("nav-enter");
     
-    if ($("#character-info").hasClass("tab-selected")){
+    //The next 2 "if" statements are for animation purposes
+    if ($("#character-info").hasClass("tab-selected") && $("#character-editor").is(":hidden")){
         $("#character-freetext").removeClass("animate-freetext-leave");
         $("#character-freetext").addClass("animate-freetext-enter");
         $("#character-editor").show();
         $("#character-freetext").show();
     }
-    if ($("#stats-and-skills").hasClass("tab-selected")){
+    if ($("#stats-and-skills").hasClass("tab-selected") && $("#character-stats").is(":hidden")){
         $("#character-skills").removeClass("animate-freetext-leave");
         $("#character-skills").addClass("animate-freetext-enter");
         $("#character-stats").show();
@@ -301,6 +307,15 @@ function uploadPicture(){
         $("#profile-picture-" + selection).attr("src", reader.result);
     }
     reader.readAsDataURL(file.files[0]);
+}
+
+function toggleFooter(){
+    //There has to be a better way of switching between these two states
+    if ($("#toggle-footer").text() == "Show Tools"){
+        $("#toggle-footer").text("Hide Tools");
+    } else {
+        $("#toggle-footer").text("Show Tools");
+    }
 }
 
 function save(){

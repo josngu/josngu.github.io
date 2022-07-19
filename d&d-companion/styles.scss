@@ -9,6 +9,7 @@ $clr-primary: hsl(180, 100%, 100%);
 $clr-primary-translucent: hsl(0, 0%, 100%, 0.5);
 $clr-primary-shadow: hsl(180, 1%, 13%);
 $clr-bg: hsl(225, 7%, 11%);
+$clr-accent: hsl(0, 56%, 40%);
 $fade-in: fade-in 0.5s forwards;
 $border-radius: 4px;
 $margin-section: 0 clamp(1em, 1.5vw, 2em);
@@ -140,20 +141,20 @@ $duration-longer: 1s;
     }
 }
 @mixin shadow {
-    box-shadow: -2px -2px 4px 0 hsl(0, 0%, 100%, 0.05), 2px 2px 4px 0 hsl(0, 0%, 0%, 0.33);
+    box-shadow: -2px -2px 8px 0 hsl(0, 0%, 100%, 0.05), 2px 2px 8px 0 hsl(0, 0%, 0%, 0.5);
 }
 @mixin shadow-inset {
-    box-shadow: inset -2px -2px 4px 0 hsl(0, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsl(0, 0%, 0%, 0.33);
+    box-shadow: inset -2px -2px 4px 0 hsl(0, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsl(0, 0%, 0%, 0.5);
 }
 @mixin typeface {
     font-family: $font-family;
     color: $clr-primary;
-    text-shadow: 0px 0px 2px $clr-dark, 0px 0px 4px $clr-dark;
+    text-shadow: 0px 0px 4px $clr-dark;
 }
 @mixin button {
     @include typeface;
     background-color: $clr-dark;
-    border: 1px solid $clr-primary-shadow;
+    border: none;
     border-radius: $border-radius;
     padding: 4px 8px;
     font-size: $font-size-small;
@@ -162,12 +163,12 @@ $duration-longer: 1s;
     cursor: pointer;
     transition-duration: $duration-short;
     &:hover {
-        border: 1px solid hsl(240, 3%, 30%);
+        background-color: $clr-accent;
     }
 }
 ::-webkit-scrollbar {
     @include shadow-inset;
-    border-radius: 2px;
+    border-radius: $border-radius;
     width: 8px;
     height: 8px;
 }
@@ -177,7 +178,7 @@ $duration-longer: 1s;
 ::-webkit-scrollbar-thumb {
     @include shadow-inset;
     background: $clr-primary;
-    border-radius: 2px;
+    border-radius: $border-radius;
     &:hover {
         background: $clr-primary;
     }
@@ -259,7 +260,7 @@ h1 {
     font-weight: 600;
     text-align: center;
     font-size: $font-size-large;
-    margin: 1.5em 0.5em 0.75em 0.5em;
+    margin: clamp(0.75em, 3vh, 1.5em) 0.5em 0.75em 0.5em;
 }
 h2 {
     @include typeface;
@@ -276,7 +277,6 @@ p {
 }
 button {
     @include button;
-    @include shadow;
     margin: 1em 0;
     position: relative;
 }
@@ -376,7 +376,6 @@ label {
     gap: 1em;
     > label {
         @include button;
-        @include shadow;
         width: 50%;
         margin: 1em 0;
     }
@@ -429,7 +428,6 @@ label {
     display: none;
 }
 textarea {
-    @include shadow-inset;
     background-color: $clr-dark;
     color: $clr-light;
     border-radius: 4px;
@@ -464,7 +462,7 @@ textarea {
 }
 .btn-minus-plus {
     margin: 0;
-    width: 35px;
+    width: 33px;
 }
 .btn-stats-container {
     display: flex;
@@ -510,6 +508,9 @@ textarea {
 .hp-container, .exp-container {
     display: flex;
     flex-direction: column;
+    background-color: $clr-dark;
+    border-radius: $border-radius;
+    padding: 0.75em 1em;
     gap: 8px;
     input[type=text] {
         @include typeface;
@@ -531,9 +532,12 @@ textarea {
         border-bottom: 1px solid $clr-primary-translucent;
         padding: 2px;
         height: 32px;
-        width: 32px;
+        width: 48px;
         font-size: $font-size-body;
         text-align: center;
+    }
+    #characterLevel {
+        width: 32px;
     }
     div {
         display: flex;
@@ -585,11 +589,15 @@ textarea {
 .exp-bar-large {
     background-color: hsl(212, 74%, 35%);
 }
-.temporary-hp-container {
+.temporary-hp-container, .character-level-container {
+    display: flex;
+    justify-content: flex-start !important;
+    gap: 0.5em;
     label {
         display: flex;
         align-items: center;
         width: auto;
+        font-size: $font-size-body;
     }
 }
 
@@ -606,7 +614,6 @@ textarea {
     margin: $margin-section;
 }
 #character-container {
-    @include shadow;
     animation: enter $duration-medium forwards;
     display: flex;
     flex-direction: column;
@@ -692,12 +699,26 @@ textarea {
     height: 128px;
     object-fit: cover;
 }
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: $clr-dark;
+}
+#toggle-footer {
+    margin: 0;
+    padding: 0.25em 0;
+    font-size: $font-size-small;
+    width: 100%;
+    border-radius: 0;
+}
 //Classes that are not bound to HTML elements
 .person-container-selected {
     outline: 1px solid white;
 }
 .tab-selected {
-    border-bottom: 2px solid hsl(204, 76%, 46%);
+    border-bottom: 2px solid $clr-accent;
     color: $clr-light;
 }
 //Media queries
@@ -716,13 +737,6 @@ textarea {
     main {
         flex-direction: column;
     }
-    #instructions {
-        width: auto;
-    }
-    h2, #squadron-list > h2 {
-        margin-top: 2em;
-        text-align: left;
-    }
     #character-container {
         display: flex;
         padding: 1px;
@@ -733,53 +747,7 @@ textarea {
     }
 }
 @media screen and (max-width: 500px) {
-    header {
-        h1 {
-            font-size: $font-size-body;
-        }
-        #timer {
-            font-size: $font-size-body;
-        }
-    }
-    #instructions > p {
-        animation: none;
-        font-size: $font-size-small;
-    }
-    .row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.25em;
-        margin-bottom: 1em;
-        p {
-            animation: none;
-        }
-    }
-    label, h1, h2, button, #timer {
-        animation: none;
-    }
-    .alert {
-        animation: alert-enter 0.25s forwards;
-    }
-    #add-person + p {
-        animation: none;
-    }
-    .button-group {
-        p {
-            animation: none;
-            margin-bottom: 0;
-        }
-    }
-    .button-container {
-        flex-direction: column;
-        gap: 0;
-        margin-bottom: 1em;
-        button {
-            margin-bottom: 0;
-        }
-    }
-    *::after {
-        display: none;
-    }
+
 }
 //Used to prevent a flash of unstyled content on page load
 html {

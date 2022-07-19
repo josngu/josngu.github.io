@@ -243,8 +243,8 @@
   }
 }
 ::-webkit-scrollbar {
-  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
-  border-radius: 2px;
+  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.5);
+  border-radius: 4px;
   width: 8px;
   height: 8px;
 }
@@ -254,9 +254,9 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
+  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.5);
   background: hsl(180deg, 100%, 100%);
-  border-radius: 2px;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(180deg, 100%, 100%);
@@ -353,17 +353,17 @@ main {
 h1 {
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   font-weight: 600;
   text-align: center;
   font-size: 2em;
-  margin: 1.5em 0.5em 0.75em 0.5em;
+  margin: clamp(0.75em, 3vh, 1.5em) 0.5em 0.75em 0.5em;
 }
 
 h2 {
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   -webkit-animation: enter 0.5s forwards;
           animation: enter 0.5s forwards;
   margin-bottom: 0.5em;
@@ -376,16 +376,16 @@ h2 {
 p {
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   font-size: 2em;
 }
 
 button {
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   background-color: hsl(0deg, 0%, 5%);
-  border: 1px solid hsl(180deg, 1%, 13%);
+  border: none;
   border-radius: 4px;
   padding: 4px 8px;
   font-size: 1.2em;
@@ -393,18 +393,17 @@ button {
   flex-grow: 1;
   cursor: pointer;
   transition-duration: 0.2s;
-  box-shadow: -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
   margin: 1em 0;
   position: relative;
 }
 button:hover {
-  border: 1px solid hsl(240deg, 3%, 30%);
+  background-color: hsl(0deg, 56%, 40%);
 }
 
 .alert {
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   -webkit-animation: alert-enter 0.25s forwards;
           animation: alert-enter 0.25s forwards;
   background-color: hsl(225deg, 7%, 11%);
@@ -445,7 +444,7 @@ button:hover {
 .row input[type=text] {
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   background-color: transparent;
   border: none;
   border-bottom: 1px solid hsla(0deg, 0%, 100%, 0.5);
@@ -461,7 +460,7 @@ button:hover {
 .row input[type=number] {
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   background-color: transparent;
   border: 1px solid hsla(0deg, 0%, 100%, 0.5);
   padding: 2px;
@@ -474,7 +473,7 @@ button:hover {
 label {
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   font-size: 1.2em;
   text-align: right;
   width: 92px;
@@ -518,9 +517,9 @@ label {
 #profile-buttons > label {
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   background-color: hsl(0deg, 0%, 5%);
-  border: 1px solid hsl(180deg, 1%, 13%);
+  border: none;
   border-radius: 4px;
   padding: 4px 8px;
   font-size: 1.2em;
@@ -528,12 +527,11 @@ label {
   flex-grow: 1;
   cursor: pointer;
   transition-duration: 0.2s;
-  box-shadow: -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
   width: 50%;
   margin: 1em 0;
 }
 #profile-buttons > label:hover {
-  border: 1px solid hsl(240deg, 3%, 30%);
+  background-color: hsl(0deg, 56%, 40%);
 }
 #profile-buttons > label:focus-within {
   outline: 1px solid white !important;
@@ -591,7 +589,6 @@ label {
 }
 
 textarea {
-  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
   background-color: hsl(0deg, 0%, 5%);
   color: hsl(0deg, 0%, 100%);
   border-radius: 4px;
@@ -629,7 +626,7 @@ textarea {
 
 .btn-minus-plus {
   margin: 0;
-  width: 35px;
+  width: 33px;
 }
 
 .btn-stats-container {
@@ -661,7 +658,7 @@ textarea {
 .three-element-group input {
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   background-color: transparent;
   border: 1px solid hsla(0deg, 0%, 100%, 0.5);
   padding: 2px;
@@ -681,12 +678,15 @@ textarea {
 .hp-container, .exp-container {
   display: flex;
   flex-direction: column;
+  background-color: hsl(0deg, 0%, 5%);
+  border-radius: 4px;
+  padding: 0.75em 1em;
   gap: 8px;
 }
 .hp-container input[type=text], .exp-container input[type=text] {
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   background-color: transparent;
   border: none;
   border-bottom: 1px solid hsla(0deg, 0%, 100%, 0.5);
@@ -701,15 +701,18 @@ textarea {
 .hp-container input[type=number], .exp-container input[type=number] {
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   background-color: transparent;
   border: none;
   border-bottom: 1px solid hsla(0deg, 0%, 100%, 0.5);
   padding: 2px;
   height: 32px;
-  width: 32px;
+  width: 48px;
   font-size: 1.5em;
   text-align: center;
+}
+.hp-container #characterLevel, .exp-container #characterLevel {
+  width: 32px;
 }
 .hp-container div, .exp-container div {
   display: flex;
@@ -737,7 +740,7 @@ textarea {
 }
 
 .hp-bar-large-bg, .exp-bar-large-bg {
-  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
+  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.5);
   position: absolute;
   background-color: hsla(0deg, 74%, 35%, 0.2);
   width: 100%;
@@ -750,7 +753,7 @@ textarea {
 }
 
 .hp-bar-large, .exp-bar-large {
-  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
+  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.5);
   position: absolute;
   background-color: hsl(0deg, 74%, 35%);
   top: 0;
@@ -764,10 +767,16 @@ textarea {
   background-color: hsl(212deg, 74%, 35%);
 }
 
-.temporary-hp-container label {
+.temporary-hp-container, .character-level-container {
+  display: flex;
+  justify-content: flex-start !important;
+  gap: 0.5em;
+}
+.temporary-hp-container label, .character-level-container label {
   display: flex;
   align-items: center;
   width: auto;
+  font-size: 1.5em;
 }
 
 #character-skills {
@@ -783,7 +792,6 @@ textarea {
 }
 
 #character-container {
-  box-shadow: -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.33);
   -webkit-animation: enter 0.5s forwards;
           animation: enter 0.5s forwards;
   display: flex;
@@ -821,7 +829,7 @@ textarea {
 .person-container h3 {
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   color: hsl(0deg, 0%, 100%);
   font-weight: 400;
   font-size: 1.2em;
@@ -867,7 +875,7 @@ textarea {
 #add-person {
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 2px hsl(0deg, 0%, 5%), 0px 0px 4px hsl(0deg, 0%, 5%);
+  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   font-family: sans-serif;
   line-height: 0.5;
   font-size: 6em;
@@ -888,12 +896,28 @@ textarea {
      object-fit: cover;
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: hsl(0deg, 0%, 5%);
+}
+
+#toggle-footer {
+  margin: 0;
+  padding: 0.25em 0;
+  font-size: 1.2em;
+  width: 100%;
+  border-radius: 0;
+}
+
 .person-container-selected {
   outline: 1px solid white;
 }
 
 .tab-selected {
-  border-bottom: 2px solid hsl(204deg, 76%, 46%);
+  border-bottom: 2px solid hsl(0deg, 56%, 40%);
   color: hsl(0deg, 0%, 100%);
 }
 
@@ -910,15 +934,6 @@ textarea {
     flex-direction: column;
   }
 
-  #instructions {
-    width: auto;
-  }
-
-  h2, #squadron-list > h2 {
-    margin-top: 2em;
-    text-align: left;
-  }
-
   #character-container {
     display: flex;
     padding: 1px;
@@ -926,65 +941,6 @@ textarea {
     max-height: 552px;
     overflow-y: auto;
     overflow-x: scroll;
-  }
-}
-@media screen and (max-width: 500px) {
-  header h1 {
-    font-size: 1.5em;
-  }
-  header #timer {
-    font-size: 1.5em;
-  }
-
-  #instructions > p {
-    -webkit-animation: none;
-            animation: none;
-    font-size: 1.2em;
-  }
-
-  .row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25em;
-    margin-bottom: 1em;
-  }
-  .row p {
-    -webkit-animation: none;
-            animation: none;
-  }
-
-  label, h1, h2, button, #timer {
-    -webkit-animation: none;
-            animation: none;
-  }
-
-  .alert {
-    -webkit-animation: alert-enter 0.25s forwards;
-            animation: alert-enter 0.25s forwards;
-  }
-
-  #add-person + p {
-    -webkit-animation: none;
-            animation: none;
-  }
-
-  .button-group p {
-    -webkit-animation: none;
-            animation: none;
-    margin-bottom: 0;
-  }
-
-  .button-container {
-    flex-direction: column;
-    gap: 0;
-    margin-bottom: 1em;
-  }
-  .button-container button {
-    margin-bottom: 0;
-  }
-
-  *::after {
-    display: none;
   }
 }
 html {

@@ -140,8 +140,12 @@
                         </div>
                     </div>
                     <div class="exp-container">
+                        <div class="character-level-container">
+                            <label for="characterLevel">Level</label>
+                            <input type="number" id="characterLevel">
+                        </div>
                         <div class="exp-text">
-                            <p>Experience Points</p>
+                            <p>EXP</p>
                             <div>
                                 <label for="expCurrent">Current Experience Points</label>
                                 <input type="number" id="expCurrent">
@@ -153,10 +157,6 @@
                         <div class="exp-bar">
                             <div class="exp-bar-large-bg"></div>
                             <div class="exp-bar-large"></div>
-                        </div>
-                        <div>
-                            <p>Level</p>
-                            <input type="number" id="characterLevel">
                         </div>
                     </div>
                 </div>
@@ -261,5 +261,9 @@
             <!--<button id="delete-character-list" onclick="deleteCharacterList();">Delete All Characters</button>!-->
         </section>
     </main>
+    <footer>
+        <button id="toggle-footer" onclick="toggleFooter();">Hide Tools</button>
+        <p>(Roll Die)</p>
+    </footer>
 </body>
 </html>
