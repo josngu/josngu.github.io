@@ -155,8 +155,10 @@ $duration-longer: 1s;
     @include typeface;
     background-color: $clr-dark;
     border: none;
+    border-top: 1px solid hsl(0, 0%, 100%, 0.075);
+    border-bottom: 1px solid hsl(0, 0%, 0%, 0.25);
     border-radius: $border-radius;
-    padding: 4px 8px;
+    padding: 3px 8px;
     font-size: $font-size-small;
     text-align: center;
     flex-grow: 1;
@@ -188,6 +190,7 @@ input::-webkit-inner-spin-button {
     appearance: none;
     margin: 0;
 }
+//Removes the arrow buttons on number textfields on Firefox
 input[type=number] {
     -moz-appearance: textfield;
 }
@@ -520,10 +523,6 @@ textarea {
         font-size: $font-size-small;
         margin: 0;
         padding: 2px 4px;
-        transition-duration: $duration-short;
-        &:hover {
-            background-color: hsl(0, 0%, 100%, 0.05);
-        }
     }
     input[type=number] {
         @include typeface;
@@ -632,6 +631,7 @@ textarea {
     flex-shrink: 0;
     gap: 8px;
     outline: 1px solid transparent;
+    border-radius: $border-radius;
     padding: 8px;
     cursor: pointer;
     overflow: hidden;
@@ -670,6 +670,7 @@ textarea {
     justify-content: center;
     flex-shrink: 0;
     outline: 1px solid transparent;
+    border-radius: $border-radius;
     cursor: pointer;
     transition-duration: $duration-short;
     &:hover {
@@ -714,7 +715,7 @@ footer {
 }
 //Classes that are not bound to HTML elements
 .person-container-selected {
-    outline: 1px solid white;
+    outline: 1px solid $clr-primary-translucent
 }
 .tab-selected {
     border-bottom: 2px solid $clr-accent;
