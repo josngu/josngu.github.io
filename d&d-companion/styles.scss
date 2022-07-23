@@ -625,7 +625,6 @@ textarea {
     overflow-y: scroll;
     overflow-x: hidden;
     background-color: $clr-dark;
-    border: 1px solid $clr-primary-shadow;
 }
 .person-container {
     animation: add-person $duration-medium forwards;

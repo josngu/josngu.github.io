@@ -804,7 +804,6 @@ textarea {
   overflow-y: scroll;
   overflow-x: hidden;
   background-color: hsl(0deg, 0%, 5%);
-  border: 1px solid hsl(180deg, 1%, 13%);
 }
 
 .person-container {

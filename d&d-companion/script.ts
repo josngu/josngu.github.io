@@ -101,6 +101,7 @@ function selectInfo(){
     $("#character-skills").hide();
     $("#character-editor").show();
     $("#character-freetext").removeClass("animate-freetext-enter");
+    $("#character-freetext").removeClass("animate-freetext-leave");
     $("#character-freetext").show();
 }
 
@@ -111,6 +112,7 @@ function selectStats(){
     $("#character-freetext").hide();
     $("#character-stats").show();
     $("#character-skills").removeClass("animate-freetext-enter");
+    $("#character-skills").removeClass("animate-freetext-leave");
     $("#character-skills").show();
 }
 
@@ -212,8 +214,11 @@ function deleteCharacter(){
         $(".delete-person p").text("Delete Character");
         $("#person-" + selection).remove();
         $("#character-editor").css("display", "none");
+        $("#character-stats").css("display", "none");
         $("#character-freetext").removeClass("animate-freetext-enter");
         $("#character-freetext").addClass("animate-freetext-leave");
+        $("#character-skills").removeClass("animate-freetext-enter");
+        $("#character-skills").addClass("animate-freetext-leave");
         $("#instructions > p").text("Add or select a person.");
         $("#instructions").css("display", "block");
         $("nav").removeClass("nav-enter");
