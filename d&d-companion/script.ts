@@ -52,46 +52,65 @@ function updateForm(){
         }
     }
     //Updates the health bars
-    if (characterList[selection].hpMaximum < 1){
-        characterList[selection].hpMaximum = 1;
+    let hpMaximum = characterList[selection].hpMaximum;
+    if (hpMaximum < 1){
+        hpMaximum = 1;
         $("#hpMaximum").val(1);
     }
-    if (parseInt(characterList[selection].hpCurrent) > parseInt(characterList[selection].hpMaximum)){
-        characterList[selection].hpCurrent = characterList[selection].hpMaximum;
-        $("#hpCurrent").val(characterList[selection].hpMaximum);
+    if (parseInt(characterList[selection].hpCurrent) > parseInt(hpMaximum)){
+        characterList[selection].hpCurrent = hpMaximum;
+        $("#hpCurrent").val(hpMaximum);
     }
-    let hpWidth = characterList[selection].hpCurrent / characterList[selection].hpMaximum * 100;
+    let hpWidth = characterList[selection].hpCurrent / hpMaximum * 100;
     $(".hp-bar-large").css("width", hpWidth + "%");
     //Updates the EXP bars
-    if (characterList[selection].expCurrent < 0){
-        characterList[selection].expCurrent = 0;
+    let expCurrent = characterList[selection].expCurrent;
+    if (expCurrent < 0){
+        expCurrent = 0;
         $("#expCurrent").val(0);
     }
     //Levels up the character once the EXP threshold is hit
-    while (characterList[selection].expCurrent >= EXP_ADVANCEMENTS[characterList[selection].characterLevel]){
-        characterList[selection].characterLevel++;
-        if (characterList[selection].characterLevel > 20){
-            characterList[selection].characterLevel = 20;
+    let characterLevel = characterList[selection].characterLevel;
+    while (expCurrent >= EXP_ADVANCEMENTS[characterLevel]){
+        characterLevel++;
+        if (characterLevel > 20){
+            characterLevel = 20;
         }
-        $("#characterLevel").val(characterList[selection].characterLevel);
-        if (characterList[selection].expCurrent >= 355000 && characterList[selection].characterLevel == 20){
+        $("#characterLevel").val(characterLevel);
+        if (expCurrent >= 355000 && characterLevel == 20){
             break;
         }
     }
-    //Preventst the user from setting a character level higher than 20
-    if (characterList[selection].characterLevel > 20){
-        characterList[selection].characterLevel = 20;
+    //Prevents the user from setting a character level higher than 20
+    if (characterLevel > 20){
+        characterLevel = 20;
         $("#characterLevel").val(20);
     }
     //Automatically raise the maximum EXP value once the threshold is hit
-    characterList[selection].expMaximum = EXP_ADVANCEMENTS[characterList[selection].characterLevel];
-    $("#expMaximum").val(EXP_ADVANCEMENTS[characterList[selection].characterLevel]);
+    characterList[selection].expMaximum = EXP_ADVANCEMENTS[characterLevel];
+    $("#expMaximum").val(EXP_ADVANCEMENTS[characterLevel]);
 
-    let expWidth = characterList[selection].expCurrent / characterList[selection].expMaximum * 100;
+    let expWidth = expCurrent / characterList[selection].expMaximum * 100;
     if (expWidth > 100){
         expWidth = 100;
     }
     $(".exp-bar-large").css("width", expWidth + "%");
+    //Sets the proficiency bonus once the level threshold is hit
+    if (characterLevel <= 4){
+        $("#proficiencyBonus").text("Proficiency Bonus: +2");
+    }
+    if (characterLevel > 4 && characterLevel < 9){
+        $("#proficiencyBonus").text("Proficiency Bonus: +3");
+    }
+    if (characterLevel >= 9 && characterLevel < 13){
+        $("#proficiencyBonus").text("Proficiency Bonus: +4");
+    }
+    if (characterLevel >= 13 && characterLevel < 17){
+        $("#proficiencyBonus").text("Proficiency Bonus: +5");
+    }
+    if (characterLevel >= 17){
+        $("#proficiencyBonus").text("Proficiency Bonus: +6");
+    }
 }
 
 function selectInfo(){
