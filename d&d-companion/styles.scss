@@ -276,7 +276,7 @@ h2 {
 }
 p {
     @include typeface;
-    font-size: $font-size-large;
+    font-size: $font-size-body;
 }
 button {
     @include button;
@@ -451,11 +451,14 @@ textarea {
     width: 360px;
     margin: $margin-section;
 }
-#stats-container {
+#stats-container, #stats-container-2 {
     display: flex;
     animation: enter $duration-medium forwards;
     flex-direction: column;
     gap: 4px;
+}
+#stats-container-2 {
+    display: none;
 }
 .stat-modifier {
     font-size: $font-size-body;
@@ -506,7 +509,6 @@ textarea {
     display: flex;
     flex-direction: column;
     gap: 1em;
-    margin-bottom: 1em;
 }
 .hp-container, .exp-container {
     display: flex;
