@@ -788,6 +788,38 @@ textarea {
   margin: 0 clamp(1em, 1.5vw, 2em);
 }
 
+#skills-container .row {
+  gap: 8px;
+}
+#skills-container .row > :first-child {
+  font-size: 0;
+}
+#skills-container label {
+  width: auto;
+}
+#skills-container input[type=number] {
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid hsla(0deg, 0%, 100%, 0.5);
+}
+
+input[type=checkbox] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: hsla(0deg, 0%, 100%, 0);
+  min-height: 1.5em;
+  min-width: 1.5em;
+  cursor: pointer;
+  border: 2px solid hsla(0deg, 0%, 100%, 0.8);
+  border-radius: 32px;
+  transition-duration: 0.2s;
+}
+
+input[type=checkbox]:checked {
+  background-color: hsl(0deg, 0%, 100%);
+}
+
 #character-list {
   -webkit-animation: enter 0.5s forwards;
           animation: enter 0.5s forwards;

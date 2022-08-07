@@ -39,6 +39,12 @@ function updateForm() {
     //Updates the character stats on focusout
     for (let i = 0; i < statList.length; i++) {
         let x = $("#" + statList[i]).val();
+        if (x > 99) {
+            x = 99;
+        }
+        if (x < 0) {
+            x = 0;
+        }
         let y = +x;
         $("#" + statList[i]).val(y);
         //Add a plus sign prefix if the number is positive
@@ -249,10 +255,11 @@ function previousPage() {
 function increaseStat(statType) {
     let x = $("#" + statType).val();
     let y = +x;
-    if (y != 99) {
+    if (y < 99) {
         y++;
     }
     $("#" + statType).val(y);
+    //This is the formula used for modifier values in D&D
     if (Math.floor((y - 10) / 2) > 0) {
         $("#" + statType + "-modifier").text("+" + Math.floor((y - 10) / 2));
     }
@@ -267,6 +274,7 @@ function decreaseStat(statType) {
         y--;
     }
     $("#" + statType).val(y);
+    //This is the formula used for modifier values in D&D
     if (Math.floor((y - 10) / 2) > 0) {
         $("#" + statType + "-modifier").text("+" + Math.floor((y - 10) / 2));
     }

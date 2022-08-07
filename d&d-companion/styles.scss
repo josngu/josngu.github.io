@@ -608,6 +608,38 @@ textarea {
     width: 360px;
     margin: $margin-section;
 }
+#skills-container {
+    .row {
+        gap: 8px;
+        //Hides the first label from view
+        & > :first-child {
+            font-size: 0;
+        }
+    }
+    label {
+        width: auto;
+    }
+    input[type=number] {
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid $clr-primary-translucent;
+    }
+}
+input[type=checkbox] {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    background-color: hsla(0, 0%, 100%, 0);
+    min-height: 1.5em;
+    min-width: 1.5em;
+    cursor: pointer;
+    border: 2px solid hsla(0, 0%, 100%, 0.8);
+    border-radius: 32px;
+    transition-duration: 0.2s;
+  }
+input[type=checkbox]:checked {
+    background-color: hsl(0, 0%, 100%);
+  }
 
 //COLUMN 3
 #character-list {
