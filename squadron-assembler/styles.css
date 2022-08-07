@@ -651,7 +651,6 @@ label {
   html {
     overflow-y: auto;
   }
-
   header {
     flex-direction: column-reverse;
   }
@@ -662,20 +661,16 @@ label {
   header #timer {
     margin: 0.25em 0.5em 0.25em 0.5em;
   }
-
   main {
     flex-direction: column;
   }
-
   #instructions {
     width: auto;
   }
-
   h2, #squadron-list > h2 {
     margin-top: 2em;
     text-align: left;
   }
-
   #squadron-container {
     display: flex;
     padding: 1px;
@@ -692,13 +687,11 @@ label {
   header #timer {
     font-size: 1.5em;
   }
-
   #instructions > p {
     -webkit-animation: none;
             animation: none;
     font-size: 1.26em;
   }
-
   .row {
     flex-direction: column;
     align-items: flex-start;
@@ -709,28 +702,23 @@ label {
     -webkit-animation: none;
             animation: none;
   }
-
   label, h1, h2, button, #timer {
     -webkit-animation: none;
             animation: none;
   }
-
   .alert {
     -webkit-animation: alert-enter 0.25s forwards;
             animation: alert-enter 0.25s forwards;
   }
-
   #add-person + p {
     -webkit-animation: none;
             animation: none;
   }
-
   .button-group p {
     -webkit-animation: none;
             animation: none;
     margin-bottom: 0;
   }
-
   .button-container {
     flex-direction: column;
     gap: 0;
@@ -739,7 +727,6 @@ label {
   .button-container button {
     margin-bottom: 0;
   }
-
   *::after {
     display: none;
   }

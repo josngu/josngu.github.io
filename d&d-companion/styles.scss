@@ -77,7 +77,7 @@ $duration-longer: 1s;
         height: 128px;
     }
 }
-@keyframes enter-freetext {
+@keyframes enter-column-2 {
     0% {
         opacity: 0%;
         width: 0px;
@@ -94,7 +94,7 @@ $duration-longer: 1s;
         transform: translateY(0px);
     }
 }
-@keyframes leave-freetext {
+@keyframes leave-column-2 {
     0% {
         opacity: 100%;
         width: 360px;
@@ -404,11 +404,11 @@ label {
     margin: $margin-section;
     width: 360px;
 }
-.animate-freetext-enter {
-    animation: enter-freetext $duration-long forwards;
+.animate-column-2-enter {
+    animation: enter-column-2 $duration-long forwards;
 }
-.animate-freetext-leave {
-    animation: leave-freetext $duration-long forwards;
+.animate-column-2-leave {
+    animation: leave-column-2 $duration-long forwards;
 }
 #traits-container, #traits-container-2 {
     animation: enter $duration-medium forwards;

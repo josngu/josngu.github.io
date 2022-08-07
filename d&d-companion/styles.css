@@ -116,7 +116,7 @@
     height: 128px;
   }
 }
-@-webkit-keyframes enter-freetext {
+@-webkit-keyframes enter-column-2 {
   0% {
     opacity: 0%;
     width: 0px;
@@ -133,7 +133,7 @@
     transform: translateY(0px);
   }
 }
-@keyframes enter-freetext {
+@keyframes enter-column-2 {
   0% {
     opacity: 0%;
     width: 0px;
@@ -150,7 +150,7 @@
     transform: translateY(0px);
   }
 }
-@-webkit-keyframes leave-freetext {
+@-webkit-keyframes leave-column-2 {
   0% {
     opacity: 100%;
     width: 360px;
@@ -169,7 +169,7 @@
     margin: 0;
   }
 }
-@keyframes leave-freetext {
+@keyframes leave-column-2 {
   0% {
     opacity: 100%;
     width: 360px;
@@ -559,14 +559,14 @@ label {
   width: 360px;
 }
 
-.animate-freetext-enter {
-  -webkit-animation: enter-freetext 0.8s forwards;
-          animation: enter-freetext 0.8s forwards;
+.animate-column-2-enter {
+  -webkit-animation: enter-column-2 0.8s forwards;
+          animation: enter-column-2 0.8s forwards;
 }
 
-.animate-freetext-leave {
-  -webkit-animation: leave-freetext 0.8s forwards;
-          animation: leave-freetext 0.8s forwards;
+.animate-column-2-leave {
+  -webkit-animation: leave-column-2 0.8s forwards;
+          animation: leave-column-2 0.8s forwards;
 }
 
 #traits-container, #traits-container-2 {
@@ -929,15 +929,12 @@ footer {
   html {
     overflow-y: auto;
   }
-
   header h1 {
     margin: 1em 0.5em 0 0.5em;
   }
-
   main {
     flex-direction: column;
   }
-
   #character-container {
     display: flex;
     padding: 1px;

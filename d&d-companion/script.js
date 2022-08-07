@@ -115,8 +115,8 @@ function selectInfo() {
     $("#character-stats").hide();
     $("#character-skills").hide();
     $("#character-editor").show();
-    $("#character-freetext").removeClass("animate-freetext-enter");
-    $("#character-freetext").removeClass("animate-freetext-leave");
+    $("#character-freetext").removeClass("animate-column-2-enter");
+    $("#character-freetext").removeClass("animate-column-2-leave");
     $("#character-freetext").show();
 }
 function selectStats() {
@@ -125,8 +125,8 @@ function selectStats() {
     $("#character-editor").hide();
     $("#character-freetext").hide();
     $("#character-stats").show();
-    $("#character-skills").removeClass("animate-freetext-enter");
-    $("#character-skills").removeClass("animate-freetext-leave");
+    $("#character-skills").removeClass("animate-column-2-enter");
+    $("#character-skills").removeClass("animate-column-2-leave");
     $("#character-skills").show();
 }
 function addPerson() {
@@ -197,14 +197,14 @@ function selectPerson(personNum) {
     $("nav").addClass("nav-enter");
     //The next 2 "if" statements are for animation purposes
     if ($("#character-info").hasClass("tab-selected") && $("#character-editor").is(":hidden")) {
-        $("#character-freetext").removeClass("animate-freetext-leave");
-        $("#character-freetext").addClass("animate-freetext-enter");
+        $("#character-freetext").removeClass("animate-column-2-leave");
+        $("#character-freetext").addClass("animate-column-2-enter");
         $("#character-editor").show();
         $("#character-freetext").show();
     }
     if ($("#stats-and-skills").hasClass("tab-selected") && $("#character-stats").is(":hidden")) {
-        $("#character-skills").removeClass("animate-freetext-leave");
-        $("#character-skills").addClass("animate-freetext-enter");
+        $("#character-skills").removeClass("animate-column-2-leave");
+        $("#character-skills").addClass("animate-column-2-enter");
         $("#character-stats").show();
         $("#character-skills").show();
     }
@@ -221,10 +221,10 @@ function deleteCharacter() {
         $("#person-" + selection).remove();
         $("#character-editor").css("display", "none");
         $("#character-stats").css("display", "none");
-        $("#character-freetext").removeClass("animate-freetext-enter");
-        $("#character-freetext").addClass("animate-freetext-leave");
-        $("#character-skills").removeClass("animate-freetext-enter");
-        $("#character-skills").addClass("animate-freetext-leave");
+        $("#character-freetext").removeClass("animate-column-2-enter");
+        $("#character-freetext").addClass("animate-column-2-leave");
+        $("#character-skills").removeClass("animate-column-2-enter");
+        $("#character-skills").addClass("animate-column-2-leave");
         $("#instructions > p").text("Add or select a person.");
         $("#instructions").css("display", "block");
         $("nav").removeClass("nav-enter");
@@ -279,8 +279,8 @@ function deleteCharacterList() {
         $("#delete-character-list").text("Delete All Characters");
         $(".person-container").remove();
         $("#character-editor").css("display", "none");
-        $("#character-freetext").removeClass("animate-freetext-enter");
-        $("#character-freetext").addClass("animate-freetext-leave");
+        $("#character-freetext").removeClass("animate-column-2-enter");
+        $("#character-freetext").addClass("animate-column-2-leave");
         $("#instructions > p").text("Add or select a person.");
         $("#instructions").css("display", "block");
         $("nav").removeClass("nav-enter");
@@ -340,10 +340,7 @@ function save() {
             });
             return;
         }
-        localStorage.setItem("nav", JSON.stringify($("nav").html()));
-        localStorage.setItem("character-list", JSON.stringify($("#character-container").html()));
-        localStorage.setItem("profile", JSON.stringify($("#editor-container").html()));
-        localStorage.setItem("stats", JSON.stringify($("#stats-container").html()));
+        localStorage.setItem("body", JSON.stringify($("body").html()));
         localStorage.setItem("people", JSON.stringify(people));
         localStorage.setItem("numberOfPeople", JSON.stringify(numberOfPeople));
         localStorage.setItem("character", JSON.stringify(characterList));
@@ -371,32 +368,12 @@ function save() {
     }
 }
 function load() {
-    if ($("#character-freetext").css("display") == "none" && $("#character-skills").css("display") == "none") {
-        $("#character-freetext").addClass("animate-freetext-enter");
-        $("#character-skills").addClass("animate-freetext-enter");
-    }
-    //Hide everything first so that not every column shows up at the same time
-    $("#character-editor").hide();
-    $("#character-freetext").hide();
-    $("#character-stats").hide();
-    $("#character-skills").hide();
     if (localStorage.getItem("people") !== null) {
-        $("nav").html(JSON.parse(localStorage.getItem("nav")));
-        $("#character-container").html(JSON.parse(localStorage.getItem("character-list")));
-        $("#editor-container").html(JSON.parse(localStorage.getItem("profile")));
-        $("#stats-container").html(JSON.parse(localStorage.getItem("stats")));
+        $("body").html(JSON.parse(localStorage.getItem("body")));
         people = JSON.parse(localStorage.getItem("people"));
         numberOfPeople = JSON.parse(localStorage.getItem("numberOfPeople"));
         characterList = JSON.parse(localStorage.getItem("character"));
         selection = JSON.parse(localStorage.getItem("selection"));
-        if ($("#character-info").hasClass("tab-selected")) {
-            $("#character-editor").show();
-            $("#character-freetext").show();
-        }
-        if ($("#stats-and-skills").hasClass("tab-selected")) {
-            $("#character-stats").show();
-            $("#character-skills").show();
-        }
         $("#instructions").css("display", "none");
         $("nav").show();
         $("nav").removeClass("nav-leave");
