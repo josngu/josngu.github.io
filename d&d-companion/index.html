@@ -100,7 +100,7 @@
                     <textarea id="flaws"></textarea>    
                 </div>
                 <div class="tabs-container">
-                    <button class="btn-tab tab-2-selected" type="button" onclick="previousPage();">1</button>
+                    <button class="btn-tab tab-number-selected" type="button" onclick="previousPage();">1</button>
                     <button class="btn-tab" type="button" onclick="nextPage();">2</button>
                 </div>
             </form>
@@ -117,7 +117,7 @@
                 </div>
                 <div class="tabs-container">
                     <button class="btn-tab" type="button" onclick="previousPage();">1</button>
-                    <button class="btn-tab tab-2-selected" type="button" onclick="nextPage();">2</button>
+                    <button class="btn-tab tab-number-selected" type="button" onclick="nextPage();">2</button>
                 </div>
             </form>
         </section>
@@ -199,6 +199,7 @@
                         <input type="text" id="speed" autocomplete="off">
                     </div>
                 </div>
+            <button type="button">View HP and EXP</button>
             </form>
             <form id="stats-container-2">
                 <div class="bars">
@@ -408,13 +409,11 @@
                     <p>Delete Character</p>
                 </div>
             </div>
-            <div class="move-buttons">
+            <div class="button-container">
                 <button aria-label="Move Character Up" onclick="movePersonUp();">▲</button>
                 <button aria-label="Move Character Down" onclick="movePersonDown();">▼</button>
-            </div>
-            <div class="button-container">
-                <button onclick="load();">Load Character List</button>
-                <button onclick="save();">Save Character List</button>
+                <button aria-label="Load Character List" onclick="load();">⮉</button>
+                <button aria-label="Save Character List" onclick="save();">⮋</button>
             </div>
             <!--<button id="delete-character-list" onclick="deleteCharacterList();">Delete All Characters</button>!-->
         </section>

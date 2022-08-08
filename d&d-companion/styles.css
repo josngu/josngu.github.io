@@ -385,10 +385,8 @@ button {
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
-  background-color: hsl(0deg, 0%, 5%);
-  border: none;
-  border-top: 1px solid hsla(0deg, 0%, 100%, 0.075);
-  border-bottom: 1px solid hsla(0deg, 0%, 0%, 0.25);
+  background-color: hsl(0deg, 46%, 10%);
+  border: 1px solid hsl(0deg, 46%, 40%);
   border-radius: 4px;
   padding: 3px 8px;
   font-size: 1.2em;
@@ -400,7 +398,7 @@ button {
   position: relative;
 }
 button:hover {
-  background-color: hsl(0deg, 56%, 40%);
+  background-color: hsl(0deg, 46%, 40%);
 }
 
 .tabs-container {
@@ -430,15 +428,16 @@ button:hover {
   text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   -webkit-animation: alert-enter 0.25s forwards;
           animation: alert-enter 0.25s forwards;
+  position: fixed;
+  bottom: 0;
   background-color: hsl(225deg, 7%, 11%);
   border-top: 1px solid hsl(180deg, 1%, 13%);
   font-size: 1.5em;
   letter-spacing: 0px;
-  position: fixed;
-  bottom: 0;
   padding: 1em;
   text-align: center;
   width: 100%;
+  z-index: 100;
 }
 
 .button-container {
@@ -542,10 +541,8 @@ label {
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
-  background-color: hsl(0deg, 0%, 5%);
-  border: none;
-  border-top: 1px solid hsla(0deg, 0%, 100%, 0.075);
-  border-bottom: 1px solid hsla(0deg, 0%, 0%, 0.25);
+  background-color: hsl(0deg, 46%, 10%);
+  border: 1px solid hsl(0deg, 46%, 40%);
   border-radius: 4px;
   padding: 3px 8px;
   font-size: 1.2em;
@@ -557,7 +554,7 @@ label {
   margin: 1em 0;
 }
 #profile-buttons > label:hover {
-  background-color: hsl(0deg, 56%, 40%);
+  background-color: hsl(0deg, 46%, 40%);
 }
 #profile-buttons > label:focus-within {
   outline: 1px solid white !important;
@@ -993,11 +990,11 @@ footer {
 }
 
 .tab-selected {
-  border-bottom: 2px solid hsl(0deg, 56%, 40%);
+  border-bottom: 2px solid hsl(0deg, 46%, 40%);
   color: hsl(0deg, 0%, 100%);
 }
 
-.tab-2-selected {
+.tab-number-selected {
   background-color: hsl(0deg, 0%, 5%);
   color: hsl(0deg, 0%, 100%);
 }
