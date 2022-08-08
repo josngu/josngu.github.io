@@ -246,11 +246,12 @@ nav ul {
     a {
         display: block;
         background-color: $clr-dark;
+        color: $clr-primary-translucent;
         padding: 4px 16px;
         border-bottom: 2px solid transparent;
         transition-duration: $duration-short;
         &:hover {
-            border-bottom: 2px solid $clr-light;
+            color: $clr-light;
         }
     }
 }
@@ -282,6 +283,25 @@ button {
     @include button;
     margin: 1em 0;
     position: relative;
+}
+.tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+}
+.btn-tab {
+    margin: 0;
+    flex-grow: 0;
+    background-color: transparent;
+    color: $clr-primary-translucent;
+    border: 0;
+    border-radius: 32px;
+    width: 32px;
+    height: 32px;
+    &:hover {
+        background-color: $clr-dark;
+        color: $clr-light;
+    }
 }
 .alert {
     @include typeface;
@@ -415,7 +435,7 @@ label {
     display: flex;
     flex-direction: column;
     max-height: 66vh;
-    div {
+    > :first-child {
         padding-right: 8px;
         overflow-y: scroll;
     }
@@ -609,11 +629,24 @@ textarea {
     margin: $margin-section;
 }
 #skills-container {
+    animation: enter $duration-medium forwards;
+    max-height: 50vh;
+    padding-right: 1em;
+    overflow-y: scroll;
+    border-radius: $border-radius;
     .row {
-        gap: 8px;
+        justify-content: space-between;
+        div {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
         //Hides the first label from view
-        & > :first-child {
+        div > :first-child {
             font-size: 0;
+        }
+        div > :last-child {
+            margin-left: 4px;
         }
     }
     label {
@@ -630,16 +663,18 @@ input[type=checkbox] {
        -moz-appearance: none;
             appearance: none;
     background-color: hsla(0, 0%, 100%, 0);
-    min-height: 1.5em;
-    min-width: 1.5em;
+    height: 1.5em;
+    width: 1.5em;
+    margin-top: 0;
+    margin-bottom: 0;
     cursor: pointer;
-    border: 2px solid hsla(0, 0%, 100%, 0.8);
+    border: 1px solid hsla(0, 0%, 100%, 0.8);
     border-radius: 32px;
     transition-duration: 0.2s;
-  }
+}
 input[type=checkbox]:checked {
     background-color: hsl(0, 0%, 100%);
-  }
+}
 
 //COLUMN 3
 #character-list {
@@ -734,7 +769,7 @@ input[type=checkbox]:checked {
     object-fit: cover;
 }
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     text-align: center;
@@ -753,6 +788,10 @@ footer {
 }
 .tab-selected {
     border-bottom: 2px solid $clr-accent;
+    color: $clr-light;
+}
+.tab-2-selected {
+    background-color: $clr-dark;
     color: $clr-light;
 }
 //Media queries

@@ -337,12 +337,13 @@ nav ul li {
 nav ul a {
   display: block;
   background-color: hsl(0deg, 0%, 5%);
+  color: hsla(0deg, 0%, 100%, 0.5);
   padding: 4px 16px;
   border-bottom: 2px solid transparent;
   transition-duration: 0.2s;
 }
 nav ul a:hover {
-  border-bottom: 2px solid hsl(0deg, 0%, 100%);
+  color: hsl(0deg, 0%, 100%);
 }
 
 main {
@@ -400,6 +401,27 @@ button {
 }
 button:hover {
   background-color: hsl(0deg, 56%, 40%);
+}
+
+.tabs-container {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+
+.btn-tab {
+  margin: 0;
+  flex-grow: 0;
+  background-color: transparent;
+  color: hsla(0deg, 0%, 100%, 0.5);
+  border: 0;
+  border-radius: 32px;
+  width: 32px;
+  height: 32px;
+}
+.btn-tab:hover {
+  background-color: hsl(0deg, 0%, 5%);
+  color: hsl(0deg, 0%, 100%);
 }
 
 .alert {
@@ -576,7 +598,7 @@ label {
   flex-direction: column;
   max-height: 66vh;
 }
-#traits-container div, #traits-container-2 div {
+#traits-container > :first-child, #traits-container-2 > :first-child {
   padding-right: 8px;
   overflow-y: scroll;
 }
@@ -788,11 +810,27 @@ textarea {
   margin: 0 clamp(1em, 1.5vw, 2em);
 }
 
-#skills-container .row {
-  gap: 8px;
+#skills-container {
+  -webkit-animation: enter 0.5s forwards;
+          animation: enter 0.5s forwards;
+  max-height: 50vh;
+  padding-right: 1em;
+  overflow-y: scroll;
+  border-radius: 4px;
 }
-#skills-container .row > :first-child {
+#skills-container .row {
+  justify-content: space-between;
+}
+#skills-container .row div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+#skills-container .row div > :first-child {
   font-size: 0;
+}
+#skills-container .row div > :last-child {
+  margin-left: 4px;
 }
 #skills-container label {
   width: auto;
@@ -808,10 +846,12 @@ input[type=checkbox] {
   -moz-appearance: none;
   appearance: none;
   background-color: hsla(0deg, 0%, 100%, 0);
-  min-height: 1.5em;
-  min-width: 1.5em;
+  height: 1.5em;
+  width: 1.5em;
+  margin-top: 0;
+  margin-bottom: 0;
   cursor: pointer;
-  border: 2px solid hsla(0deg, 0%, 100%, 0.8);
+  border: 1px solid hsla(0deg, 0%, 100%, 0.8);
   border-radius: 32px;
   transition-duration: 0.2s;
 }
@@ -933,7 +973,7 @@ input[type=checkbox]:checked {
 }
 
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   text-align: center;
@@ -954,6 +994,11 @@ footer {
 
 .tab-selected {
   border-bottom: 2px solid hsl(0deg, 56%, 40%);
+  color: hsl(0deg, 0%, 100%);
+}
+
+.tab-2-selected {
+  background-color: hsl(0deg, 0%, 5%);
   color: hsl(0deg, 0%, 100%);
 }
 

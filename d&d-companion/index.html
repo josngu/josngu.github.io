@@ -99,7 +99,10 @@
                     <label for="flaws">Flaws</label>
                     <textarea id="flaws"></textarea>    
                 </div>
-                <button type="button" onclick="nextPage();">Next Page</button>
+                <div class="tabs-container">
+                    <button class="btn-tab tab-2-selected" type="button" onclick="previousPage();">1</button>
+                    <button class="btn-tab" type="button" onclick="nextPage();">2</button>
+                </div>
             </form>
             <form id="traits-container-2">
                 <div>
@@ -112,7 +115,10 @@
                     <label for="backstory">Character Backstory</label>
                     <textarea id="backstory"></textarea>
                 </div>
-                <button type="button" onclick="previousPage();">Previous Page</button>
+                <div class="tabs-container">
+                    <button class="btn-tab" type="button" onclick="previousPage();">1</button>
+                    <button class="btn-tab tab-2-selected" type="button" onclick="nextPage();">2</button>
+                </div>
             </form>
         </section>
         <section id="character-stats">
@@ -247,10 +253,148 @@
             <h2>CHARACTER SKILLS</h2>
             <form id="skills-container">
                 <div class="row">
-                    <label for="chk-acrobatics">Acrobatics Proficiency</label>
-                    <input id="chk-acrobatics" type="checkbox">
-                    <label for="acrobatics">Acrobatics (Dex)</label>
+                    <div>
+                        <label for="prof-acrobatics">Acrobatics Proficiency</label>
+                        <input id="prof-acrobatics" type="checkbox">
+                        <label for="acrobatics">Acrobatics (Dex)</label>
+                    </div>
                     <input id="acrobatics" type="number">
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="prof-animalHandling">Animal Handling Proficiency</label>
+                        <input id="prof-animalHandling" type="checkbox">
+                        <label for="animalHandling">Animal Handling (Wis)</label>
+                    </div>
+                    <input id="animalHandling" type="number">
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="prof-arcana">Arcana Proficiency</label>
+                        <input id="prof-arcana" type="checkbox">
+                        <label for="arcana">Arcana (Int)</label>
+                    </div>
+                    <input id="arcana" type="number">
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="prof-athletics">Athletics Proficiency</label>
+                        <input id="prof-athletics" type="checkbox">
+                        <label for="athletics">Athletics (Str)</label>
+                    </div>
+                    <input id="athletics" type="number">
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="prof-deception">Deception Proficiency</label>
+                        <input id="prof-deception" type="checkbox">
+                        <label for="deception">Deception (Cha)</label>
+                    </div>
+                    <input id="deception" type="number">
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="prof-history">History Proficiency</label>
+                        <input id="prof-history" type="checkbox">
+                        <label for="history">History (Int)</label>
+                    </div>
+                    <input id="history" type="number">
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="prof-insight">Insight Proficiency</label>
+                        <input id="prof-insight" type="checkbox">
+                        <label for="insight">Insight (Wis)</label>
+                    </div>
+                    <input id="insight" type="number">
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="prof-intimidation">Intimidation Proficiency</label>
+                        <input id="prof-intimidation" type="checkbox">
+                        <label for="intimidation">Intimidation (Cha)</label>
+                    </div>
+                    <input id="intimidation" type="number">
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="prof-investigation">Investigation Proficiency</label>
+                        <input id="prof-investigation" type="checkbox">
+                        <label for="investigation">Investigation (Int)</label>
+                    </div>
+                    <input id="investigation" type="number">
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="prof-medicine">Medicine Proficiency</label>
+                        <input id="prof-medicine" type="checkbox">
+                        <label for="medicine">Medicine (Wis)</label>
+                    </div>
+                    <input id="medicine" type="number">
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="prof-nature">Nature Proficiency</label>
+                        <input id="prof-nature" type="checkbox">
+                        <label for="nature">Nature (Int)</label>
+                    </div>
+                    <input id="nature" type="number">
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="prof-perception">Perception Proficiency</label>
+                        <input id="prof-perception" type="checkbox">
+                        <label for="perception">Perception (Wis)</label>
+                    </div>
+                    <input id="perception" type="number">
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="prof-performance">Performance Proficiency</label>
+                        <input id="prof-performance" type="checkbox">
+                        <label for="performance">Performance (Cha)</label>
+                    </div>
+                    <input id="performance" type="number">
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="prof-persuasion">Persuasion Proficiency</label>
+                        <input id="prof-persuasion" type="checkbox">
+                        <label for="persuasion">Persuasion (Cha)</label>
+                    </div>
+                    <input id="persuasion" type="number">
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="prof-religion">Religion Proficiency</label>
+                        <input id="prof-religion" type="checkbox">
+                        <label for="religion">Religion (Int)</label>
+                    </div>
+                    <input id="religion" type="number">
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="prof-sleightOfHand">Sleight of Hand Proficiency</label>
+                        <input id="prof-sleightOfHand" type="checkbox">
+                        <label for="sleightOfHand">Sleight of Hand (Dex)</label>
+                    </div>
+                    <input id="sleightOfHand" type="number">
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="prof-stealth">Stealth Proficiency</label>
+                        <input id="prof-stealth" type="checkbox">
+                        <label for="stealth">Stealth (Dex)</label>
+                    </div>
+                    <input id="stealth" type="number">
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="prof-survival">Survival Proficiency</label>
+                        <input id="prof-survival" type="checkbox">
+                        <label for="survival">Survival (Wis)</label>
+                    </div>
+                    <input id="survival" type="number">
                 </div>
             </form>
         </section>
