@@ -26,6 +26,25 @@
             </ul>
         </nav>
     </header>
+    <section id="character-list">
+        <button class="btn-close" onclick='closePanel("character-list")'>Close Panel</button>
+        <h2>CHARACTER LIST</h2>
+        <div id="character-container">
+            <div class="add-person" onclick="addPerson();" onkeypress="addPerson();" tabindex="0">
+                <p>Add Character</p>
+            </div>
+            <div class="delete-person" onclick="deleteCharacter();" onkeypress="deleteCharacter();" tabindex="0">
+                <p>Delete Character</p>
+            </div>
+        </div>
+        <div class="button-container">
+            <button aria-label="Move Character Up" onclick="movePersonUp();">▲</button>
+            <button aria-label="Move Character Down" onclick="movePersonDown();">▼</button>
+            <button aria-label="Load Character List" onclick="load();">⮉</button>
+            <button aria-label="Save Character List" onclick="save();">⮋</button>
+        </div>
+        <!--<button id="delete-character-list" onclick="deleteCharacterList();">Delete All Characters</button>!-->
+    </section>
     <main>
         <section id="instructions">
             <h2>INSTRUCTIONS</h2>
@@ -99,11 +118,10 @@
                     <label for="flaws">Flaws</label>
                     <textarea id="flaws"></textarea>    
                 </div>
-                <div class="tabs-container">
-                    <button class="btn-tab tab-number-selected" type="button" onclick="previousPage();">1</button>
-                    <button class="btn-tab" type="button" onclick="nextPage();">2</button>
-                </div>
             </form>
+        </section>
+        <section id="character-freetext-2">
+            <h2>CHARACTER PROFILE (2)</h2>
             <form id="traits-container-2">
                 <div>
                     <label for="features">Features and Traits</label>
@@ -115,14 +133,10 @@
                     <label for="backstory">Character Backstory</label>
                     <textarea id="backstory"></textarea>
                 </div>
-                <div class="tabs-container">
-                    <button class="btn-tab" type="button" onclick="previousPage();">1</button>
-                    <button class="btn-tab tab-number-selected" type="button" onclick="nextPage();">2</button>
-                </div>
             </form>
         </section>
-        <section id="character-stats">
-            <h2>CHARACTER STATS</h2>
+        <section id="ability-scores">
+            <h2>ABILITY SCORES</h2>
             <form id="stats-container">
                 <div class="row">
                     <label for="strength">Strength</label>
@@ -197,55 +211,6 @@
                     <div>
                         <label for="speed">Speed</label>
                         <input type="text" id="speed" autocomplete="off">
-                    </div>
-                </div>
-            <button type="button">View HP and EXP</button>
-            </form>
-            <form id="stats-container-2">
-                <div class="bars">
-                    <div class="hp-container">
-                        <div class="hp-text">
-                            <p>Hit Points</p>
-                            <div>
-                                <label for="hpCurrent">Current Hit Points</label>
-                                <input type="number" id="hpCurrent">
-                                <p>/</p>
-                                <label for="hpMaximum">Maximum Hit Points</label>
-                                <input type="number" id="hpMaximum">
-                            </div>
-                        </div>
-                        <div class="hp-bar">
-                            <div class="hp-bar-large-bg"></div>
-                            <div class="hp-bar-large"></div>
-                        </div>
-                        <div class="temporary-hp-container">
-                            <label for="hpTemporary">Temporary Hit Points</label>
-                            <input type="number" id="hpTemporary">
-                        </div>
-                    </div>
-                    <div class="exp-container">
-                        <div class="character-level-container">
-                            <label for="characterLevel">Level</label>
-                            <input type="number" id="characterLevel">
-                        </div>
-                        <div class="exp-text">
-                            <p>EXP</p>
-                            <div>
-                                <label for="expCurrent">Current Experience Points</label>
-                                <input type="number" id="expCurrent">
-                                <p>/</p>
-                                <label for="expMaximum">Maximum Experience Points</label>
-                                <input type="number" id="expMaximum">
-                            </div>
-                        </div>
-                        <div class="exp-bar">
-                            <div class="exp-bar-large-bg"></div>
-                            <div class="exp-bar-large"></div>
-                        </div>
-                        <p id="proficiencyBonus"></p>
-                    </div>
-                    <div>
-                        <p>Classes</p>
                     </div>
                 </div>
             </form>
@@ -399,27 +364,59 @@
                 </div>
             </form>
         </section>
-        <section id="character-list">
-            <h2>CHARACTER LIST</h2>
-            <div id="character-container">
-                <div class="add-person" onclick="addPerson();" onkeypress="addPerson();" tabindex="0">
-                    <p>Add Character</p>
+        <section id="character-stats">
+            <h2>CHARACTER STATS</h2>
+            <form id="stats-container-2">
+                <div class="bars">
+                    <div class="hp-container">
+                        <div class="hp-text">
+                            <p>Hit Points</p>
+                            <div>
+                                <label for="hpCurrent">Current Hit Points</label>
+                                <input type="number" id="hpCurrent">
+                                <p>/</p>
+                                <label for="hpMaximum">Maximum Hit Points</label>
+                                <input type="number" id="hpMaximum">
+                            </div>
+                        </div>
+                        <div class="hp-bar">
+                            <div class="hp-bar-large-bg"></div>
+                            <div class="hp-bar-large"></div>
+                        </div>
+                        <div class="temporary-hp-container">
+                            <label for="hpTemporary">Temporary Hit Points</label>
+                            <input type="number" id="hpTemporary">
+                        </div>
+                    </div>
+                    <div class="exp-container">
+                        <div class="character-level-container">
+                            <label for="characterLevel">Level</label>
+                            <input type="number" id="characterLevel">
+                        </div>
+                        <div class="exp-text">
+                            <p>EXP</p>
+                            <div>
+                                <label for="expCurrent">Current Experience Points</label>
+                                <input type="number" id="expCurrent">
+                                <p>/</p>
+                                <label for="expMaximum">Maximum Experience Points</label>
+                                <input type="number" id="expMaximum">
+                            </div>
+                        </div>
+                        <div class="exp-bar">
+                            <div class="exp-bar-large-bg"></div>
+                            <div class="exp-bar-large"></div>
+                        </div>
+                        <p id="proficiencyBonus"></p>
+                    </div>
+                    <div>
+                        <p>Classes</p>
+                    </div>
                 </div>
-                <div class="delete-person" onclick="deleteCharacter();" onkeypress="deleteCharacter();" tabindex="0">
-                    <p>Delete Character</p>
-                </div>
-            </div>
-            <div class="button-container">
-                <button aria-label="Move Character Up" onclick="movePersonUp();">▲</button>
-                <button aria-label="Move Character Down" onclick="movePersonDown();">▼</button>
-                <button aria-label="Load Character List" onclick="load();">⮉</button>
-                <button aria-label="Save Character List" onclick="save();">⮋</button>
-            </div>
-            <!--<button id="delete-character-list" onclick="deleteCharacterList();">Delete All Characters</button>!-->
+            </form>
         </section>
     </main>
     <footer>
-        <button id="" onclick="">Roll Die</button>
     </footer>
 </body>
 </html>

@@ -119,20 +119,20 @@ function selectInfo() {
     $("a").removeClass("tab-selected");
     $("#character-info").addClass("tab-selected");
     $("#character-stats").hide();
+    $("#ability-scores").hide();
     $("#character-skills").hide();
     $("#character-editor").show();
-    $("#character-freetext").removeClass("animate-column-2-enter");
-    $("#character-freetext").removeClass("animate-column-2-leave");
     $("#character-freetext").show();
+    $("#character-freetext-2").show();
 }
 function selectStats() {
     $("a").removeClass("tab-selected");
     $("#stats-and-skills").addClass("tab-selected");
     $("#character-editor").hide();
     $("#character-freetext").hide();
+    $("#character-freetext-2").hide();
     $("#character-stats").show();
-    $("#character-skills").removeClass("animate-column-2-enter");
-    $("#character-skills").removeClass("animate-column-2-leave");
+    $("#ability-scores").show();
     $("#character-skills").show();
 }
 function addPerson() {
@@ -203,16 +203,14 @@ function selectPerson(personNum) {
     $("nav").addClass("nav-enter");
     //The next 2 "if" statements are for animation purposes
     if ($("#character-info").hasClass("tab-selected") && $("#character-editor").is(":hidden")) {
-        $("#character-freetext").removeClass("animate-column-2-leave");
-        $("#character-freetext").addClass("animate-column-2-enter");
         $("#character-editor").show();
         $("#character-freetext").show();
+        $("#character-freetext-2").show();
     }
     if ($("#stats-and-skills").hasClass("tab-selected") && $("#character-stats").is(":hidden")) {
-        $("#character-skills").removeClass("animate-column-2-leave");
-        $("#character-skills").addClass("animate-column-2-enter");
-        $("#character-stats").show();
+        $("#ability-scores").show();
         $("#character-skills").show();
+        $("#character-stats").show();
     }
     selection = personNum;
     //Loads the object values into the character editor
@@ -226,11 +224,11 @@ function deleteCharacter() {
         $(".delete-person p").text("Delete Character");
         $("#person-" + selection).remove();
         $("#character-editor").css("display", "none");
+        $("#character-freetext").hide();
+        $("#character-freetext-2").hide();
+        $("#ability-scores").hide();
+        $("#character-skills").hide();
         $("#character-stats").css("display", "none");
-        $("#character-freetext").removeClass("animate-column-2-enter");
-        $("#character-freetext").addClass("animate-column-2-leave");
-        $("#character-skills").removeClass("animate-column-2-enter");
-        $("#character-skills").addClass("animate-column-2-leave");
         $("#instructions > p").text("Add or select a person.");
         $("#instructions").css("display", "block");
         $("nav").removeClass("nav-enter");
@@ -282,13 +280,12 @@ function decreaseStat(statType) {
         $("#" + statType + "-modifier").text(Math.floor((y - 10) / 2));
     }
 }
+//This function is defunct
 function deleteCharacterList() {
     if ($("#delete-character-list").text() == "Are you sure?") {
         $("#delete-character-list").text("Delete All Characters");
         $(".person-container").remove();
         $("#character-editor").css("display", "none");
-        $("#character-freetext").removeClass("animate-column-2-enter");
-        $("#character-freetext").addClass("animate-column-2-leave");
         $("#instructions > p").text("Add or select a person.");
         $("#instructions").css("display", "block");
         $("nav").removeClass("nav-enter");
@@ -327,6 +324,7 @@ function uploadPicture() {
     };
     reader.readAsDataURL(file.files[0]);
 }
+//Not used
 function toggleFooter() {
     //There has to be a better way of switching between these two states
     if ($("#toggle-footer").text() == "Show Tools") {

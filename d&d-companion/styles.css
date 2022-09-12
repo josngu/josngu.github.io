@@ -289,8 +289,8 @@ input[type=number] {
 
 html {
   scroll-behavior: smooth;
+  overflow-y: scroll;
   scrollbar-color: hsl(180deg, 1%, 13%) white transparent;
-  overflow: hidden;
 }
 
 body {
@@ -420,6 +420,10 @@ button:hover {
 .btn-tab:hover {
   background-color: hsl(0deg, 0%, 5%);
   color: hsl(0deg, 0%, 100%);
+}
+
+.btn-close {
+  max-height: 32px;
 }
 
 .alert {
@@ -572,20 +576,10 @@ label {
   height: 0;
 }
 
-#character-freetext {
+#character-freetext, #character-freetext-2 {
   display: none;
   margin: 0 clamp(1em, 1.5vw, 2em);
   width: 360px;
-}
-
-.animate-column-2-enter {
-  -webkit-animation: enter-column-2 0.8s forwards;
-          animation: enter-column-2 0.8s forwards;
-}
-
-.animate-column-2-leave {
-  -webkit-animation: leave-column-2 0.8s forwards;
-          animation: leave-column-2 0.8s forwards;
 }
 
 #traits-container, #traits-container-2 {
@@ -593,11 +587,9 @@ label {
           animation: enter 0.5s forwards;
   display: flex;
   flex-direction: column;
-  max-height: 66vh;
 }
 #traits-container > :first-child, #traits-container-2 > :first-child {
   padding-right: 8px;
-  overflow-y: scroll;
 }
 #traits-container label, #traits-container-2 label {
   width: 100%;
@@ -605,10 +597,6 @@ label {
 }
 #traits-container button, #traits-container-2 button {
   margin: 0.5em 0;
-}
-
-#traits-container-2 {
-  display: none;
 }
 
 textarea {
@@ -626,6 +614,12 @@ textarea {
   margin: 4px 0 8px 0;
 }
 
+#ability-scores {
+  display: none;
+  width: 360px;
+  margin: 0 clamp(1em, 1.5vw, 2em);
+}
+
 #character-stats {
   display: none;
   width: 360px;
@@ -638,10 +632,6 @@ textarea {
           animation: enter 0.5s forwards;
   flex-direction: column;
   gap: 4px;
-}
-
-#stats-container-2 {
-  display: none;
 }
 
 .stat-modifier {
@@ -810,9 +800,7 @@ textarea {
 #skills-container {
   -webkit-animation: enter 0.5s forwards;
           animation: enter 0.5s forwards;
-  max-height: 50vh;
   padding-right: 1em;
-  overflow-y: scroll;
   border-radius: 4px;
 }
 #skills-container .row {
@@ -860,7 +848,19 @@ input[type=checkbox]:checked {
 #character-list {
   -webkit-animation: enter 0.5s forwards;
           animation: enter 0.5s forwards;
-  margin: 0 clamp(1em, 1.5vw, 2em);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1em;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  border: 1px solid hsla(0deg, 0%, 100%, 0.5);
+  border-radius: 4px;
+  background-color: hsl(225deg, 7%, 11%);
+  box-shadow: 0 0 64px 0 hsl(0deg, 0%, 5%);
+  z-index: 100;
 }
 
 #character-container {
@@ -871,7 +871,7 @@ input[type=checkbox]:checked {
   padding: 1px 2px 1px 1px;
   gap: 1px;
   border-radius: 4px;
-  height: 438px;
+  height: 582px;
   width: 360px;
   overflow-y: scroll;
   overflow-x: hidden;
