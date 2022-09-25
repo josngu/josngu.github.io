@@ -1,3 +1,8 @@
+@font-face {
+  /*Belgrad typeface was created by Vinzent Britz*/
+  font-family: "Belgrad";
+  src: url("Belgrad.ttf");
+}
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -48,12 +53,12 @@ main > h2 {
 }
 
 h1 {
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: "Belgrad", sans-serif;
   color: hsl(0deg, 0%, 100%);
   text-align: center;
-  font-size: clamp(2em, 4vw, 3em);
+  font-size: clamp(2em, 5vw, 5em);
   font-weight: 600;
-  margin: 2em auto 0.5em auto;
+  margin: 1em auto 0.5em auto;
 }
 
 p {
