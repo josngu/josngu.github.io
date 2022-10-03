@@ -8,7 +8,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: hsl(230deg, 20%, 12%);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -24,7 +24,7 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: hsl(230deg, 20%, 17%);
+  background-color: hsl(0deg, 0%, 100%);
   scrollbar-color: transparent;
 }
 
@@ -33,43 +33,58 @@ body {
   padding: 0;
 }
 
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  margin-bottom: 3em;
+  background-image: url("images/bg.webp");
+}
+header > p {
+  margin: 1em;
+  color: hsl(0deg, 0%, 100%);
+}
+header > h2 {
+  color: hsl(0deg, 0%, 100%);
+}
+
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
 }
-main > p {
-  margin: 1em;
-  max-width: 720px;
-  text-align: center;
-}
-main > h2 {
-  font-family: "Plus Jakarta Sans", sans-serif;
-  font-weight: 600;
-  color: hsl(0deg, 0%, 100%);
-  margin: 1em 0 0 0;
-  text-align: center;
-}
 
 h1 {
   font-family: "Belgrad", sans-serif;
   color: hsl(0deg, 0%, 100%);
   text-align: center;
-  font-size: clamp(2em, 5vw, 5em);
+  font-size: clamp(3em, 5vw, 5em);
   font-weight: 600;
-  margin: 1em auto 0.5em auto;
+  margin: 0;
+}
+
+h2 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 600;
+  color: hsl(0deg, 0%, 20%);
+  margin: 1em 0 0 0;
+  text-align: center;
 }
 
 p {
-  color: hsl(0deg, 0%, 100%);
+  color: hsl(0deg, 0%, 20%);
   font-family: "Plus Jakarta Sans", sans-serif;
+  text-align: center;
 }
 
 .img-container img {
   width: 100%;
   -o-object-fit: scale-down;
      object-fit: scale-down;
+  border-radius: 0.5em;
+  box-shadow: 0 0 8px -4px hsl(0deg, 0%, 20%);
 }
 
 .three-columns {
@@ -81,9 +96,8 @@ p {
   display: flex;
   flex-direction: column;
   max-width: clamp(320px, 25vw, 480px);
-  border: 1px solid hsl(0deg, 0%, 100%);
-  border-radius: 2px;
-  margin: 1em;
+  padding: 1em;
+  border-radius: 1em;
 }
 
 .description-container {
@@ -92,49 +106,47 @@ p {
 }
 .description-container h2 {
   font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.2em;
   font-weight: 600;
-  color: hsl(0deg, 0%, 100%);
-  margin: 24px;
-  text-align: center;
+  color: hsl(0deg, 0%, 20%);
+  margin: 16px;
 }
 .description-container p {
-  text-align: center;
-  margin: 0 24px 32px 24px;
+  margin: 0 1em 24px 1em;
 }
 
 .button-pair {
   display: flex;
   list-style: none;
   padding: 0;
-  margin: auto 0 0 0;
+  margin: auto 1em 1em 1em;
+  gap: 1em;
 }
 .button-pair li {
-  flex-grow: 2;
+  width: 50%;
 }
 .button-pair a {
   display: block;
-  color: hsl(0deg, 0%, 100%);
+  color: hsl(0deg, 0%, 20%);
   text-decoration: none;
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 500;
-  border-top: 2px solid white;
-  border-bottom: 1px solid white;
-  border-left: 1px solid white;
-  border-right: 1px solid white;
-  padding: 0.5em 1em;
+  border: 2px solid hsl(0deg, 0%, 20%);
+  border-radius: 4px;
+  padding: 0.5em 0.5em;
   text-align: center;
   transition-duration: 0.2s;
 }
 .button-pair a:hover {
-  background-color: hsl(0deg, 0%, 100%);
-  color: hsl(0deg, 0%, 5%);
+  background-color: hsl(0deg, 0%, 20%);
+  color: hsl(0deg, 0%, 100%);
 }
 
 address {
-  margin: 1em 0 2em 0;
+  margin: 1em 0 1em 0;
 }
 address a {
-  color: hsl(0deg, 0%, 100%);
+  color: hsl(0deg, 0%, 20%);
   font-family: "Plus Jakarta Sans", sans-serif;
   font-style: normal;
 }
