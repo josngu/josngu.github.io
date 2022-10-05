@@ -4,7 +4,7 @@
     src: url("Belgrad.ttf");
 }
 $clr-light: hsl(0, 0%, 100%);
-$clr-dark: hsl(0, 0%, 20%);
+$clr-dark: hsl(0, 0%, 12%);
 $font-h1: "Belgrad", sans-serif;
 $font-h2: "Plus Jakarta Sans", sans-serif;
 $font-body: "Plus Jakarta Sans", sans-serif;
@@ -13,10 +13,10 @@ $font-size-body: 1em;
 $font-size-small: 0.8em;
 
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 12px;
 }
 ::-webkit-scrollbar-track {
-    background: hsl(230, 20%, 12%);
+    background: $clr-dark;
 }
 ::-webkit-scrollbar-thumb {
     background: hsl(0, 0%, 100%, 0.5);
@@ -61,7 +61,7 @@ h1 {
     font-family: $font-h1;
     color: $clr-light;
     text-align: center;
-    font-size: clamp(3em, 5vw, 5em);
+    font-size: clamp(3em, 6vw, 5em);
     font-weight: 600;
     margin: 0;
 }
