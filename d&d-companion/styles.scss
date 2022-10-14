@@ -14,6 +14,7 @@ $clr-accent-faded: hsl(0, 46%, 10%);
 $fade-in: fade-in 0.5s forwards;
 $border-radius: 4px;
 $margin-section: 0 clamp(1em, 1.5vw, 2em);
+$nav-height: 40px;
 $duration-short: 0.2s;
 $duration-medium: 0.5s;
 $duration-long: 0.8s;
@@ -121,7 +122,7 @@ $duration-longer: 1s;
     }
     50% {
         opacity: 0%;
-        height: 35px;
+        height: $nav-height;
     }
     100% {
         opacity: 100%;
@@ -130,11 +131,11 @@ $duration-longer: 1s;
 @keyframes leave-nav {
     0% {
         opacity: 100%;
-        height: 35px;
+        height: $nav-height;
     }
     50% {
         opacity: 0%;
-        height: 35px;
+        height: $nav-height;
     }
     100% {
         opacity: 0%;
@@ -219,10 +220,11 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 5vh;
 }
 nav {
     display: none;
-    height: 35px;
+    height: $nav-height;
 }
 .nav-enter {
     animation: enter-nav $duration-long forwards;
@@ -241,12 +243,14 @@ nav ul {
     color: $clr-light;
     li {
         cursor: pointer;
+        height: $nav-height;
     }
     a {
         display: block;
         background-color: $clr-dark;
         color: $clr-primary-translucent;
-        padding: 4px 16px;
+        padding: 8px 16px 8px 16px;
+        height: $nav-height;
         border-bottom: 2px solid transparent;
         transition-duration: $duration-short;
         &:hover {
@@ -259,11 +263,12 @@ main {
     justify-content: center;
 }
 h1 {
+    visibility: hidden;
     @include typeface;
     font-weight: 600;
     text-align: center;
-    font-size: $font-size-large;
-    margin: clamp(0.75em, 3vh, 1.5em) 0.5em 0.75em 0.5em;
+    font-size: 0;
+    margin: 0;
 }
 h2 {
     @include typeface;
@@ -375,7 +380,7 @@ label {
 #instructions {
     animation: enter $duration-medium forwards;
     margin: $margin-section;
-    width: 360px;
+    min-width: 25vw;
     p {
         animation: enter $duration-medium forwards;
         margin: 0;
@@ -451,7 +456,8 @@ textarea {
     font-family: $font-family;
     font-size: $font-size-smallest;
     width: 100%;
-    height: 5em;
+    min-height: 1.8em;
+    height: 6em;
     resize: vertical;
     padding: 4px;
     margin: 4px 0 8px 0;
@@ -806,11 +812,6 @@ footer {
 @media screen and (max-width: 1100px) {
     html {
         overflow-y: auto;
-    }
-    header {
-        h1 {
-            margin: 1em 0.5em 0 0.5em;
-        }
     }
     main {
         flex-direction: column;

@@ -12,6 +12,25 @@ $font-size-large: 1.2em;
 $font-size-body: 1em;
 $font-size-small: 0.8em;
 
+@keyframes title-enter {
+    0% {
+        opacity: 0%;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 100%;
+        transform: scale(1);
+    }
+}
+@keyframes bg-load {
+    0% {
+		background-position: 100% 0%;
+	}
+	100% {
+        background-position: 0% 0%;
+	}
+}
+
 ::-webkit-scrollbar {
     width: 12px;
 }
@@ -37,19 +56,37 @@ body {
     padding: 0;
 }
 header {
+    background-position: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 100vh;
     margin-bottom: 3em;
     background-image: url("images/bg.webp");
+    > h1 {
+        animation: title-enter 1s forwards;
+    }
+    > h2 {
+        animation: title-enter 2s forwards;
+        color: $clr-light;
+    }
     > p {
+        animation: title-enter 2s forwards;
         margin: 1em;
         color: $clr-light;
     }
-    > h2 {
-        color: $clr-light;
-    }
+}
+.bg-overlay {
+    animation: bg-load 3s forwards;
+    background: linear-gradient(120deg, hsla(0, 0%, 100%, 0) 0%,hsla(0, 0%, 100%, 0) 25%,hsl(207, 80%, 56%) 50%,hsl(336, 100%, 58%) 75%,hsl(266, 89%, 50%) 100%);
+    background-size: 800% 400%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    mix-blend-mode: screen;
 }
 main {
     display: flex;
@@ -82,7 +119,6 @@ p {
         width: 100%;
         object-fit: scale-down;
         border-radius: 0.5em;
-        box-shadow: 0 0 8px -4px $clr-dark;
     }
 }
 .three-columns {

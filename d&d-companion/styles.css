@@ -195,7 +195,7 @@
   }
   50% {
     opacity: 0%;
-    height: 35px;
+    height: 40px;
   }
   100% {
     opacity: 100%;
@@ -208,7 +208,7 @@
   }
   50% {
     opacity: 0%;
-    height: 35px;
+    height: 40px;
   }
   100% {
     opacity: 100%;
@@ -217,11 +217,11 @@
 @-webkit-keyframes leave-nav {
   0% {
     opacity: 100%;
-    height: 35px;
+    height: 40px;
   }
   50% {
     opacity: 0%;
-    height: 35px;
+    height: 40px;
   }
   100% {
     opacity: 0%;
@@ -231,11 +231,11 @@
 @keyframes leave-nav {
   0% {
     opacity: 100%;
-    height: 35px;
+    height: 40px;
   }
   50% {
     opacity: 0%;
-    height: 35px;
+    height: 40px;
   }
   100% {
     opacity: 0%;
@@ -304,11 +304,12 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 5vh;
 }
 
 nav {
   display: none;
-  height: 35px;
+  height: 40px;
 }
 
 .nav-enter {
@@ -333,12 +334,14 @@ nav ul {
 }
 nav ul li {
   cursor: pointer;
+  height: 40px;
 }
 nav ul a {
   display: block;
   background-color: hsl(0deg, 0%, 5%);
   color: hsla(0deg, 0%, 100%, 0.5);
-  padding: 4px 16px;
+  padding: 8px 16px 8px 16px;
+  height: 40px;
   border-bottom: 2px solid transparent;
   transition-duration: 0.2s;
 }
@@ -352,13 +355,14 @@ main {
 }
 
 h1 {
+  visibility: hidden;
   font-family: "Crimson Text", serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   font-weight: 600;
   text-align: center;
-  font-size: 2em;
-  margin: clamp(0.75em, 3vh, 1.5em) 0.5em 0.75em 0.5em;
+  font-size: 0;
+  margin: 0;
 }
 
 h2 {
@@ -510,7 +514,7 @@ label {
   -webkit-animation: enter 0.5s forwards;
           animation: enter 0.5s forwards;
   margin: 0 clamp(1em, 1.5vw, 2em);
-  width: 360px;
+  min-width: 25vw;
 }
 #instructions p {
   -webkit-animation: enter 0.5s forwards;
@@ -608,7 +612,8 @@ textarea {
   font-family: "Crimson Text", serif;
   font-size: 1em;
   width: 100%;
-  height: 5em;
+  min-height: 1.8em;
+  height: 6em;
   resize: vertical;
   padding: 4px;
   margin: 4px 0 8px 0;
@@ -1002,9 +1007,6 @@ footer {
 @media screen and (max-width: 1100px) {
   html {
     overflow-y: auto;
-  }
-  header h1 {
-    margin: 1em 0.5em 0 0.5em;
   }
   main {
     flex-direction: column;
