@@ -6,7 +6,10 @@
 @-webkit-keyframes title-enter {
   0% {
     opacity: 0%;
-    transform: scale(0.8);
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0%;
   }
   100% {
     opacity: 100%;
@@ -16,7 +19,10 @@
 @keyframes title-enter {
   0% {
     opacity: 0%;
-    transform: scale(0.8);
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0%;
   }
   100% {
     opacity: 100%;
@@ -25,13 +31,35 @@
 }
 @-webkit-keyframes bg-load {
   0% {
+    filter: brightness(50%);
+  }
+  50% {
+    filter: brightness(50%);
+  }
+  100% {
+    filter: brightness(100%);
+  }
+}
+@keyframes bg-load {
+  0% {
+    filter: brightness(50%);
+  }
+  50% {
+    filter: brightness(50%);
+  }
+  100% {
+    filter: brightness(100%);
+  }
+}
+@-webkit-keyframes bg-overlay-load {
+  0% {
     background-position: 100% 0%;
   }
   100% {
     background-position: 0% 0%;
   }
 }
-@keyframes bg-load {
+@keyframes bg-overlay-load {
   0% {
     background-position: 100% 0%;
   }
@@ -70,6 +98,8 @@ body {
 }
 
 header {
+  -webkit-animation: bg-load 1s forwards;
+          animation: bg-load 1s forwards;
   background-position: center;
   display: flex;
   flex-direction: column;
@@ -81,24 +111,28 @@ header {
 header > h1 {
   -webkit-animation: title-enter 1s forwards;
           animation: title-enter 1s forwards;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
 header > h2 {
-  -webkit-animation: title-enter 2s forwards;
-          animation: title-enter 2s forwards;
+  -webkit-animation: title-enter 1s forwards;
+          animation: title-enter 1s forwards;
+  margin-left: 1em;
+  margin-right: 1em;
   color: hsl(0deg, 0%, 100%);
 }
 header > p {
-  -webkit-animation: title-enter 2s forwards;
-          animation: title-enter 2s forwards;
+  -webkit-animation: title-enter 1s forwards;
+          animation: title-enter 1s forwards;
   margin: 1em;
   color: hsl(0deg, 0%, 100%);
 }
 
 .bg-overlay {
-  -webkit-animation: bg-load 3s forwards;
-          animation: bg-load 3s forwards;
+  -webkit-animation: bg-overlay-load 2s forwards;
+          animation: bg-overlay-load 2s forwards;
   background: linear-gradient(120deg, hsla(0deg, 0%, 100%, 0) 0%, hsla(0deg, 0%, 100%, 0) 25%, hsl(207deg, 80%, 56%) 50%, hsl(336deg, 100%, 58%) 75%, hsl(266deg, 89%, 50%) 100%);
-  background-size: 800% 400%;
+  background-size: 400% 400%;
   position: absolute;
   top: 0;
   left: 0;

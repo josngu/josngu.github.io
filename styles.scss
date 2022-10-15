@@ -15,7 +15,10 @@ $font-size-small: 0.8em;
 @keyframes title-enter {
     0% {
         opacity: 0%;
-        transform: scale(0.8);
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 0%;
     }
     100% {
         opacity: 100%;
@@ -23,6 +26,17 @@ $font-size-small: 0.8em;
     }
 }
 @keyframes bg-load {
+    0% {
+		filter: brightness(50%);
+	}
+    50% {
+        filter: brightness(50%);
+    }
+	100% {
+        filter: brightness(100%);
+	}
+}
+@keyframes bg-overlay-load {
     0% {
 		background-position: 100% 0%;
 	}
@@ -56,6 +70,7 @@ body {
     padding: 0;
 }
 header {
+    animation: bg-load 1s forwards;
     background-position: center;
     display: flex;
     flex-direction: column;
@@ -65,21 +80,25 @@ header {
     background-image: url("images/bg.webp");
     > h1 {
         animation: title-enter 1s forwards;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
     }
     > h2 {
-        animation: title-enter 2s forwards;
+        animation: title-enter 1s forwards;
+        margin-left: 1em;
+        margin-right: 1em;
         color: $clr-light;
     }
     > p {
-        animation: title-enter 2s forwards;
+        animation: title-enter 1s forwards;
         margin: 1em;
         color: $clr-light;
     }
 }
 .bg-overlay {
-    animation: bg-load 3s forwards;
+    animation: bg-overlay-load 2s forwards;
     background: linear-gradient(120deg, hsla(0, 0%, 100%, 0) 0%,hsla(0, 0%, 100%, 0) 25%,hsl(207, 80%, 56%) 50%,hsl(336, 100%, 58%) 75%,hsl(266, 89%, 50%) 100%);
-    background-size: 800% 400%;
+    background-size: 400% 400%;
     position: absolute;
     top: 0;
     left: 0;
