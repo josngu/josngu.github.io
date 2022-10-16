@@ -79,18 +79,18 @@ header {
     margin-bottom: 3em;
     background-image: url("images/bg.webp");
     > h1 {
-        animation: title-enter 1s forwards;
+        animation: title-enter 1.25s forwards;
         margin-left: 0.5em;
         margin-right: 0.5em;
     }
     > h2 {
-        animation: title-enter 1s forwards;
+        animation: title-enter 1.25s forwards;
         margin-left: 1em;
         margin-right: 1em;
         color: $clr-light;
     }
     > p {
-        animation: title-enter 1s forwards;
+        animation: title-enter 1.25s forwards;
         margin: 1em;
         color: $clr-light;
     }
@@ -105,7 +105,7 @@ header {
     width: 100%;
     height: 100%;
     opacity: 0.5;
-    mix-blend-mode: screen;
+    mix-blend-mode: lighten;
 }
 main {
     display: flex;
@@ -217,5 +217,8 @@ footer {
 @media screen and (max-width: 750px) {
     .three-columns {
         grid-template-columns: 100%;
+    }
+    .bg-overlay {
+        display: none;
     }
 }

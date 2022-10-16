@@ -109,21 +109,21 @@ header {
   background-image: url("images/bg.webp");
 }
 header > h1 {
-  -webkit-animation: title-enter 1s forwards;
-          animation: title-enter 1s forwards;
+  -webkit-animation: title-enter 1.25s forwards;
+          animation: title-enter 1.25s forwards;
   margin-left: 0.5em;
   margin-right: 0.5em;
 }
 header > h2 {
-  -webkit-animation: title-enter 1s forwards;
-          animation: title-enter 1s forwards;
+  -webkit-animation: title-enter 1.25s forwards;
+          animation: title-enter 1.25s forwards;
   margin-left: 1em;
   margin-right: 1em;
   color: hsl(0deg, 0%, 100%);
 }
 header > p {
-  -webkit-animation: title-enter 1s forwards;
-          animation: title-enter 1s forwards;
+  -webkit-animation: title-enter 1.25s forwards;
+          animation: title-enter 1.25s forwards;
   margin: 1em;
   color: hsl(0deg, 0%, 100%);
 }
@@ -139,7 +139,7 @@ header > p {
   width: 100%;
   height: 100%;
   opacity: 0.5;
-  mix-blend-mode: screen;
+  mix-blend-mode: lighten;
 }
 
 main {
@@ -262,5 +262,8 @@ footer {
 @media screen and (max-width: 750px) {
   .three-columns {
     grid-template-columns: 100%;
+  }
+  .bg-overlay {
+    display: none;
   }
 }/*# sourceMappingURL=styles.css.map */
