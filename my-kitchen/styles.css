@@ -267,7 +267,7 @@ h3 {
 #left-door, #right-door {
   animation: door-open forwards 2s;
   animation-delay: 0.25s;
-  background-color: rgba(0, 0, 0, 0.33);
+  background-color: rgba(0, 0, 0, 1);
   transform-origin: center;
   outline: 12px solid white;
   position: fixed;
@@ -276,8 +276,6 @@ h3 {
   pointer-events: none;
   top: 0;
   height: 100%;
-  backdrop-filter: blur(16px) saturate(200%) opacity(100%);
-  -webkit-backdrop-filter: blur(16px) saturate(200%) opacity(100%);
 }
 #left-door {
   left: 0;
