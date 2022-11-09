@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>html{visibility: hidden; opacity:0;}</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datarunner 2087</title>
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&family=Share+Tech+Mono&display=swap&family=Rajdhani:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="dialog-box">
+        <h2>ATTENTION</h2>
+        <p>RECEIVING FILE...</p>
+        <div class="loading-bar-container">
+            <div></div>
+        </div>
+    </div>
+    <section id="intro-container">
+        <p>The government of Oktobania has hired you to be a digital asset administrator.</p>
+        <p>Your job is to approve or reject assets before they are uploaded onto the digital asset management system.</p>
+        <p>You will be paid 50 Euros per processed asset.</p>
+        <button onclick="$('#intro-container').slideUp(500);">BEGIN DAY</button>
+    </section>
+    <section id="transcript-container">
+        <h2>TRANSCRIPT</h2>
+        <p id="text-login-status">MARC WINTERS HAS LOGGED IN</p>
+        <p class="name-admin">SysAdmin</p>
+        <p class="transcript-admin">What is the purpose of this file?</p>
+        <p class="name-user">Marc Winters</p>
+        <p class="transcript-user">This is a video file.</p>
+        <p class="name-admin">SysAdmin</p>
+        <p class="transcript-admin">Your asset has been rejected. You may log out now.</p>
+        <p class="name-user">Marc Winters</p>
+        <p class="transcript-user">Huh? This is ridiculous.</p>
+    </section>
+    <section id="desktop-container">
+        <p id="date">M10/D01/2087</p>
+        <p id="time">7:00 AM</p>
+        <div id="metadata-container">
+            <h2>MOEN_PowerPlant_2087M02D11_003.jpg</h2>
+            <table>
+                <tr>
+                    <th>Creator</th>
+                    <td>Luke Robertson</td>
+                </tr>
+                <tr>
+                    <th>Date Published</th>
+                    <td>June 3, 2065</td>
+                </tr>
+                <tr>
+                    <th>File Size</th>
+                    <td>5 MB</td>
+                </tr>
+                <tr>
+                    <th>Dimensions</th>
+                    <td>4000px * 4000px</td>
+                </tr>
+                <tr>
+                    <th>Resolution</th>
+                    <td>300 PPI</td>
+                </tr>
+                <tr>
+                    <th>Keywords</th>
+                    <td>people, meeting, group, work</td>
+                </tr>
+                <tr>
+                    <th>Copyright</th>
+                    <td>Synapse Co.</td>
+                </tr>
+                <tr>
+                    <th>Usage Rights</th>
+                    <td>Public Domain</td>
+                </tr>
+                <tr>
+                    <th>Asset Expiry Date</th>
+                    <td>Jan. 4, 2088</td>
+                </tr>
+            </table>
+            <div class="btn-group">
+                <button id="btn-reject">REJECT</button>
+                <button id="btn-approve">APPROVE</button>
+            </div>
+        </div>
+        <button id="btn-rulebook"">View Rulebook</button>
+
+        <p class="scrolling-text">
+            <span>THIS IS A GOVERNMENT-ISSUED COMPUTER.</span>
+            <span>BROWSING THE WEB IS STRICTLY FORBIDDEN.</span>
+            <span>THIS IS A GOVERNMENT-ISSUED COMPUTER.</span>
+            <span>BROWSING THE WEB IS STRICTLY FORBIDDEN.</span>
+            <span>THIS IS A GOVERNMENT-ISSUED COMPUTER.</span>
+            <span>BROWSING THE WEB IS STRICTLY FORBIDDEN.</span>
+            <span>THIS IS A GOVERNMENT-ISSUED COMPUTER.</span>
+            <span>BROWSING THE WEB IS STRICTLY FORBIDDEN.</span>
+        </p>
+    </section>
+    <section id="notifications-container">
+        <h2>NOTIFICATIONS</h2>
+        <p class="notif-regular">
+            Your position as a digital asset administrator is to filter out any incoming assets that do not adhere to government protocol. Check the rulebook on your desktop for more details. When you're ready, you may begin to accept connections.
+        </p>
+        <p class="notif-danger">
+            /!\ PROTOCOL VIOLATION /!\<br>INCORRECT FILE NAMING CONVENTION<br>PENALTY - 200 EURO DEDUCTION
+        </p>
+        <p class="notif-danger">
+            /!\ PROTOCOL VIOLATION /!\<br>FILE TYPE DOES NOT MATCH USER RESPONSE<br>PENALTY - 100 EURO DEDUCTION
+        </p>
+        <p class="notif-warning">
+            /!\ PROTOCOL VIOLATION /!\<br>ASSET WAS CLEARED FOR APPROVAL<br>LAST WARNING - NO PENALTY
+        </p>
+        <p class="notif-warning">
+            /!\ PROTOCOL VIOLATION /!\<br>ASSET HAS ALREADY EXPIRED<br>FIRST WARNING - NO PENALTY
+        </p>
+        <p id="employee-number">EMPLOYEE AM4831109</p>
+    </section>
+</body>
+</html>

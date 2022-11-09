@@ -1,0 +1,449 @@
+@-webkit-keyframes dialog-box-enter {
+  0% {
+    height: 0%;
+  }
+  100% {
+    height: 17vh;
+  }
+}
+@keyframes dialog-box-enter {
+  0% {
+    height: 0%;
+  }
+  100% {
+    height: 17vh;
+  }
+}
+@-webkit-keyframes loading-bar {
+  0% {
+    width: 0%;
+  }
+  20% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes loading-bar {
+  0% {
+    width: 0%;
+  }
+  20% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-webkit-keyframes transcript-enter {
+  0% {
+    opacity: 0%;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+    transform: scale(1);
+  }
+}
+@keyframes transcript-enter {
+  0% {
+    opacity: 0%;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes notification-enter {
+  0% {
+    opacity: 0%;
+    line-height: 0;
+    padding: 0 0.5em;
+    outline: 2px;
+  }
+  50% {
+    opacity: 0%;
+    line-height: 1.2;
+    padding: 0.5em 0.5em;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@keyframes notification-enter {
+  0% {
+    opacity: 0%;
+    line-height: 0;
+    padding: 0 0.5em;
+    outline: 2px;
+  }
+  50% {
+    opacity: 0%;
+    line-height: 1.2;
+    padding: 0.5em 0.5em;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@-webkit-keyframes text-scroll {
+  from {
+    left: 0;
+  }
+  to {
+    left: -100%;
+  }
+}
+@keyframes text-scroll {
+  from {
+    left: 0;
+  }
+  to {
+    left: -100%;
+  }
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsla(0deg, 0%, 100%, 0.5);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsla(0deg, 0%, 100%, 0.75);
+}
+
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+html {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  background-color: hsl(0deg, 0%, 0%);
+  visibility: visible;
+  opacity: 100;
+  overflow: hidden;
+}
+
+body {
+  aspect-ratio: 16/9;
+  display: flex;
+  background-color: hsl(0deg, 0%, 0%);
+  margin: 5vh;
+  perspective: 2000px;
+  outline: 100vw solid black;
+}
+
+h2 {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 2.8vh;
+  background-color: white;
+  margin: 0;
+  padding: 0 0.5em;
+}
+
+button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 0 2vh;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 2.8vh;
+  cursor: pointer;
+  filter: drop-shadow(0 0 24px white);
+}
+button:hover {
+  background-color: hsla(0deg, 0%, 100%, 0.1);
+}
+
+.dialog-box {
+  -webkit-animation: dialog-box-enter 0.5s forwards;
+          animation: dialog-box-enter 0.5s forwards;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  width: 60vh;
+  height: 17vh;
+  background-color: hsla(0deg, 0%, 0%, 0.1);
+  border: 1px solid hsl(187deg, 100%, 50%);
+  outline: 100vw solid hsla(0deg, 0%, 0%, 0.5);
+  z-index: 100;
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+}
+.dialog-box h2 {
+  background-color: hsl(187deg, 100%, 50%);
+  width: 100%;
+}
+.dialog-box p {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 2.2vh;
+  color: white;
+}
+
+dialog-box[style*="display: block"] {
+  display: flex !important;
+}
+
+.loading-bar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  height: 1.5vh;
+  padding: 0.2vh;
+  border: 1px solid hsl(187deg, 100%, 50%);
+}
+.loading-bar-container div {
+  -webkit-animation: loading-bar 1.5s forwards;
+          animation: loading-bar 1.5s forwards;
+  width: 100%;
+  height: 100%;
+  background-color: hsl(187deg, 100%, 50%);
+}
+
+#intro-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  outline: 1px solid white;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+#intro-container p {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 3vh;
+  color: white;
+}
+
+#transcript-container {
+  background-color: black;
+  width: 25%;
+  height: 100%;
+  outline: 1px solid white;
+  outline-offset: -1px;
+  transform: rotateY(0);
+  transform-style: preserve-3d;
+  transform-origin: center right;
+}
+
+#text-login-status {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.75vh;
+  text-align: center;
+  color: hsl(0deg, 0%, 50%);
+}
+
+.transcript-admin, .transcript-user {
+  -webkit-animation: transcript-enter 1s forwards;
+          animation: transcript-enter 1s forwards;
+  background-color: transparent;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 2.4vh;
+  margin: 2px 0.5em 1em 0.5em;
+  padding: 4px 0.5em;
+  width: 80%;
+}
+
+.transcript-admin {
+  border: 1px solid hsl(56deg, 100%, 50%);
+  color: hsl(56deg, 100%, 50%);
+  filter: drop-shadow(0 0 24px hsl(56deg, 100%, 50%));
+  margin-left: auto;
+}
+
+.transcript-user {
+  border: 1px solid hsl(187deg, 100%, 50%);
+  color: hsl(187deg, 100%, 50%);
+  filter: drop-shadow(0 0 24px hsl(187deg, 100%, 50%));
+}
+
+.name-admin, .name-user {
+  -webkit-animation: transcript-enter 1s forwards;
+          animation: transcript-enter 1s forwards;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.75vh;
+  color: white;
+  margin: 0 12px;
+  filter: drop-shadow(0 0 24px white);
+}
+
+.name-admin {
+  text-align: right;
+}
+
+#desktop-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+#date {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 2.4vh;
+  margin-bottom: 0;
+  color: white;
+}
+
+#time {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 2.8vh;
+  margin: 0;
+  color: white;
+}
+
+#metadata-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid white;
+  transform: translateY(5%);
+  height: 60vh;
+  width: 60vh;
+}
+
+table {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 2.4vh;
+  color: white;
+}
+
+th, td {
+  padding: 0 1vh;
+}
+
+th {
+  font-weight: 100;
+  text-align: right;
+  width: 40%;
+  color: hsl(0deg, 0%, 50%);
+}
+
+.btn-group {
+  display: flex;
+}
+
+#btn-reject, #btn-approve {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+  width: 100%;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 2.8vh;
+  cursor: pointer;
+}
+
+#btn-reject {
+  border: 1px solid hsl(340deg, 100%, 50%);
+  color: hsl(340deg, 100%, 50%);
+  filter: drop-shadow(0 0 24px hsl(340deg, 100%, 50%));
+}
+#btn-reject:hover {
+  background-color: hsla(340deg, 100%, 50%, 0.1);
+}
+
+#btn-approve {
+  border: 1px solid hsl(145deg, 70%, 55%);
+  color: hsl(145deg, 70%, 55%);
+  filter: drop-shadow(0 0 24px hsl(145deg, 70%, 55%));
+}
+#btn-approve:hover {
+  background-color: hsla(145deg, 70%, 55%, 0.1);
+}
+
+.scrolling-text {
+  -webkit-animation: text-scroll 25s linear infinite;
+          animation: text-scroll 25s linear infinite;
+  position: absolute;
+  bottom: -1vh;
+  width: 200%;
+  z-index: -1;
+}
+.scrolling-text span {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 2vh;
+  color: hsl(0deg, 0%, 50%);
+  float: left;
+  width: 12.5%;
+}
+
+#notifications-container {
+  background-color: black;
+  width: 25%;
+  height: 100%;
+  outline: 1px solid white;
+  outline-offset: -1px;
+  transform: rotateY(0);
+  transform-style: preserve-3d;
+  transform-origin: center left;
+}
+
+.notif-regular, .notif-warning, .notif-danger {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 2.2vh;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0.5em 0.5em;
+}
+
+.notif-regular {
+  -webkit-animation: notification-enter 1s forwards;
+          animation: notification-enter 1s forwards;
+  border: 1px solid white;
+  color: white;
+  filter: drop-shadow(0 0 24px white);
+}
+
+.notif-warning {
+  border: 1px solid hsl(46deg, 100%, 50%);
+  color: hsl(46deg, 100%, 50%);
+  filter: drop-shadow(0 0 24px hsl(46deg, 100%, 50%));
+}
+
+.notif-danger {
+  border: 1px solid hsl(340deg, 100%, 50%);
+  color: hsl(340deg, 100%, 50%);
+  filter: drop-shadow(0 0 24px hsl(340deg, 100%, 50%));
+  font-weight: 600;
+}
+
+#employee-number {
+  position: absolute;
+  bottom: -0.5em;
+  font-family: "Libre Barcode 128 Text", sans-serif;
+  font-size: 5vh;
+  text-align: center;
+  width: 100%;
+  color: hsl(0deg, 0%, 50%);
+  z-index: -1;
+}/*# sourceMappingURL=styles.css.map */
