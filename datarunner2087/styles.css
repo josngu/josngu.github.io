@@ -1,19 +1,3 @@
-@-webkit-keyframes dialog-box-enter {
-  0% {
-    height: 0%;
-  }
-  100% {
-    height: 17vh;
-  }
-}
-@keyframes dialog-box-enter {
-  0% {
-    height: 0%;
-  }
-  100% {
-    height: 17vh;
-  }
-}
 @-webkit-keyframes loading-bar {
   0% {
     width: 0%;
@@ -36,30 +20,84 @@
     width: 100%;
   }
 }
-@-webkit-keyframes transcript-enter {
+@-webkit-keyframes generic-enter {
   0% {
     opacity: 0%;
-    transform: scale(0.5);
   }
-  50% {
-    opacity: 0%;
+  20% {
+    opacity: 40%;
+  }
+  40% {
+    opacity: 20%;
+  }
+  60% {
+    opacity: 80%;
+  }
+  80% {
+    opacity: 60%;
   }
   100% {
     opacity: 100%;
-    transform: scale(1);
   }
 }
-@keyframes transcript-enter {
+@keyframes generic-enter {
   0% {
     opacity: 0%;
-    transform: scale(0.5);
   }
-  50% {
-    opacity: 0%;
+  20% {
+    opacity: 40%;
+  }
+  40% {
+    opacity: 20%;
+  }
+  60% {
+    opacity: 80%;
+  }
+  80% {
+    opacity: 60%;
   }
   100% {
     opacity: 100%;
-    transform: scale(1);
+  }
+}
+@-webkit-keyframes generic-exit {
+  0% {
+    opacity: 0%;
+  }
+  20% {
+    opacity: 40%;
+  }
+  40% {
+    opacity: 20%;
+  }
+  60% {
+    opacity: 80%;
+  }
+  80% {
+    opacity: 60%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@keyframes generic-exit {
+  0% {
+    opacity: 0%;
+  }
+  20% {
+    opacity: 40%;
+  }
+  40% {
+    opacity: 20%;
+  }
+  60% {
+    opacity: 80%;
+  }
+  80% {
+    opacity: 60%;
+  }
+  100% {
+    opacity: 100%;
   }
 }
 @-webkit-keyframes notification-enter {
@@ -69,10 +107,28 @@
     padding: 0 0.5em;
     outline: 2px;
   }
-  50% {
+  25% {
+    opacity: 0%;
+    line-height: 0;
+    padding: 0 0.5em;
+    outline: 2px;
+  }
+  75% {
     opacity: 0%;
     line-height: 1.2;
     padding: 0.5em 0.5em;
+  }
+  80% {
+    opacity: 40%;
+  }
+  85% {
+    opacity: 20%;
+  }
+  90% {
+    opacity: 80%;
+  }
+  95% {
+    opacity: 60%;
   }
   100% {
     opacity: 100%;
@@ -85,10 +141,56 @@
     padding: 0 0.5em;
     outline: 2px;
   }
-  50% {
+  25% {
+    opacity: 0%;
+    line-height: 0;
+    padding: 0 0.5em;
+    outline: 2px;
+  }
+  75% {
     opacity: 0%;
     line-height: 1.2;
     padding: 0.5em 0.5em;
+  }
+  80% {
+    opacity: 40%;
+  }
+  85% {
+    opacity: 20%;
+  }
+  90% {
+    opacity: 80%;
+  }
+  95% {
+    opacity: 60%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@-webkit-keyframes blink {
+  0% {
+    opacity: 60%;
+  }
+  50% {
+    opacity: 60%;
+  }
+  51% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 60%;
+  }
+  50% {
+    opacity: 60%;
+  }
+  51% {
+    opacity: 100%;
   }
   100% {
     opacity: 100%;
@@ -111,20 +213,17 @@
   }
 }
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
   background: transparent;
-  border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsla(0deg, 0%, 100%, 0.5);
-  border-radius: 8px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: hsla(0deg, 0%, 100%, 0.75);
+  background: hsla(340deg, 100%, 50%, 0.1);
+  outline: 1px solid hsl(340deg, 100%, 50%);
+  outline-offset: -2px;
 }
 
 *, ::before, ::after {
@@ -176,8 +275,8 @@ button:hover {
 }
 
 .dialog-box {
-  -webkit-animation: dialog-box-enter 0.5s forwards;
-          animation: dialog-box-enter 0.5s forwards;
+  -webkit-animation: generic-enter 0.25s forwards;
+          animation: generic-enter 0.25s forwards;
   display: none;
   flex-direction: column;
   align-items: center;
@@ -187,12 +286,9 @@ button:hover {
   transform: translate3d(-50%, -50%, 0);
   width: 60vh;
   height: 17vh;
-  background-color: hsla(0deg, 0%, 0%, 0.1);
+  background-color: hsl(0deg, 0%, 0%);
   border: 1px solid hsl(187deg, 100%, 50%);
-  outline: 100vw solid hsla(0deg, 0%, 0%, 0.5);
   z-index: 100;
-  -webkit-backdrop-filter: blur(4px);
-          backdrop-filter: blur(4px);
 }
 .dialog-box h2 {
   background-color: hsl(187deg, 100%, 50%);
@@ -204,8 +300,19 @@ button:hover {
   color: white;
 }
 
-dialog-box[style*="display: block"] {
-  display: flex !important;
+.dialog-box-exit {
+  -webkit-animation: generic-exit 0.25s forwards;
+          animation: generic-exit 0.25s forwards;
+  border: 1px solid hsl(145deg, 70%, 55%);
+}
+.dialog-box-exit h2 {
+  background-color: hsl(145deg, 70%, 55%);
+}
+.dialog-box-exit .loading-bar-container {
+  border: 1px solid hsl(145deg, 70%, 55%);
+}
+.dialog-box-exit .loading-bar-container div {
+  background-color: hsl(145deg, 70%, 55%);
 }
 
 .loading-bar-container {
@@ -218,8 +325,8 @@ dialog-box[style*="display: block"] {
   border: 1px solid hsl(187deg, 100%, 50%);
 }
 .loading-bar-container div {
-  -webkit-animation: loading-bar 1.5s forwards;
-          animation: loading-bar 1.5s forwards;
+  -webkit-animation: loading-bar 1s forwards;
+          animation: loading-bar 1s forwards;
   width: 100%;
   height: 100%;
   background-color: hsl(187deg, 100%, 50%);
@@ -243,6 +350,8 @@ dialog-box[style*="display: block"] {
 }
 
 #transcript-container {
+  display: flex;
+  flex-direction: column;
   background-color: black;
   width: 25%;
   height: 100%;
@@ -252,17 +361,21 @@ dialog-box[style*="display: block"] {
   transform-style: preserve-3d;
   transform-origin: center right;
 }
+#transcript-container div {
+  overflow: auto;
+}
 
 #text-login-status {
   font-family: "Rajdhani", sans-serif;
   font-size: 1.75vh;
   text-align: center;
+  text-transform: uppercase;
   color: hsl(0deg, 0%, 50%);
 }
 
 .transcript-admin, .transcript-user {
-  -webkit-animation: transcript-enter 1s forwards;
-          animation: transcript-enter 1s forwards;
+  -webkit-animation: generic-enter 0.25s forwards;
+          animation: generic-enter 0.25s forwards;
   background-color: transparent;
   font-family: "Rajdhani", sans-serif;
   font-size: 2.4vh;
@@ -285,8 +398,8 @@ dialog-box[style*="display: block"] {
 }
 
 .name-admin, .name-user {
-  -webkit-animation: transcript-enter 1s forwards;
-          animation: transcript-enter 1s forwards;
+  -webkit-animation: generic-enter 0.25s forwards;
+          animation: generic-enter 0.25s forwards;
   font-family: "Rajdhani", sans-serif;
   font-size: 1.75vh;
   color: white;
@@ -296,6 +409,17 @@ dialog-box[style*="display: block"] {
 
 .name-admin {
   text-align: right;
+}
+
+#btn-open-connection {
+  -webkit-animation: 1s blink infinite;
+          animation: 1s blink infinite;
+  width: 100%;
+  margin-top: auto;
+}
+#btn-open-connection:hover {
+  -webkit-animation: none;
+          animation: none;
 }
 
 #desktop-container {
@@ -312,6 +436,7 @@ dialog-box[style*="display: block"] {
   font-size: 2.4vh;
   margin-bottom: 0;
   color: white;
+  filter: drop-shadow(0 0 24px white);
 }
 
 #time {
@@ -319,10 +444,13 @@ dialog-box[style*="display: block"] {
   font-size: 2.8vh;
   margin: 0;
   color: white;
+  filter: drop-shadow(0 0 24px white);
 }
 
 #metadata-container {
-  display: flex;
+  -webkit-animation: generic-enter 0.25s forwards;
+          animation: generic-enter 0.25s forwards;
+  display: none;
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid white;
@@ -398,6 +526,8 @@ th {
 }
 
 #notifications-container {
+  display: flex;
+  flex-direction: column;
   background-color: black;
   width: 25%;
   height: 100%;
@@ -437,9 +567,14 @@ th {
   font-weight: 600;
 }
 
+#btn-rulebook {
+  width: 100%;
+  margin-top: auto;
+}
+
 #employee-number {
   position: absolute;
-  bottom: -0.5em;
+  bottom: 0em;
   font-family: "Libre Barcode 128 Text", sans-serif;
   font-size: 5vh;
   text-align: center;

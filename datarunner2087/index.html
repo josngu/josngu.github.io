@@ -25,20 +25,21 @@
     <section id="intro-container">
         <p>The government of Oktobania has hired you to be a digital asset administrator.</p>
         <p>Your job is to approve or reject assets before they are uploaded onto the digital asset management system.</p>
-        <p>You will be paid 50 Euros per processed asset.</p>
-        <button onclick="$('#intro-container').slideUp(500);">BEGIN DAY</button>
+        <p>Your shift begins at 7 AM and ends at 9 PM. You will be paid 50 Euros per processed asset.</p>
+        <button onclick="$('#intro-container').slideUp(250); dayStart();">BEGIN DAY</button>
     </section>
     <section id="transcript-container">
         <h2>TRANSCRIPT</h2>
-        <p id="text-login-status">MARC WINTERS HAS LOGGED IN</p>
-        <p class="name-admin">SysAdmin</p>
-        <p class="transcript-admin">What is the purpose of this file?</p>
-        <p class="name-user">Marc Winters</p>
-        <p class="transcript-user">This is a video file.</p>
-        <p class="name-admin">SysAdmin</p>
-        <p class="transcript-admin">Your asset has been rejected. You may log out now.</p>
-        <p class="name-user">Marc Winters</p>
-        <p class="transcript-user">Huh? This is ridiculous.</p>
+        <div>
+            <!--
+            <p id="text-login-status">MARC WINTERS HAS LOGGED IN</p>
+            <p class="name-admin">SysAdmin</p>
+            <p class="transcript-admin">Your asset has been rejected. You may log out now.</p>
+            <p class="name-user">Marc Winters</p>
+            <p class="transcript-user">Huh? This is ridiculous.</p>
+            -->
+        </div>
+        <button onclick="openConnection();" id="btn-open-connection">ACCEPT INCOMING CONNECTION</button>
     </section>
     <section id="desktop-container">
         <p id="date">M10/D01/2087</p>
@@ -88,7 +89,7 @@
                 <button id="btn-approve">APPROVE</button>
             </div>
         </div>
-        <button id="btn-rulebook"">View Rulebook</button>
+        <p id="employee-number">EMPLOYEE AM4831109</p>
 
         <p class="scrolling-text">
             <span>THIS IS A GOVERNMENT-ISSUED COMPUTER.</span>
@@ -103,9 +104,8 @@
     </section>
     <section id="notifications-container">
         <h2>NOTIFICATIONS</h2>
-        <p class="notif-regular">
-            Your position as a digital asset administrator is to filter out any incoming assets that do not adhere to government protocol. Check the rulebook on your desktop for more details. When you're ready, you may begin to accept connections.
-        </p>
+            <div>
+        
         <p class="notif-danger">
             /!\ PROTOCOL VIOLATION /!\<br>INCORRECT FILE NAMING CONVENTION<br>PENALTY - 200 EURO DEDUCTION
         </p>
@@ -118,7 +118,10 @@
         <p class="notif-warning">
             /!\ PROTOCOL VIOLATION /!\<br>ASSET HAS ALREADY EXPIRED<br>FIRST WARNING - NO PENALTY
         </p>
-        <p id="employee-number">EMPLOYEE AM4831109</p>
+        
+            </div>
+        
+        <button id="btn-rulebook"">VIEW RULEBOOK</button>
     </section>
 </body>
 </html>

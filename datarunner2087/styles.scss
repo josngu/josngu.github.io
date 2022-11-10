@@ -11,14 +11,6 @@ $clr-danger: hsl(340, 100%, 50%);
 $clr-danger-translucent: hsl(340, 100%, 50%, 0.1);
 $glow: 0 0 24px;
 
-@keyframes dialog-box-enter {
-    0% {
-        height: 0%;
-    }
-    100% {
-        height: 17vh;
-    }
-}
 @keyframes loading-bar {
     0% {
         width: 0%;
@@ -30,17 +22,46 @@ $glow: 0 0 24px;
         width: 100%;
     }
 }
-@keyframes transcript-enter {
+@keyframes generic-enter {
     0% {
         opacity: 0%;
-        transform: scale(0.5);
     }
-    50% {
-        opacity: 0%;
+    20% {
+        opacity: 40%;
+    }
+    40% {
+        opacity: 20%;
+    }
+    60% {
+        opacity: 80%;
+    }
+    80% {
+        opacity: 60%;
     }
     100% {
         opacity: 100%;
-        transform: scale(1);
+
+    }
+}
+@keyframes generic-exit {
+    0% {
+        opacity: 0%;
+    }
+    20% {
+        opacity: 40%;
+    }
+    40% {
+        opacity: 20%;
+    }
+    60% {
+        opacity: 80%;
+    }
+    80% {
+        opacity: 60%;
+    }
+    100% {
+        opacity: 100%;
+
     }
 }
 @keyframes notification-enter {
@@ -50,10 +71,42 @@ $glow: 0 0 24px;
         padding: 0 0.5em;
         outline: 2px;
     }
-    50% {
+    25% {
+        opacity: 0%;
+        line-height: 0;
+        padding: 0 0.5em;
+        outline: 2px;
+    }
+    75% {
         opacity: 0%;
         line-height: 1.2;
         padding: 0.5em 0.5em;
+    }
+    80% {
+        opacity: 40%;
+    }
+    85% {
+        opacity: 20%;
+    }
+    90% {
+        opacity: 80%;
+    }
+    95% {
+        opacity: 60%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+@keyframes blink {
+    0% {
+        opacity: 60%;
+    }
+    50% {
+        opacity: 60%;
+    }
+    51% {
+        opacity: 100%;
     }
     100% {
         opacity: 100%;
@@ -69,18 +122,15 @@ $glow: 0 0 24px;
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 12px;
 }
 ::-webkit-scrollbar-track {
     background: transparent;
-    border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb {
-    background: hsl(0, 0%, 100%, 0.5);
-    border-radius: 8px;
-    &:hover {
-        background: hsl(0, 0%, 100%, 0.75);
-    }
+    background: $clr-danger-translucent;
+    outline: 1px solid $clr-danger;
+    outline-offset: -2px;;
 }
 
 *, ::before, ::after {
@@ -125,7 +175,7 @@ button {
     }
 }
 .dialog-box {
-    animation: dialog-box-enter 0.5s forwards;
+    animation: generic-enter 0.25s forwards;
     display: none;
     flex-direction: column;
     align-items: center;
@@ -135,11 +185,9 @@ button {
     transform: translate3d(-50%, -50%, 0);
     width: 60vh;
     height: 17vh;
-    background-color: hsla(0, 0%, 0%, 0.1);
+    background-color: hsla(0, 0%, 0%, 1);
     border: 1px solid $font-clr-user;
-    outline: 100vw solid hsla(0, 0%, 0%, 0.5);
     z-index: 100;
-    backdrop-filter: blur(4px);
     h2 {
         background-color: $font-clr-user;
         width: 100%;
@@ -150,11 +198,19 @@ button {
         color: white;
     }
 }
-//Allows jQuery .show() to show the element as a flex container
-dialog-box[style*="display: block"]{
-    display: flex !important;
+.dialog-box-exit {
+    animation: generic-exit 0.25s forwards;
+    border: 1px solid $clr-approve;
+    h2 {
+        background-color: $clr-approve;
+    }
+    .loading-bar-container {
+        border: 1px solid $clr-approve;
+        div {
+            background-color: $clr-approve;
+        }
+    }
 }
-//
 .loading-bar-container {
     display: flex;
     flex-direction: column;
@@ -164,7 +220,7 @@ dialog-box[style*="display: block"]{
     padding: 0.2vh;
     border: 1px solid $font-clr-user;
     div {
-        animation: loading-bar 1.5s forwards;
+        animation: loading-bar 1s forwards;
         width: 100%;
         height: 100%;
         background-color: $font-clr-user;
@@ -187,6 +243,8 @@ dialog-box[style*="display: block"]{
     }
 }
 #transcript-container {
+    display: flex;
+    flex-direction: column;
     background-color: black;
     width: 25%;
     height: 100%;
@@ -195,15 +253,19 @@ dialog-box[style*="display: block"]{
     transform: rotateY(0);
     transform-style: preserve-3d;
     transform-origin: center right;
+    div {
+        overflow: auto;
+    }
 }
 #text-login-status {
     font-family: "Rajdhani", sans-serif;
     font-size: 1.75vh;
     text-align: center;
+    text-transform: uppercase;
     color: $font-clr-grey;
 }
 .transcript-admin, .transcript-user {
-    animation: transcript-enter 1s forwards;
+    animation: generic-enter 0.25s forwards;
     background-color: transparent;
     font-family: "Rajdhani", sans-serif;
     font-size: 2.4vh;
@@ -223,7 +285,7 @@ dialog-box[style*="display: block"]{
     filter: drop-shadow($glow $font-clr-user);
 }
 .name-admin, .name-user {
-    animation: transcript-enter 1s forwards;
+    animation: generic-enter 0.25s forwards;
     font-family: "Rajdhani", sans-serif;
     font-size: 1.75vh;
     color: white;
@@ -233,6 +295,15 @@ dialog-box[style*="display: block"]{
 .name-admin {
     text-align: right;
 }
+#btn-open-connection {
+    animation: 1s blink infinite;
+    width: 100%;
+    margin-top: auto;
+    &:hover {
+        animation: none;
+    }
+}
+//COLUMN 2
 #desktop-container {
     display: flex;
     flex-direction: column;
@@ -246,15 +317,18 @@ dialog-box[style*="display: block"]{
     font-size: 2.4vh;
     margin-bottom: 0;
     color: white;
+    filter: drop-shadow($glow white);
 }
 #time {
     font-family: "Share Tech Mono", monospace;
     font-size: 2.8vh;
     margin: 0;
     color: white;
+    filter: drop-shadow($glow white);
 }
 #metadata-container {
-    display: flex;
+    animation: generic-enter 0.25s forwards;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     border: 1px solid white;
@@ -318,6 +392,8 @@ th {
     }
 }
 #notifications-container {
+    display: flex;
+    flex-direction: column;
     background-color: black;
     width: 25%;
     height: 100%;
@@ -351,9 +427,13 @@ th {
     filter: drop-shadow($glow $clr-danger);
     font-weight: 600;
 }
+#btn-rulebook {
+    width: 100%;
+    margin-top: auto;
+}
 #employee-number {
     position: absolute;
-    bottom: -0.5em;
+    bottom: 0em;
     font-family: "Libre Barcode 128 Text", sans-serif;
     font-size: 5vh;
     text-align: center;
