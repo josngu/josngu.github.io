@@ -264,7 +264,7 @@ button {
   background-color: transparent;
   color: white;
   border: 1px solid white;
-  padding: 0 2vh;
+  padding: 0.25vh 2vh;
   font-family: "Rajdhani", sans-serif;
   font-size: 2.8vh;
   cursor: pointer;
@@ -536,6 +536,9 @@ th {
   transform: rotateY(0);
   transform-style: preserve-3d;
   transform-origin: center left;
+}
+#notifications-container div {
+  overflow: auto;
 }
 
 .notif-regular, .notif-warning, .notif-danger {
