@@ -25,9 +25,9 @@ const MINISTRY = ["ED", "EN", "EM", "TR", "HE", "AG", "IN", "DE"];
 const ED_KEYWORDS = ["teacher", "teachers", "school", "education", "college", "building", "instructor", "student", "students", "research"];
 const EN_KEYWORDS = ["power plant", "power", "electricity", "voltage", "energy", "building", "utilities"];
 const EM_KEYWORDS = ["work", "workforce", "labour", "employee", "employment", "workplace", "job", "industry", "coworker", "colleague", "career", "occupation", "corporation", "company", "enterprise", "organization"];
-const TR_KEYWORDS = ["road", "airplane", "plane", "jet plane", "flying", "airport", "train", "trains", "car", "highway", "ship", "ships", "boat", "vehicle", "vehicles"];
-const HE_KEYWORDS = ["health", "hospital", "doctor", "nurse", "healthcare", "physician", "surgeon", "medic", "clinic", "ward", "emergency room", "surgery"];
-const AG_KEYWORDS = ["farm", "farms", "farmland", "farmer", "crops", "agriculture", "harvest", "cultivation", "plowing"];
+const TR_KEYWORDS = ["road", "aircraft", "airplane", "plane", "jet plane", "flying", "airport", "train", "trains", "car", "highway", "ship", "ships", "boat", "vehicle", "vehicles"];
+const HE_KEYWORDS = ["health", "hospital", "doctor", "nurse", "healthcare", "physician", "surgeon", "medic", "clinic", "ward", "emergency room", "surgery", "practitioner"];
+const AG_KEYWORDS = ["farm", "farms", "farmland", "farmer", "crops", "agriculture", "harvest", "cultivation", "plow", "plants"];
 const IN_KEYWORDS = ["building", "buildings", "skyscraper", "skyscrapers", "construction", "architecture", "house", "houses", "structure"];
 const DE_KEYWORDS = ["military", "war", "weapons", "guns", "firearms", "army", "artillery", "infantry", "corps", "armaments", "troops", "squadron", "squad"];
 const AUDIO_KEYWORDS = ["bass", "upbeat", "drums", "classical", "piano", "guitar", "trumpet", "saxophone", "relaxing", "violin"];
@@ -47,7 +47,7 @@ function openConnection() {
         let response = RESPONSE[Math.floor(Math.random() * RESPONSE.length)];
         Promise.resolve().then(() => delay(500))
             .then(() => $("#transcript-container div").append(`<p id="text-login-status">${firstName} ${lastName} has logged in</p>`))
-            .then(() => delay(1000))
+            .then(() => delay(500))
             .then(() => $(".dialog-box").css("display", "flex"))
             .then(() => delay(1000))
             .then(() => {
@@ -94,67 +94,63 @@ function generateFileName(fileType) {
     if (fileType === "video" || fileType === "image") {
         switch (ministry) {
             case "ED":
-                let ED = ["School", "Class", "College", "University", "Classroom", "LectureHall"];
-                fileName = "MOED_" + ED[Math.floor(Math.random() * ED.length)] + "_";
+                let ED = ["School", "Class", "College", "University", "Classroom", "LectureHall", "SchoolLibrary"];
+                fileName = "MoED_" + ED[Math.floor(Math.random() * ED.length)] + "_";
                 break;
             case "EN":
                 let EN = ["NuclearPowerPlant", "CoalPowerPlant", "GasPowerPlant", "Windmill", "Windmills", "SolarPanel", "SolarPanels", "Geothermal", "Hydroelectric"];
-                fileName = "MOEN_" + EN[Math.floor(Math.random() * EN.length)] + "_";
+                fileName = "MoEN_" + EN[Math.floor(Math.random() * EN.length)] + "_";
                 break;
             case "EM":
-                let EM = ["Office", "OfficeHeadquarters", "Offices", "Business", "Factory", "Manufacturer", "RetailStore"];
-                fileName = "MOEM_" + EM[Math.floor(Math.random() * EM.length)] + "_";
+                let EM = ["Office", "OfficeHeadquarters", "Offices", "Business", "Businesses", "Factory", "Factories", "Manufacturer", "ConvenienceStore", "RetailStore", "Supermarket"];
+                fileName = "MoEM_" + EM[Math.floor(Math.random() * EM.length)] + "_";
                 break;
             case "TR":
                 let TR = ["Transportation", "Transport", "Shipping", "Transit", "Freight"];
-                fileName = "MOTR_" + TR[Math.floor(Math.random() * TR.length)] + "_";
+                fileName = "MoTR_" + TR[Math.floor(Math.random() * TR.length)] + "_";
                 break;
             case "HE":
-                let HE = ["HealthClinic", "HospitalRoom", "NursingHome", "PsychiatricWard", "Infirmary", "IsolationWard"];
-                fileName = "MOHE_" + HE[Math.floor(Math.random() * HE.length)] + "_";
+                let HE = ["HealthClinic", "HospitalRoom", "NursingHome", "PsychiatricWard", "Infirmary", "IsolationWard", "IntensiveCareUnit"];
+                fileName = "MoHE_" + HE[Math.floor(Math.random() * HE.length)] + "_";
                 break;
             case "AG":
                 let AG = ["TractorOnFarm", "FarmerCultivating", "FarmerHarvesting", "FarmerPlanting", "CountrysideFarm", "RooftopFarm"];
-                fileName = "MOAG_" + AG[Math.floor(Math.random() * AG.length)] + "_";
+                fileName = "MoAG_" + AG[Math.floor(Math.random() * AG.length)] + "_";
                 break;
             case "IN":
-                let IN = ["CitySkyline", "Downtown", "CityDistrict", "UrbanDistrict", "CityArchitecture", "TallSkyscrapers", "TallBuildings"];
-                fileName = "MOIN_" + IN[Math.floor(Math.random() * IN.length)] + "_";
+                let IN = ["CitySkyline", "Downtown", "CityDistrict", "UrbanDistrict", "CityArchitecture", "TallSkyscrapers", "TallBuildings", "OldArchitecture"];
+                fileName = "MoIN_" + IN[Math.floor(Math.random() * IN.length)] + "_";
                 break;
             case "DE":
                 let DE = ["MilitaryBunker", "Bootcamp", "MilitaryTraining", "Soldiers", "Battalion", "UndergroundBunker", "UnitFormation"];
-                fileName = "MODE_" + DE[Math.floor(Math.random() * DE.length)] + "_";
+                fileName = "MoDE_" + DE[Math.floor(Math.random() * DE.length)] + "_";
                 break;
         }
     }
     if (fileType === "audio") {
-        let x = ["Audio", "Music"];
-        fileName = "MO" + ministry + "_" + x[Math.floor(Math.random() * x.length)] + "_";
+        let x = ["Audio", "Music", "Song"];
+        fileName = "Mo" + ministry + "_" + x[Math.floor(Math.random() * x.length)] + "_";
     }
     if (fileType === "document") {
         let x = ["Form", "Letter", "Application", "DataSheet", "Chart", "Publication", "Guidelines", "Statement", "Census", "Statistics"];
-        fileName = "MO" + ministry + "_" + x[Math.floor(Math.random() * x.length)] + "_";
+        fileName = "Mo" + ministry + "_" + x[Math.floor(Math.random() * x.length)] + "_";
     }
     //All of the code above generates the first half of the file name
     //Next, we need to generate the date
-    fileName = fileName + generateDateShort();
-    //Lastly, we need a file extension
-    switch (fileType) {
-        case "video":
-        case "image":
-        case "audio":
-        case "document":
+    if (day < 10) {
+        fileName = fileName + "2087M10D0" + day;
     }
+    else {
+        fileName = fileName + "2087M10D" + day;
+    }
+    //Lastly, we need to add a file extension
+    fileName = fileName + "." + generateFileExtension(fileType);
+    $("#metadata-container h2").text(fileName);
 }
-function generateDateShort() {
-    let year = Math.floor(Math.random() * 39 + 2047);
-    let month = Math.floor(Math.random() * 11 + 1);
-    let day = Math.floor(Math.random() * 27 + 1);
-    return addLeadingZero(year, month, day);
-}
-function generateDateLong() {
+function generateDate() {
     let year = Math.floor(Math.random() * 39 + 2047);
     let month = MONTH[Math.floor(Math.random() * MONTH.length)];
+    //Might code in a way to check if a month could have 31 days, but it's not important right now
     let day = Math.floor(Math.random() * 27 + 1);
     return addLeadingZero(year, month, day);
 }
@@ -170,6 +166,23 @@ function addLeadingZero(year, month, day) {
     }
     return year + "M" + month + "D" + day;
 }
+function generateFileExtension(fileType) {
+    let fileExt = "";
+    switch (fileType) {
+        case "video":
+            fileExt = VIDEO_TYPE[Math.floor(Math.random() * VIDEO_TYPE.length)];
+            break;
+        case "image":
+            fileExt = IMAGE_TYPE[Math.floor(Math.random() * IMAGE_TYPE.length)];
+            break;
+        case "audio":
+            fileExt = AUDIO_TYPE[Math.floor(Math.random() * AUDIO_TYPE.length)];
+            break;
+        case "document":
+            fileExt = DOCUMENT_TYPE[Math.floor(Math.random() * DOCUMENT_TYPE.length)];
+    }
+    return fileExt;
+}
 function violateProtocol() {
     let x = Math.floor(Math.random() * 1);
     switch (x) {
@@ -180,10 +193,33 @@ function violateProtocol() {
             protocolViolated = true;
     }
 }
+function toggleRulebook() {
+    if ($("#rulebook-container").is(":hidden")) {
+        $("#rulebook-container").slideDown(500);
+        $("#rulebook-container").css("display", "flex");
+    }
+    else {
+        $("#rulebook-container").slideUp(500);
+    }
+}
+function switchTab() {
+    if ($("#rules-metadata + button").text() === "NEXT: METADATA") {
+        $("#rules-metadata + button").text("PREVIOUS: FILE NAMING");
+        $("#rulebook-container > h2").text("RULEBOOK: METADATA");
+        $("#rules-file-naming").hide();
+        $("#rules-metadata").show();
+    }
+    else {
+        $("#rules-metadata + button").text("NEXT: METADATA");
+        $("#rulebook-container > h2").text("RULEBOOK: FILE NAMING");
+        $("#rules-file-naming").show();
+        $("#rules-metadata").hide();
+    }
+}
 function dayStart() {
     switch (day) {
         case 1:
-            $("#notifications-container div").prepend(`<p class="notif-regular">Your position as a digital asset administrator is to filter out any incoming assets that do not adhere to government protocol. Check the rulebook on your desktop for more details. When you're ready, you may begin accepting incoming connections.</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">Your position as a digital asset administrator is to filter out any incoming assets that do not adhere to government protocol. View the rulebook at the bottom for more details. When you're ready, you may begin accepting incoming connections.</p>`);
             break;
     }
 }

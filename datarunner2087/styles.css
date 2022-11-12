@@ -570,6 +570,40 @@ th {
   font-weight: 600;
 }
 
+#rulebook-container {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  background-color: black;
+  top: 0%;
+  left: 75%;
+  width: 25%;
+  height: 100%;
+  outline: 1px solid white;
+  outline-offset: -1px;
+}
+#rulebook-container p {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 2.4vh;
+  color: white;
+  margin: 1vh 1vh;
+}
+#rulebook-container div {
+  overflow-y: scroll;
+  height: 100%;
+}
+#rulebook-container button ~ button {
+  color: hsl(340deg, 100%, 50%);
+  border: 1px solid hsla(340deg, 100%, 50%, 0.1);
+}
+#rulebook-container button ~ button:hover {
+  background-color: hsla(340deg, 100%, 50%, 0.1);
+}
+
+#rules-metadata {
+  display: none;
+}
+
 #btn-rulebook {
   width: 100%;
   margin-top: auto;

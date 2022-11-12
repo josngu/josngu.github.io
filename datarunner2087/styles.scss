@@ -430,6 +430,40 @@ th {
     filter: drop-shadow($glow $clr-danger);
     font-weight: 600;
 }
+#rulebook-container {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    background-color: black;
+    top: 0%;
+    left: 75%;
+    width: 25%;
+    height: 100%;
+    outline: 1px solid white;
+    outline-offset: -1px;
+    p {
+        font-family: "Rajdhani", sans-serif;
+        font-size: 2.4vh;
+        color: white;
+        margin: 1vh 1vh;
+    }
+    div {
+        overflow-y: scroll;
+        height: 100%;
+    }
+    & button ~ button {
+        color: $clr-danger;
+        border: 1px solid $clr-danger-translucent;
+        &:hover {
+            background-color: $clr-danger-translucent;
+        }
+    }
+}
+#rules-file-naming {
+}
+#rules-metadata {
+    display: none;
+}
 #btn-rulebook {
     width: 100%;
     margin-top: auto;
