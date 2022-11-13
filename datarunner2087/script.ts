@@ -28,12 +28,12 @@ const DOCUMENT_TYPE = ["docx", "odt", "txt", "rtf", "pdf"];
 
 const RESPONSE = ["I sent", "I sent you", "This is", "It's", "It is", "I've sent you", "The file should be", "The file is", "I think I sent", "I uploaded", "I've uploaded"];
 
-//Ministry of education, energy, employment, transportation, health, agriculture, infrastructure, defense
-const MINISTRY = ["ED", "EN", "EM", "TR", "HE", "AG", "IN", "DE"];
+//Ministry of education, energy, labour, transportation, health, agriculture, infrastructure, defense
+const MINISTRY = ["ED", "EN", "LA", "TR", "HE", "AG", "IN", "DE"];
 
 const ED_KEYWORDS = ["teacher", "teachers", "school", "education", "college", "building", "instructor", "student", "students", "research"];
 const EN_KEYWORDS = ["power plant", "power", "electricity", "voltage", "energy", "building", "utilities"];
-const EM_KEYWORDS = ["work", "workforce", "labour", "employee", "employment", "workplace", "job", "industry", "coworker", "colleague", "career", "occupation", "corporation", "company", "enterprise", "organization"];
+const LA_KEYWORDS = ["work", "workforce", "labour", "employee", "employment", "workplace", "job", "industry", "coworker", "colleague", "career", "occupation", "corporation", "company", "enterprise", "organization"];
 const TR_KEYWORDS = ["road", "aircraft", "airplane", "plane", "jet plane", "flying", "airport", "train", "trains", "car", "highway", "ship", "ships", "boat", "vehicle", "vehicles"];
 const HE_KEYWORDS = ["health", "hospital", "doctor", "nurse", "healthcare", "physician", "surgeon", "medic", "clinic", "ward", "emergency room", "surgery", "practitioner"];
 const AG_KEYWORDS = ["farm", "farms", "farmland", "farmer", "crops", "agriculture", "harvest", "cultivation", "plow", "plants"];
@@ -116,9 +116,9 @@ function generateFileName(fileType: String){
                 let EN = ["NuclearPowerPlant", "CoalPowerPlant", "GasPowerPlant", "Windmill", "Windmills", "SolarPanel", "SolarPanels", "Geothermal", "Hydroelectric"];
                 fileName = "MoEN_" + EN[Math.floor(Math.random() * EN.length)] + "_";
                 break;
-            case "EM":
-                let EM = ["Office", "OfficeHeadquarters", "Offices", "Business", "Businesses", "Factory", "Factories",  "Manufacturer", "ConvenienceStore", "RetailStore", "Supermarket"];
-                fileName = "MoEM_" + EM[Math.floor(Math.random() * EM.length)] + "_";
+            case "LA":
+                let LA = ["Office", "OfficeHeadquarters", "Offices", "Business", "Businesses", "Factory", "Factories",  "Manufacturer", "ConvenienceStore", "RetailStore", "Supermarket"];
+                fileName = "MoLA_" + LA[Math.floor(Math.random() * LA.length)] + "_";
                 break;
             case "TR":
                 let TR = ["Transportation", "Transport", "Shipping", "Transit", "Freight"];
