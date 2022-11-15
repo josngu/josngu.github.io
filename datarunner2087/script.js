@@ -16,7 +16,7 @@ const FIRST_NAME = ["James", "Sofia", "Ethan", "Emma", "Carter", "Scarlett", "Na
 const LAST_NAME = ["Huang", "Gutierrez", "Robinson", "Watson", "Khalid", "Hasan", "Harrison", "Ferguson", "Cunningham", "Hoffman", "Chan", "Schroeder", "Weiss", "Singh", "Zhou", "Abubakar", "Romero", "Contreras", "Nakamura", "Yamamoto", "Kobayashi", "Blanco", "Torres", "Lee", "Harris", "Wright", "Flores", "Cooper", "Sullivan", "Delgado", "Atkinson", "Baxter", "McDonald", "McDuff", "McAllister", "McMahon", "McKee", "McGregor", "Fukumoto", "Kubota", "Ichikawa", "Nagata", "Aguilar", "Rivera", "Richardson"];
 const SOURCE_IMG = ["uniassets.com", "assethaven.com", "stockloop.org", "piccolophotos.com"];
 const SOURCE_VID = ["filmostock.com", "vestvideos.com", "uniassets.com", "assethaven.com"];
-const SOURCE_MUS = ["hypomusique.com", "allsounds.com", "upcompose.com", "rigormusic.com"];
+const SOURCE_AUD = ["hypomusique.com", "allsounds.com", "upcompose.com", "rigormusic.com"];
 const FILE_TYPE = ["a video file", "a video", "a photo", "a photograph", "a picture", "an image", "an audio file", "a document"];
 const VIDEO_TYPE = ["mov", "mp4", "avi", "flv", "webm"];
 const IMAGE_TYPE = ["jpg", "png", "webp", "tiff", "raw"];
@@ -76,6 +76,11 @@ function generateMetadata(fileType) {
     let ministry = MINISTRY[Math.floor(Math.random() * MINISTRY.length)];
     let author = generateName();
     let datePublished = generateDate(2047, 39);
+    let fileSize = 0;
+    let source = "";
+    let copyrightStatus = "Copyrighted";
+    let usageRights = "Can be used for commercial purposes.";
+    let assetExpiryDate = generateDate(2088, 10);
     switch (fileType) {
         case "a video file":
         case "a video":
@@ -86,22 +91,29 @@ function generateMetadata(fileType) {
             let videoLengthSec = Math.floor(Math.random() * 59 + 0);
             let videoDimensions = VIDEO_DIMENSIONS[Math.floor(Math.random() * VIDEO_DIMENSIONS.length)];
             let frameRate = FRAME_RATE[Math.floor(Math.random() * FRAME_RATE.length)];
-            let fileSize = Math.floor(Math.random() * (30 * frameRate / 30) + (130 * videoLengthMin));
+            fileSize = Math.floor(Math.random() * (30 * frameRate / 30) + (130 * videoLengthMin));
+            source = `${SOURCE_VID[Math.floor(Math.random() * SOURCE_VID.length)]}/${randomizeURL()}`;
             break;
         case "a photo":
         case "a photograph":
         case "a picture":
         case "an image":
             generateFileName("image", ministry);
+            const IMAGE_DIMENSIONS = ["1920px * 1080px", "2560px * 1440px", "3840px * 2160px", "7680px * 4320px", "4000px * 3000px", "6000px * 4000px"];
+            let imageDimensions = IMAGE_DIMENSIONS[Math.floor(Math.random() * IMAGE_DIMENSIONS.length)];
+            fileSize = Math.floor(Math.random() * 55 + 75) * 0.1;
+            source = `${SOURCE_IMG[Math.floor(Math.random() * SOURCE_IMG.length)]}/${randomizeURL()}`;
             break;
         case "an audio file":
             generateFileName("audio", ministry);
+            fileSize = Math.floor(Math.random() * 45 + 85) * 0.1;
+            source = `${SOURCE_AUD[Math.floor(Math.random() * SOURCE_AUD.length)]}/${randomizeURL()}`;
             break;
         case "a document":
             generateFileName("document", ministry);
-            let source = `Ministry of ${convertToMinistryLong(ministry)}`;
+            fileSize = Math.floor(Math.random() * 106 + 18);
+            source = `Ministry of ${convertToMinistryLong(ministry)}`;
     }
-    let assetExpiryDate = generateDate(2088, 10);
 }
 function generateFileName(fileType, ministry) {
     if (fileType === "video" || fileType === "image") {
@@ -160,12 +172,21 @@ function generateFileName(fileType, ministry) {
     fileName = fileName + "." + generateFileExtension(fileType);
     $("#metadata-container h2").text(fileName);
 }
+function createMetadataEntry(field, entry) {
+}
 function generateDate(startingValue, plusMax) {
     let year = Math.floor(Math.random() * plusMax + startingValue);
     let month = MONTH[Math.floor(Math.random() * MONTH.length)];
     //Might code in a way to check if a month could have 31 days, but it's not important right now
     let day = Math.floor(Math.random() * 27 + 1);
     return addLeadingZero(year, month, day);
+}
+function randomizeURL() {
+    let urlEnding = "";
+    for (let i = 0; i < 6; i++) {
+        urlEnding = urlEnding + ALPHABET[Math.floor(Math.random() * ALPHABET.length)];
+    }
+    return urlEnding;
 }
 function addLeadingZero(year, month, day) {
     if (month < 10 && day < 10) {
