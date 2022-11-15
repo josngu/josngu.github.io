@@ -20,6 +20,11 @@ const FIRST_NAME = ["James", "Sofia", "Ethan", "Emma", "Carter", "Scarlett", "Na
 
 const LAST_NAME = ["Huang", "Gutierrez", "Robinson", "Watson", "Khalid", "Hasan", "Harrison", "Ferguson", "Cunningham", "Hoffman", "Chan", "Schroeder", "Weiss", "Singh", "Zhou", "Abubakar", "Romero", "Contreras", "Nakamura", "Yamamoto", "Kobayashi", "Blanco", "Torres", "Lee", "Harris", "Wright", "Flores", "Cooper", "Sullivan", "Delgado", "Atkinson", "Baxter", "McDonald", "McDuff", "McAllister", "McMahon", "McKee", "McGregor", "Fukumoto", "Kubota", "Ichikawa", "Nagata", "Aguilar", "Rivera", "Richardson"];
 
+const SOURCE_IMG = ["uniassets.com", "assethaven.com", "stockloop.org", "piccolophotos.com"];
+const SOURCE_VID = ["filmostock.com", "vestvideos.com", "uniassets.com", "assethaven.com"];
+const SOURCE_MUS = ["hypomusique.com", "allsounds.com", "upcompose.com", "rigormusic.com"];
+
+
 const FILE_TYPE = ["a video file", "a video", "a photo", "a photograph", "a picture", "an image", "an audio file", "a document"];
 const VIDEO_TYPE = ["mov", "mp4", "avi", "flv", "webm"];
 const IMAGE_TYPE = ["jpg", "png", "webp", "tiff", "raw"];
@@ -28,8 +33,8 @@ const DOCUMENT_TYPE = ["docx", "odt", "txt", "rtf", "pdf"];
 
 const RESPONSE = ["I sent", "I sent you", "This is", "It's", "It is", "I've sent you", "The file should be", "The file is", "I think I sent", "I uploaded", "I've uploaded"];
 
-//Ministry of education, energy, labour, transportation, health, agriculture, infrastructure, defense
-const MINISTRY = ["ED", "EN", "LA", "TR", "HE", "AG", "IN", "DE"];
+//Ministry of agriculture, defense, education, energy, health, infrastructure, labour, transportation
+const MINISTRY = ["AG", "DE", "ED", "EN", "HE", "IN", "LA", "TR"];
 
 const ED_KEYWORDS = ["teacher", "teachers", "school", "education", "college", "building", "instructor", "student", "students", "research"];
 const EN_KEYWORDS = ["power plant", "power", "electricity", "voltage", "energy", "building", "utilities"];
@@ -53,13 +58,12 @@ function openConnection(){
     } else {
         $("#btn-open-connection").css({"pointer-events":"none", "animation":"none", "opacity":"40%"});
 
-        let firstName = FIRST_NAME[Math.floor(Math.random() * FIRST_NAME.length)];
-        let lastName = LAST_NAME[Math.floor(Math.random() * LAST_NAME.length)];
         let fileType = FILE_TYPE[Math.floor(Math.random() * FILE_TYPE.length)];
         let response = RESPONSE[Math.floor(Math.random() * RESPONSE.length)];
+        let name = generateName();
 
         Promise.resolve().then(() => delay(500))
-        .then(() => $("#transcript-container div").append(`<p id="text-login-status">${firstName} ${lastName} has logged in</p>`))
+        .then(() => $("#transcript-container div").append(`<p id="text-login-status">${name} has logged in</p>`))
         .then(() => delay(500))
         .then(() =>  $(".dialog-box").css("display", "flex"))
         .then(() => delay(1000))
@@ -77,7 +81,7 @@ function openConnection(){
         .then(() => $("#transcript-container div").append(`<p class="name-admin">SysAdmin</p>
         <p class="transcript-admin">What is the file that you have sent?</p>`))
         .then(() => delay(2000))
-        .then(() => $("#transcript-container div").append(`<p class="name-user">${firstName} ${lastName}</p>
+        .then(() => $("#transcript-container div").append(`<p class="name-user">${name}</p>
         <p class="transcript-user">${response} ${fileType}.</p>`));
 
         generateMetadata(fileType);
@@ -85,27 +89,40 @@ function openConnection(){
 }
 function generateMetadata(fileType: String){
     violateProtocol();
+    let ministry = MINISTRY[Math.floor(Math.random() * MINISTRY.length)];
+    let author = generateName();
+    let datePublished = generateDate(2047, 39);
+
     switch(fileType){
         case "a video file":
         case "a video":
-            generateFileName("video");
+            generateFileName("video", ministry);
+            const VIDEO_DIMENSIONS = ["1920px * 1080px", "2560px * 1440px", "3840px * 2160px", "7680px * 4320px"];
+            const FRAME_RATE = [24, 30, 60];
+            let videoLengthMin = Math.floor(Math.random() * 5 + 0);
+            let videoLengthSec = Math.floor(Math.random() * 59 + 0);
+            let videoDimensions = VIDEO_DIMENSIONS[Math.floor(Math.random() * VIDEO_DIMENSIONS.length)];
+            let frameRate = FRAME_RATE[Math.floor(Math.random() * FRAME_RATE.length)];
+            let fileSize = Math.floor(Math.random() * (30 * frameRate / 30) + (130 * videoLengthMin));
             break;
         case "a photo":
         case "a photograph":
         case "a picture":
         case "an image":
-            generateFileName("image");
+            generateFileName("image", ministry);
 
             break;
         case "an audio file":
-            generateFileName("audio");
+            generateFileName("audio", ministry);
             break;
         case "a document":
-            generateFileName("document");
+            generateFileName("document", ministry);
+            let source = `Ministry of ${convertToMinistryLong(ministry)}`;
     }
+
+    let assetExpiryDate = generateDate(2088, 10);
 }
-function generateFileName(fileType: String){
-    let ministry = MINISTRY[Math.floor(Math.random() * MINISTRY.length)];
+function generateFileName(fileType: String, ministry: String){
     if (fileType === "video" || fileType === "image"){
         switch(ministry){
             case "ED":
@@ -161,8 +178,8 @@ function generateFileName(fileType: String){
     fileName = fileName + "." + generateFileExtension(fileType);
     $("#metadata-container h2").text(fileName);
 }
-function generateDate(){
-    let year = Math.floor(Math.random() * 39 + 2047);
+function generateDate(startingValue: number, plusMax: number){
+    let year = Math.floor(Math.random() * plusMax + startingValue);
     let month = MONTH[Math.floor(Math.random() * MONTH.length)];
     //Might code in a way to check if a month could have 31 days, but it's not important right now
     let day = Math.floor(Math.random() * 27 + 1);
@@ -196,6 +213,31 @@ function generateFileExtension(fileType: String){
             fileExt = DOCUMENT_TYPE[Math.floor(Math.random() * DOCUMENT_TYPE.length)];
     }
     return fileExt;
+}
+function generateName(){
+    let firstName = FIRST_NAME[Math.floor(Math.random() * FIRST_NAME.length)];
+    let lastName = LAST_NAME[Math.floor(Math.random() * LAST_NAME.length)];
+    return firstName + " " + lastName;
+}
+function convertToMinistryLong(ministry: String){
+    switch(ministry){
+        case "ED":
+            return "Education";
+        case "EN":
+            return "Energy";
+        case "LA":
+            return "Labour";
+        case "TR":
+            return "Transportation";
+        case "HE":
+            return "Health";
+        case "AG":
+            return "Agriculture";
+        case "IN":
+            return "Infrastructure";
+        case "DE":
+            return "Defense";
+    }
 }
 function violateProtocol(){
     let x = Math.floor(Math.random() * 1);
