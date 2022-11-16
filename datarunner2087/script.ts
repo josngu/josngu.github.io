@@ -4,10 +4,13 @@ var minute = 0;
 var clockCycle = "AM";
 var clockLength = 250;
 
+var username = "";
+
 var warningCount = 0;
 var endDay = false;
 var startDay = false;
 var money = 100;
+var penaltyDeduction = 0;
 
 var protocolViolated = false;
 var penaltyReason = "";
@@ -37,6 +40,7 @@ const AUDIO_TYPE = ["mp3", "ogg", "flac", "wav", "m4a"];
 const DOCUMENT_TYPE = ["docx", "odt", "txt", "rtf", "pdf"];
 
 const RESPONSE = ["I sent", "I sent you", "I've sent you", "The file should be", "The file is", "I think I sent", "I uploaded", "I've uploaded", "I sent over"];
+const RESPONSE_REJECT = ["I see.", "What? This is ridiculous.", "Hmm... I'll try again later.", "Huh?", "...", "Why?", "Maybe I'll try again later.", "What's wrong with the file?", "Sorry... I'm still new to this.", "Alright.", "What?", "Is there a problem with the file?", "I don't understand.", "I hate this.", "This is a little confusing."];
 
 //Ministry of agriculture, defense, education, energy, health, infrastructure, labour, transportation
 const MINISTRY = ["AG", "DE", "ED", "EN", "HE", "IN", "LA", "TR"];
@@ -55,20 +59,65 @@ const DOCUMENT_KEYWORDS = ["finance", "financial", "document", "spreadsheet", "a
 
 const MONTH = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
+function approve(){
+    Promise.resolve().then(() => {
+        $("#btn-reject, #btn-approve").css({"pointer-events":"none"});
+        $("#metadata-container").addClass("metadata-container-approve");
+    })
+    .then(() => delay(250))
+    .then(() => $("#metadata-container").slideUp(500))
+    .then(() => delay(500))
+    .then(() => {
+        $("#btn-reject, #btn-approve").css({"pointer-events":"auto"});
+        $("#metadata-container").removeClass("metadata-container-approve");
+        $("#transcript-container div").append(`<p class="name-admin">SysAdmin</p>
+        <p class="transcript-admin">Your file has been approved. You may log off now.</p>`);
+    })
+    .then(() => delay(1500))
+    .then(() => {
+        $("#transcript-container div").append(`<p id="text-login-status">${username} has logged out</p>`);
+        $("#btn-open-connection").removeClass("btn-open-connection-disabled");
+    });
+}
+function reject(){
+    Promise.resolve().then(() => {
+        $("#btn-reject, #btn-approve").css({"pointer-events":"none"});
+        $("#metadata-container").addClass("metadata-container-reject");
+    })
+    .then(() => delay(250))
+    .then(() => $("#metadata-container").slideUp(500))
+    .then(() => delay(500))
+    .then(() => {
+        $("#btn-reject, #btn-approve").css({"pointer-events":"auto"});
+        $("#metadata-container").removeClass("metadata-container-reject");
+        $("#transcript-container div").append(`<p class="name-admin">SysAdmin</p>
+        <p class="transcript-admin">Your file has been rejected. You may log off now.</p>`);
+    })
+    .then(() => delay(1500))
+    .then(() => $("#transcript-container div").append(`<p class="name-user">${username}</p>
+    <p class="transcript-user">${RESPONSE_REJECT[Math.floor(Math.random() * RESPONSE_REJECT.length)]}</p>`))
+    .then(() => delay(1500))
+    .then(() => {
+        $("#transcript-container div").append(`<p id="text-login-status">${username} has logged out</p>`);
+        $("#btn-open-connection").removeClass("btn-open-connection-disabled");
+    });
+}
 function openConnection(){
+    $("#transcript-container div").empty();
+    $("#metadata").empty();
     if (startDay === false){
         startDay = true;
         clock();
         openConnection();
     } else {
-        $("#btn-open-connection").css({"pointer-events":"none", "animation":"none", "opacity":"40%"});
+        $("#btn-open-connection").addClass("btn-open-connection-disabled");
 
         let fileTypeResponse = FILE_TYPE[Math.floor(Math.random() * FILE_TYPE.length)];
         let response = RESPONSE[Math.floor(Math.random() * RESPONSE.length)];
-        let name = generateName();
+        username = generateName();
 
-        Promise.resolve().then(() => delay(500))
-        .then(() => $("#transcript-container div").append(`<p id="text-login-status">${name} has logged in</p>`))
+        Promise.resolve().then(() => delay(250))
+        .then(() => $("#transcript-container div").append(`<p id="text-login-status">${username} has logged in</p>`))
         .then(() => delay(500))
         .then(() =>  $(".dialog-box").css("display", "flex"))
         .then(() => delay(1000))
@@ -82,11 +131,11 @@ function openConnection(){
             $(".dialog-box").removeClass("dialog-box-exit").hide();
             $(".dialog-box p").text("RECEIVING FILE...");
         })
-        .then(() => delay(1000))
+        .then(() => delay(500))
         .then(() => $("#transcript-container div").append(`<p class="name-admin">SysAdmin</p>
         <p class="transcript-admin">What is the file that you have sent?</p>`))
-        .then(() => delay(2000))
-        .then(() => $("#transcript-container div").append(`<p class="name-user">${name}</p>
+        .then(() => delay(1500))
+        .then(() => $("#transcript-container div").append(`<p class="name-user">${username}</p>
         <p class="transcript-user">${response} ${fileTypeResponse}.</p>`));
 
         generateMetadata(fileTypeResponse);
@@ -94,19 +143,21 @@ function openConnection(){
 }
 //I'm sorry that this function is really long
 function generateMetadata(fileTypeResponse: String){
-    //Randomly decides if a part of the metadata should be incorrect (default 40%)
+    //Randomly decides if a part of the metadata should be incorrect (default 40% to be true)
     protocolViolated = Math.random() < 0.4;
+    console.log(protocolViolated);
     let ministry = MINISTRY[Math.floor(Math.random() * MINISTRY.length)];
     //Note: Display the next 2 first
     let author = generateName();
-    let datePublished = generateDateLong(2057, 29);
+    let datePublished = generateDateLong(2067, 19);
     createMetadataEntry("Author", author);
     createMetadataEntry("Date Published", datePublished);
 
     let fileSize = 0;
     let source = "";
+    const COPYRIGHT_STATUS = ["Copyrighted", "Copyrighted", "Public Domain"];
     //Note: Display the next 3 last
-    let copyrightStatus = "Copyrighted";
+    let copyrightStatus = COPYRIGHT_STATUS[Math.floor(Math.random() * COPYRIGHT_STATUS.length)];
     let usageRights = "Can be used for commercial purposes."
     let assetExpiryDate = generateDateLong(2088, 10);
 
@@ -118,12 +169,15 @@ function generateMetadata(fileTypeResponse: String){
             const VIDEO_DIMENSIONS = ["1920px * 1080px", "2560px * 1440px", "3840px * 2160px", "7680px * 4320px"];
             const FRAME_RATE = [24, 30, 60];
             let videoLengthMin = Math.floor(Math.random() * 5 + 0);
-            let videoLengthSec = Math.floor(Math.random() * 59 + 0);
+            let videoLengthSec = Math.floor(Math.random() * 49 + 10);
             let videoDimensions = VIDEO_DIMENSIONS[Math.floor(Math.random() * VIDEO_DIMENSIONS.length)];
             let frameRate = FRAME_RATE[Math.floor(Math.random() * FRAME_RATE.length)];
             fileSize = Math.floor(Math.random() * (30 * frameRate / 30) + (130 * videoLengthMin));
             source = `${SOURCE_VID[Math.floor(Math.random() * SOURCE_VID.length)]}/${randomizeURL()}`;
 
+            createMetadataEntry("File Size", fileSize.toFixed(1) + " MB");
+            createMetadataEntry("Dimensions", videoDimensions);
+            createMetadataEntry("Length", `${videoLengthMin}:${videoLengthSec}`);
             createMetadataEntry("Keywords", generateKeywords(ministry));
             break;
         case "a photo":
@@ -134,39 +188,59 @@ function generateMetadata(fileTypeResponse: String){
             generateFileName(ministry);
             const IMAGE_DIMENSIONS = ["1920px * 1080px", "2560px * 1440px", "3840px * 2160px", "7680px * 4320px", "4000px * 3000px", "6000px * 4000px"];
             let imageDimensions = IMAGE_DIMENSIONS[Math.floor(Math.random() * IMAGE_DIMENSIONS.length)];
+
             switch(fileExt){
                 case "tiff":
                 case "dng":
                     fileSize = Math.floor(Math.random() * 701 + 409) * 0.1;
                     break;
                 case "png":
-                    fileSize = Math.floor(Math.random() * 81 + 169) * 0.1;
+                    fileSize = Math.floor(Math.random() * 51 + 49) * 0.1;
                     break;
                 case "jpg":
-                    fileSize = Math.floor(Math.random() * 61 + 149) * 0.1;
+                    fileSize = Math.floor(Math.random() * 61 + 69) * 0.1;
                     break;
                 case "webp":
-                    fileSize = Math.floor(Math.random() * 41 + 99) * 0.1;
-                    break;
+                    fileSize = Math.floor(Math.random() * 41 + 39) * 0.1;
             }
+
             source = `${SOURCE_IMG[Math.floor(Math.random() * SOURCE_IMG.length)]}/${randomizeURL()}`;
 
+            createMetadataEntry("File Size", fileSize.toFixed(1) + " MB");
+            createMetadataEntry("Dimensions", imageDimensions);
             createMetadataEntry("Keywords", generateKeywords(ministry));
             break;
         case "an audio file":
             fileType = "audio";
             generateFileName(ministry);
-            fileSize = Math.floor(Math.random() * 45 + 85) * 0.1;
+            let audioLengthMin = Math.floor(Math.random() * 5 + 1);
+            let audioLengthSec = Math.floor(Math.random() * 49 + 10);
+
+            switch(fileExt){
+                case "mp3":
+                case "ogg":
+                case "m4a":
+                    fileSize = Math.floor(Math.random() * 51 + 49) * 0.1;
+                    break;
+                case "flac":
+                case "wav":
+                    fileSize = Math.floor(Math.random() * 401 + 129) * 0.1;
+            }
             source = `${SOURCE_AUD[Math.floor(Math.random() * SOURCE_AUD.length)]}/${randomizeURL()}`;
 
+            createMetadataEntry("File Size", fileSize.toFixed(1) + " MB");
+            createMetadataEntry("Length", `${audioLengthMin}:${audioLengthSec}`);
             createMetadataEntry("Keywords", generateKeywords("AUDIO"));
             break;
         case "a document":
             fileType = "document";
             generateFileName(ministry);
-            fileSize = Math.floor(Math.random() * 106 + 18);
+            fileSize = Math.floor(Math.random() * 106 + 22) * 0.1;
             source = `Ministry of ${convertToMinistryLong(ministry)}`;
+            copyrightStatus = "Copyrighted";
+            usageRights = "All rights reserved.";
 
+            createMetadataEntry("File Size", fileSize.toFixed(1) + " KB");
             createMetadataEntry("Keywords", generateKeywords("DOCUMENT"));
     }
     createMetadataEntry("Source", source);
@@ -186,7 +260,7 @@ function generateFileName(ministry: String){
                 fileName = "MoEN_" + EN[Math.floor(Math.random() * EN.length)] + "_";
                 break;
             case "LA":
-                let LA = ["Office", "OfficeHeadquarters", "Offices", "Business", "Businesses", "Factory", "Factories",  "Manufacturer", "ConvenienceStore", "RetailStore", "Supermarket"];
+                let LA = ["Office", "OfficeHeadquarters", "Offices", "Business", "Businesses", "Factory", "Factories",  "Manufacturer", "ConvenienceStore", "RetailStore", "Supermarket", "Laboratory"];
                 fileName = "MoLA_" + LA[Math.floor(Math.random() * LA.length)] + "_";
                 break;
             case "TR":
@@ -231,13 +305,14 @@ function generateFileName(ministry: String){
     $("#metadata-container h2").text(fileName);
 }
 //Writes the metadata into a table
-function createMetadataEntry(field: String, entry: String){
+function createMetadataEntry(field: String, entry: String|number){
     $("#metadata").append(`
     <tr>
         <th>${field}</th>
         <td>${entry}</td>
     </tr>`);
 }
+//Should combine the next 2 functions together
 function generateDate(startingYear: number, plusMax: number){
     let year = Math.floor(Math.random() * plusMax + startingYear);
     let month = MONTH[Math.floor(Math.random() * MONTH.length)];
@@ -248,7 +323,6 @@ function generateDate(startingYear: number, plusMax: number){
 function generateDateLong(startingYear: number, plusMax: number){
     let year = Math.floor(Math.random() * plusMax + startingYear);
     let month = MONTH[Math.floor(Math.random() * MONTH.length)];
-    //Might code in a way to check if a month could have 31 days, but it's not important right now
     let day = Math.floor(Math.random() * 27 + 1);
     return `${month}. ${day}, ${year}`
 }

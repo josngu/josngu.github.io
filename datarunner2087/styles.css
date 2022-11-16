@@ -423,6 +423,13 @@ button:hover {
           animation: none;
 }
 
+.btn-open-connection-disabled {
+  -webkit-animation: none !important;
+          animation: none !important;
+  pointer-events: none !important;
+  opacity: 40% !important;
+}
+
 #desktop-container {
   display: flex;
   flex-direction: column;
@@ -444,6 +451,7 @@ button:hover {
   font-family: "Share Tech Mono", monospace;
   font-size: 2.8vh;
   margin: 0;
+  margin-bottom: 3vh;
   color: white;
   filter: drop-shadow(0 0 24px white);
 }
@@ -455,9 +463,26 @@ button:hover {
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid white;
-  transform: translateY(5%);
   height: 60vh;
   width: 60vh;
+}
+
+.metadata-container-approve {
+  -webkit-animation: generic-exit 0.25s forwards !important;
+          animation: generic-exit 0.25s forwards !important;
+  border: 1px solid hsl(145deg, 70%, 55%) !important;
+}
+.metadata-container-approve h2 {
+  background-color: hsl(145deg, 70%, 55%);
+}
+
+.metadata-container-reject {
+  -webkit-animation: generic-exit 0.25s forwards !important;
+          animation: generic-exit 0.25s forwards !important;
+  border: 1px solid hsl(340deg, 100%, 50%) !important;
+}
+.metadata-container-reject h2 {
+  background-color: hsl(340deg, 100%, 50%);
 }
 
 table {
