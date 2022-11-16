@@ -363,6 +363,7 @@ button:hover {
 }
 #transcript-container div {
   overflow: auto;
+  height: 100%;
 }
 
 #text-login-status {

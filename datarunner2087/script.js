@@ -3,14 +3,18 @@ var day = 1;
 var hour = 7;
 var minute = 0;
 var clockCycle = "AM";
-var clockLength = 200;
+var clockLength = 250;
 var warningCount = 0;
 var endDay = false;
 var startDay = false;
+var money = 100;
 var protocolViolated = false;
 var penaltyReason = "";
 var penaltyAmount = 0;
+var fileType = "";
 var fileName = "";
+var fileExt = "";
+var keywordMinimum = 3;
 const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
 const FIRST_NAME = ["James", "Sofia", "Ethan", "Emma", "Carter", "Scarlett", "Nathan", "Nora", "Muhammad", "Fatima", "Hamza", "Maria", "Antonio", "Sonia", "Mohammad", "Mia", "Nikola", "Alice", "Francisco", "Lucy", "Niko", "June", "Hao", "Astrid", "Omar", "Mary", "Daniel", "Valentina", "Agustin", "Olivia", "Jacob", "Abigail", "Alex", "Agnes", "Martin", "Emily", "Liam", "Grace", "Leonardo", "Isabelle", "Niko", "Valerie", "Charlie", "Charlotte", "Bob", "Anastasia", "Kazuya", "Mikazuki", "Sergei", "Yoko", "Ringo", "Julia"];
 const LAST_NAME = ["Huang", "Gutierrez", "Robinson", "Watson", "Khalid", "Hasan", "Harrison", "Ferguson", "Cunningham", "Hoffman", "Chan", "Schroeder", "Weiss", "Singh", "Zhou", "Abubakar", "Romero", "Contreras", "Nakamura", "Yamamoto", "Kobayashi", "Blanco", "Torres", "Lee", "Harris", "Wright", "Flores", "Cooper", "Sullivan", "Delgado", "Atkinson", "Baxter", "McDonald", "McDuff", "McAllister", "McMahon", "McKee", "McGregor", "Fukumoto", "Kubota", "Ichikawa", "Nagata", "Aguilar", "Rivera", "Richardson"];
@@ -19,10 +23,10 @@ const SOURCE_VID = ["filmostock.com", "vestvideos.com", "uniassets.com", "asseth
 const SOURCE_AUD = ["hypomusique.com", "allsounds.com", "upcompose.com", "rigormusic.com"];
 const FILE_TYPE = ["a video file", "a video", "a photo", "a photograph", "a picture", "an image", "an audio file", "a document"];
 const VIDEO_TYPE = ["mov", "mp4", "avi", "flv", "webm"];
-const IMAGE_TYPE = ["jpg", "png", "webp", "tiff", "raw"];
+const IMAGE_TYPE = ["jpg", "png", "webp", "tiff", "dng"];
 const AUDIO_TYPE = ["mp3", "ogg", "flac", "wav", "m4a"];
 const DOCUMENT_TYPE = ["docx", "odt", "txt", "rtf", "pdf"];
-const RESPONSE = ["I sent", "I sent you", "This is", "It's", "It is", "I've sent you", "The file should be", "The file is", "I think I sent", "I uploaded", "I've uploaded"];
+const RESPONSE = ["I sent", "I sent you", "I've sent you", "The file should be", "The file is", "I think I sent", "I uploaded", "I've uploaded", "I sent over"];
 //Ministry of agriculture, defense, education, energy, health, infrastructure, labour, transportation
 const MINISTRY = ["AG", "DE", "ED", "EN", "HE", "IN", "LA", "TR"];
 const ED_KEYWORDS = ["teacher", "teachers", "school", "education", "college", "building", "instructor", "student", "students", "research"];
@@ -44,7 +48,7 @@ function openConnection() {
     }
     else {
         $("#btn-open-connection").css({ "pointer-events": "none", "animation": "none", "opacity": "40%" });
-        let fileType = FILE_TYPE[Math.floor(Math.random() * FILE_TYPE.length)];
+        let fileTypeResponse = FILE_TYPE[Math.floor(Math.random() * FILE_TYPE.length)];
         let response = RESPONSE[Math.floor(Math.random() * RESPONSE.length)];
         let name = generateName();
         Promise.resolve().then(() => delay(500))
@@ -67,24 +71,31 @@ function openConnection() {
         <p class="transcript-admin">What is the file that you have sent?</p>`))
             .then(() => delay(2000))
             .then(() => $("#transcript-container div").append(`<p class="name-user">${name}</p>
-        <p class="transcript-user">${response} ${fileType}.</p>`));
-        generateMetadata(fileType);
+        <p class="transcript-user">${response} ${fileTypeResponse}.</p>`));
+        generateMetadata(fileTypeResponse);
     }
 }
-function generateMetadata(fileType) {
-    violateProtocol();
+//I'm sorry that this function is really long
+function generateMetadata(fileTypeResponse) {
+    //Randomly decides if a part of the metadata should be incorrect (default 40%)
+    protocolViolated = Math.random() < 0.4;
     let ministry = MINISTRY[Math.floor(Math.random() * MINISTRY.length)];
+    //Note: Display the next 2 first
     let author = generateName();
-    let datePublished = generateDate(2047, 39);
+    let datePublished = generateDateLong(2057, 29);
+    createMetadataEntry("Author", author);
+    createMetadataEntry("Date Published", datePublished);
     let fileSize = 0;
     let source = "";
+    //Note: Display the next 3 last
     let copyrightStatus = "Copyrighted";
     let usageRights = "Can be used for commercial purposes.";
-    let assetExpiryDate = generateDate(2088, 10);
-    switch (fileType) {
+    let assetExpiryDate = generateDateLong(2088, 10);
+    switch (fileTypeResponse) {
         case "a video file":
         case "a video":
-            generateFileName("video", ministry);
+            fileType = "video";
+            generateFileName(ministry);
             const VIDEO_DIMENSIONS = ["1920px * 1080px", "2560px * 1440px", "3840px * 2160px", "7680px * 4320px"];
             const FRAME_RATE = [24, 30, 60];
             let videoLengthMin = Math.floor(Math.random() * 5 + 0);
@@ -93,29 +104,54 @@ function generateMetadata(fileType) {
             let frameRate = FRAME_RATE[Math.floor(Math.random() * FRAME_RATE.length)];
             fileSize = Math.floor(Math.random() * (30 * frameRate / 30) + (130 * videoLengthMin));
             source = `${SOURCE_VID[Math.floor(Math.random() * SOURCE_VID.length)]}/${randomizeURL()}`;
+            createMetadataEntry("Keywords", generateKeywords(ministry));
             break;
         case "a photo":
         case "a photograph":
         case "a picture":
         case "an image":
-            generateFileName("image", ministry);
+            fileType = "image";
+            generateFileName(ministry);
             const IMAGE_DIMENSIONS = ["1920px * 1080px", "2560px * 1440px", "3840px * 2160px", "7680px * 4320px", "4000px * 3000px", "6000px * 4000px"];
             let imageDimensions = IMAGE_DIMENSIONS[Math.floor(Math.random() * IMAGE_DIMENSIONS.length)];
-            fileSize = Math.floor(Math.random() * 55 + 75) * 0.1;
+            switch (fileExt) {
+                case "tiff":
+                case "dng":
+                    fileSize = Math.floor(Math.random() * 701 + 409) * 0.1;
+                    break;
+                case "png":
+                    fileSize = Math.floor(Math.random() * 81 + 169) * 0.1;
+                    break;
+                case "jpg":
+                    fileSize = Math.floor(Math.random() * 61 + 149) * 0.1;
+                    break;
+                case "webp":
+                    fileSize = Math.floor(Math.random() * 41 + 99) * 0.1;
+                    break;
+            }
             source = `${SOURCE_IMG[Math.floor(Math.random() * SOURCE_IMG.length)]}/${randomizeURL()}`;
+            createMetadataEntry("Keywords", generateKeywords(ministry));
             break;
         case "an audio file":
-            generateFileName("audio", ministry);
+            fileType = "audio";
+            generateFileName(ministry);
             fileSize = Math.floor(Math.random() * 45 + 85) * 0.1;
             source = `${SOURCE_AUD[Math.floor(Math.random() * SOURCE_AUD.length)]}/${randomizeURL()}`;
+            createMetadataEntry("Keywords", generateKeywords("AUDIO"));
             break;
         case "a document":
-            generateFileName("document", ministry);
+            fileType = "document";
+            generateFileName(ministry);
             fileSize = Math.floor(Math.random() * 106 + 18);
             source = `Ministry of ${convertToMinistryLong(ministry)}`;
+            createMetadataEntry("Keywords", generateKeywords("DOCUMENT"));
     }
+    createMetadataEntry("Source", source);
+    createMetadataEntry("Copyright Status", copyrightStatus);
+    createMetadataEntry("Usage Rights", usageRights);
+    createMetadataEntry("Asset Expiry Date", assetExpiryDate);
 }
-function generateFileName(fileType, ministry) {
+function generateFileName(ministry) {
     if (fileType === "video" || fileType === "image") {
         switch (ministry) {
             case "ED":
@@ -169,17 +205,54 @@ function generateFileName(fileType, ministry) {
         fileName = fileName + "2087M10D" + day;
     }
     //Lastly, we need to add a file extension
-    fileName = fileName + "." + generateFileExtension(fileType);
+    fileName = fileName + "." + generateFileExtension();
     $("#metadata-container h2").text(fileName);
 }
+//Writes the metadata into a table
 function createMetadataEntry(field, entry) {
+    $("#metadata").append(`
+    <tr>
+        <th>${field}</th>
+        <td>${entry}</td>
+    </tr>`);
 }
-function generateDate(startingValue, plusMax) {
-    let year = Math.floor(Math.random() * plusMax + startingValue);
+function generateDate(startingYear, plusMax) {
+    let year = Math.floor(Math.random() * plusMax + startingYear);
     let month = MONTH[Math.floor(Math.random() * MONTH.length)];
     //Might code in a way to check if a month could have 31 days, but it's not important right now
     let day = Math.floor(Math.random() * 27 + 1);
     return addLeadingZero(year, month, day);
+}
+function generateDateLong(startingYear, plusMax) {
+    let year = Math.floor(Math.random() * plusMax + startingYear);
+    let month = MONTH[Math.floor(Math.random() * MONTH.length)];
+    //Might code in a way to check if a month could have 31 days, but it's not important right now
+    let day = Math.floor(Math.random() * 27 + 1);
+    return `${month}. ${day}, ${year}`;
+}
+function generateKeywords(ministry) {
+    let keywords = "";
+    let currentKeyword = "";
+    let arrayPosition = 0;
+    //Stores the array constant into a variable so that we can remove keywords within the array
+    let tempKeywordBank = eval(ministry + "_KEYWORDS");
+    //Generates the minimum amount of keywords
+    for (let i = 0; i < keywordMinimum; i++) {
+        arrayPosition = Math.floor(Math.random() * tempKeywordBank.length);
+        currentKeyword = tempKeywordBank[arrayPosition];
+        keywords = keywords + currentKeyword + ", ";
+        tempKeywordBank.splice(arrayPosition, 1);
+    }
+    //Optionally generates an additional keyword
+    let x = Math.random() < 0.5;
+    switch (x) {
+        case false:
+            break;
+        case true:
+            keywords = keywords + tempKeywordBank[Math.floor(Math.random() * tempKeywordBank.length)] + ", ";
+    }
+    //Remove the last 2 characters (, ) of the keywords string
+    return keywords.substring(0, keywords.length - 2);
 }
 function randomizeURL() {
     let urlEnding = "";
@@ -188,6 +261,7 @@ function randomizeURL() {
     }
     return urlEnding;
 }
+//I think I made this function so that the month could actually be compared as a number (sometimes the month is a string)
 function addLeadingZero(year, month, day) {
     if (month < 10 && day < 10) {
         return year + "M0" + month + "D0" + day;
@@ -200,8 +274,7 @@ function addLeadingZero(year, month, day) {
     }
     return year + "M" + month + "D" + day;
 }
-function generateFileExtension(fileType) {
-    let fileExt = "";
+function generateFileExtension() {
     switch (fileType) {
         case "video":
             fileExt = VIDEO_TYPE[Math.floor(Math.random() * VIDEO_TYPE.length)];
@@ -240,16 +313,6 @@ function convertToMinistryLong(ministry) {
             return "Infrastructure";
         case "DE":
             return "Defense";
-    }
-}
-function violateProtocol() {
-    let x = Math.floor(Math.random() * 1);
-    switch (x) {
-        case 0:
-            protocolViolated = false;
-            break;
-        case 1:
-            protocolViolated = true;
     }
 }
 function toggleRulebook() {
