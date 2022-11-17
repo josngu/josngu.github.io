@@ -14,7 +14,8 @@ var penaltyDeduction = 0;
 
 var protocolViolated = false;
 var penaltyReason = "";
-var penaltyAmount = 0;
+var violationCount = 0;
+var violationList = ["file name year", "file name month", "file name day", "file name date format", "file name extension", "missing file name extension", "ministry abbreviation", "missing metadata entry"];
 
 var fileType = "";
 var fileName = "";
@@ -40,7 +41,7 @@ const AUDIO_TYPE = ["mp3", "ogg", "flac", "wav", "m4a"];
 const DOCUMENT_TYPE = ["docx", "odt", "txt", "rtf", "pdf"];
 
 const RESPONSE = ["I sent", "I sent you", "I've sent you", "The file should be", "The file is", "I think I sent", "I uploaded", "I've uploaded", "I sent over"];
-const RESPONSE_REJECT = ["I see.", "What? This is ridiculous.", "Hmm... I'll try again later.", "Huh?", "...", "Why?", "Maybe I'll try again later.", "What's wrong with the file?", "Sorry... I'm still new to this.", "Alright.", "What?", "Is there a problem with the file?", "I don't understand.", "I hate this.", "This is a little confusing."];
+const RESPONSE_REJECT = ["I see.", "What? This is ridiculous.", "Hmm... I'll try again later.", "Huh?", "...", "Why?", "Maybe I'll try again later.", "What's wrong with the file?", "Sorry... I'm still new to this.", "Alright.", "What?", "Is there a problem with the file?", "I don't understand.", "I hate this.", "This is a little confusing.", "Hmm... That's weird."];
 
 //Ministry of agriculture, defense, education, energy, health, infrastructure, labour, transportation
 const MINISTRY = ["AG", "DE", "ED", "EN", "HE", "IN", "LA", "TR"];
@@ -54,7 +55,7 @@ const AG_KEYWORDS = ["farm", "farms", "farmland", "farmer", "crops", "agricultur
 const IN_KEYWORDS = ["building", "buildings", "skyscraper", "skyscrapers", "construction", "architecture", "house", "houses", "structure"];
 const DE_KEYWORDS = ["military", "war", "weapons", "guns", "firearms", "army", "artillery", "infantry", "corps", "armaments", "troops", "squadron", "squad"];
 
-const AUDIO_KEYWORDS = ["bass", "upbeat", "drums", "classical", "piano", "guitar", "trumpet", "saxophone", "relaxing", "violin"];
+const AUDIO_KEYWORDS = ["bass", "upbeat", "drums", "classical", "baroque", "piano", "guitar", "trumpet", "saxophone", "relaxing", "violin"];
 const DOCUMENT_KEYWORDS = ["finance", "financial", "document", "spreadsheet", "article", "record", "records", "accounts", "management", "archive", "data"];
 
 const MONTH = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -91,7 +92,7 @@ function reject(){
         $("#btn-reject, #btn-approve").css({"pointer-events":"auto"});
         $("#metadata-container").removeClass("metadata-container-reject");
         $("#transcript-container div").append(`<p class="name-admin">SysAdmin</p>
-        <p class="transcript-admin">Your file has been rejected. You may log off now.</p>`);
+        <p class="transcript-admin">Your file has been rejected. You will be logged off now.</p>`);
     })
     .then(() => delay(1500))
     .then(() => $("#transcript-container div").append(`<p class="name-user">${username}</p>
@@ -101,6 +102,47 @@ function reject(){
         $("#transcript-container div").append(`<p id="text-login-status">${username} has logged out</p>`);
         $("#btn-open-connection").removeClass("btn-open-connection-disabled");
     });
+}
+function createViolation(){
+    let chooseViolation = violationList[Math.floor(Math.random() * violationList.length)];
+    switch(chooseViolation){
+        case "file name year":
+
+            penaltyReason = "INCORRECT FILE NAME YEAR";
+            break;
+        case "file name month":
+
+            penaltyReason = "INCORRECT FILE NAME MONTH";
+            break;
+        case "file name day":
+
+            penaltyReason = "INCORRECT FILE NAME DAY";
+            break;
+        case "file name date format":
+
+            penaltyReason = "INCORRECT FILE NAME DATE FORMAT";
+            break;
+        case "file name extension":
+
+            penaltyReason = "INCORRECT FILE NAME EXTENSION";
+            break;
+        case "missing file name extension":
+            let currentFileName = $("#metadata-container h2").text();
+            currentFileName = currentFileName.slice(0, -4);
+            $("#metadata-container h2").text(currentFileName);
+            penaltyReason = "MISSING FILE NAME EXTENSION";
+            break;
+        case "ministry abbreviation":
+
+            penaltyReason = "INCORRECT MINISTRY ABBREVIATION";
+            break;
+        case "missing metadata entry":
+            $(`#metadata tr:nth-last-child(${Math.floor(Math.random() * 5 + 1)}) td:nth-child(2)`).text("");
+            penaltyReason = "MISSING METADATA ENTRY";
+    }
+}
+function checkViolation(buttonValue: String){
+
 }
 function openConnection(){
     $("#transcript-container div").empty();
@@ -133,7 +175,7 @@ function openConnection(){
         })
         .then(() => delay(500))
         .then(() => $("#transcript-container div").append(`<p class="name-admin">SysAdmin</p>
-        <p class="transcript-admin">What is the file that you have sent?</p>`))
+        <p class="transcript-admin">Please state the type of file that you have uploaded.</p>`))
         .then(() => delay(1500))
         .then(() => $("#transcript-container div").append(`<p class="name-user">${username}</p>
         <p class="transcript-user">${response} ${fileTypeResponse}.</p>`));
@@ -144,7 +186,7 @@ function openConnection(){
 //I'm sorry that this function is really long
 function generateMetadata(fileTypeResponse: String){
     //Randomly decides if a part of the metadata should be incorrect (default 40% to be true)
-    protocolViolated = Math.random() < 0.4;
+    protocolViolated = Math.random() < 1;
     console.log(protocolViolated);
     let ministry = MINISTRY[Math.floor(Math.random() * MINISTRY.length)];
     //Note: Display the next 2 first
@@ -247,6 +289,10 @@ function generateMetadata(fileTypeResponse: String){
     createMetadataEntry("Copyright Status", copyrightStatus);
     createMetadataEntry("Usage Rights", usageRights);
     createMetadataEntry("Asset Expiry Date", assetExpiryDate);
+
+    if (protocolViolated === true){
+        createViolation();
+    }
 }
 function generateFileName(ministry: String){
     if (fileType === "video" || fileType === "image"){
@@ -312,7 +358,7 @@ function createMetadataEntry(field: String, entry: String|number){
         <td>${entry}</td>
     </tr>`);
 }
-//Should combine the next 2 functions together
+//I should probably combine the next 2 functions together
 function generateDate(startingYear: number, plusMax: number){
     let year = Math.floor(Math.random() * plusMax + startingYear);
     let month = MONTH[Math.floor(Math.random() * MONTH.length)];
@@ -331,7 +377,7 @@ function generateKeywords(ministry: String){
     let currentKeyword = "";
     let arrayPosition = 0;
     //Stores the array constant into a variable so that we can remove keywords within the array
-    let tempKeywordBank = eval(ministry + "_KEYWORDS");
+    let tempKeywordBank = eval(ministry + "_KEYWORDS").slice();
     //Generates the minimum amount of keywords
     for (let i = 0; i < keywordMinimum; i++){
         arrayPosition = Math.floor(Math.random() * tempKeywordBank.length);
