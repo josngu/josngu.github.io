@@ -15,7 +15,7 @@ var penaltyDeduction = 0;
 var protocolViolated = false;
 var penaltyReason = "";
 var violationCount = 0;
-var violationList = ["file name year", "file name month", "file name day", "file name date format", "file name extension", "missing file name extension", "ministry abbreviation", "missing metadata entry"];
+var violationList = ["file name year", "file name month", "file name day", "file name date format", "file name extension", "missing file name extension", "missing file name ministry", "ministry abbreviation", "missing metadata entry"];
 
 var fileType = "";
 var fileName = "";
@@ -23,7 +23,7 @@ var fileExt = "";
 
 var keywordMinimum = 3;
 
-const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+const ALPHABET = "abcdefghijklmnopqrstvwxyz";
 
 const FIRST_NAME = ["James", "Sofia", "Ethan", "Emma", "Carter", "Scarlett", "Nathan", "Nora", "Muhammad", "Fatima", "Hamza", "Maria", "Antonio", "Sonia", "Mohammad", "Mia", "Nikola", "Alice", "Francisco", "Lucy", "Niko", "June", "Hao", "Astrid", "Omar", "Mary", "Daniel", "Valentina", "Agustin", "Olivia", "Jacob", "Abigail", "Alex", "Agnes", "Martin", "Emily", "Liam", "Grace", "Leonardo", "Isabelle", "Niko", "Valerie", "Charlie", "Charlotte", "Bob", "Anastasia", "Kazuya", "Mikazuki", "Sergei", "Yoko", "Ringo", "Julia"];
 
@@ -39,12 +39,14 @@ const VIDEO_TYPE = ["mov", "mp4", "avi", "flv", "webm"];
 const IMAGE_TYPE = ["jpg", "png", "webp", "tiff", "dng"];
 const AUDIO_TYPE = ["mp3", "ogg", "flac", "wav", "m4a"];
 const DOCUMENT_TYPE = ["docx", "odt", "txt", "rtf", "pdf"];
+const OTHER_FILE_EXTENSIONS = ["apk", "exe", "zip", "rar", "obj", "cab", "bin", "tar", "dmg", "iso", "img"];
 
 const RESPONSE = ["I sent", "I sent you", "I've sent you", "The file should be", "The file is", "I think I sent", "I uploaded", "I've uploaded", "I sent over"];
-const RESPONSE_REJECT = ["I see.", "What? This is ridiculous.", "Hmm... I'll try again later.", "Huh?", "...", "Why?", "Maybe I'll try again later.", "What's wrong with the file?", "Sorry... I'm still new to this.", "Alright.", "What?", "Is there a problem with the file?", "I don't understand.", "I hate this.", "This is a little confusing.", "Hmm... That's weird."];
+const RESPONSE_REJECT = ["I see.", "What? This is ridiculous.", "Hmm... I'll try again later.", "Huh?", "...", "Why?", "Maybe I'll try again later.", "What's wrong with the file?", "Sorry... I'm still new to this.", "Alright.", "What?", "Is there a problem with the file?", "I guess I'll try again another time.", "I hate this.", "This process is a little confusing.", "Hmm... That's weird.", "I don't understand what's wrong with the file?", "Right... I see.", "I don't understand the point of this."];
 
 //Ministry of agriculture, defense, education, energy, health, infrastructure, labour, transportation
 const MINISTRY = ["AG", "DE", "ED", "EN", "HE", "IN", "LA", "TR"];
+const MINISTRY_FAKE = ["AR", "DF", "EU", "ER", "HT", "IM", "LR", "TA", "TN", "IR", "AM", "SE", "TO", "AC"];
 
 const ED_KEYWORDS = ["teacher", "teachers", "school", "education", "college", "building", "instructor", "student", "students", "research"];
 const EN_KEYWORDS = ["power plant", "power", "electricity", "voltage", "energy", "building", "utilities"];
@@ -59,6 +61,15 @@ const AUDIO_KEYWORDS = ["bass", "upbeat", "drums", "classical", "baroque", "pian
 const DOCUMENT_KEYWORDS = ["finance", "financial", "document", "spreadsheet", "article", "record", "records", "accounts", "management", "archive", "data"];
 
 const MONTH = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+$(function() {
+    $("#btn-open-connection, #btn-reject, #btn-approve").on("keydown", false);
+});
+
+function startGame(){
+    $("#title-screen").hide();
+    $("#intro-container").css({"display":"flex"});
+}
 
 function approve(){
     Promise.resolve().then(() => {
@@ -81,6 +92,7 @@ function approve(){
     });
 }
 function reject(){
+    let delayTimer = 1500;
     Promise.resolve().then(() => {
         $("#btn-reject, #btn-approve").css({"pointer-events":"none"});
         $("#metadata-container").addClass("metadata-container-reject");
@@ -95,9 +107,14 @@ function reject(){
         <p class="transcript-admin">Your file has been rejected. You will be logged off now.</p>`);
     })
     .then(() => delay(1500))
-    .then(() => $("#transcript-container div").append(`<p class="name-user">${username}</p>
-    <p class="transcript-user">${RESPONSE_REJECT[Math.floor(Math.random() * RESPONSE_REJECT.length)]}</p>`))
-    .then(() => delay(1500))
+    .then(() => {
+        if (coinFlip(0.25) === true){
+            $("#transcript-container div").append(`<p class="name-user">${username}</p><p class="transcript-user">${RESPONSE_REJECT[Math.floor(Math.random() * RESPONSE_REJECT.length)]}</p>`);
+        } else {
+            delayTimer = 0;
+        }
+    })
+    .then(() => delay(delayTimer))
     .then(() => {
         $("#transcript-container div").append(`<p id="text-login-status">${username} has logged out</p>`);
         $("#btn-open-connection").removeClass("btn-open-connection-disabled");
@@ -105,6 +122,7 @@ function reject(){
 }
 function createViolation(){
     let chooseViolation = violationList[Math.floor(Math.random() * violationList.length)];
+    //chooseViolation = "file name extension";
     switch(chooseViolation){
         case "file name year":
 
@@ -123,17 +141,31 @@ function createViolation(){
             penaltyReason = "INCORRECT FILE NAME DATE FORMAT";
             break;
         case "file name extension":
-
-            penaltyReason = "INCORRECT FILE NAME EXTENSION";
+            let fileExtension = $("#metadata-container h2").text().slice(-4);
+            //Sometimes, removing the last 4 characters of the filename doesn't get rid of the period
+            switch(fileExtension){
+                case "webm":
+                case "webp":
+                case "tiff":
+                case "docx":
+                case "flac":
+                    $("#metadata-container h2").text($("#metadata-container h2").text().slice(0, -4) + OTHER_FILE_EXTENSIONS[Math.floor(Math.random() * OTHER_FILE_EXTENSIONS.length)]);
+                    break;
+                default:
+                    $("#metadata-container h2").text($("#metadata-container h2").text().slice(0, -4) + "." + OTHER_FILE_EXTENSIONS[Math.floor(Math.random() * OTHER_FILE_EXTENSIONS.length)]);
+            }
+            penaltyReason = "FILE TYPE DOES NOT MATCH USER RESPONSE";
             break;
         case "missing file name extension":
-            let currentFileName = $("#metadata-container h2").text();
-            currentFileName = currentFileName.slice(0, -4);
-            $("#metadata-container h2").text(currentFileName);
+            $("#metadata-container h2").text($("#metadata-container h2").text().slice(0, -4));
             penaltyReason = "MISSING FILE NAME EXTENSION";
             break;
+        case "missing file name ministry":
+            $("#metadata-container h2").text($("#metadata-container h2").text().slice(5));
+            penaltyReason = "MISSING MINISTRY ABBREVIATION";
+            break;
         case "ministry abbreviation":
-
+            $("#metadata-container h2").text("Mo" + MINISTRY_FAKE[Math.floor(Math.random() * MINISTRY_FAKE.length)] + $("#metadata-container h2").text().slice(4));
             penaltyReason = "INCORRECT MINISTRY ABBREVIATION";
             break;
         case "missing metadata entry":
@@ -170,6 +202,7 @@ function openConnection(){
         .then(() => delay(500))
         .then(() => {
             $("#metadata-container").css("display", "flex");
+            $("#btn-reject, #btn-approve").hide();
             $(".dialog-box").removeClass("dialog-box-exit").hide();
             $(".dialog-box p").text("RECEIVING FILE...");
         })
@@ -177,8 +210,10 @@ function openConnection(){
         .then(() => $("#transcript-container div").append(`<p class="name-admin">SysAdmin</p>
         <p class="transcript-admin">Please state the type of file that you have uploaded.</p>`))
         .then(() => delay(1500))
-        .then(() => $("#transcript-container div").append(`<p class="name-user">${username}</p>
-        <p class="transcript-user">${response} ${fileTypeResponse}.</p>`));
+        .then(() => {
+            $("#transcript-container div").append(`<p class="name-user">${username}</p><p class="transcript-user">${response} ${fileTypeResponse}.</p>`);
+            $("#btn-reject, #btn-approve").slideDown(250);
+        });
 
         generateMetadata(fileTypeResponse);
     }
@@ -458,6 +493,9 @@ function convertToMinistryLong(ministry: String){
             return "Defense";
     }
 }
+function coinFlip(chance:number){
+    return Math.random() < chance;
+}
 function toggleRulebook(){
     if ($("#rulebook-container").is(":hidden")){
         $("#rulebook-container").slideDown(500);
@@ -484,6 +522,12 @@ function dayStart(){
     switch(day){
         case 1:
             $("#notifications-container div").prepend(`<p class="notif-regular">Your position as a digital asset administrator is to filter out any incoming assets that do not adhere to government protocol. View the rulebook at the bottom for more details. When you're ready, you may begin accepting incoming connections.</p>`);
+            break;
+        case 2:
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past.</p>`);
+            break;
+        case 3:
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting reports of users accidentally uploading the wrong files to our DAM system. From now on, check the transcript and make sure that the file name extension matches the user's response.</p>`);
             break;
     }
 }
