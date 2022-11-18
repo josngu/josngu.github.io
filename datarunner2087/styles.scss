@@ -167,7 +167,7 @@ $glow: 0 0 24px;
     50% {
         letter-spacing: 1.25vh;
         opacity: 100%;
-        color: $font-clr-user;
+        color: $font-clr-admin;
     }
     60% {
         letter-spacing: 2vh;
@@ -203,7 +203,6 @@ $glow: 0 0 24px;
     }
     80% {
         transform: translate3d(-35%, -35%, 0) rotateY(-25deg) rotateX(45deg) rotateZ(10deg);
-        
     }
     100% {
         transform: translate3d(-40%, -40%, 0) rotateY(-25deg) rotateX(45deg) rotateZ(10deg);
@@ -221,10 +220,26 @@ $glow: 0 0 24px;
     }
     80% {
         transform: translate3d(-25%, -25%, 0) rotateY(-25deg) rotateX(45deg) rotateZ(10deg);
-        
     }
     100% {
         transform: translate3d(-30%, -30%, 0) rotateY(-25deg) rotateX(45deg) rotateZ(10deg);
+    }
+}
+@keyframes scanner {
+    0% {
+        transform: translate3d(-45%, 1100%, 0);
+    }
+    20% {
+        transform: translate3d(-45%, -700%, 0);
+    }
+    50% {
+        transform: translate3d(-45%, 900%, 0);
+    }
+    80% {
+        transform: translate3d(-45%, -450%, 0);
+    }
+    100% {
+        transform: translate3d(-45%, 1100%, 0);
     }
 }
 
@@ -364,13 +379,23 @@ button {
         pointer-events: none;
     }
     div:nth-child(3) {
-        animation: redbox 8s infinite, pulse 2s infinite;
+        animation: redbox 8s infinite, pulse 3s infinite;
         transform: translate3d(-30%, -30%, 0) rotateY(-25deg) rotateX(45deg) rotateZ(10deg);
         outline: 0.5vh solid $clr-danger;
         filter: drop-shadow(1vh 1vh 0.5vh $clr-danger) blur(0.25vh);
+        div {
+            animation: scanner 10s infinite;
+            position: absolute;
+            transform: translate3d(-45%, -45%, 0);
+            background-color: $clr-danger;
+            opacity: 40%;
+            outline: 0.5vh solid $clr-danger;
+            width: 100%;
+            height: 5%; 
+        }
     }
     div:nth-child(4) {
-        animation: bluebox 6s infinite, pulse 3s infinite;
+        animation: bluebox 6s infinite, pulse 4s infinite;
         transform: translate3d(-40%, -40%, 0) rotateY(-25deg) rotateX(45deg) rotateZ(10deg);
         outline: 0.5vh solid $font-clr-user;
         filter: drop-shadow(1vh 1vh 0.5vh $font-clr-user) blur(0.25vh);

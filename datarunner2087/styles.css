@@ -281,7 +281,7 @@
   50% {
     letter-spacing: 1.25vh;
     opacity: 100%;
-    color: hsl(187deg, 100%, 50%);
+    color: hsl(56deg, 100%, 50%);
   }
   60% {
     letter-spacing: 2vh;
@@ -330,7 +330,7 @@
   50% {
     letter-spacing: 1.25vh;
     opacity: 100%;
-    color: hsl(187deg, 100%, 50%);
+    color: hsl(56deg, 100%, 50%);
   }
   60% {
     letter-spacing: 2vh;
@@ -420,6 +420,40 @@
   }
   100% {
     transform: translate3d(-30%, -30%, 0) rotateY(-25deg) rotateX(45deg) rotateZ(10deg);
+  }
+}
+@-webkit-keyframes scanner {
+  0% {
+    transform: translate3d(-45%, 1100%, 0);
+  }
+  20% {
+    transform: translate3d(-45%, -700%, 0);
+  }
+  50% {
+    transform: translate3d(-45%, 900%, 0);
+  }
+  80% {
+    transform: translate3d(-45%, -450%, 0);
+  }
+  100% {
+    transform: translate3d(-45%, 1100%, 0);
+  }
+}
+@keyframes scanner {
+  0% {
+    transform: translate3d(-45%, 1100%, 0);
+  }
+  20% {
+    transform: translate3d(-45%, -700%, 0);
+  }
+  50% {
+    transform: translate3d(-45%, 900%, 0);
+  }
+  80% {
+    transform: translate3d(-45%, -450%, 0);
+  }
+  100% {
+    transform: translate3d(-45%, 1100%, 0);
   }
 }
 ::-webkit-scrollbar {
@@ -575,15 +609,26 @@ button:hover {
   pointer-events: none;
 }
 #title-screen div:nth-child(3) {
-  -webkit-animation: redbox 8s infinite, pulse 2s infinite;
-          animation: redbox 8s infinite, pulse 2s infinite;
+  -webkit-animation: redbox 8s infinite, pulse 3s infinite;
+          animation: redbox 8s infinite, pulse 3s infinite;
   transform: translate3d(-30%, -30%, 0) rotateY(-25deg) rotateX(45deg) rotateZ(10deg);
   outline: 0.5vh solid hsl(340deg, 100%, 50%);
   filter: drop-shadow(1vh 1vh 0.5vh hsl(340deg, 100%, 50%)) blur(0.25vh);
 }
+#title-screen div:nth-child(3) div {
+  -webkit-animation: scanner 10s infinite;
+          animation: scanner 10s infinite;
+  position: absolute;
+  transform: translate3d(-45%, -45%, 0);
+  background-color: hsl(340deg, 100%, 50%);
+  opacity: 40%;
+  outline: 0.5vh solid hsl(340deg, 100%, 50%);
+  width: 100%;
+  height: 5%;
+}
 #title-screen div:nth-child(4) {
-  -webkit-animation: bluebox 6s infinite, pulse 3s infinite;
-          animation: bluebox 6s infinite, pulse 3s infinite;
+  -webkit-animation: bluebox 6s infinite, pulse 4s infinite;
+          animation: bluebox 6s infinite, pulse 4s infinite;
   transform: translate3d(-40%, -40%, 0) rotateY(-25deg) rotateX(45deg) rotateZ(10deg);
   outline: 0.5vh solid hsl(187deg, 100%, 50%);
   filter: drop-shadow(1vh 1vh 0.5vh hsl(187deg, 100%, 50%)) blur(0.25vh);
