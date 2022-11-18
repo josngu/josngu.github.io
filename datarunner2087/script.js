@@ -13,7 +13,7 @@ var penaltyDeduction = 100;
 var protocolViolated = false;
 var penaltyReason = "";
 var violationCount = -1;
-var violationList = ["file name year", "file name month", "file name day", "file name date format", "missing file name extension", "missing file name ministry", "ministry abbreviation", "missing metadata entry"];
+var violationList = ["file name year", "file name month", "file name day", "file name date format", "missing file name extension", "missing file name ministry", "ministry abbreviation"];
 var fileType = "";
 var fileName = "";
 var fileExt = "";
@@ -142,10 +142,6 @@ function createViolation() {
             $("#metadata-container h2").text("Mo" + MINISTRY_FAKE[Math.floor(Math.random() * MINISTRY_FAKE.length)] + $("#metadata-container h2").text().slice(4));
             penaltyReason = "INCORRECT MINISTRY ABBREVIATION";
             break;
-        case "missing metadata entry":
-            $(`#metadata tr:nth-last-child(${Math.floor(Math.random() * 5 + 1)}) td:nth-child(2)`).text("");
-            penaltyReason = "MISSING METADATA ENTRY";
-            break;
         //Day 2
         case "file name extension":
             let fileExtension = $("#metadata-container h2").text().slice(-4);
@@ -162,6 +158,17 @@ function createViolation() {
                     $("#metadata-container h2").text($("#metadata-container h2").text().slice(0, -4) + "." + OTHER_FILE_EXTENSIONS[Math.floor(Math.random() * OTHER_FILE_EXTENSIONS.length)]);
             }
             penaltyReason = "FILE TYPE DOES NOT MATCH USER RESPONSE";
+            break;
+        //Day 3
+        case "missing metadata entry":
+            $(`#metadata tr:nth-last-child(${Math.floor(Math.random() * 5 + 1)}) td:nth-child(2)`).text("");
+            penaltyReason = "MISSING METADATA ENTRY";
+            break;
+        case "invalid published date":
+            penaltyReason = "INVALID PUBLISHED DATE";
+            break;
+        case "invalid expiry date":
+            penaltyReason = "INVALID EXPIRY DATE";
             break;
     }
 }
@@ -247,7 +254,7 @@ function openConnection() {
         generateMetadata(fileTypeResponse);
     }
 }
-//I'm sorry that this function is really long
+//I'm sorry about this long function
 function generateMetadata(fileTypeResponse) {
     //Randomly decides if a part of the metadata should be incorrect (default 40% to be true)
     protocolViolated = Math.random() < 0.4;
@@ -541,17 +548,20 @@ function switchTab() {
 function dayStart() {
     switch (day) {
         case 1:
-            $("#notifications-container div").prepend(`<p class="notif-regular">Your position as a digital asset administrator is to filter out any incoming assets that do not adhere to government protocol. View the rulebook at the bottom for more details. When you're ready, you may begin accepting incoming connections.</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">Your position as a digital asset administrator is to filter out any incoming assets that do not adhere to government protocol.<br><br>All files uploaded to the digital asset management (DAM) system must follow a strict naming convention. Be sure to look over the file name carefully.<br><br>View the rulebook at the bottom for more details. When you're ready, you may begin accepting incoming connections.</p>`);
             break;
         case 2:
-            $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting reports of users accidentally uploading the wrong files to our DAM system. From now on, check the transcript and make sure that the file name extension matches the user's response.</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting reports of employees accidentally uploading the wrong files to our DAM system. From now on, check the transcript and make sure that the file name extension matches the user's response.</p>`);
             violationList.push("file name extension");
             break;
         case 3:
-            $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past.</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. All metadata fields must be filled out. Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past. Your rulebook has been updated.</p>`);
+            violationList.push("missing metadata entry");
+            violationList.push("invalid published date");
+            violationList.push("invalid expiry date");
             break;
         case 4:
-            $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting some complaints from users saying that the assets don't have enough keywords to be easily searchable. From now on, all assets must have at least 5 keywords.</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting some complaints from employees who are saying that the assets don't have enough keywords to be easily searchable. From now on, all assets must have at least 5 keywords.</p>`);
             break;
     }
 }

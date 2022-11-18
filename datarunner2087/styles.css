@@ -559,39 +559,41 @@ button:hover {
   -webkit-animation: logo 10s infinite;
           animation: logo 10s infinite;
   font-family: "Rajdhani", sans-serif;
-  font-size: 10vh;
+  font-size: 12vh;
   font-weight: 100;
   color: white;
   transform: translate3d(0%, 0%, 0) rotateY(-25deg) rotateX(45deg) rotateZ(10deg);
-  text-shadow: 8px 8px 0px hsl(0deg, 0%, 25%);
+  text-shadow: 1vh 1vh 0px hsla(0deg, 0%, 100%, 0.2);
+  z-index: 10000;
 }
 #title-screen div {
-  -webkit-animation: pulse 3s infinite;
-          animation: pulse 3s infinite;
   position: absolute;
   top: 40%;
   left: 45%;
-  width: 80vh;
+  width: 90vh;
   height: 60vh;
-  filter: blur(4px);
   pointer-events: none;
 }
 #title-screen div:nth-child(3) {
-  -webkit-animation: redbox 8s infinite;
-          animation: redbox 8s infinite;
+  -webkit-animation: redbox 8s infinite, pulse 2s infinite;
+          animation: redbox 8s infinite, pulse 2s infinite;
   transform: translate3d(-30%, -30%, 0) rotateY(-25deg) rotateX(45deg) rotateZ(10deg);
-  outline: 2px solid hsl(340deg, 100%, 50%);
+  outline: 0.5vh solid hsl(340deg, 100%, 50%);
+  filter: drop-shadow(1vh 1vh 0.5vh hsl(340deg, 100%, 50%)) blur(0.25vh);
 }
 #title-screen div:nth-child(4) {
-  -webkit-animation: bluebox 6s infinite;
-          animation: bluebox 6s infinite;
+  -webkit-animation: bluebox 6s infinite, pulse 3s infinite;
+          animation: bluebox 6s infinite, pulse 3s infinite;
   transform: translate3d(-40%, -40%, 0) rotateY(-25deg) rotateX(45deg) rotateZ(10deg);
-  outline: 2px solid hsl(187deg, 100%, 50%);
+  outline: 0.5vh solid hsl(187deg, 100%, 50%);
+  filter: drop-shadow(1vh 1vh 0.5vh hsl(187deg, 100%, 50%)) blur(0.25vh);
 }
 #title-screen div:nth-child(5) {
-  animation: redbox 10s infinite reverse;
+  -webkit-animation: redbox 10s infinite reverse, pulse 5s infinite;
+          animation: redbox 10s infinite reverse, pulse 5s infinite;
   transform: translate3d(-50%, -50%, 0) rotateY(-25deg) rotateX(45deg) rotateZ(10deg);
-  outline: 2px solid white;
+  outline: 0.5vh solid white;
+  filter: drop-shadow(1vh 1vh 0.5vh white) blur(0.25vh);
 }
 #title-screen button {
   transform: translateY(500%);
