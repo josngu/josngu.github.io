@@ -12,7 +12,7 @@ var money = 100;
 var penaltyDeduction = 100;
 var protocolViolated = false;
 var penaltyReason = "";
-var violationCount = 0;
+var violationCount = -1;
 var violationList = ["file name year", "file name month", "file name day", "file name date format", "missing file name extension", "missing file name ministry", "ministry abbreviation", "missing metadata entry"];
 var fileType = "";
 var fileName = "";
@@ -72,8 +72,7 @@ function approve() {
         $("#transcript-container div").append(`<p id="text-login-status">${username} has logged out</p>`);
         $("#btn-open-connection").removeClass("btn-open-connection-disabled");
     });
-    Promise.resolve().then(() => delay(3000))
-        .then(() => checkViolation("approve"));
+    checkViolation("approve");
 }
 function reject() {
     let delayTimer = 1500;
@@ -104,8 +103,7 @@ function reject() {
         $("#transcript-container div").append(`<p id="text-login-status">${username} has logged out</p>`);
         $("#btn-open-connection").removeClass("btn-open-connection-disabled");
     });
-    Promise.resolve().then(() => delay(3000))
-        .then(() => checkViolation("reject"));
+    checkViolation("reject");
 }
 function createViolation() {
     let chooseViolation = violationList[Math.floor(Math.random() * violationList.length)];
@@ -147,6 +145,7 @@ function createViolation() {
         case "missing metadata entry":
             $(`#metadata tr:nth-last-child(${Math.floor(Math.random() * 5 + 1)}) td:nth-child(2)`).text("");
             penaltyReason = "MISSING METADATA ENTRY";
+            break;
         //Day 2
         case "file name extension":
             let fileExtension = $("#metadata-container h2").text().slice(-4);
@@ -182,25 +181,28 @@ function checkViolation(buttonValue) {
     }
 }
 function assessPenalty() {
-    switch (violationCount) {
-        case 0:
-            $("#notifications-container div").prepend(`<p class="notif-warning">/!\\ PROTOCOL VIOLATED /!\\<br>${penaltyReason}<br>FIRST WARNING - NO PENALTY</p>`);
-            violationCount++;
-            break;
-        case 1:
-            $("#notifications-container div").prepend(`<p class="notif-warning">/!\\ PROTOCOL VIOLATED /!\\<br>${penaltyReason}<br>LAST WARNING - NO PENALTY</p>`);
-            violationCount++;
-            break;
-        case 2:
-            $("#notifications-container div").prepend(`<p class="notif-danger">/!\\ PROTOCOL VIOLATED /!\\<br>${penaltyReason}<br>PENALTY - ${penaltyDeduction} EURO DEDUCTION</p>`);
-            violationCount++;
-            money -= penaltyDeduction;
-            break;
-        default:
-            $("#notifications-container div").prepend(`<p class="notif-danger">/!\\ PROTOCOL VIOLATED /!\\<br>${penaltyReason}<br>PENALTY - ${penaltyDeduction} EURO DEDUCTION</p>`);
-            penaltyDeduction *= 2;
-            money -= penaltyDeduction;
-    }
+    //Sometimes the penalty reason can change before the delay finishes
+    let x = penaltyReason;
+    violationCount++;
+    Promise.resolve().then(() => delay(3000))
+        .then(() => {
+        switch (violationCount) {
+            case 0:
+                $("#notifications-container div").prepend(`<p class="notif-warning">/!\\ PROTOCOL VIOLATED /!\\<br>${x}<br>FIRST WARNING - NO PENALTY</p>`);
+                break;
+            case 1:
+                $("#notifications-container div").prepend(`<p class="notif-warning">/!\\ PROTOCOL VIOLATED /!\\<br>${x}<br>LAST WARNING - NO PENALTY</p>`);
+                break;
+            case 2:
+                $("#notifications-container div").prepend(`<p class="notif-danger">/!\\ PROTOCOL VIOLATED /!\\<br>${x}<br>PENALTY - ${penaltyDeduction} EURO DEDUCTION</p>`);
+                money -= penaltyDeduction;
+                break;
+            default:
+                $("#notifications-container div").prepend(`<p class="notif-danger">/!\\ PROTOCOL VIOLATED /!\\<br>${x}<br>PENALTY - ${penaltyDeduction} EURO DEDUCTION</p>`);
+                penaltyDeduction *= 2;
+                money -= penaltyDeduction;
+        }
+    });
 }
 function openConnection() {
     $("#transcript-container div").empty();
