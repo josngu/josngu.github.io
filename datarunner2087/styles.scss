@@ -590,9 +590,11 @@ th {
     transform-origin: center left;
     div {
         overflow: auto;
+        height: 100%;
     }
 }
 .notif-regular, .notif-warning, .notif-danger {
+    animation: notification-enter 1s forwards;
     font-family: "Rajdhani", sans-serif;
     font-size: 2.2vh;
     line-height: 1.2;
@@ -600,7 +602,6 @@ th {
     padding: 0.5em 0.5em;
 }
 .notif-regular {
-    animation: notification-enter 1s forwards;
     border: 1px solid white;
     color: white;
     filter: drop-shadow($glow white);

@@ -841,9 +841,12 @@ th {
 }
 #notifications-container div {
   overflow: auto;
+  height: 100%;
 }
 
 .notif-regular, .notif-warning, .notif-danger {
+  -webkit-animation: notification-enter 1s forwards;
+          animation: notification-enter 1s forwards;
   font-family: "Rajdhani", sans-serif;
   font-size: 2.2vh;
   line-height: 1.2;
@@ -852,8 +855,6 @@ th {
 }
 
 .notif-regular {
-  -webkit-animation: notification-enter 1s forwards;
-          animation: notification-enter 1s forwards;
   border: 1px solid white;
   color: white;
   filter: drop-shadow(0 0 24px white);

@@ -9,11 +9,11 @@ var warningCount = 0;
 var endDay = false;
 var startDay = false;
 var money = 100;
-var penaltyDeduction = 0;
+var penaltyDeduction = 100;
 var protocolViolated = false;
 var penaltyReason = "";
 var violationCount = 0;
-var violationList = ["file name year", "file name month", "file name day", "file name date format", "file name extension", "missing file name extension", "missing file name ministry", "ministry abbreviation", "missing metadata entry"];
+var violationList = ["file name year", "file name month", "file name day", "file name date format", "missing file name extension", "missing file name ministry", "ministry abbreviation", "missing metadata entry"];
 var fileType = "";
 var fileName = "";
 var fileExt = "";
@@ -43,7 +43,7 @@ const HE_KEYWORDS = ["health", "hospital", "doctor", "nurse", "healthcare", "phy
 const AG_KEYWORDS = ["farm", "farms", "farmland", "farmer", "crops", "agriculture", "harvest", "cultivation", "plow", "plants"];
 const IN_KEYWORDS = ["building", "buildings", "skyscraper", "skyscrapers", "construction", "architecture", "house", "houses", "structure"];
 const DE_KEYWORDS = ["military", "war", "weapons", "guns", "firearms", "army", "artillery", "infantry", "corps", "armaments", "troops", "squadron", "squad"];
-const AUDIO_KEYWORDS = ["bass", "upbeat", "drums", "classical", "baroque", "piano", "guitar", "trumpet", "saxophone", "relaxing", "violin"];
+const AUDIO_KEYWORDS = ["bass", "upbeat", "drums", "classical", "instrument", "piano", "guitar", "trumpet", "saxophone", "relaxing", "violin", "woodwinds", "orchestra", "electronic"];
 const DOCUMENT_KEYWORDS = ["finance", "financial", "document", "spreadsheet", "article", "record", "records", "accounts", "management", "archive", "data"];
 const MONTH = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 $(function () {
@@ -72,6 +72,8 @@ function approve() {
         $("#transcript-container div").append(`<p id="text-login-status">${username} has logged out</p>`);
         $("#btn-open-connection").removeClass("btn-open-connection-disabled");
     });
+    Promise.resolve().then(() => delay(3000))
+        .then(() => checkViolation("approve"));
 }
 function reject() {
     let delayTimer = 1500;
@@ -102,38 +104,33 @@ function reject() {
         $("#transcript-container div").append(`<p id="text-login-status">${username} has logged out</p>`);
         $("#btn-open-connection").removeClass("btn-open-connection-disabled");
     });
+    Promise.resolve().then(() => delay(3000))
+        .then(() => checkViolation("reject"));
 }
 function createViolation() {
     let chooseViolation = violationList[Math.floor(Math.random() * violationList.length)];
-    //chooseViolation = "file name extension";
+    //chooseViolation = "file name date format";
     switch (chooseViolation) {
         case "file name year":
+            $("#metadata-container h2").text($("#metadata-container h2").text().replace("2087", Math.floor(Math.random() * 9 + 2077).toString()));
             penaltyReason = "INCORRECT FILE NAME YEAR";
             break;
         case "file name month":
+            $("#metadata-container h2").text($("#metadata-container h2").text().replace("M10", "M0" + Math.floor(Math.random() * 8 + 1).toString()));
             penaltyReason = "INCORRECT FILE NAME MONTH";
             break;
         case "file name day":
+            $("#metadata-container h2").text($("#metadata-container h2").text().replace("D0" + day, "D0" + (day + 1)));
             penaltyReason = "INCORRECT FILE NAME DAY";
             break;
         case "file name date format":
-            penaltyReason = "INCORRECT FILE NAME DATE FORMAT";
-            break;
-        case "file name extension":
-            let fileExtension = $("#metadata-container h2").text().slice(-4);
-            //Sometimes, removing the last 4 characters of the filename doesn't get rid of the period
-            switch (fileExtension) {
-                case "webm":
-                case "webp":
-                case "tiff":
-                case "docx":
-                case "flac":
-                    $("#metadata-container h2").text($("#metadata-container h2").text().slice(0, -4) + OTHER_FILE_EXTENSIONS[Math.floor(Math.random() * OTHER_FILE_EXTENSIONS.length)]);
-                    break;
-                default:
-                    $("#metadata-container h2").text($("#metadata-container h2").text().slice(0, -4) + "." + OTHER_FILE_EXTENSIONS[Math.floor(Math.random() * OTHER_FILE_EXTENSIONS.length)]);
+            if (day < 10) {
+                $("#metadata-container h2").text($("#metadata-container h2").text().replace("2087M10D0" + day, "2087D0" + day + "M10"));
             }
-            penaltyReason = "FILE TYPE DOES NOT MATCH USER RESPONSE";
+            else {
+                $("#metadata-container h2").text($("#metadata-container h2").text().replace("2087M10D" + day, "2087D" + day + "M10"));
+            }
+            penaltyReason = "INCORRECT FILE NAME DATE FORMAT";
             break;
         case "missing file name extension":
             $("#metadata-container h2").text($("#metadata-container h2").text().slice(0, -4));
@@ -150,9 +147,61 @@ function createViolation() {
         case "missing metadata entry":
             $(`#metadata tr:nth-last-child(${Math.floor(Math.random() * 5 + 1)}) td:nth-child(2)`).text("");
             penaltyReason = "MISSING METADATA ENTRY";
+        //Day 2
+        case "file name extension":
+            let fileExtension = $("#metadata-container h2").text().slice(-4);
+            //Sometimes, removing the last 4 characters of the filename doesn't get rid of the period
+            switch (fileExtension) {
+                case "webm":
+                case "webp":
+                case "tiff":
+                case "docx":
+                case "flac":
+                    $("#metadata-container h2").text($("#metadata-container h2").text().slice(0, -4) + OTHER_FILE_EXTENSIONS[Math.floor(Math.random() * OTHER_FILE_EXTENSIONS.length)]);
+                    break;
+                default:
+                    $("#metadata-container h2").text($("#metadata-container h2").text().slice(0, -4) + "." + OTHER_FILE_EXTENSIONS[Math.floor(Math.random() * OTHER_FILE_EXTENSIONS.length)]);
+            }
+            penaltyReason = "FILE TYPE DOES NOT MATCH USER RESPONSE";
+            break;
     }
 }
 function checkViolation(buttonValue) {
+    if (buttonValue === "approve" && protocolViolated === false) {
+        money += 50;
+    }
+    if (buttonValue === "approve" && protocolViolated === true) {
+        penaltyReason = "ASSET WAS CLEARED FOR APPROVAL";
+        assessPenalty();
+    }
+    if (buttonValue === "reject" && protocolViolated === false) {
+        penaltyReason = "ASSET WAS CLEARED FOR APPROVAL";
+        assessPenalty();
+    }
+    if (buttonValue === "reject" && protocolViolated === true) {
+        money += 50;
+    }
+}
+function assessPenalty() {
+    switch (violationCount) {
+        case 0:
+            $("#notifications-container div").prepend(`<p class="notif-warning">/!\\ PROTOCOL VIOLATED /!\\<br>${penaltyReason}<br>FIRST WARNING - NO PENALTY</p>`);
+            violationCount++;
+            break;
+        case 1:
+            $("#notifications-container div").prepend(`<p class="notif-warning">/!\\ PROTOCOL VIOLATED /!\\<br>${penaltyReason}<br>LAST WARNING - NO PENALTY</p>`);
+            violationCount++;
+            break;
+        case 2:
+            $("#notifications-container div").prepend(`<p class="notif-danger">/!\\ PROTOCOL VIOLATED /!\\<br>${penaltyReason}<br>PENALTY - ${penaltyDeduction} EURO DEDUCTION</p>`);
+            violationCount++;
+            money -= penaltyDeduction;
+            break;
+        default:
+            $("#notifications-container div").prepend(`<p class="notif-danger">/!\\ PROTOCOL VIOLATED /!\\<br>${penaltyReason}<br>PENALTY - ${penaltyDeduction} EURO DEDUCTION</p>`);
+            penaltyDeduction *= 2;
+            money -= penaltyDeduction;
+    }
 }
 function openConnection() {
     $("#transcript-container div").empty();
@@ -197,7 +246,7 @@ function openConnection() {
 //I'm sorry that this function is really long
 function generateMetadata(fileTypeResponse) {
     //Randomly decides if a part of the metadata should be incorrect (default 40% to be true)
-    protocolViolated = Math.random() < 1;
+    protocolViolated = Math.random() < 0.4;
     console.log(protocolViolated);
     let ministry = MINISTRY[Math.floor(Math.random() * MINISTRY.length)];
     //Note: Display the next 2 first
@@ -491,11 +540,23 @@ function dayStart() {
             $("#notifications-container div").prepend(`<p class="notif-regular">Your position as a digital asset administrator is to filter out any incoming assets that do not adhere to government protocol. View the rulebook at the bottom for more details. When you're ready, you may begin accepting incoming connections.</p>`);
             break;
         case 2:
-            $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past.</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting reports of users accidentally uploading the wrong files to our DAM system. From now on, check the transcript and make sure that the file name extension matches the user's response.</p>`);
+            violationList.push("file name extension");
             break;
         case 3:
-            $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting reports of users accidentally uploading the wrong files to our DAM system. From now on, check the transcript and make sure that the file name extension matches the user's response.</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past.</p>`);
             break;
+        case 4:
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting some complaints from users saying that the assets don't have enough keywords to be easily searchable. From now on, all assets must have at least 5 keywords.</p>`);
+            break;
+    }
+}
+function changeDate() {
+    if (day < 10) {
+        $("#date").text("M10/D0" + day + "/2087");
+    }
+    else {
+        $("#date").text("M10/D" + day + "/2087");
     }
 }
 function clock() {
