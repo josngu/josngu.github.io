@@ -186,6 +186,9 @@ function assessPenalty() {
     violationCount++;
     Promise.resolve().then(() => delay(3000))
         .then(() => {
+        if ($("#rulebook-container").is(":visible")) {
+            $("#rulebook-container").slideUp(500);
+        }
         switch (violationCount) {
             case 0:
                 $("#notifications-container div").prepend(`<p class="notif-warning">/!\\ PROTOCOL VIOLATED /!\\<br>${x}<br>FIRST WARNING - NO PENALTY</p>`);

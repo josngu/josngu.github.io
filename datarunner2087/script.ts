@@ -202,7 +202,11 @@ function assessPenalty(){
     let x = penaltyReason;
     violationCount++;
     Promise.resolve().then(() => delay(3000))
-    .then(() => {switch(violationCount){
+    .then(() => {
+        if ($("#rulebook-container").is(":visible")){
+            $("#rulebook-container").slideUp(500);
+        }
+        switch(violationCount){
         case 0:
             $("#notifications-container div").prepend(`<p class="notif-warning">/!\\ PROTOCOL VIOLATED /!\\<br>${x}<br>FIRST WARNING - NO PENALTY</p>`);
             break;
@@ -217,8 +221,8 @@ function assessPenalty(){
             $("#notifications-container div").prepend(`<p class="notif-danger">/!\\ PROTOCOL VIOLATED /!\\<br>${x}<br>PENALTY - ${penaltyDeduction} EURO DEDUCTION</p>`);
             penaltyDeduction *= 2;
             money -= penaltyDeduction;
-    }
-});
+        }
+    });
 }
 function openConnection(){
     $("#transcript-container div").empty();
