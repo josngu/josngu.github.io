@@ -188,7 +188,6 @@ function checkViolation(buttonValue: String){
         money += 50;
     }
     if (buttonValue === "approve" && protocolViolated === true){
-        penaltyReason = "ASSET WAS CLEARED FOR APPROVAL";
         assessPenalty();
     }
     if (buttonValue === "reject" && protocolViolated === false){
