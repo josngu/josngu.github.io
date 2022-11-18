@@ -641,7 +641,10 @@ button:hover {
   filter: drop-shadow(1vh 1vh 0.5vh white) blur(0.25vh);
 }
 #title-screen button {
-  transform: translateY(500%);
+  transform: translateY(10vh);
+  -webkit-backdrop-filter: blur(16px);
+          backdrop-filter: blur(16px);
+  z-index: 1;
 }
 
 #intro-container {
