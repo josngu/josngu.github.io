@@ -108,7 +108,7 @@ function reject() {
 function createViolation() {
     let chooseViolation = violationList[Math.floor(Math.random() * violationList.length)];
     //Debugging variable
-    chooseViolation = "insufficient keywording";
+    //chooseViolation = "insufficient keywording";
     let textReplace = "";
     switch (chooseViolation) {
         case "file name year":
@@ -186,6 +186,8 @@ function createViolation() {
             break;
         //Day 4
         case "insufficient keywording":
+            textReplace = $("#keywords").text().split(",").pop();
+            $("#keywords").text(textReplace);
             penaltyReason = "INSUFFICIENT NUMBER OF KEYWORDS";
             break;
     }
