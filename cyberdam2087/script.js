@@ -576,14 +576,19 @@ function dayStart() {
             violationList.push("file name extension");
             break;
         case 3:
-            $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. All metadata fields must be filled out. Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past. Your rulebook has been updated.</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. All metadata fields must be filled out.<br><br>Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past.<br><br>Your rulebook has been updated.</p>`);
+            $("#rules-metadata").append(`<p>1. All metadata fields must be filled out.</p>
+                <p>2. The published date cannot be in the future.</p>
+                <p>3. The asset expiry date cannot be in the past.</p>`);
             violationList.push("missing metadata entry");
             violationList.push("invalid published date");
             violationList.push("invalid expiry date");
             break;
         case 4:
-            $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting some complaints from employees who are saying that the assets don't have enough keywords to be easily searchable. From now on, all assets must have at least 5 keywords.</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting some complaints from employees who are saying that the assets don't have enough keywords to be easily searchable. From now on, all assets must have at least 5 keywords.<br><br>Your rulebook has been updated.</p>`);
+            $("#rules-metadata").append(`<p>4. All files must have a minimum of five keywords.</p>`);
             violationList.push("insufficient keywording");
+            keywordMinimum = 5;
             break;
     }
 }

@@ -35,7 +35,7 @@
         <p>Congratulations. Your application to be a digital asset administrator for the government of Reemeria has been approved.</p>
         <p>Your job is to approve or reject assets before they are uploaded onto the digital asset management system.</p>
         <p>Your shift begins at 7 AM and ends at 9 PM. You will be paid 50 Euros per processed asset.</p>
-        <button onclick="$('#intro-container').slideUp(250); dayStart();">BEGIN DAY</button>
+        <button onclick="$('#intro-container').slideUp(500); dayStart();">BEGIN DAY</button>
     </section>
     <section id="transcript-container">
         <h2>TRANSCRIPT</h2>
@@ -128,14 +128,14 @@
             </p>
             <p>File names must always begin with "Mo," followed by a valid two-letter abbreviation.<br>Ex. MoED_... (Ministry of Education)</p>
             <p>List of valid abbreviations:<br>AG (Agriculture)<br>DE (Defense)<br>ED (Education)<br>EN (Energy)<br>HE (Health)<br>IN (Infrastructure)<br>LA (Labour)<br>TR (Transportation)</p>
-            <p>The date of the file is the date of when the file is being uploaded. It should always be today's date in the following format:<br>####M##D##</p>
+            <p>The date of the file is the date of when the file is being uploaded. It should always be today's date in the following format:<br>2087M10D01</p>
             <p>All files must have a file extension.</p>
         </div>
         <div id="rules-metadata">
-            <p>We do not have any rules for metadata at the moment.</p>
+            <p></p>
         </div>
-        <button onclick="switchTab();">NEXT: METADATA</button>
-        <button onclick="toggleRulebook();">EXIT RULEBOOK</button>
+        <button id="switch-tab" onclick="switchTab();">NEXT: METADATA</button>
+        <button id="toggle-rulebook" onclick="toggleRulebook();">EXIT RULEBOOK</button>
     </div>
 </body>
 </html>

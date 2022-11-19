@@ -111,10 +111,10 @@ $glow: 0 0 24px;
 }
 @keyframes blink {
     0% {
-        opacity: 60%;
+        opacity: 40%;
     }
     50% {
-        opacity: 60%;
+        opacity: 40%;
     }
     51% {
         opacity: 100%;
@@ -499,8 +499,8 @@ button {
 }
 .btn-open-connection-disabled {
     animation: none !important;
-    pointer-events: none !important;
-    opacity: 40% !important;
+    pointer-events: none;
+    opacity: 40%;
 }
 //COLUMN 2
 #desktop-container {
@@ -667,12 +667,16 @@ th {
         overflow-y: scroll;
         height: 100%;
     }
-    & button ~ button {
-        color: $clr-danger;
-        border: 1px solid $clr-danger-translucent;
-        &:hover {
-            background-color: $clr-danger-translucent;
-        }
+}
+#switch-tab {
+    opacity: 0%;
+    pointer-events: none;
+}
+#toggle-rulebook {
+    color: $clr-danger;
+    border: 1px solid $clr-danger-translucent;
+    &:hover {
+        background-color: $clr-danger-translucent;
     }
 }
 #rules-file-naming {

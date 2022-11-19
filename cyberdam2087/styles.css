@@ -192,10 +192,10 @@
 }
 @-webkit-keyframes blink {
   0% {
-    opacity: 60%;
+    opacity: 40%;
   }
   50% {
-    opacity: 60%;
+    opacity: 40%;
   }
   51% {
     opacity: 100%;
@@ -206,10 +206,10 @@
 }
 @keyframes blink {
   0% {
-    opacity: 60%;
+    opacity: 40%;
   }
   50% {
-    opacity: 60%;
+    opacity: 40%;
   }
   51% {
     opacity: 100%;
@@ -750,8 +750,8 @@ button:hover {
 .btn-open-connection-disabled {
   -webkit-animation: none !important;
           animation: none !important;
-  pointer-events: none !important;
-  opacity: 40% !important;
+  pointer-events: none;
+  opacity: 40%;
 }
 
 #desktop-container {
@@ -945,11 +945,17 @@ th {
   overflow-y: scroll;
   height: 100%;
 }
-#rulebook-container button ~ button {
+
+#switch-tab {
+  opacity: 0%;
+  pointer-events: none;
+}
+
+#toggle-rulebook {
   color: hsl(340deg, 100%, 50%);
   border: 1px solid hsla(340deg, 100%, 50%, 0.1);
 }
-#rulebook-container button ~ button:hover {
+#toggle-rulebook:hover {
   background-color: hsla(340deg, 100%, 50%, 0.1);
 }
 
