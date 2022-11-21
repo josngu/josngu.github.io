@@ -388,12 +388,14 @@ function generateMetadata(fileTypeResponse: String){
         case "a document":
             fileType = "document";
             generateFileName(ministry);
-            fileSize = Math.floor(Math.random() * 106 + 22) * 0.1;
+            let wordCount = Math.floor(Math.random() * 2250 + 600);
+            fileSize = wordCount * 0.053;
             source = `Ministry of ${convertToMinistryLong(ministry)}`;
             copyrightStatus = "Copyrighted";
             usageRights = "All rights reserved.";
 
             createMetadataEntry("File Size", fileSize.toFixed(1) + " KB");
+            createMetadataEntry("Word Count", wordCount);
             createMetadataEntry("Keywords", generateKeywords("DOCUMENT"));
     }
     createMetadataEntry("Source", source);
@@ -605,7 +607,7 @@ function dayStart(){
             violationList.push("file name extension");
             break;
         case 3:
-            $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. All metadata fields must be filled out.<br><br>Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past.<br><br>Your rulebook has been updated with a new page.</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. Metadata is data about data, and without it, no one would be able to find the file they're looking for. Make sure that all metadata fields are filled out.<br><br>Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past.<br><br>Your rulebook has been updated with a new page.</p>`);
             $("#rules-metadata").append(
                 `<p>1. All metadata fields must be filled out.</p>
                 <p>2. The published date cannot be in the future.</p>
