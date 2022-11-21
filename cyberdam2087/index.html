@@ -31,20 +31,15 @@
         <div></div>
         <div></div>
     </section>
-    <section id="intro-container">
+    <section id="debrief-container">
         <p>Congratulations. Your application to be a digital asset administrator for the government of Reemeria has been approved.</p>
         <p>Your job is to approve or reject assets before they are uploaded onto the digital asset management system.</p>
         <p>Your shift begins at 7 AM and ends at 9 PM. You will be paid 50 Euros per processed asset.</p>
-        <button onclick="$('#intro-container').slideUp(500); dayStart();">BEGIN DAY</button>
+        <button onclick="$('#debrief-container').slideUp(500); dayStart();">BEGIN DAY</button>
     </section>
     <section id="transcript-container">
         <h2>TRANSCRIPT</h2>
         <div>
-            <!--
-            <p id="text-login-status">MARC WINTERS HAS LOGGED IN</p>
-            <p class="name-admin">SysAdmin</p>
-            <p class="transcript-admin">Your asset has been rejected. You may log out now.</p>
-            -->
         </div>
         <button onclick="openConnection();" id="btn-open-connection">ACCEPT INCOMING CONNECTION</button>
     </section>
@@ -54,48 +49,6 @@
         <div id="metadata-container">
             <h2></h2>
             <table id="metadata">
-            <!--
-                <tr>
-                    <th>Author</th>
-                    <td>Luke Robertson</td>
-                </tr>
-                <tr>
-                    <th>Date Published</th>
-                    <td>June 3, 2065</td>
-                </tr>
-                <tr>
-                    <th>File Size</th>
-                    <td>5 MB</td>
-                </tr>
-                <tr>
-                    <th>Dimensions</th>
-                    <td>4000px * 4000px</td>
-                </tr>
-                <tr>
-                    <th>Resolution</th>
-                    <td>300 PPI</td>
-                </tr>
-                <tr>
-                    <th>Keywords</th>
-                    <td>people, meeting, group, work</td>
-                </tr>
-                <tr>
-                    <th>Source</th>
-                    <td>www.aijfoiaf.com</td>
-                </tr>
-                <tr>
-                    <th>Copyright Status</th>
-                    <td>Copyrighted</td>
-                </tr>
-                <tr>
-                    <th>Usage Rights</th>
-                    <td>Can be used commercially.</td>
-                </tr>
-                <tr>
-                    <th>Asset Expiry Date</th>
-                    <td>Jan. 4, 2088</td>
-                </tr>
-            -->
             </table>
             <div class="btn-group">
                 <button onclick="reject();" id="btn-reject">REJECT</button>

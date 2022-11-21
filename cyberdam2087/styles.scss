@@ -69,33 +69,31 @@ $glow: 0 0 24px;
         opacity: 0%;
         line-height: 0;
         padding: 0 0.5em;
-        outline: 2px;
     }
-    25% {
-        opacity: 0%;
-        line-height: 0;
-        padding: 0 0.5em;
-        outline: 2px;
-    }
-    75% {
+    50% {
         opacity: 0%;
         line-height: 1.2;
         padding: 0.5em 0.5em;
     }
-    80% {
+    55% {
         opacity: 40%;
     }
-    85% {
+    60% {
         opacity: 20%;
     }
-    90% {
+    65% {
         opacity: 80%;
     }
-    95% {
+    70% {
         opacity: 60%;
+    }
+    75% {
+        opacity: 100%;
     }
     100% {
         opacity: 100%;
+        line-height: 1.2;
+        padding: 0.5em 0.5em;
     }
 }
 @keyframes fade-in-delay {
@@ -384,7 +382,7 @@ button {
         outline: 0.5vh solid $clr-danger;
         filter: drop-shadow(1vh 1vh 0.5vh $clr-danger) blur(0.25vh);
         div {
-            animation: scanner 10s infinite;
+            animation: scanner 9s infinite;
             position: absolute;
             transform: translate3d(-45%, -45%, 0);
             background-color: $clr-danger;
@@ -412,7 +410,7 @@ button {
         z-index: 1;
     }
 }
-#intro-container {
+#debrief-container {
     position: fixed;
     display: none;
     flex-direction: column;
@@ -624,11 +622,12 @@ th {
 }
 .notif-regular, .notif-warning, .notif-danger {
     animation: notification-enter 1s forwards;
+    opacity: 0%;
+    line-height: 0;
+    padding: 0 0.5em;
     font-family: "Rajdhani", sans-serif;
     font-size: 2.2vh;
-    line-height: 1.2;
     margin: 0;
-    padding: 0.5em 0.5em;
 }
 .notif-regular {
     border: 1px solid white;

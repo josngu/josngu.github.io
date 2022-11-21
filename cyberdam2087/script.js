@@ -51,7 +51,7 @@ $(function () {
 });
 function startGame() {
     $("#title-screen").hide();
-    $("#intro-container").css({ "display": "flex" });
+    $("#debrief-container").css({ "display": "flex" });
 }
 function approve() {
     Promise.resolve().then(() => {
@@ -208,27 +208,28 @@ function checkViolation(buttonValue) {
     }
 }
 function assessPenalty() {
-    //Sometimes the penalty reason can change before the delay finishes
-    let x = penaltyReason;
+    //Sometimes the penalty reason can change before the delay finishes, let's store the reason in this "x" variable
+    let reason = penaltyReason;
     violationCount++;
-    Promise.resolve().then(() => delay(3000))
+    Promise.resolve().then(() => delay(4000))
         .then(() => {
+        //Hide the rulebook to show the notification
         if ($("#rulebook-container").is(":visible")) {
             $("#rulebook-container").slideUp(500);
         }
         switch (violationCount) {
             case 0:
-                $("#notifications-container div").prepend(`<p class="notif-warning">/!\\ PROTOCOL VIOLATED /!\\<br>${x}<br>FIRST WARNING - NO PENALTY</p>`);
+                $("#notifications-container div").prepend(`<p class="notif-warning">/!\\ PROTOCOL VIOLATED /!\\<br>${reason}<br>FIRST WARNING - NO PENALTY</p>`);
                 break;
             case 1:
-                $("#notifications-container div").prepend(`<p class="notif-warning">/!\\ PROTOCOL VIOLATED /!\\<br>${x}<br>LAST WARNING - NO PENALTY</p>`);
+                $("#notifications-container div").prepend(`<p class="notif-warning">/!\\ PROTOCOL VIOLATED /!\\<br>${reason}<br>LAST WARNING - NO PENALTY</p>`);
                 break;
             case 2:
-                $("#notifications-container div").prepend(`<p class="notif-danger">/!\\ PROTOCOL VIOLATED /!\\<br>${x}<br>PENALTY - ${penaltyDeduction} EURO DEDUCTION</p>`);
+                $("#notifications-container div").prepend(`<p class="notif-danger">/!\\ PROTOCOL VIOLATED /!\\<br>${reason}<br>PENALTY - ${penaltyDeduction} EURO DEDUCTION</p>`);
                 money -= penaltyDeduction;
                 break;
             default:
-                $("#notifications-container div").prepend(`<p class="notif-danger">/!\\ PROTOCOL VIOLATED /!\\<br>${x}<br>PENALTY - ${penaltyDeduction} EURO DEDUCTION</p>`);
+                $("#notifications-container div").prepend(`<p class="notif-danger">/!\\ PROTOCOL VIOLATED /!\\<br>${reason}<br>PENALTY - ${penaltyDeduction} EURO DEDUCTION</p>`);
                 penaltyDeduction *= 2;
                 money -= penaltyDeduction;
         }
@@ -576,10 +577,14 @@ function dayStart() {
             violationList.push("file name extension");
             break;
         case 3:
-            $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. All metadata fields must be filled out.<br><br>Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past.<br><br>Your rulebook has been updated.</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. All metadata fields must be filled out.<br><br>Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past.<br><br>Your rulebook has been updated with a new page.</p>`);
             $("#rules-metadata").append(`<p>1. All metadata fields must be filled out.</p>
                 <p>2. The published date cannot be in the future.</p>
                 <p>3. The asset expiry date cannot be in the past.</p>`);
+            $("#switch-tab").css({
+                "pointer-events": "auto",
+                "opacity": "100%"
+            });
             violationList.push("missing metadata entry");
             violationList.push("invalid published date");
             violationList.push("invalid expiry date");

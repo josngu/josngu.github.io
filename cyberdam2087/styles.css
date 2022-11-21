@@ -105,33 +105,31 @@
     opacity: 0%;
     line-height: 0;
     padding: 0 0.5em;
-    outline: 2px;
   }
-  25% {
-    opacity: 0%;
-    line-height: 0;
-    padding: 0 0.5em;
-    outline: 2px;
-  }
-  75% {
+  50% {
     opacity: 0%;
     line-height: 1.2;
     padding: 0.5em 0.5em;
   }
-  80% {
+  55% {
     opacity: 40%;
   }
-  85% {
+  60% {
     opacity: 20%;
   }
-  90% {
+  65% {
     opacity: 80%;
   }
-  95% {
+  70% {
     opacity: 60%;
+  }
+  75% {
+    opacity: 100%;
   }
   100% {
     opacity: 100%;
+    line-height: 1.2;
+    padding: 0.5em 0.5em;
   }
 }
 @keyframes notification-enter {
@@ -139,33 +137,31 @@
     opacity: 0%;
     line-height: 0;
     padding: 0 0.5em;
-    outline: 2px;
   }
-  25% {
-    opacity: 0%;
-    line-height: 0;
-    padding: 0 0.5em;
-    outline: 2px;
-  }
-  75% {
+  50% {
     opacity: 0%;
     line-height: 1.2;
     padding: 0.5em 0.5em;
   }
-  80% {
+  55% {
     opacity: 40%;
   }
-  85% {
+  60% {
     opacity: 20%;
   }
-  90% {
+  65% {
     opacity: 80%;
   }
-  95% {
+  70% {
     opacity: 60%;
+  }
+  75% {
+    opacity: 100%;
   }
   100% {
     opacity: 100%;
+    line-height: 1.2;
+    padding: 0.5em 0.5em;
   }
 }
 @-webkit-keyframes fade-in-delay {
@@ -616,8 +612,8 @@ button:hover {
   filter: drop-shadow(1vh 1vh 0.5vh hsl(340deg, 100%, 50%)) blur(0.25vh);
 }
 #title-screen div:nth-child(3) div {
-  -webkit-animation: scanner 10s infinite;
-          animation: scanner 10s infinite;
+  -webkit-animation: scanner 9s infinite;
+          animation: scanner 9s infinite;
   position: absolute;
   transform: translate3d(-45%, -45%, 0);
   background-color: hsl(340deg, 100%, 50%);
@@ -647,7 +643,7 @@ button:hover {
   z-index: 1;
 }
 
-#intro-container {
+#debrief-container {
   position: fixed;
   display: none;
   flex-direction: column;
@@ -659,7 +655,7 @@ button:hover {
   height: 100%;
   z-index: 1000;
 }
-#intro-container p {
+#debrief-container p {
   -webkit-animation: fade-in-delay 1s forwards;
           animation: fade-in-delay 1s forwards;
   font-family: "Rajdhani", sans-serif;
@@ -667,7 +663,7 @@ button:hover {
   color: white;
   margin: 2vh 0;
 }
-#intro-container button {
+#debrief-container button {
   -webkit-animation: fade-in-delay 1s forwards;
           animation: fade-in-delay 1s forwards;
   margin-top: 2vh;
@@ -897,11 +893,12 @@ th {
 .notif-regular, .notif-warning, .notif-danger {
   -webkit-animation: notification-enter 1s forwards;
           animation: notification-enter 1s forwards;
+  opacity: 0%;
+  line-height: 0;
+  padding: 0 0.5em;
   font-family: "Rajdhani", sans-serif;
   font-size: 2.2vh;
-  line-height: 1.2;
   margin: 0;
-  padding: 0.5em 0.5em;
 }
 
 .notif-regular {
