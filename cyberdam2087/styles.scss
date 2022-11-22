@@ -267,10 +267,13 @@ html {
 }
 body {
     aspect-ratio: 16 / 9;
-    display: flex;
     background-color: hsl(0, 0%, 0%);
     margin: 5vh;
     perspective: 2000px;
+}
+main {
+    display: none;
+    height: 100%;
     outline: 100vw solid black;
 }
 h2 {
@@ -406,7 +409,7 @@ button {
     }
     button {
         transform: translateY(10vh);
-        backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px) saturate(200%);
         z-index: 1;
     }
 }

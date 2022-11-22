@@ -482,10 +482,14 @@ html {
 
 body {
   aspect-ratio: 16/9;
-  display: flex;
   background-color: hsl(0deg, 0%, 0%);
   margin: 5vh;
   perspective: 2000px;
+}
+
+main {
+  display: none;
+  height: 100%;
   outline: 100vw solid black;
 }
 
@@ -638,8 +642,8 @@ button:hover {
 }
 #title-screen button {
   transform: translateY(10vh);
-  -webkit-backdrop-filter: blur(16px);
-          backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px) saturate(200%);
+          backdrop-filter: blur(16px) saturate(200%);
   z-index: 1;
 }
 

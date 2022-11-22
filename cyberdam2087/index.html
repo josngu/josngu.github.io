@@ -35,8 +35,9 @@
         <p>Congratulations. Your application to be a digital asset administrator for the government of Reemeria has been approved.</p>
         <p>Your job is to approve or reject assets before they are uploaded onto the digital asset management system.</p>
         <p>Your shift begins at 7 AM and ends at 9 PM. You will be paid 50 Euros per processed asset.</p>
-        <button onclick="$('#debrief-container').slideUp(500); dayStart();">BEGIN DAY</button>
+        <button onclick="beginDay(); dayStart();">BEGIN DAY</button>
     </section>
+    <main>
     <section id="transcript-container">
         <h2>TRANSCRIPT</h2>
         <div>
@@ -90,5 +91,6 @@
         <button id="switch-tab" onclick="switchTab();">NEXT: METADATA</button>
         <button id="toggle-rulebook" onclick="toggleRulebook();">EXIT RULEBOOK</button>
     </div>
+    </main>
 </body>
 </html>

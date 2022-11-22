@@ -71,6 +71,11 @@ function startGame(){
     $("#debrief-container").css({"display":"flex"});
 }
 
+function beginDay(){
+    $("main").css({"display":"flex"});
+    $("#debrief-container").slideUp(500);
+}
+
 function approve(){
     Promise.resolve().then(() => {
         $("#btn-reject, #btn-approve").css({"pointer-events":"none"});
@@ -660,9 +665,14 @@ function clock(){
     if (hour === 13){
         hour = 1;
     }
+    //Change the clock colour when near the end of the shift
+    if (hour === 8 && minute === 1 && clockCycle === "PM"){
+        $("#time").css("color", "hsl(46, 100%, 50%)");
+    }
     //Checks if the time is 9:00 PM
-    if (hour === 9 && minute === 0 && clockCycle === "PM"){
-        return $("#time").text(`${hour}:0${minute} ${clockCycle}`);
+    if (hour === 9 && minute === 1 && clockCycle === "PM"){
+        $("#time").css("color", "hsl(340, 100%, 50%)");
+        return $("#time").text(`${hour}:00 ${clockCycle}`);
     }
     setTimeout("clock()", clockLength);
 }
