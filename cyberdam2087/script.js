@@ -3,12 +3,14 @@ var day = 1;
 var hour = 7;
 var minute = 0;
 var clockCycle = "AM";
-var clockLength = 250;
+var clockLength = 2;
 var username = "";
 var warningCount = 0;
 var endDay = false;
 var startDay = false;
-var money = 100;
+var balance = 100;
+var wages = 0;
+var rent = 150;
 var penaltyDeduction = 100;
 var protocolViolated = false;
 var penaltyReason = "";
@@ -198,7 +200,7 @@ function createViolation() {
 }
 function checkViolation(buttonValue) {
     if (buttonValue === "approve" && protocolViolated === false) {
-        money += 50;
+        wages += 25;
     }
     if (buttonValue === "approve" && protocolViolated === true) {
         assessPenalty();
@@ -208,7 +210,7 @@ function checkViolation(buttonValue) {
         assessPenalty();
     }
     if (buttonValue === "reject" && protocolViolated === true) {
-        money += 50;
+        wages += 25;
     }
 }
 function assessPenalty() {
@@ -230,12 +232,12 @@ function assessPenalty() {
                 break;
             case 2:
                 $("#notifications-container div").prepend(`<p class="notif-danger">/!\\ PROTOCOL VIOLATED /!\\<br>${reason}<br>PENALTY - ${penaltyDeduction} EURO DEDUCTION</p>`);
-                money -= penaltyDeduction;
+                wages -= penaltyDeduction;
                 break;
             default:
                 $("#notifications-container div").prepend(`<p class="notif-danger">/!\\ PROTOCOL VIOLATED /!\\<br>${reason}<br>PENALTY - ${penaltyDeduction} EURO DEDUCTION</p>`);
                 penaltyDeduction *= 2;
-                money -= penaltyDeduction;
+                wages -= penaltyDeduction;
         }
     });
 }
@@ -366,7 +368,7 @@ function generateMetadata(fileTypeResponse) {
             fileType = "document";
             generateFileName(ministry);
             let wordCount = Math.floor(Math.random() * 2250 + 600);
-            fileSize = wordCount * 0.053;
+            fileSize = wordCount * 0.013;
             source = `Ministry of ${convertToMinistryLong(ministry)}`;
             copyrightStatus = "Copyrighted";
             usageRights = "All rights reserved.";
@@ -547,6 +549,7 @@ function convertToMinistryLong(ministry) {
             return "Defense";
     }
 }
+//Returns true/false
 function coinFlip(chance) {
     return Math.random() < chance;
 }
@@ -596,7 +599,7 @@ function dayStart() {
             violationList.push("invalid expiry date");
             break;
         case 4:
-            $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting some complaints from employees who are saying that the assets don't have enough keywords to be easily searchable. From now on, all assets must have at least 5 keywords.<br><br>Your rulebook has been updated.</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting some complaints from employees who are saying that the assets are not easily searchable due to an insufficient number of keywords. From now on, all assets must have at least 5 keywords.<br><br>Your rulebook has been updated.</p>`);
             $("#rules-metadata").append(`<p>4. All files must have a minimum of five keywords.</p>`);
             violationList.push("insufficient keywording");
             keywordMinimum = 5;
@@ -641,9 +644,29 @@ function clock() {
     //Checks if the time is 9:00 PM
     if (hour === 9 && minute === 1 && clockCycle === "PM") {
         $("#time").css("color", "hsl(340, 100%, 50%)");
-        return $("#time").text(`${hour}:00 ${clockCycle}`);
+        $("#btn-open-connection").text("END DAY").attr("onclick", "endLevel();");
+        return;
     }
     setTimeout("clock()", clockLength);
+}
+function endLevel() {
+    $("#debrief-container").slideDown(500).empty();
+    setTimeout(() => {
+        $("main").hide();
+    }, 500);
+    $("#debrief-container")
+        .append(`<h2>END OF DAY ${day}</h2>`)
+        .append(`<p>Balance: ${balance}<br>Wages: ${wages}<br>Rent: -${rent}</p>`)
+        .append(`<p>End of day balance: ${balance + wages - rent} Units</p>`);
+    balance = balance + wages - rent;
+    day++;
+    if (balance >= 0) {
+        $("#debrief-container").append(`<button>PROCEED TO DAY ${day}</button>`);
+    }
+    else {
+        $("#debrief-container").append(`<p>You have fallen into debt. Your wife and husband have left you. Your kids do not talk to you anymore.</p>`);
+        $("#debrief-container").append(`<button>GAME OVER</button>`);
+    }
 }
 function delay(duration) {
     return new Promise((resolve) => {
