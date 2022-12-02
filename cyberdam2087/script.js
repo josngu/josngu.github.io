@@ -603,6 +603,8 @@ function dayStart() {
             violationList.push("insufficient keywording");
             keywordMinimum = 5;
             break;
+        default:
+            $("#notifications-container div").prepend(`<p class="notif-regular">You've reached the end of the game. From now on, there will be no additional rules. Thanks for playing!</p>`);
     }
 }
 function changeDate() {
@@ -667,6 +669,7 @@ function endLevel() {
         $("#debrief-container").append(`<button onclick="window.location.reload();">GAME OVER</button>`);
     }
 }
+//Resets relevant values to their defaults
 function startNextLevel() {
     startDay = false;
     warningCount = 0;
@@ -681,6 +684,7 @@ function startNextLevel() {
     $("#btn-open-connection").text("ACCEPT INCOMING CONNECTION").attr("onclick", "openConnection();");
     $("#transcript-container div").empty();
     $("#notifications-container div").empty();
+    changeDate();
     dayStart();
     $("#debrief-container").slideUp(500);
 }
