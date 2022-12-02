@@ -1,4 +1,4 @@
-var day = 1;
+var day = 11;
 var hour = 7;
 var minute = 0;
 var clockCycle = "AM";
@@ -131,7 +131,7 @@ function reject(){
 function createViolation(){
     let chooseViolation = violationList[Math.floor(Math.random() * violationList.length)];
     //Debugging variable
-    //chooseViolation = "insufficient keywording";
+    //chooseViolation = "file name day";
 
     let textReplace = "";
     switch(chooseViolation){
@@ -146,7 +146,12 @@ function createViolation(){
             penaltyReason = "INCORRECT FILE NAME MONTH";
             break;
         case "file name day":
-            textReplace = $("#metadata-container h2").text().replace("D0" + day, "D0" + (day + 1));
+            //Check if the day is a double digit number
+            if (day > 9){
+                textReplace = $("#metadata-container h2").text().replace("D" + day, "D" + (day + 1));
+            } else {
+                textReplace = $("#metadata-container h2").text().replace("D0" + day, "D0" + (day + 1));
+            }
             $("#metadata-container h2").text(textReplace);
             penaltyReason = "INCORRECT FILE NAME DAY";
             break;
@@ -614,7 +619,7 @@ function dayStart(){
             violationList.push("file name extension");
             break;
         case 3:
-            $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. Metadata is data about data, and without it, no one would be able to find the file they're looking for. Make sure that all metadata fields are filled out.<br><br>Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past.<br><br>Your rulebook has been updated with a new page.</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. Metadata is data about data, and without it, it would be difficult to find specific files. Make sure that all metadata fields are filled out.<br><br>Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past.<br><br>Your rulebook has been updated with a new page.</p>`);
             $("#rules-metadata").append(
                 `<p>1. All metadata fields must be filled out.</p>
                 <p>2. The published date cannot be in the future.</p>
@@ -637,7 +642,7 @@ function dayStart(){
             keywordMinimum = 5;
             break;
         default:
-            $("#notifications-container div").prepend(`<p class="notif-regular">You've reached the end of the game. From now on, there will be no additional rules. Thanks for playing!</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">You've reached the end of the game. From now on, there will be no more additional rules. Thanks for playing!</p>`);
     }
 }
 function changeDate(){
