@@ -6,9 +6,8 @@ var clockCycle = "AM";
 var clockLength = 2;
 var username = "";
 var warningCount = 0;
-var endDay = false;
 var startDay = false;
-var balance = 100;
+var balance = 1000;
 var wages = 0;
 var rent = 150;
 var penaltyDeduction = 100;
@@ -661,12 +660,29 @@ function endLevel() {
     balance = balance + wages - rent;
     day++;
     if (balance >= 0) {
-        $("#debrief-container").append(`<button>PROCEED TO DAY ${day}</button>`);
+        $("#debrief-container").append(`<button onclick="startNextLevel();">PROCEED TO DAY ${day}</button>`);
     }
     else {
-        $("#debrief-container").append(`<p>You have fallen into debt. Your wife and husband have left you. Your kids do not talk to you anymore.</p>`);
-        $("#debrief-container").append(`<button>GAME OVER</button>`);
+        $("#debrief-container").append(`<p>You have fallen into debt. Your wife and husband left you. Your kids do not talk to you anymore.</p>`);
+        $("#debrief-container").append(`<button onclick="window.location.reload();">GAME OVER</button>`);
     }
+}
+function startNextLevel() {
+    startDay = false;
+    warningCount = 0;
+    violationCount = -1;
+    wages = 0;
+    penaltyDeduction = 100;
+    hour = 7;
+    minute = 0;
+    clockCycle = "AM";
+    $("main").css({ "display": "flex" });
+    $("#time").css("color", "white").text(`${hour}:0${minute} ${clockCycle}`);
+    $("#btn-open-connection").text("ACCEPT INCOMING CONNECTION").attr("onclick", "openConnection();");
+    $("#transcript-container div").empty();
+    $("#notifications-container div").empty();
+    dayStart();
+    $("#debrief-container").slideUp(500);
 }
 function delay(duration) {
     return new Promise((resolve) => {
