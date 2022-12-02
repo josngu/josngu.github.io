@@ -557,7 +557,11 @@ table {
     margin: auto;
 }
 th, td {
-    padding: 0 1vh;
+    padding: 0.2vh 1vh;
+    line-height: 1.15;
+}
+tr:hover {
+    background-color: hsl(0, 0%, 5%);
 }
 th {
     font-weight: 100;

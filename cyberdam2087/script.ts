@@ -1,4 +1,4 @@
-var day = 11;
+var day = 1;
 var hour = 7;
 var minute = 0;
 var clockCycle = "AM";
@@ -18,6 +18,7 @@ var penaltyReason = "";
 var violationCount = -1;
 var violationList = ["file name year", "file name month", "file name day", "file name date format", "missing file name extension", "missing file name ministry", "ministry abbreviation"];
 
+var fileTypeResponse = "";
 var fileType = "";
 var fileName = "";
 var fileExt = "";
@@ -30,7 +31,7 @@ const FIRST_NAME = ["James", "Sofia", "Ethan", "Emma", "Carter", "Scarlett", "Na
 
 const LAST_NAME = ["Huang", "Gutierrez", "Robinson", "Watson", "Khalid", "Hasan", "Harrison", "Ferguson", "Cunningham", "Hoffman", "Chan", "Schroeder", "Weiss", "Singh", "Zhou", "Abubakar", "Romero", "Contreras", "Nakamura", "Yamamoto", "Kobayashi", "Blanco", "Torres", "Lee", "Harris", "Wright", "Flores", "Cooper", "Sullivan", "Delgado", "Atkinson", "Baxter", "McDonald", "McDuff", "McAllister", "McMahon", "McKee", "McGregor", "Fukumoto", "Kubota", "Ichikawa", "Nagata", "Aguilar", "Rivera", "Richardson"];
 
-const SOURCE_IMG = ["uniassets.com", "assethaven.com", "stockloop.org", "piccolophotos.com"];
+const SOURCE_IMG = ["goofyimages.com", "assethaven.com", "stockloop.org", "piccolophotos.com"];
 const SOURCE_VID = ["filmostock.com", "vestvideos.com", "uniassets.com", "assethaven.com"];
 const SOURCE_AUD = ["hypomusique.com", "allsounds.com", "upcompose.com", "rigormusic.com"];
 
@@ -131,7 +132,7 @@ function reject(){
 function createViolation(){
     let chooseViolation = violationList[Math.floor(Math.random() * violationList.length)];
     //Debugging variable
-    //chooseViolation = "file name day";
+    //chooseViolation = "copyright infringement";
 
     let textReplace = "";
     switch(chooseViolation){
@@ -214,10 +215,25 @@ function createViolation(){
             break;
         //Day 4
         case "insufficient keywording":
+            //Removes the beginning of the string up to the first comma
             textReplace = $("#keywords").text().split(",").pop() as string;
             $("#keywords").text(textReplace);
             penaltyReason = "INSUFFICIENT NUMBER OF KEYWORDS";
             break;
+        //Day 5
+        case "copyright infringement":
+            //All documents are owned by the government, so reroll the violation type
+            if (fileTypeResponse === "a document"){
+                createViolation();
+                return;
+            }
+            $("#copyright-status").text("Copyrighted");
+            if (coinFlip(0.33) === true){
+                $("#usage-rights").text("Personal use only.");
+            } else {
+                $("#usage-rights").text(`Licensed for commercial use until ${generateDateLong(2077, 9)}`);
+            }
+            penaltyReason = "NO PERMISSION TO USE ASSET";
     }
 }
 function checkViolation(buttonValue: String){
@@ -266,6 +282,7 @@ function assessPenalty(){
 function openConnection(){
     $("#transcript-container div").empty();
     $("#metadata").empty();
+    //Start the clock if this is the first asset coming through
     if (startDay === false){
         startDay = true;
         clock();
@@ -273,7 +290,8 @@ function openConnection(){
     } else {
         $("#btn-open-connection").addClass("btn-open-connection-disabled");
 
-        let fileTypeResponse = FILE_TYPE[Math.floor(Math.random() * FILE_TYPE.length)];
+        //Randomize file type, response, and username
+        fileTypeResponse = FILE_TYPE[Math.floor(Math.random() * FILE_TYPE.length)];
         let response = RESPONSE[Math.floor(Math.random() * RESPONSE.length)];
         username = generateName();
 
@@ -302,14 +320,16 @@ function openConnection(){
             $("#btn-reject, #btn-approve").slideDown(250);
         });
 
-        generateMetadata(fileTypeResponse);
+        generateMetadata();
     }
 }
 //I'm sorry about this long function
-function generateMetadata(fileTypeResponse: String){
-    //Randomly decides if a part of the metadata should be incorrect (default 40% to be true)
-    protocolViolated = Math.random() < 0.4;
+function generateMetadata(){
+    //Randomly decides if a part of the metadata should be incorrect (default 50% to be true)
+    protocolViolated = Math.random() < 0.5;
+    //Debug
     console.log(protocolViolated);
+
     let ministry = MINISTRY[Math.floor(Math.random() * MINISTRY.length)];
     //Note: Display the next 2 first
     let author = generateName();
@@ -419,6 +439,7 @@ function generateMetadata(fileTypeResponse: String){
     }
 }
 function generateFileName(ministry: String){
+    //Generate the first half of the file name
     if (fileType === "video" || fileType === "image"){
         switch(ministry){
             case "ED":
@@ -463,7 +484,6 @@ function generateFileName(ministry: String){
         let x = ["Form", "Letter", "Application", "DataSheet", "Chart", "Publication", "Guidelines", "Statement", "Census", "Statistics"];
         fileName = "Mo" + ministry + "_" + x[Math.floor(Math.random() * x.length)] + "_";
     }
-    //All of the code above generates the first half of the file name
     //Next, we need to generate the date
     if (day < 10){
         fileName = fileName + "2087M10D0" + day;
@@ -584,8 +604,8 @@ function convertToMinistryLong(ministry: String){
     }
 }
 //Returns true/false
-function coinFlip(chance:number){
-    return Math.random() < chance;
+function coinFlip(chanceDecimal:number){
+    return Math.random() < chanceDecimal;
 }
 function toggleRulebook(){
     if ($("#rulebook-container").is(":hidden")){
@@ -635,11 +655,14 @@ function dayStart(){
             break;
         case 4:
             $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting some complaints from employees who are saying that the assets are not easily searchable due to an insufficient number of keywords. From now on, all assets must have at least 5 keywords.<br><br>Your rulebook has been updated.</p>`);
-            $("#rules-metadata").append(
-                `<p>4. All files must have a minimum of five keywords.</p>`
-                );
+            $("#rules-metadata").append(`<p>4. All files must have a minimum of five keywords.</p>`);
             violationList.push("insufficient keywording");
             keywordMinimum = 5;
+            break;
+        case 5:
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have been involved in several lawsuits regarding the inappropriate use of some copyrighted assets. From now on, we can only use assets that we own, that are licensed for commercial use, and that are in the public domain.<br><br>Your rulebook has been updated.</p>`);
+            $("#rules-metadata").append(`<p>4. Assets can only be used if either:<br>a. They are owned by the government.<br>b. They are licensed for commercial use.<br>c. They are in the public domain.</p>`);
+            violationList.push("copyright infringement");
             break;
         default:
             $("#notifications-container div").prepend(`<p class="notif-regular">You've reached the end of the game. From now on, there will be no more additional rules. Thanks for playing!</p>`);
