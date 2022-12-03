@@ -12,10 +12,7 @@ $clr-danger-translucent: hsl(340, 100%, 50%, 0.1);
 $glow: 0 0 24px;
 
 @keyframes loading-bar {
-    0% {
-        width: 0%;
-    }
-    20% {
+    0%, 20% {
         width: 0%;
     }
     100% {
@@ -97,10 +94,7 @@ $glow: 0 0 24px;
     }
 }
 @keyframes fade-in-delay {
-    0% {
-        opacity: 0%;
-    }
-    50% {
+    0%, 50% {
         opacity: 0%;
     }
     100% {
@@ -108,16 +102,10 @@ $glow: 0 0 24px;
     }
 }
 @keyframes blink {
-    0% {
+    0%, 50% {
         opacity: 40%;
     }
-    50% {
-        opacity: 40%;
-    }
-    51% {
-        opacity: 100%;
-    }
-    100% {
+    51%, 100% {
         opacity: 100%;
     }
 }
@@ -238,6 +226,14 @@ $glow: 0 0 24px;
     }
     100% {
         transform: translate3d(-45%, 1100%, 0);
+    }
+}
+@keyframes bg-dots {
+    0%, 20%, 80%, 100% {
+        background-size: 10vh 10vh;
+    }
+    40%, 60% {
+        background-size: 20vh 20vh;
     }
 }
 
@@ -387,7 +383,8 @@ button {
         animation: redbox 8s infinite, pulse 3s infinite;
         transform: translate3d(-30%, -30%, 0) rotateY(-25deg) rotateX(45deg) rotateZ(10deg);
         outline: 0.5vh solid $clr-danger;
-        filter: drop-shadow(1vh 1vh 0.5vh $clr-danger) blur(0.25vh);
+        filter: drop-shadow(1vh 1vh 0.5vh $clr-danger) blur(0.2vh);
+        box-shadow: inset 0 0 16vh hsl(340, 100%, 50%, 0.25);
         div {
             animation: scanner 9s infinite;
             position: absolute;
@@ -396,20 +393,22 @@ button {
             opacity: 40%;
             outline: 0.5vh solid $clr-danger;
             width: 100%;
-            height: 5%; 
+            height: 5%;
         }
     }
     div:nth-child(4) {
         animation: bluebox 6s infinite, pulse 4s infinite;
         transform: translate3d(-40%, -40%, 0) rotateY(-25deg) rotateX(45deg) rotateZ(10deg);
         outline: 0.5vh solid $font-clr-user;
-        filter: drop-shadow(1vh 1vh 0.5vh $font-clr-user) blur(0.25vh);
+        filter: drop-shadow(1vh 1vh 0.5vh $font-clr-user) blur(0.2vh);
+        box-shadow: 0 0 32vh hsl(187, 100%, 50%, 0.25);
     }
     div:nth-child(5) {
         animation: redbox 10s infinite reverse, pulse 5s infinite;
         transform: translate3d(-50%, -50%, 0) rotateY(-25deg) rotateX(45deg) rotateZ(10deg);
         outline: 0.5vh solid white;
-        filter: drop-shadow(1vh 1vh 0.5vh white) blur(0.25vh);
+        filter: drop-shadow(1vh 1vh 0.5vh white) blur(0.2vh);
+        box-shadow: 0 0 8vh hsl(0, 0%, 100%, 0.25);
     }
     button {
         transform: translateY(10vh);
@@ -420,8 +419,20 @@ button {
 #background-grid {
     background-size: 20vh 20vh;
     background-image:
-    linear-gradient(to right, $font-clr-user 0.25vh, transparent 1px),
-    linear-gradient(to bottom, $font-clr-user 0.25vh, transparent 1px);
+    linear-gradient(to right, $font-clr-user 0.25vh, transparent 0.25vh),
+    linear-gradient(to bottom, $font-clr-user 0.25vh, transparent 0.25vh),
+    radial-gradient(circle, $font-clr-user 0.33vh, rgba(0, 0, 0, 0) 0.33vh);
+    background-position: center;
+    opacity: 40%;
+    transform: translate3d(-45%, -40%, 0);
+    height: 100%;
+    width: 100%;
+}
+#background-dots {
+    animation: bg-dots 11s infinite;
+    background-size: 10vh 10vh;
+    background-image:
+    radial-gradient(circle, white 0.25vh, rgba(0, 0, 0, 0) 0.25vh);
     background-position: center;
     opacity: 40%;
     transform: translate3d(-45%, -40%, 0);

@@ -66,10 +66,11 @@ function continueButton() {
     $("#debrief-container").append(`<p>Congratulations. Your application to be a digital asset administrator for the government of Reemeria has been approved.</p>
     <p>Your job is to approve or reject assets before they are uploaded onto the digital asset management system.</p>
     <p>Your shift begins at 7 AM and ends at 9 PM. You will be paid 25 Euros per processed asset.</p>
-    <button onclick="beginDay(); dayStart();">BEGIN DAY</button>`);
+    <button onclick="beginDay(); setTimeout('dayStart()', 500);">BEGIN DAY</button>`);
 }
 function beginDay() {
     $("main").css({ "display": "flex" });
+    $("#btn-open-connection").addClass("btn-open-connection-disabled");
     $("#debrief-container").slideUp(500);
 }
 function approve() {
@@ -645,6 +646,9 @@ function switchTab() {
     }
 }
 function dayStart() {
+    let sound = new Audio("audio/notification.mp3");
+    sound.play();
+    $("#btn-open-connection").removeClass("btn-open-connection-disabled");
     switch (day) {
         case 1:
             $("#notifications-container div").prepend(`<p class="notif-regular">Your position as a digital asset administrator is to filter out any incoming assets that do not adhere to government protocol.<br><br>All files uploaded to the digital asset management (DAM) system must follow a strict naming convention. Be sure to look over the file name carefully.<br><br>View the rulebook at the bottom for more details. When you're ready, you may begin accepting incoming connections.</p>`);
@@ -765,11 +769,11 @@ function startNextDay() {
         "animation": "none",
         "color": "white"
     }).text(`${hour}:0${minute} ${clockCycle}`);
-    $("#btn-open-connection").text("ACCEPT INCOMING CONNECTION").attr("onclick", "openConnection();").removeClass("btn-open-connection-disabled");
+    $("#btn-open-connection").text("ACCEPT INCOMING CONNECTION").attr("onclick", "openConnection();");
     $("#transcript-container div").empty();
     $("#notifications-container div").empty();
     changeDate();
-    dayStart();
+    setTimeout("dayStart()", 500);
     $("#debrief-container").slideUp(500);
 }
 function delay(duration) {
