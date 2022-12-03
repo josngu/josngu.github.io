@@ -433,6 +433,9 @@ button {
         color: white;
         margin: 2vh 0;
     }
+    h2 {
+        animation: fade-in-delay 1s forwards;
+    }
     button {
         animation: fade-in-delay 1s forwards;
         margin-top: 2vh;
@@ -516,14 +519,15 @@ button {
 }
 #date {
     font-family: "Share Tech Mono", monospace;
-    font-size: 2.4vh;
-    margin-bottom: 0;
+    font-size: 2.6vh;
+    margin-top: 2vh;
+    margin-bottom: 0.5vh;
     color: white;
     filter: drop-shadow($glow white);
 }
 #time {
     font-family: "Share Tech Mono", monospace;
-    font-size: 2.8vh;
+    font-size: 3vh;
     margin: 0;
     margin-bottom: 3vh;
     color: white;
@@ -688,7 +692,7 @@ th {
     }
 }
 #rules-file-naming {
-    
+    padding: 0.25em;
 }
 #rules-metadata {
     display: none;

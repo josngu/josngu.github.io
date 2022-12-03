@@ -11,7 +11,7 @@ var startDay = false;
 var balance = 1000;
 var wages = 0;
 var rent = 150;
-var penaltyDeduction = 100;
+var penaltyDeduction = 50;
 
 var protocolViolated = false;
 var penaltyReason = "";
@@ -79,7 +79,7 @@ function continueButton(){
     $("#debrief-container").css({"display":"flex"}).empty();
     $("#debrief-container").append(`<p>Congratulations. Your application to be a digital asset administrator for the government of Reemeria has been approved.</p>
     <p>Your job is to approve or reject assets before they are uploaded onto the digital asset management system.</p>
-    <p>Your shift begins at 7 AM and ends at 9 PM. You will be paid 25 Units per processed asset.</p>
+    <p>Your shift begins at 7 AM and ends at 9 PM. You will be paid 25 Euros per processed asset.</p>
     <button onclick="beginDay(); dayStart();">BEGIN DAY</button>`);
 }
 
@@ -101,6 +101,8 @@ function approve(){
         $("#metadata-container").removeClass("metadata-container-approve");
         $("#transcript-container div").append(`<p class="name-admin">SysAdmin</p>
         <p class="transcript-admin">Your file has been approved. You may log off now.</p>`);
+        let sound = new Audio("audio/admin-message.mp3");
+        sound.play();
     })
     .then(() => delay(1500))
     .then(() => {
@@ -123,11 +125,16 @@ function reject(){
         $("#metadata-container").removeClass("metadata-container-reject");
         $("#transcript-container div").append(`<p class="name-admin">SysAdmin</p>
         <p class="transcript-admin">Your file has been rejected. You will be logged off now.</p>`);
+        let sound = new Audio("audio/admin-message.mp3");
+        sound.play();
     })
     .then(() => delay(1500))
     .then(() => {
         if (coinFlip(0.25) === true){
             $("#transcript-container div").append(`<p class="name-user">${username}</p><p class="transcript-user">${RESPONSE_REJECT[Math.floor(Math.random() * RESPONSE_REJECT.length)]}</p>`);
+
+            let sound = new Audio("audio/user-message.mp3");
+            sound.play();
         } else {
             delayTimer = 0;
         }
@@ -142,7 +149,7 @@ function reject(){
 function createViolation(){
     let chooseViolation = violationList[Math.floor(Math.random() * violationList.length)];
     //Debugging variable
-    chooseViolation = "copyright infringement";
+    //chooseViolation = "copyright infringement";
 
     let textReplace = "";
     switch(chooseViolation){
@@ -272,6 +279,8 @@ function assessPenalty(){
     violationCount++;
     Promise.resolve().then(() => delay(delayTimer))
     .then(() => {
+        let sound = new Audio("audio/violation.mp3");
+            sound.play();
         //Hide the rulebook to show the notification
         if ($("#rulebook-container").is(":visible")){
             $("#rulebook-container").slideUp(500);
@@ -327,12 +336,18 @@ function openConnection(){
             $(".dialog-box p").text("RECEIVING FILE...");
         })
         .then(() => delay(500))
-        .then(() => $("#transcript-container div").append(`<p class="name-admin">SysAdmin</p>
-        <p class="transcript-admin">Please state the type of file that you have uploaded.</p>`))
+        .then(() => {
+            $("#transcript-container div").append(`<p class="name-admin">SysAdmin</p>
+            <p class="transcript-admin">Please state the type of file that you have uploaded.</p>`)
+            let sound = new Audio("audio/admin-message.mp3");
+            sound.play();
+        })
         .then(() => delay(1500))
         .then(() => {
             $("#transcript-container div").append(`<p class="name-user">${username}</p><p class="transcript-user">${response} ${fileTypeResponse}.</p>`);
             $("#btn-reject, #btn-approve").slideDown(250);
+            let sound = new Audio("audio/user-message.mp3");
+            sound.play();
         });
 
         generateMetadata();
@@ -719,10 +734,15 @@ function clock(){
     }
     //Change the clock colour when near the end of the shift
     if (hour === 8 && minute === 1 && clockCycle === "PM"){
-        $("#time").css("color", "hsl(46, 100%, 50%)");
+        $("#time").css({
+            "animation":"blink 1s infinite",
+            "color":"hsl(46, 100%, 50%)"
+        });
     }
     //Checks if the time is 9:00 PM
     if (hour === 9 && minute === 1 && clockCycle === "PM"){
+        let sound = new Audio("audio/clock.mp3");
+            sound.play();
         $("#time").css("color", "hsl(340, 100%, 50%)");
         $("#btn-open-connection").text("END DAY").attr("onclick","endDay();");
         return;
@@ -760,7 +780,11 @@ function startNextDay(){
     minute = 0;
     clockCycle = "AM";
     $("main").css({"display":"flex"});
-    $("#time").css("color", "white").text(`${hour}:0${minute} ${clockCycle}`);
+    $("#time").css({
+        "animation":"none",
+        "color":"white"
+    }).text(`${hour}:0${minute} ${clockCycle}`);
+    
     $("#btn-open-connection").text("ACCEPT INCOMING CONNECTION").attr("onclick","openConnection();").removeClass("btn-open-connection-disabled");
     $("#transcript-container div").empty();
     $("#notifications-container div").empty();
@@ -774,3 +798,18 @@ function delay(duration:number){
         setTimeout(resolve, duration);
     });
 }
+//AUDIO
+function playSound(this: any, src: String) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+      this.sound.play();
+    }
+    this.stop = function(){
+      this.sound.pause();
+    }
+  }
