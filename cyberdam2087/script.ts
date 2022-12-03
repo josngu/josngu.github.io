@@ -64,6 +64,7 @@ const DOCUMENT_KEYWORDS = ["finance", "financial", "document", "spreadsheet", "a
 
 const MONTH = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
+//Prevents the player from using the keyboard to activate disabled buttons
 $(function() {
     $("#btn-open-connection, #btn-reject, #btn-approve").on("keydown", false);
 });
@@ -71,6 +72,15 @@ $(function() {
 function startGame(){
     $("#title-screen").hide();
     $("#debrief-container").css({"display":"flex"});
+}
+
+function continueButton(){
+    $("#debrief-container").hide()
+    $("#debrief-container").css({"display":"flex"}).empty();
+    $("#debrief-container").append(`<p>Congratulations. Your application to be a digital asset administrator for the government of Reemeria has been approved.</p>
+    <p>Your job is to approve or reject assets before they are uploaded onto the digital asset management system.</p>
+    <p>Your shift begins at 7 AM and ends at 9 PM. You will be paid 25 Units per processed asset.</p>
+    <button onclick="beginDay(); dayStart();">BEGIN DAY</button>`);
 }
 
 function beginDay(){
@@ -132,7 +142,7 @@ function reject(){
 function createViolation(){
     let chooseViolation = violationList[Math.floor(Math.random() * violationList.length)];
     //Debugging variable
-    //chooseViolation = "copyright infringement";
+    chooseViolation = "copyright infringement";
 
     let textReplace = "";
     switch(chooseViolation){
@@ -172,12 +182,12 @@ function createViolation(){
             penaltyReason = "MISSING FILE NAME EXTENSION";
             break;
         case "missing file name ministry":
-            textReplace = $("#metadata-container h2").text().slice(5);
+            textReplace = $("#metadata-container h2").text().slice(3);
             $("#metadata-container h2").text(textReplace);
             penaltyReason = "MISSING MINISTRY ABBREVIATION";
             break;
         case "ministry abbreviation":
-            textReplace = "Mo" + MINISTRY_FAKE[Math.floor(Math.random() * MINISTRY_FAKE.length)] + $("#metadata-container h2").text().slice(4);
+            textReplace = MINISTRY_FAKE[Math.floor(Math.random() * MINISTRY_FAKE.length)] + $("#metadata-container h2").text().slice(2);
             $("#metadata-container h2").text(textReplace);
             penaltyReason = "INVALID MINISTRY ABBREVIATION";
             break;
@@ -228,7 +238,7 @@ function createViolation(){
                 return;
             }
             $("#copyright-status").text("Copyrighted");
-            if (coinFlip(0.33) === true){
+            if (coinFlip(0.25) === true){
                 $("#usage-rights").text("Personal use only.");
             } else {
                 $("#usage-rights").text(`Licensed for commercial use until ${generateDateLong(2077, 9)}`);
@@ -252,10 +262,15 @@ function checkViolation(buttonValue: String){
     }
 }
 function assessPenalty(){
-    //Sometimes the penalty reason can change before the delay finishes, let's store the reason in this "x" variable
+    //Sometimes, the penalty reason can change before the delay finishes, so we store the reason in this "reason" variable
     let reason = penaltyReason;
+    let delayTimer = 4000;
+    //Show the notification quickly if the player is at the end of the day
+    if (hour === 9 && clockCycle === "PM"){
+        delayTimer = 1500;
+    }
     violationCount++;
-    Promise.resolve().then(() => delay(4000))
+    Promise.resolve().then(() => delay(delayTimer))
     .then(() => {
         //Hide the rulebook to show the notification
         if ($("#rulebook-container").is(":visible")){
@@ -344,6 +359,11 @@ function generateMetadata(){
     let copyrightStatus = COPYRIGHT_STATUS[Math.floor(Math.random() * COPYRIGHT_STATUS.length)];
     let usageRights = "Can be used for commercial purposes."
     let assetExpiryDate = generateDateLong(2088, 10);
+    //Different variation of usageRights
+    if (coinFlip(0.5) === true){
+        copyrightStatus = "Copyrighted";
+        usageRights = `Licensed for commercial use until ${generateDateLong(2088, 10)}`
+    }
 
     switch(fileTypeResponse){
         case "a video file":
@@ -444,45 +464,45 @@ function generateFileName(ministry: String){
         switch(ministry){
             case "ED":
                 let ED = ["School", "Class", "College", "University", "Classroom", "LectureHall", "SchoolLibrary"];
-                fileName = "MoED_" + ED[Math.floor(Math.random() * ED.length)] + "_";
+                fileName = "ED_" + ED[Math.floor(Math.random() * ED.length)] + "_";
                 break;
             case "EN":
                 let EN = ["NuclearPowerPlant", "CoalPowerPlant", "GasPowerPlant", "Windmill", "Windmills", "SolarPanel", "SolarPanels", "Geothermal", "Hydroelectric"];
-                fileName = "MoEN_" + EN[Math.floor(Math.random() * EN.length)] + "_";
+                fileName = "EN_" + EN[Math.floor(Math.random() * EN.length)] + "_";
                 break;
             case "LA":
                 let LA = ["Office", "OfficeHeadquarters", "Offices", "Business", "Businesses", "Factory", "Factories",  "Manufacturer", "ConvenienceStore", "RetailStore", "Supermarket", "Laboratory"];
-                fileName = "MoLA_" + LA[Math.floor(Math.random() * LA.length)] + "_";
+                fileName = "LA_" + LA[Math.floor(Math.random() * LA.length)] + "_";
                 break;
             case "TR":
                 let TR = ["Transportation", "Transport", "Shipping", "Transit", "Freight"];
-                fileName = "MoTR_" + TR[Math.floor(Math.random() * TR.length)] + "_";
+                fileName = "TR_" + TR[Math.floor(Math.random() * TR.length)] + "_";
                 break;
             case "HE":
                 let HE = ["HealthClinic", "HospitalRoom", "NursingHome", "PsychiatricWard", "Infirmary", "IsolationWard", "IntensiveCareUnit"];
-                fileName = "MoHE_" + HE[Math.floor(Math.random() * HE.length)] + "_";
+                fileName = "HE_" + HE[Math.floor(Math.random() * HE.length)] + "_";
                 break;
             case "AG":
                 let AG = ["TractorOnFarm", "FarmerCultivating", "FarmerHarvesting", "FarmerPlanting", "CountrysideFarm", "RooftopFarm"];
-                fileName = "MoAG_" + AG[Math.floor(Math.random() * AG.length)] + "_";
+                fileName = "AG_" + AG[Math.floor(Math.random() * AG.length)] + "_";
                 break;
             case "IN":
                 let IN = ["CitySkyline", "Downtown", "CityDistrict", "UrbanDistrict", "CityArchitecture", "TallSkyscrapers", "TallBuildings", "OldArchitecture"];
-                fileName = "MoIN_" + IN[Math.floor(Math.random() * IN.length)] + "_";
+                fileName = "IN_" + IN[Math.floor(Math.random() * IN.length)] + "_";
                 break;
             case "DE":
                 let DE = ["MilitaryBunker", "Bootcamp", "MilitaryTraining", "Soldiers", "Battalion", "UndergroundBunker", "UnitFormation"];
-                fileName = "MoDE_" + DE[Math.floor(Math.random() * DE.length)] + "_";
+                fileName = "DE_" + DE[Math.floor(Math.random() * DE.length)] + "_";
                 break;
         }
     }
     if (fileType === "audio"){
         let x = ["Audio", "Music", "Song"];
-        fileName = "Mo" + ministry + "_" + x[Math.floor(Math.random() * x.length)] + "_";
+        fileName = ministry + "_" + x[Math.floor(Math.random() * x.length)] + "_";
     }
     if (fileType === "document"){
         let x = ["Form", "Letter", "Application", "DataSheet", "Chart", "Publication", "Guidelines", "Statement", "Census", "Statistics"];
-        fileName = "Mo" + ministry + "_" + x[Math.floor(Math.random() * x.length)] + "_";
+        fileName = ministry + "_" + x[Math.floor(Math.random() * x.length)] + "_";
     }
     //Next, we need to generate the date
     if (day < 10){
@@ -639,7 +659,7 @@ function dayStart(){
             violationList.push("file name extension");
             break;
         case 3:
-            $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. Metadata is data about data, and without it, it would be difficult to find specific files. Make sure that all metadata fields are filled out.<br><br>Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past.<br><br>Your rulebook has been updated with a new page.</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. Metadata is data about data, and without it, it would be difficult to find specific files. Make sure that all metadata fields are filled out.<br><br>Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past.<br><br>You have been authorized to access the metadata of all files. Your rulebook has been updated with a new page.</p>`);
             $("#rules-metadata").append(
                 `<p>1. All metadata fields must be filled out.</p>
                 <p>2. The published date cannot be in the future.</p>
@@ -661,7 +681,7 @@ function dayStart(){
             break;
         case 5:
             $("#notifications-container div").prepend(`<p class="notif-regular">We have been involved in several lawsuits regarding the inappropriate use of some copyrighted assets. From now on, we can only use assets that we own, that are licensed for commercial use, and that are in the public domain.<br><br>Your rulebook has been updated.</p>`);
-            $("#rules-metadata").append(`<p>4. Assets can only be used if either:<br>a. They are owned by the government.<br>b. They are licensed for commercial use.<br>c. They are in the public domain.</p>`);
+            $("#rules-metadata").append(`<p>5. Assets can only be used if either:<br>&emsp;a. They are owned by the government.<br>&emsp;b. They are licensed for commercial use.<br>&emsp;c. They are in the public domain.</p>`);
             violationList.push("copyright infringement");
             break;
         default:
@@ -704,33 +724,33 @@ function clock(){
     //Checks if the time is 9:00 PM
     if (hour === 9 && minute === 1 && clockCycle === "PM"){
         $("#time").css("color", "hsl(340, 100%, 50%)");
-        $("#btn-open-connection").text("END DAY").attr("onclick","endLevel();");
+        $("#btn-open-connection").text("END DAY").attr("onclick","endDay();");
         return;
     }
     setTimeout("clock()", clockLength);
 }
-function endLevel(){
+function endDay(){
+    $("#btn-open-connection").addClass("btn-open-connection-disabled");
     $("#debrief-container").slideDown(500).empty();
     setTimeout(() => {
         $("main").hide();
     }, 500);
-
     $("#debrief-container")
-        .append(`<h2>END OF DAY ${day}</h2>`)
-        .append(`<p>Balance: ${balance}<br>Wages: ${wages}<br>Rent: -${rent}</p>`)
-        .append(`<p>End of day balance: ${balance + wages - rent} Units</p>`);
-    balance = balance + wages - rent;
-    day++;
+            .append(`<h2>END OF DAY ${day}</h2>`)
+            .append(`<p>Balance: ${balance}<br>Wages: ${wages}<br>Rent: -${rent}</p>`)
+            .append(`<p>End of day balance: ${balance + wages - rent} Units</p>`);
+        balance = balance + wages - rent;
+        day++;
 
     if (balance >= 0){
-        $("#debrief-container").append(`<button onclick="startNextLevel();">PROCEED TO DAY ${day}</button>`);
+        $("#debrief-container").append(`<button onclick="startNextDay();">PROCEED TO DAY ${day}</button>`);
     } else {
         $("#debrief-container").append(`<p>You have fallen into debt. Your wife and husband left you. Your kids do not talk to you anymore.</p>`)
         $("#debrief-container").append(`<button onclick="window.location.reload();">GAME OVER</button>`);
     }
 }
 //Resets relevant values to their defaults
-function startNextLevel(){
+function startNextDay(){
     startDay = false;
     warningCount = 0;
     violationCount = -1;
@@ -741,7 +761,7 @@ function startNextLevel(){
     clockCycle = "AM";
     $("main").css({"display":"flex"});
     $("#time").css("color", "white").text(`${hour}:0${minute} ${clockCycle}`);
-    $("#btn-open-connection").text("ACCEPT INCOMING CONNECTION").attr("onclick","openConnection();");
+    $("#btn-open-connection").text("ACCEPT INCOMING CONNECTION").attr("onclick","openConnection();").removeClass("btn-open-connection-disabled");
     $("#transcript-container div").empty();
     $("#notifications-container div").empty();
     changeDate();
