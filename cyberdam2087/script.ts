@@ -67,6 +67,10 @@ const MONTH = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "O
 //Prevents the player from using the keyboard to activate disabled buttons
 $(function() {
     $("#btn-open-connection, #btn-reject, #btn-approve").on("keydown", false);
+    $("button").on("click", () => {
+        let sound = new Audio("audio/button.mp3");
+            sound.play();
+    });
 });
 
 function startGame(){
@@ -322,11 +326,17 @@ function openConnection(){
         Promise.resolve().then(() => delay(250))
         .then(() => $("#transcript-container div").append(`<p id="text-login-status">${username} has logged in</p>`))
         .then(() => delay(500))
-        .then(() =>  $(".dialog-box").css("display", "flex"))
+        .then(() =>  {
+            $(".dialog-box").css("display", "flex");
+            let sound = new Audio("audio/loading-bar.mp3");
+            sound.play();
+        })
         .then(() => delay(1000))
         .then(() => {
             $(".dialog-box p").text("FILE RECEIVED");
             $(".dialog-box").addClass("dialog-box-exit");
+            let sound = new Audio("audio/dialog-popup.mp3");
+            sound.play();
         })
         .then(() => delay(500))
         .then(() => {
@@ -751,6 +761,7 @@ function clock(){
 }
 function endDay(){
     $("#btn-open-connection").addClass("btn-open-connection-disabled");
+    $("#rulebook-container").slideUp(500);
     $("#debrief-container").slideDown(500).empty();
     setTimeout(() => {
         $("main").hide();
@@ -784,7 +795,7 @@ function startNextDay(){
         "animation":"none",
         "color":"white"
     }).text(`${hour}:0${minute} ${clockCycle}`);
-    
+
     $("#btn-open-connection").text("ACCEPT INCOMING CONNECTION").attr("onclick","openConnection();").removeClass("btn-open-connection-disabled");
     $("#transcript-container div").empty();
     $("#notifications-container div").empty();
@@ -798,18 +809,3 @@ function delay(duration:number){
         setTimeout(resolve, duration);
     });
 }
-//AUDIO
-function playSound(this: any, src: String) {
-    this.sound = document.createElement("audio");
-    this.sound.src = src;
-    this.sound.setAttribute("preload", "auto");
-    this.sound.setAttribute("controls", "none");
-    this.sound.style.display = "none";
-    document.body.appendChild(this.sound);
-    this.play = function(){
-      this.sound.play();
-    }
-    this.stop = function(){
-      this.sound.pause();
-    }
-  }

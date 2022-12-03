@@ -978,6 +978,7 @@ th {
 
 #rules-metadata {
   display: none;
+  padding: 0.25em;
 }
 
 #btn-rulebook {
