@@ -133,7 +133,7 @@ function reject() {
 function createViolation() {
     let chooseViolation = violationList[Math.floor(Math.random() * violationList.length)];
     //Debugging variable
-    //chooseViolation = "copyright infringement";
+    //chooseViolation = "missing metadata entry";
     let textReplace = "";
     switch (chooseViolation) {
         case "file name year":

@@ -148,7 +148,7 @@ $glow: 0 0 24px;
     }
     10% {
         letter-spacing: 2vh;
-        opacity: 80%;
+        opacity: 70%;
     }
     20% {
         letter-spacing: 1.5vh;
@@ -156,32 +156,32 @@ $glow: 0 0 24px;
     }
     30% {
         letter-spacing: 0.5vh;
-        opacity: 30%;
+        opacity: 60%;
     }
     40% {
         letter-spacing: 1vh;
-        opacity: 70%;
+        opacity: 100%;
     }
     50% {
         letter-spacing: 1.25vh;
-        opacity: 100%;
+        opacity: 80%;
         color: $font-clr-admin;
     }
     60% {
         letter-spacing: 2vh;
-        opacity: 60%;
+        opacity: 100%;
     }
     70% {
         letter-spacing: 0.5vh;
-        opacity: 20%;
+        opacity: 30%;
     }
     80% {
         letter-spacing: 1.75vh;
-        opacity: 80%;
+        opacity: 90%;
     }
     90% {
         letter-spacing: 1vh;
-        opacity: 50%;
+        opacity: 70%;
     }
     100% {
         letter-spacing: 0vh;
@@ -267,7 +267,6 @@ html {
 }
 body {
     aspect-ratio: 16 / 9;
-    background-color: hsl(0, 0%, 0%);
     margin: 5vh;
     perspective: 2000px;
 }
@@ -366,9 +365,14 @@ button {
         font-family: "Rajdhani", sans-serif;
         font-size: 12vh;
         font-weight: 100;
+        width: 90%;
+        text-align: center;
         color: white;
         transform: translate3d(0%, 0%, 0) rotateY(-25deg) rotateX(45deg) rotateZ(10deg);
         text-shadow: 1vh 1vh 0px hsl(0, 0%, 100%, 0.2);
+        background-color: hsla(0, 0%, 0%, 0.1);
+        box-shadow: inset 0 0 5vh black;
+        backdrop-filter: blur(32px) saturate(800%);
         z-index: 10000;
     }
     div {
@@ -412,6 +416,17 @@ button {
         backdrop-filter: blur(16px) saturate(200%);
         z-index: 1;
     }
+}
+#background-grid {
+    background-size: 20vh 20vh;
+    background-image:
+    linear-gradient(to right, $font-clr-user 0.25vh, transparent 1px),
+    linear-gradient(to bottom, $font-clr-user 0.25vh, transparent 1px);
+    background-position: center;
+    opacity: 40%;
+    transform: translate3d(-45%, -40%, 0);
+    height: 100%;
+    width: 100%;
 }
 #debrief-container {
     position: fixed;
