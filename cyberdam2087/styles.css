@@ -1031,4 +1031,8 @@ th {
   width: 100%;
   color: hsl(0deg, 0%, 50%);
   z-index: -1;
+}
+
+span {
+  color: hsl(56deg, 100%, 50%);
 }/*# sourceMappingURL=styles.css.map */
