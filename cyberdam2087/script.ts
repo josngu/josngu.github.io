@@ -2,7 +2,7 @@ var day = 1;
 var hour = 7;
 var minute = 0;
 var clockCycle = "AM";
-var clockLength = 2;
+var clockLength = 150;
 
 var username = "";
 
@@ -21,6 +21,7 @@ var violationList = ["file name year", "file name month", "file name day", "file
 var fileTypeResponse = "";
 var fileType = "";
 var fileName = "";
+var fileDescription = "";
 var fileExt = "";
 
 var keywordMinimum = 3;
@@ -60,7 +61,7 @@ const IN_KEYWORDS = ["building", "buildings", "skyscraper", "skyscrapers", "cons
 const DE_KEYWORDS = ["military", "war", "weapons", "guns", "firearms", "army", "artillery", "infantry", "corps", "armaments", "troops", "squadron", "squad"];
 
 const AUDIO_KEYWORDS = ["bass", "upbeat", "drums", "classical", "instrument", "piano", "guitar", "trumpet", "saxophone", "relaxing", "violin", "woodwinds", "orchestra", "electronic"];
-const DOCUMENT_KEYWORDS = ["finance", "financial", "document", "spreadsheet", "article", "record", "records", "accounts", "management", "archive", "data"];
+const DOCUMENT_KEYWORDS = ["report", "chart", "document", "spreadsheet", "article", "record", "records", "accounts", "management", "archive", "data", "executive"];
 
 const MONTH = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -94,6 +95,9 @@ function beginDay(){
 }
 
 function approve(){
+    let sound = new Audio("audio/approve.mp3");
+        sound.play();
+    
     Promise.resolve().then(() => {
         $("#btn-reject, #btn-approve").css({"pointer-events":"none"});
         $("#metadata-container").addClass("metadata-container-approve");
@@ -117,6 +121,9 @@ function approve(){
     checkViolation("approve");
 }
 function reject(){
+    let sound = new Audio("audio/reject.mp3");
+        sound.play();
+
     let delayTimer = 1500;
     Promise.resolve().then(() => {
         $("#btn-reject, #btn-approve").css({"pointer-events":"none"});
@@ -376,6 +383,7 @@ function generateMetadata(){
     let author = generateName();
     let datePublished = generateDateLong(2067, 19);
     createMetadataEntry("Author", author);
+    createMetadataEntry("Description", "");
     createMetadataEntry("Date Published", datePublished);
 
     let fileSize = 0;
@@ -475,10 +483,18 @@ function generateMetadata(){
             createMetadataEntry("Word Count", wordCount);
             createMetadataEntry("Keywords", generateKeywords("DOCUMENT"));
     }
+    //fileDescription variable doesn't change until the file name is made
+    $("#description").text(fileDescription);
+
     createMetadataEntry("Source", source);
     createMetadataEntry("Copyright Status", copyrightStatus);
     createMetadataEntry("Usage Rights", usageRights);
     createMetadataEntry("Asset Expiry Date", assetExpiryDate);
+
+    //Deny the user from viewing the metadata before day 3
+    if (day < 3){
+        $("#metadata").empty().append("<p id='message-deny'>ACCESS TO METADATA DENIED</p>");
+    }
 
     if (protocolViolated === true){
         createViolation();
@@ -489,46 +505,56 @@ function generateFileName(ministry: String){
     if (fileType === "video" || fileType === "image"){
         switch(ministry){
             case "ED":
-                let ED = ["School", "Class", "College", "University", "Classroom", "LectureHall", "SchoolLibrary"];
+                let ED = ["SchoolCampus", "College", "University", "ScienceClassroom", "ArtClassroom", "EnglishClassroom", "MathClassroom", "LectureHall", "SchoolLibrary"];
                 fileName = "ED_" + ED[Math.floor(Math.random() * ED.length)] + "_";
+                fileDescription = "An education institute in...";
                 break;
             case "EN":
                 let EN = ["NuclearPowerPlant", "CoalPowerPlant", "GasPowerPlant", "Windmill", "Windmills", "SolarPanel", "SolarPanels", "Geothermal", "Hydroelectric"];
                 fileName = "EN_" + EN[Math.floor(Math.random() * EN.length)] + "_";
+                fileDescription = "A power plant located in...";
                 break;
             case "LA":
-                let LA = ["Office", "OfficeHeadquarters", "Offices", "Business", "Businesses", "Factory", "Factories",  "Manufacturer", "ConvenienceStore", "RetailStore", "Supermarket", "Laboratory"];
+                let LA = ["LawyerOffice", "OfficeHeadquarters", "GenericOffices", "LargeBusiness", "AdAgency", "FactoryOffice", "SpaceAgency",  "MarketingAgency", "ArtAgency", "ExecutiveOffice", "AccountantOffice", "Laboratory", "Cubicles", "SharedOffice"];
                 fileName = "LA_" + LA[Math.floor(Math.random() * LA.length)] + "_";
+                fileDescription = "A workplace environment with...";
                 break;
             case "TR":
-                let TR = ["Transportation", "Transport", "Shipping", "Transit", "Freight"];
+                let TR = ["GeneralTransportation", "NationalShipping", "GeneralTransit", "FreightVehicles"];
                 fileName = "TR_" + TR[Math.floor(Math.random() * TR.length)] + "_";
+                fileDescription = "Modes of transportation...";
                 break;
             case "HE":
                 let HE = ["HealthClinic", "HospitalRoom", "NursingHome", "PsychiatricWard", "Infirmary", "IsolationWard", "IntensiveCareUnit"];
                 fileName = "HE_" + HE[Math.floor(Math.random() * HE.length)] + "_";
+                fileDescription = "A medical room containing...";
                 break;
             case "AG":
-                let AG = ["TractorOnFarm", "FarmerCultivating", "FarmerHarvesting", "FarmerPlanting", "CountrysideFarm", "RooftopFarm"];
+                let AG = ["TractorOnFarm", "FarmerCultivating", "FarmerHarvesting", "FarmerPlanting", "CountrysideFarm", "RooftopFarm", "LargeFarm"];
                 fileName = "AG_" + AG[Math.floor(Math.random() * AG.length)] + "_";
+                fileDescription = "A view of agricultural...";
                 break;
             case "IN":
-                let IN = ["CitySkyline", "Downtown", "CityDistrict", "UrbanDistrict", "CityArchitecture", "TallSkyscrapers", "TallBuildings", "OldArchitecture"];
+                let IN = ["CitySkyline", "DowntownCity", "CityDistrict", "UrbanDistrict", "CityArchitecture", "TallSkyscrapers", "TallBuildings", "OldArchitecture"];
                 fileName = "IN_" + IN[Math.floor(Math.random() * IN.length)] + "_";
+                fileDescription = "Architecture showcase of...";
                 break;
             case "DE":
-                let DE = ["MilitaryBunker", "Bootcamp", "MilitaryTraining", "Soldiers", "Battalion", "UndergroundBunker", "UnitFormation"];
+                let DE = ["MilitaryBunker", "Bootcamp", "MilitaryTraining", "SoldiersStanding", "SoldiersWalking", "Battalion", "UndergroundBunker", "UnitFormation"];
                 fileName = "DE_" + DE[Math.floor(Math.random() * DE.length)] + "_";
+                fileDescription = "The military...";
                 break;
         }
     }
     if (fileType === "audio"){
         let x = ["Audio", "Music", "Song"];
         fileName = ministry + "_" + x[Math.floor(Math.random() * x.length)] + "_";
+        fileDescription = "A song with some...";
     }
     if (fileType === "document"){
-        let x = ["Form", "Letter", "Application", "DataSheet", "Chart", "Publication", "Guidelines", "Statement", "Census", "Statistics"];
+        let x = ["ApplicationForm", "EmployeeContract", "DataSheet", "PayrollChart", "NewsPublication", "MinistryGuidelines", "StatementOfWork", "EarningsReport", "Statistics"];
         fileName = ministry + "_" + x[Math.floor(Math.random() * x.length)] + "_";
+        fileDescription = "Statements on...";
     }
     //Next, we need to generate the date
     if (day < 10){
@@ -683,14 +709,15 @@ function dayStart(){
 
     switch(day){
         case 1:
-            $("#notifications-container div").prepend(`<p class="notif-regular">Your position as a digital asset administrator is to filter out any incoming assets that do not adhere to government protocol.<br><br>All files uploaded to the digital asset management (DAM) system must follow a strict naming convention. Be sure to look over the file name carefully.<br><br>View the rulebook at the bottom for more details. When you're ready, you may begin accepting incoming connections.</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">Your position as a digital asset administrator is to filter out any incoming assets that do not adhere to government protocol. Assets are uploaded by government personnel.<br><br>All files uploaded to the digital asset management (DAM) system must follow a strict naming convention. Be sure to look over the file name carefully.<br><br>View the rulebook at the bottom for more details. When you're ready, you may begin accepting incoming connections.</p>`);
             break;
         case 2:
             $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting reports of employees accidentally uploading the wrong files to our DAM system. From now on, check the transcript and make sure that the file name extension matches the user's response.</p>`);
             violationList.push("file name extension");
+            clockLength = 200;
             break;
         case 3:
-            $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. Metadata is data about data, and without it, it would be difficult to find specific files. Make sure that all metadata fields are filled out.<br><br>Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past.<br><br>You have been authorized to access the metadata of all files. Your rulebook has been updated with a new page.</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. Inaccurate or empty entries make it difficult to find and identify files. Make sure that all metadata fields are filled out.<br><br>Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past.<br><br>You have been authorized to access the metadata of all files. Your rulebook has been updated with a new page.</p>`);
             $("#rules-metadata").append(
                 `<p>1. All metadata fields must be filled out.</p>
                 <p>2. The published date cannot be in the future.</p>
@@ -703,6 +730,7 @@ function dayStart(){
             violationList.push("missing metadata entry");
             violationList.push("invalid published date");
             violationList.push("invalid expiry date");
+            clockLength = 250;
             break;
         case 4:
             $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting some complaints from employees who are saying that the assets are not easily searchable due to an insufficient number of keywords. From now on, all assets must have at least 5 keywords.<br><br>Your rulebook has been updated.</p>`);

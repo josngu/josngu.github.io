@@ -232,7 +232,7 @@ $glow: 0 0 24px;
     0%, 20%, 80%, 100% {
         background-size: 10vh 10vh;
     }
-    40%, 60% {
+    35%, 65% {
         background-size: 20vh 20vh;
     }
 }
@@ -411,9 +411,18 @@ button {
         box-shadow: 0 0 8vh hsl(0, 0%, 100%, 0.25);
     }
     button {
-        transform: translateY(10vh);
-        backdrop-filter: blur(16px) saturate(200%);
-        z-index: 1;
+        font-size: 3.4vh;
+        padding: 1vh 3vh;
+        color: $clr-danger;
+        border: 1px solid $clr-danger;
+        transform: translate3d(0%, -125%, 0) rotateY(-25deg) rotateX(45deg) rotateZ(10deg);
+        backdrop-filter: blur(32px) saturate(200%);
+        z-index: 100000;
+        transition-duration: 0.5s;
+        &:hover {
+            background-color: $clr-danger-translucent;
+            filter: drop-shadow($glow $clr-danger);
+        }
     }
 }
 #background-grid {
@@ -429,7 +438,7 @@ button {
     width: 100%;
 }
 #background-dots {
-    animation: bg-dots 11s infinite;
+    animation: bg-dots 13s infinite;
     background-size: 10vh 10vh;
     background-image:
     radial-gradient(circle, white 0.25vh, rgba(0, 0, 0, 0) 0.25vh);
@@ -446,7 +455,7 @@ button {
     align-items: center;
     justify-content: center;
     background-color: black;
-    padding: 0 33vh;
+    padding: 0 28vh;
     outline: 1px solid white;
     width: 100%;
     height: 100%;
@@ -581,6 +590,10 @@ button {
     h2 {
         background-color: $clr-danger;
     }
+}
+#message-deny {
+    color: $clr-danger;
+    font-size: 2.8vh;
 }
 table {
     font-family: "Rajdhani", sans-serif;
