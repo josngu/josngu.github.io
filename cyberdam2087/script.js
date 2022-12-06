@@ -354,7 +354,7 @@ function generateMetadata() {
     //Randomly decides if a part of the metadata should be incorrect (default 50% to be true)
     protocolViolated = Math.random() < 0.5;
     //Debug
-    console.log(protocolViolated);
+    //console.log(protocolViolated);
     let ministry = MINISTRY[Math.floor(Math.random() * MINISTRY.length)];
     //Note: Display the next 2 first
     let author = generateName();
