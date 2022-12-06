@@ -2,15 +2,15 @@ var day = 1;
 var hour = 7;
 var minute = 0;
 var clockCycle = "AM";
-var clockLength = 150;
+var clockLength = 200;
 
 var username = "";
 
 var warningCount = 0;
 var startDay = false;
-var balance = 1000;
+var balance = 100;
 var wages = 0;
-var rent = 150;
+var rent = 100;
 var penaltyDeduction = 50;
 
 var protocolViolated = false;
@@ -712,9 +712,8 @@ function dayStart(){
             $("#notifications-container div").prepend(`<p class="notif-regular">Your position as a digital asset administrator is to filter out any incoming assets that do not adhere to government protocol. Assets are uploaded by government personnel.<br><br>All files uploaded to the digital asset management (DAM) system must follow a strict naming convention. Be sure to look over the file name carefully.<br><br>View the rulebook at the bottom for more details. When you're ready, you may begin accepting incoming connections.</p>`);
             break;
         case 2:
-            $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting reports of employees accidentally uploading the wrong files to our DAM system. From now on, check the transcript and make sure that the file name extension matches the user's response.</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting reports of employees accidentally uploading the wrong files to our DAM system.<br><br>Check the transcript and make sure that the file name extension matches the user's response.</p>`);
             violationList.push("file name extension");
-            clockLength = 200;
             break;
         case 3:
             $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. Inaccurate or empty entries make it difficult to find and identify files. Make sure that all metadata fields are filled out.<br><br>Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past.<br><br>You have been authorized to access the metadata of all files. Your rulebook has been updated with a new page.</p>`);
@@ -742,6 +741,7 @@ function dayStart(){
             $("#notifications-container div").prepend(`<p class="notif-regular">We have been involved in several lawsuits regarding the inappropriate use of some copyrighted assets. From now on, we can only use assets that we own, that are licensed for commercial use, and that are in the public domain.<br><br>Your rulebook has been updated.</p>`);
             $("#rules-metadata").append(`<p>5. Assets can only be used if either:<br>&emsp;a. They are owned by the government.<br>&emsp;b. They are licensed for commercial use.<br>&emsp;c. They are in the public domain.</p>`);
             violationList.push("copyright infringement");
+            clockLength = 300;
             break;
         default:
             $("#notifications-container div").prepend(`<p class="notif-regular">You've reached the end of the game. From now on, there will be no more additional rules. Thanks for playing!</p>`);
