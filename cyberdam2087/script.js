@@ -7,7 +7,7 @@ var clockLength = 200;
 var username = "";
 var warningCount = 0;
 var startDay = false;
-var balance = 100;
+var balance = 200;
 var wages = 0;
 var rent = 100;
 var penaltyDeduction = 50;
@@ -507,7 +507,7 @@ function generateFileName(ministry) {
             case "DE":
                 let DE = ["MilitaryBunker", "Bootcamp", "MilitaryTraining", "SoldiersStanding", "SoldiersWalking", "Battalion", "UndergroundBunker", "UnitFormation"];
                 fileName = "DE_" + DE[Math.floor(Math.random() * DE.length)] + "_";
-                fileDescription = "The military...";
+                fileDescription = "The military in...";
                 break;
         }
     }
@@ -769,7 +769,7 @@ function endDay() {
     $("#debrief-container")
         .append(`<h2>END OF DAY ${day}</h2>`)
         .append(`<p>Balance: ${balance}<br>Wages: ${wages}<br>Rent: -${rent}</p>`)
-        .append(`<p>End of day balance: ${balance + wages - rent} Units</p>`);
+        .append(`<p>End of day balance: ${balance + wages - rent} Euros</p>`);
     balance = balance + wages - rent;
     day++;
     if (balance >= 0) {
@@ -786,7 +786,7 @@ function startNextDay() {
     warningCount = 0;
     violationCount = -1;
     wages = 0;
-    penaltyDeduction = 100;
+    penaltyDeduction = 50;
     hour = 7;
     minute = 0;
     clockCycle = "AM";
