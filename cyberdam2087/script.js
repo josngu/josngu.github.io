@@ -349,7 +349,7 @@ function openConnection() {
         generateMetadata();
     }
 }
-//I'm sorry about this long function
+//Too much nesting; should extract each case into its own function
 function generateMetadata() {
     //Randomly decides if a part of the metadata should be incorrect (default 50% to be true)
     protocolViolated = Math.random() < 0.5;
@@ -699,13 +699,12 @@ function dayStart() {
             $("#rules-metadata").append(`<p>4. All files must have a minimum of five keywords.</p>`);
             violationList.push("insufficient keywording");
             keywordMinimum = 5;
-            clockLength = 350;
             break;
         case 5:
-            $("#notifications-container div").prepend(`<p class="notif-regular">We have been involved in several lawsuits regarding the inappropriate use of some copyrighted assets. From now on, we can only use assets that we own, that are licensed for commercial use, and that are in the public domain.<br><br>Your rulebook has been updated.</p>`);
+            $("#notifications-container div").prepend(`<p class="notif-regular">We have been involved in several lawsuits regarding the inappropriate use of some copyrighted assets. From now on, we can only use assets that we either own, that are licensed for commercial use, or that are in the public domain.<br><br>Your rulebook has been updated.</p>`);
             $("#rules-metadata").append(`<p>5. Assets can only be used if either:<br>&emsp;a. They are owned by the government.<br>&emsp;b. They are licensed for commercial use.<br>&emsp;c. They are in the public domain.</p>`);
             violationList.push("copyright infringement");
-            clockLength = 400;
+            clockLength = 350;
             break;
         default:
             $("#notifications-container div").prepend(`<p class="notif-regular">You've reached the end of the game. From now on, there will be no more additional rules. Thanks for playing!</p>`);
