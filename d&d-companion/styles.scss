@@ -1,6 +1,6 @@
 $clr-light: hsl(0, 0%, 100%);
 $clr-dark: hsl(0, 0%, 5%);
-$font-family: "Crimson Text", serif;
+$font-family: "Roboto", sans-serif;
 $font-size-smallest: 1em;
 $font-size-small: 1.2em;
 $font-size-body: 1.5em;
@@ -158,7 +158,7 @@ $duration-longer: 1s;
     background-color: $clr-accent-faded;
     border: 1px solid $clr-accent;
     border-radius: $border-radius;
-    padding: 3px 8px;
+    padding: 4px 8px;
     font-size: $font-size-small;
     text-align: center;
     flex-grow: 1;

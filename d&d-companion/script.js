@@ -1,4 +1,3 @@
-"use strict";
 //The following variable only ensures that there will be no identical element IDs
 var people = 0;
 var numberOfPeople = 0;
@@ -387,16 +386,6 @@ function load() {
         for (var property in characterList[0]) {
             $("#" + property).val(JSON.parse(localStorage.getItem("saved-" + property)));
         }
-        /*This was in the code before but I don't know why
-        $("#editor-container").after($("#editor-container").clone(true));
-        $("#editor-container:last").remove();
-        $("#traits-container").after($("#traits-container").clone(true));
-        $("#traits-container:last").remove();
-        $("#traits-container-2").after($("#traits-container-2").clone(true));
-        $("#traits-container-2:last").remove();
-        $("#stats-container").after($("#stats-container").clone(true));
-        $("#stats-container:last").remove();
-        */
         checkFormChanges();
     }
 }

@@ -330,7 +330,7 @@ nav ul {
   margin: 0;
   padding: 0;
   list-style: none;
-  font-family: "Crimson Text", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.2em;
   color: hsl(0deg, 0%, 100%);
 }
@@ -359,7 +359,7 @@ main {
 
 h1 {
   visibility: hidden;
-  font-family: "Crimson Text", serif;
+  font-family: "Roboto", sans-serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   font-weight: 600;
@@ -369,7 +369,7 @@ h1 {
 }
 
 h2 {
-  font-family: "Crimson Text", serif;
+  font-family: "Roboto", sans-serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   -webkit-animation: enter 0.5s forwards;
@@ -382,20 +382,20 @@ h2 {
 }
 
 p {
-  font-family: "Crimson Text", serif;
+  font-family: "Roboto", sans-serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   font-size: 1.5em;
 }
 
 button {
-  font-family: "Crimson Text", serif;
+  font-family: "Roboto", sans-serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   background-color: hsl(0deg, 46%, 10%);
   border: 1px solid hsl(0deg, 46%, 40%);
   border-radius: 4px;
-  padding: 3px 8px;
+  padding: 4px 8px;
   font-size: 1.2em;
   text-align: center;
   flex-grow: 1;
@@ -434,7 +434,7 @@ button:hover {
 }
 
 .alert {
-  font-family: "Crimson Text", serif;
+  font-family: "Roboto", sans-serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   -webkit-animation: alert-enter 0.25s forwards;
@@ -476,7 +476,7 @@ button:hover {
   gap: 1em;
 }
 .row input[type=text] {
-  font-family: "Crimson Text", serif;
+  font-family: "Roboto", sans-serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   background-color: transparent;
@@ -492,7 +492,7 @@ button:hover {
   background-color: hsla(0deg, 0%, 100%, 0.05);
 }
 .row input[type=number] {
-  font-family: "Crimson Text", serif;
+  font-family: "Roboto", sans-serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   background-color: transparent;
@@ -505,7 +505,7 @@ button:hover {
 }
 
 label {
-  font-family: "Crimson Text", serif;
+  font-family: "Roboto", sans-serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   font-size: 1.2em;
@@ -549,13 +549,13 @@ label {
   gap: 1em;
 }
 #profile-buttons > label {
-  font-family: "Crimson Text", serif;
+  font-family: "Roboto", sans-serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   background-color: hsl(0deg, 46%, 10%);
   border: 1px solid hsl(0deg, 46%, 40%);
   border-radius: 4px;
-  padding: 3px 8px;
+  padding: 4px 8px;
   font-size: 1.2em;
   text-align: center;
   flex-grow: 1;
@@ -612,7 +612,7 @@ textarea {
   border-radius: 4px;
   border: none;
   flex-shrink: 0;
-  font-family: "Crimson Text", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1em;
   width: 100%;
   min-height: 1.8em;
@@ -681,7 +681,7 @@ textarea {
   margin: 4px 0;
 }
 .three-element-group input {
-  font-family: "Crimson Text", serif;
+  font-family: "Roboto", sans-serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   background-color: transparent;
@@ -708,7 +708,7 @@ textarea {
   gap: 8px;
 }
 .hp-container input[type=text], .exp-container input[type=text] {
-  font-family: "Crimson Text", serif;
+  font-family: "Roboto", sans-serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   background-color: transparent;
@@ -719,7 +719,7 @@ textarea {
   padding: 2px 4px;
 }
 .hp-container input[type=number], .exp-container input[type=number] {
-  font-family: "Crimson Text", serif;
+  font-family: "Roboto", sans-serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   background-color: transparent;
@@ -907,7 +907,7 @@ input[type=checkbox]:checked {
           animation: enter-image 0.5s forwards;
 }
 .person-container h3 {
-  font-family: "Crimson Text", serif;
+  font-family: "Roboto", sans-serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   color: hsl(0deg, 0%, 100%);
@@ -954,7 +954,7 @@ input[type=checkbox]:checked {
 }
 
 #add-person {
-  font-family: "Crimson Text", serif;
+  font-family: "Roboto", sans-serif;
   color: hsl(180deg, 100%, 100%);
   text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
   font-family: sans-serif;
