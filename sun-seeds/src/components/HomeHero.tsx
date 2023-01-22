@@ -1,6 +1,11 @@
 import React from 'react';
 import boxOrthographicLines from '../images/box-orthographic-lines.svg';
-import boxOrthographicGraphics from '../images/box-orthographic-graphics.svg';
+import boxOrthographicFront from '../images/box-orthographic-front.svg';
+import boxOrthographicLeftLid from '../images/box-orthographic-left-lid.svg';
+import boxOrthographicRightLid from '../images/box-orthographic-right-lid.svg';
+import boxOrthographicSide from '../images/box-orthographic-side.svg';
+
+
 import Button from '../components/Button';
 
 function HomeHero() {
@@ -17,7 +22,10 @@ function HomeHero() {
       </div>
       <div id='hero-images'>
         <img src={boxOrthographicLines} alt='Sunflower seeds packaging mockup frame'/>
-        <img src={boxOrthographicGraphics} alt='Sunflower seeds packaging mockup graphics'/>
+        <img src={boxOrthographicFront} alt='Sunflower seeds packaging mockup graphics'/>
+        <img src={boxOrthographicLeftLid} alt=''/>
+        <img src={boxOrthographicRightLid} alt=''/>
+        <img src={boxOrthographicSide} alt=''/>
       </div>
     </div>
   );

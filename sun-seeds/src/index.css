@@ -54,6 +54,38 @@
     opacity: 100%;
   }
 }
+@-webkit-keyframes translate-down {
+  0% {
+    transform: translateY(-4rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes translate-down {
+  0% {
+    transform: translateY(-4rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@-webkit-keyframes translate-left {
+  0% {
+    transform: translateX(4rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes translate-left {
+  0% {
+    transform: translateX(4rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 *,
 *::before,
 *::after {
@@ -80,6 +112,7 @@ code {
 
 header {
   width: 100%;
+  margin-bottom: 4em;
 }
 
 .button {
@@ -161,8 +194,6 @@ nav a:hover {
 .container-bg {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  height: 100vh;
-  height: 100dvh;
   padding: 2em;
   gap: clamp(0em, 2vw, 2em);
   max-width: 1440px;
@@ -177,7 +208,7 @@ nav a:hover {
   padding-left: 2em;
 }
 .container-bg img {
-  width: 25em;
+  width: 20em;
   margin: auto;
 }
 
@@ -188,25 +219,52 @@ nav a:hover {
   top: 0;
   left: 0;
 }
-#hero-images img:first-child {
-  -webkit-animation: fade-out 0.5s forwards;
-          animation: fade-out 0.5s forwards;
-  -webkit-animation-delay: 2s;
-          animation-delay: 2s;
+#hero-images img {
   inset: 0;
   top: 0;
   left: 0;
+}
+#hero-images img:first-child {
+  -webkit-animation: fade-out 0.5s forwards;
+          animation: fade-out 0.5s forwards;
+  -webkit-animation-delay: 1.25s;
+          animation-delay: 1.25s;
+  pointer-events: none;
   z-index: 0;
 }
-#hero-images img:last-child {
+#hero-images img:nth-child(2) {
   -webkit-animation: fade-in 0.5s forwards;
           animation: fade-in 0.5s forwards;
+  -webkit-animation-delay: 1.25s;
+          animation-delay: 1.25s;
+  position: absolute;
+  opacity: 0%;
+  z-index: -2;
+}
+#hero-images img:nth-child(3) {
+  -webkit-animation: translate-down 0.5s forwards, fade-in 0.5s forwards;
+          animation: translate-down 0.5s forwards, fade-in 0.5s forwards;
+  -webkit-animation-delay: 1.5s;
+          animation-delay: 1.5s;
+  position: absolute;
+  opacity: 0%;
+  z-index: -3;
+}
+#hero-images img:nth-child(4) {
+  -webkit-animation: translate-down 0.5s forwards, fade-in 0.5s forwards;
+          animation: translate-down 0.5s forwards, fade-in 0.5s forwards;
+  -webkit-animation-delay: 1.75s;
+          animation-delay: 1.75s;
+  position: absolute;
+  opacity: 0%;
+  z-index: -3;
+}
+#hero-images img:last-child {
+  -webkit-animation: translate-left 0.5s forwards, fade-in 0.5s forwards;
+          animation: translate-left 0.5s forwards, fade-in 0.5s forwards;
   -webkit-animation-delay: 2s;
           animation-delay: 2s;
   position: absolute;
   opacity: 0%;
-  inset: 0;
-  top: 0;
-  left: 0;
-  z-index: -2;
+  z-index: -3;
 }/*# sourceMappingURL=index.css.map */
