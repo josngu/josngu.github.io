@@ -5,8 +5,7 @@ import boxOrthographicLeftLid from '../images/box-orthographic-left-lid.svg';
 import boxOrthographicRightLid from '../images/box-orthographic-right-lid.svg';
 import boxOrthographicSide from '../images/box-orthographic-side.svg';
 
-
-import Button from '../components/Button';
+import Button from './Button';
 
 function HomeHero() {
   return (

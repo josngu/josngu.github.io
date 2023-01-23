@@ -1,0 +1,42 @@
+.container-two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffefc8;
+  gap: 2em;
+}
+.container-two-columns img {
+  width: 100%;
+  max-width: 512px;
+  border-radius: 1em;
+}
+
+two-up {
+  display: flex;
+  flex-direction: column;
+}
+two-up svg {
+  color: #ffefc8;
+  transition-duration: 0.2s;
+}
+two-up div:nth-child(3)::before {
+  background-color: hsl(0deg, 0%, 100%);
+  width: 2px;
+  box-shadow: none;
+}
+two-up .styles_scrubber__39cN6 {
+  background-color: #6d4a2e;
+  width: 2em;
+  height: 2em;
+  border: 2px solid white;
+  padding: 6px;
+  box-shadow: none;
+  transition-duration: 0.2s;
+}
+two-up .styles_scrubber__39cN6:hover {
+  background-color: #ffefc8;
+}
+two-up .styles_scrubber__39cN6:hover svg {
+  color: #6d4a2e;
+}/*# sourceMappingURL=mockup-component.css.map */

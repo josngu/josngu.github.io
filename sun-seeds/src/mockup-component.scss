@@ -1,0 +1,47 @@
+@import "variables";
+
+.container-two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  background-color: $clr-beige;
+  gap: 2em;
+  img {
+    width: 100%;
+    max-width: 512px;
+    border-radius: 1em;
+  }
+}
+two-up {
+  display: flex;
+  flex-direction: column;
+  //Arrows
+  svg {
+    color: $clr-beige;
+    transition-duration: $dur-short;
+  }
+  //Separator line
+  div:nth-child(3)::before {
+    background-color: hsl(0, 0%, 100%, 1);
+    width: 2px;
+    box-shadow: none;
+  }
+  //Circle background, not the ideal selector.
+  //Let's hope that the ending of this class doesn't change.
+  .styles_scrubber__39cN6 {
+    background-color: $clr-brown;
+    width: 2em;
+    height: 2em;
+    border: 2px solid white;
+    padding: 6px;
+    box-shadow: none;
+    transition-duration: $dur-short;
+    &:hover {
+      background-color: $clr-beige;
+      svg {
+        color: $clr-brown;
+      }
+    }
+  }
+}

@@ -1,3 +1,6 @@
+@import "variables";
+@import "animations";
+
 @font-face {
   font-family: "Keep on Truckin";
   src: url("fonts/KeeponTruckin.ttf");
@@ -14,50 +17,6 @@
   }
 }
 
-@keyframes fade-out {
-  0% {
-    opacity: 100%;
-  }
-  100% {
-    opacity: 0%;
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0%;
-  }
-  100% {
-    opacity: 100%;
-  }
-}
-
-@keyframes translate-down {
-  0% {
-    transform: translateY(-4rem);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-@keyframes translate-left {
-  0% {
-    transform: translateX(4rem);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-$clr-brown: #6d4a2e;
-$clr-orange: #f4a033;
-$clr-yellow: #eee940;
-$clr-beige: #ffefc8;
-
-$dur-short: 0.2s;
-$dur-medium: 0.5s;
-
 *,
 *::before,
 *::after {
@@ -71,6 +30,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-y: scroll;
+}
+
+h2 {
+  text-align: center;
+}
+
+section {
+  padding: 2em;
 }
 
 #root {
@@ -228,4 +195,8 @@ nav {
     opacity: 0%;
     z-index: -3;
   }
+}
+
+footer {
+  padding: 1em 1em;
 }
