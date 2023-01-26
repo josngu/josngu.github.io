@@ -11,6 +11,7 @@ function App() {
     <>
       <NavigationBar />
       <HomeHero />
+      <TwoCompartmentBox />
       <MockupComparison />
       <Footer />
     </>

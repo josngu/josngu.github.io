@@ -1,7 +1,7 @@
 @font-face {
-    /*Belgrad typeface was created by Vinzent Britz*/
-    font-family: "Belgrad";
-    src: url("Belgrad.ttf");
+  /*Belgrad typeface was created by Vinzent Britz*/
+  font-family: "Belgrad";
+  src: url("Belgrad.ttf");
 }
 $clr-light: hsl(0, 0%, 100%);
 $clr-dark: hsl(0, 0%, 12%);
@@ -13,219 +13,229 @@ $font-size-body: 1rem;
 $font-size-small: 0.8rem;
 
 @keyframes title-enter {
-    0% {
-        opacity: 0%;
-        transform: scale(0.5);
-    }
-    50% {
-        opacity: 0%;
-    }
-    100% {
-        opacity: 100%;
-        transform: scale(1);
-    }
+  0% {
+    opacity: 0%;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+    transform: scale(1);
+  }
 }
 @keyframes bg-load {
-    0% {
-		filter: brightness(50%);
-	}
-    50% {
-        filter: brightness(50%);
-    }
-	100% {
-        filter: brightness(100%);
-	}
+  0% {
+    filter: brightness(50%);
+  }
+  50% {
+    filter: brightness(50%);
+  }
+  100% {
+    filter: brightness(100%);
+  }
 }
 @keyframes bg-overlay-load {
-    0% {
-		background-position: 100% 0%;
-	}
-	100% {
-        background-position: 0% 0%;
-	}
+  0% {
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
 }
 
 ::-webkit-scrollbar {
-    width: 12px;
+  width: 12px;
 }
 ::-webkit-scrollbar-track {
-    background: $clr-dark;
+  background: $clr-dark;
 }
 ::-webkit-scrollbar-thumb {
-    background: hsl(0, 0%, 100%, 0.5);
-    &:hover {
-        background: hsl(0, 0%, 100%, 0.75);
-    }
+  background: hsl(0, 0%, 100%, 0.5);
+  &:hover {
+    background: hsl(0, 0%, 100%, 0.75);
+  }
 }
-*, ::before, ::after {
-    box-sizing: border-box;
+*,
+::before,
+::after {
+  box-sizing: border-box;
 }
 html {
-    scroll-behavior: smooth;
-    background-color: hsl(0, 0%, 100%);
-    scrollbar-color: transparent;
+  scroll-behavior: smooth;
+  background-color: hsl(0, 0%, 100%);
+  scrollbar-color: transparent;
 }
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 header {
-    animation: bg-load 1s forwards;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100vh;
-    margin-bottom: 3em;
-    background-image: url("images/bg.webp");
-    > h1 {
-        animation: title-enter 1.25s forwards;
-        margin-left: 0.5em;
-        margin-right: 0.5em;
-        font-weight: 400;
-    }
-    > h2 {
-        animation: title-enter 1.25s forwards;
-        margin-left: 1em;
-        margin-right: 1em;
-        color: $clr-light;
-    }
-    > p {
-        animation: title-enter 1.25s forwards;
-        margin: 1em;
-        color: $clr-light;
-    }
+  animation: bg-load 1s forwards;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  margin-bottom: 3em;
+  background-image: url("images/bg.webp");
+  > h1 {
+    animation: title-enter 1.25s forwards;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    font-weight: 400;
+  }
+  > h2 {
+    animation: title-enter 1.25s forwards;
+    margin-left: 1em;
+    margin-right: 1em;
+    color: $clr-light;
+  }
+  > p {
+    animation: title-enter 1.25s forwards;
+    margin: 1em;
+    color: $clr-light;
+  }
 }
 .bg-overlay {
-    animation: bg-overlay-load 2s forwards;
-    background: linear-gradient(120deg, hsla(0, 0%, 100%, 0) 0%,hsla(0, 0%, 100%, 0) 25%,hsl(207, 80%, 56%) 50%,hsl(336, 100%, 58%) 75%,hsl(266, 89%, 50%) 100%);
-    background-size: 400% 400%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.5;
-    mix-blend-mode: lighten;
+  animation: bg-overlay-load 2s forwards;
+  background: linear-gradient(
+    120deg,
+    hsla(0, 0%, 100%, 0) 0%,
+    hsla(0, 0%, 100%, 0) 25%,
+    hsl(207, 80%, 56%) 50%,
+    hsl(336, 100%, 58%) 75%,
+    hsl(266, 89%, 50%) 100%
+  );
+  background-size: 400% 400%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  mix-blend-mode: lighten;
 }
 main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
 }
 h1 {
-    font-family: $font-h1;
-    color: $clr-light;
-    text-align: center;
-    font-size: clamp(3em, 6vw, 5em);
-    font-weight: 600;
-    margin: 0;
+  font-family: $font-h1;
+  color: $clr-light;
+  text-align: center;
+  font-size: clamp(3em, 6vw, 5em);
+  font-weight: 600;
+  margin: 0;
 }
 h2 {
-    font-family: $font-h2;
-    font-weight: 600;
-    color: $clr-dark;
-    margin: 1em 0 0 0;
-    text-align: center;
+  font-family: $font-h2;
+  font-weight: 600;
+  color: $clr-dark;
+  margin: 1em 0 0 0;
+  text-align: center;
 }
 p {
-    color: $clr-dark;
-    font-family: $font-body;
-    text-align: center;
+  color: $clr-dark;
+  font-family: $font-body;
+  text-align: center;
 }
 .img-container {
-    img {
-        width: 100%;
-        object-fit: scale-down;
-        border-radius: 0.5em;
-    }
+  img {
+    width: 100%;
+    object-fit: scale-down;
+    border-radius: 0.5em;
+  }
 }
 .three-columns {
-    display: grid;
-    grid-template-columns: 33.333% 33.333% 33.333%;
+  display: grid;
+  grid-template-columns: 33.333% 33.333% 33.333%;
 }
 .project-card {
-    display: flex;
-    flex-direction: column;
-    max-width: clamp(360px, 30vw, 480px);
-    padding: 2em 1em;
-    border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  max-width: clamp(360px, 30vw, 480px);
+  padding: 2em 1em;
+  border-radius: 1em;
 }
 .description-container {
-    display: flex;
-    flex-direction: column;
-    h2 {
-        font-family: $font-h2;
-        font-size: $font-size-large;
-        font-weight: 600;
-        color: $clr-dark;
-        margin: 16px;
-    }
-    p {
-        margin: 0 1em 24px 1em;
-    }
+  display: flex;
+  flex-direction: column;
+  h2 {
+    font-family: $font-h2;
+    font-size: $font-size-large;
+    font-weight: 600;
+    color: $clr-dark;
+    margin: 16px;
+  }
+  p {
+    margin: 0 1em 24px 1em;
+  }
 }
 .button-pair {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: auto 1em 1em 1em;
-    gap: 1em;
-    li {
-        width: 50%;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: auto 1em 1em 1em;
+  gap: 1em;
+  li {
+    width: 50%;
+  }
+  a {
+    display: block;
+    color: $clr-dark;
+    text-decoration: none;
+    font-family: $font-body;
+    font-weight: 500;
+    border: 2px solid $clr-dark;
+    border-radius: 4px;
+    padding: 0.5em 0.5em;
+    text-align: center;
+    transition-duration: 0.2s;
+    &:hover {
+      background-color: $clr-dark;
+      color: $clr-light;
     }
-    a {
-        display: block;
-        color: $clr-dark;
-        text-decoration: none;
-        font-family: $font-body;
-        font-weight: 500;
-        border: 2px solid $clr-dark;
-        border-radius: 4px;
-        padding: 0.5em 0.5em;
-        text-align: center;
-        transition-duration: 0.2s;
-        &:hover {
-            background-color: $clr-dark;
-            color: $clr-light;
-        }
-    }
+  }
 }
 address {
-    margin: 1em 0 1em 0;
-    a {
-        color: $clr-dark;
-        font-family: $font-body;
-        font-style: normal;
-    }
+  margin: 1em 0 1em 0;
+  a {
+    color: $clr-dark;
+    font-family: $font-body;
+    font-style: normal;
+  }
 }
 footer {
-    background-color: hsl(230, 20%, 12%);
-    color: $clr-light;
-    font-family: $font-body;
-    font-size: 0.8rem;
-    text-align: center;
-    width: 100%;
-    padding: 2em 1em;
-    margin: 2em 0 0 0;
+  background-color: hsl(230, 20%, 12%);
+  color: $clr-light;
+  font-family: $font-body;
+  font-size: 0.8rem;
+  text-align: center;
+  width: 100%;
+  padding: 2em 1em;
+  margin: 2em 0 0 0;
 }
 @media screen and (max-width: 1200px) {
-    .three-columns {
-        grid-template-columns: 50% 50%;
-    }
-    .project-card {
-        max-width: 45vw;
-    }
+  .three-columns {
+    grid-template-columns: 50% 50%;
+  }
+  .project-card {
+    max-width: 45vw;
+  }
 }
 @media screen and (max-width: 750px) {
-    .three-columns {
-        grid-template-columns: 100%;
-    }
-    .bg-overlay {
-        display: none;
-    }
-    .project-card {
-        max-width: 95vw;
-    }
+  .three-columns {
+    grid-template-columns: 100%;
+  }
+  .bg-overlay {
+    display: none;
+  }
+  .project-card {
+    max-width: 95vw;
+  }
 }

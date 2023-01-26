@@ -82,7 +82,9 @@
   background: hsla(0deg, 0%, 100%, 0.75);
 }
 
-*, ::before, ::after {
+*,
+::before,
+::after {
   box-sizing: border-box;
 }
 
@@ -101,6 +103,7 @@ header {
   -webkit-animation: bg-load 1s forwards;
           animation: bg-load 1s forwards;
   background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -18,7 +18,7 @@ function MockupComparison() {
   return (
     <section>
       <h2>Mockups</h2>
-      <div className='container-two-columns'>
+      <div className='mockup-two-columns'>
         <two-up>
           <div>
             <img src={boxFrontRetailBefore} alt='An opened sunflower seeds box with two compartments'/>

@@ -1,17 +1,19 @@
 import React from 'react';
-import boxOrthographicLines from '../images/box-orthographic-lines.svg';
+import boxCompartments from '../images/box-compartments.webp';
 
 function TwoCompartmentBox() {
   return (
-    <div className='container-two-columns'>
-      <div>
-        <img src={boxOrthographicLines} alt='An opened sunflower seeds box with two compartments'/>
+    <section>
+      <div className='container-two-columns'>
+        <div>
+          <img src={boxCompartments} alt='An opened sunflower seeds box with two compartments'/>
+        </div>
+        <div>
+          <h2>Dual-Compartment Design</h2>
+          <p>Our dual compartment design allows for<br />the clean disposal of sunflower seed shells.</p>
+        </div>
       </div>
-      <div>
-        <h2>SUN SEEDS</h2>
-        <p id='subtitle-home'>Dual compartment design allows for clean disposal of seed shells</p>
-      </div>
-    </div>
+    </section>
   );
 }
 

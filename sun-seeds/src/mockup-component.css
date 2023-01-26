@@ -1,15 +1,14 @@
-.container-two-columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.mockup-two-columns {
+  display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffefc8;
+  border-radius: 1em;
   gap: 2em;
 }
-.container-two-columns img {
-  width: 100%;
+.mockup-two-columns img {
+  width: auto;
   max-width: 512px;
-  border-radius: 1em;
+  border-radius: 0.5em;
 }
 
 two-up {

@@ -1,16 +1,15 @@
 @import "variables";
 
-.container-two-columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.mockup-two-columns {
+  display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $clr-beige;
+  border-radius: 1em;
   gap: 2em;
   img {
-    width: 100%;
+    width: auto;
     max-width: 512px;
-    border-radius: 1em;
+    border-radius: 0.5em;
   }
 }
 two-up {
