@@ -16,6 +16,10 @@ function NavigationBar() {
           />
           <NavLink
             url={"#"}
+            text={'Next Steps'}
+          />
+          <NavLink
+            url={"#"}
             text={'View 3D Model'}
           />
         </ul>

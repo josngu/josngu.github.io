@@ -5,6 +5,7 @@ import HomeHero from './components/HomeHero';
 import Footer from './components/Footer';
 import TwoCompartmentBox from './components/TwoCompartmentBox';
 import MockupComparison from './components/MockupComparison';
+import CompostableBox from './components/CompostableBox';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <NavigationBar />
       <HomeHero />
       <TwoCompartmentBox />
+      <CompostableBox />
       <MockupComparison />
       <Footer />
     </>

@@ -1,0 +1,29 @@
+.lr-two-columns,
+.rl-two-columns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4em 0;
+  max-width: 1200px;
+  border-radius: 1em;
+  gap: 4em;
+}
+.lr-two-columns h2,
+.rl-two-columns h2 {
+  text-align: left;
+}
+.lr-two-columns img,
+.rl-two-columns img {
+  width: auto;
+  max-width: 512px;
+}
+
+.rl-two-columns {
+  flex-direction: row-reverse;
+}
+.rl-two-columns h2 {
+  text-align: right;
+}
+.rl-two-columns p {
+  text-align: right;
+}/*# sourceMappingURL=container-two-columns.css.map */

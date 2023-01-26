@@ -1,0 +1,28 @@
+@import "variables";
+
+.lr-two-columns,
+.rl-two-columns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4em 0;
+  max-width: 1200px;
+  border-radius: 1em;
+  gap: 4em;
+  h2 {
+    text-align: left;
+  }
+  img {
+    width: auto;
+    max-width: 512px;
+  }
+}
+.rl-two-columns {
+  flex-direction: row-reverse;
+  h2 {
+    text-align: right;
+  }
+  p {
+    text-align: right;
+  }
+}

@@ -17,7 +17,7 @@ declare global {
 function MockupComparison() {
   return (
     <section>
-      <h2>Mockups</h2>
+      <h2>Interactive Mockups</h2>
       <div className='mockup-two-columns'>
         <two-up>
           <div>
