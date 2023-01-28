@@ -21,18 +21,18 @@ function MockupComparison() {
       <div className='mockup-two-columns'>
         <two-up>
           <div>
-            <img src={boxFrontRetailBefore} alt='An opened sunflower seeds box with two compartments'/>
+            <img src={boxFrontRetailBefore} alt='A white box with two compartments'/>
           </div>
           <div>
-            <img src={boxFrontRetailAfter} alt='An opened sunflower seeds box with two compartments'/>
+            <img src={boxFrontRetailAfter} alt='A sunflower seeds box with two compartments'/>
           </div>
         </two-up>
         <two-up>
           <div>
-            <img src={boxBackRetailBefore} alt='An opened sunflower seeds box with two compartments'/>
+            <img src={boxBackRetailBefore} alt='A white box with two compartments'/>
           </div>
           <div>
-            <img src={boxBackRetailAfter} alt='An opened sunflower seeds box with two compartments'/>
+            <img src={boxBackRetailAfter} alt='A sunflower seeds box with two compartments'/>
           </div>
         </two-up>
       </div>

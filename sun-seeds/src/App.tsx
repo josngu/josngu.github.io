@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
@@ -13,18 +13,18 @@ import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ScrollToTop />
       <NavigationBar />
       <Routes>
-        <Route path='/home' element={<Homepage />} />
+        <Route path='/' element={<Homepage />} />
         <Route path='/development-process' element={<DevelopmentProcessPage />} />
         <Route path='/next-steps' element={<NextStepsPage />} />
         <Route path='/3d-model' element={<ModelViewerPage />} />
         <Route element={<NotFoundPage />} />
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

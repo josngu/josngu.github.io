@@ -6,12 +6,12 @@ function NavigationBar() {
   return (
     <header>
       <nav>
-        <Link to='/home'>
+        <Link to='/'>
           <img src={logo} id='logo' alt='Sun Seeds Logo'/>
         </Link>
         <ul>
           <li>
-            <Link className='nav-link' to="/home">Home</Link>
+            <Link className='nav-link' to="/">Home</Link>
           </li>
           <li>
             <Link className='nav-link' to="/development-process">Development Process</Link>
