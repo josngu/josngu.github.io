@@ -16,7 +16,7 @@ function HomeHero() {
         <p id='sales-pitch'>Craving a healthy, crunchy snack but don't want to deal with the mess? Look no further! Sun Seeds' sunflower seeds are seasoned to your liking with a new packaging design that upholds the value of convenience for on-the-go customers.</p>
         <Button
         url="#"
-        text="Learn More"
+        text="View 3D Model"
         />
       </div>
       <div id='hero-images'>

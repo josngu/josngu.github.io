@@ -4,10 +4,11 @@
   align-items: center;
   border-radius: 1em;
   gap: 2em;
+  max-width: 1080px;
 }
 .mockup-two-columns img {
-  width: auto;
-  max-width: 512px;
+  width: 100%;
+  height: auto;
 }
 
 two-up {

@@ -1,30 +1,30 @@
 import React from 'react';
-import NavLink from '../components/NavLink';
+import { BrowserRouter as Router, Route, Link, Navigate } from 'react-router-dom';
 import logo from '../logo.svg';
 
 function NavigationBar() {
   return (
     <header>
       <nav>
-        <a href='index.html'>
+        <Link to='/home'>
           <img src={logo} id='logo' alt='Sun Seeds Logo'/>
-        </a>
+        </Link>
         <ul>
-          <NavLink
-            url={"#"}
-            text={'Development Process'}
-          />
-          <NavLink
-            url={"#"}
-            text={'Next Steps'}
-          />
-          <NavLink
-            url={"#"}
-            text={'View 3D Model'}
-          />
+          <li>
+            <Link className='nav-link' to="/home">Home</Link>
+          </li>
+          <li>
+            <Link className='nav-link' to="/development-process">Development Process</Link>
+          </li>
+          <li>
+            <Link className='nav-link' to="/next-steps">Next Steps</Link>
+          </li>
+          <li>
+            <Link className='nav-link' to="/3d-model">View 3D Model</Link>
+          </li>
         </ul>
       </nav>
-    </header>
+      </header>
   );
 }
 
