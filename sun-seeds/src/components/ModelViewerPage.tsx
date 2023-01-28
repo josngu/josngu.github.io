@@ -3,14 +3,15 @@ import HomeHero from '../components/HomeHero';
 import TwoCompartmentBox from '../components/BenefitsSection';
 import MockupComparison from '../components/MockupComparison';
 
-function Homepage() {
+function ModelViewerPage() {
   return (
     <>
-      <HomeHero />
-      <TwoCompartmentBox />
+      <MockupComparison />
+      <MockupComparison />
+      <MockupComparison />
       <MockupComparison />
     </>
   );
 }
 
-export default Homepage;
+export default ModelViewerPage;

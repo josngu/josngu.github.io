@@ -3,7 +3,7 @@ import HomeHero from '../components/HomeHero';
 import TwoCompartmentBox from '../components/BenefitsSection';
 import MockupComparison from '../components/MockupComparison';
 
-function Homepage() {
+function NextStepsPage() {
   return (
     <>
       <HomeHero />
@@ -13,4 +13,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default NextStepsPage;

@@ -3,14 +3,12 @@ import HomeHero from '../components/HomeHero';
 import TwoCompartmentBox from '../components/BenefitsSection';
 import MockupComparison from '../components/MockupComparison';
 
-function Homepage() {
+function NotFoundPage() {
   return (
     <>
-      <HomeHero />
-      <TwoCompartmentBox />
-      <MockupComparison />
+      <h1>Page not found.</h1>
     </>
   );
 }
 
-export default Homepage;
+export default NotFoundPage;
