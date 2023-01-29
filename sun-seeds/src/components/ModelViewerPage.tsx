@@ -1,15 +1,10 @@
 import React from 'react';
-import HomeHero from '../components/HomeHero';
-import TwoCompartmentBox from '../components/BenefitsSection';
-import MockupComparison from '../components/MockupComparison';
+import BoxModel from '../components/3DModel';
 
 function ModelViewerPage() {
   return (
     <>
-      <MockupComparison />
-      <MockupComparison />
-      <MockupComparison />
-      <MockupComparison />
+      <BoxModel />
     </>
   );
 }
