@@ -1,7 +1,13 @@
 import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import { OrbitControls} from '@three-ts/orbit-controls';
-import test from '../images/box-orthographic-graphics.svg';
+import boxTop from '../images/box-top.webp';
+import boxBottom from '../images/box-bottom.webp';
+import boxLeft from '../images/box-left.webp';
+import boxRight from '../images/box-right.webp';
+import boxFront from '../images/box-front.webp';
+import boxBack from '../images/box-back.webp';
+
 
 // Render the three.js scene as a component
 const BoxModel = () => {
@@ -14,8 +20,8 @@ const BoxModel = () => {
 
     // Create camera
     const viewPortHeight = 720;
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / viewPortHeight, 0.1, 1000);
-    camera.position.z = 5;
+    const camera = new THREE.PerspectiveCamera(40, window.innerWidth / viewPortHeight, 0.1, 1000);
+    camera.position.z = 10;
 
     // Create the renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -27,18 +33,18 @@ const BoxModel = () => {
     }
 
     // Create cube geometry
-    const geometry = new THREE.BoxGeometry(3, 6, 1.5);
+    const geometry = new THREE.BoxGeometry(1.5, 6, 3);
 
     // Create texture loader
     const textureLoader = new THREE.TextureLoader();
 
     // Load textures
-    const frontTexture = textureLoader.load(test);
-    const backTexture = textureLoader.load(test);
-    const leftTexture = textureLoader.load(test);
-    const rightTexture = textureLoader.load(test);
-    const topTexture = textureLoader.load(test);
-    const bottomTexture = textureLoader.load(test);
+    const frontTexture = textureLoader.load(boxFront);
+    const backTexture = textureLoader.load(boxBack);
+    const leftTexture = textureLoader.load(boxLeft);
+    const rightTexture = textureLoader.load(boxRight);
+    const topTexture = textureLoader.load(boxTop);
+    const bottomTexture = textureLoader.load(boxBottom);
 
     // Enable anisotropic filtering
     frontTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
@@ -49,23 +55,22 @@ const BoxModel = () => {
     bottomTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
 
     // Create a material for each side of the cube
-    const frontMaterial = new THREE.MeshStandardMaterial({ map: frontTexture });
-    const backMaterial = new THREE.MeshStandardMaterial({ map: backTexture });
-    const leftMaterial = new THREE.MeshStandardMaterial({ map: leftTexture });
-    const rightMaterial = new THREE.MeshStandardMaterial({ map: rightTexture });
-    const topMaterial = new THREE.MeshStandardMaterial({ map: topTexture });
-    const bottomMaterial = new THREE.MeshStandardMaterial({ map: bottomTexture });
+    const frontMaterial = new THREE.MeshPhysicalMaterial({ map: frontTexture });
+    const backMaterial = new THREE.MeshPhysicalMaterial({ map: backTexture });
+    const leftMaterial = new THREE.MeshPhysicalMaterial({ map: leftTexture });
+    const rightMaterial = new THREE.MeshPhysicalMaterial({ map: rightTexture });
+    const topMaterial = new THREE.MeshPhysicalMaterial({ map: topTexture });
+    const bottomMaterial = new THREE.MeshPhysicalMaterial({ map: bottomTexture });
 
     // Create a cube and add the materials to each face
     const cube = new THREE.Mesh(geometry, [
       frontMaterial,
       backMaterial,
-      leftMaterial,
-      rightMaterial,
       topMaterial,
-      bottomMaterial
+      bottomMaterial,
+      leftMaterial,
+      rightMaterial
     ]);
-
     // Add the cube to the scene
     scene.add(cube);
 
