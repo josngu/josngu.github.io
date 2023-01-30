@@ -20,13 +20,19 @@ const BoxModel = () => {
 
     // Create camera
     const viewPortHeight = 720;
-    const camera = new THREE.PerspectiveCamera(40, window.innerWidth / viewPortHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / viewPortHeight, 0.1, 1000);
     camera.position.z = 10;
+    scene.add(camera);
+
+    // Create fog
+    scene.fog = new THREE.FogExp2(0xffffff, 0.01);
 
     // Create the renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, viewPortHeight);
     renderer.setClearColor(new THREE.Color(0xffffff));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
     if (containerRef.current) {
       containerRef.current.appendChild(renderer.domElement);
@@ -47,12 +53,10 @@ const BoxModel = () => {
     const bottomTexture = textureLoader.load(boxBottom);
 
     // Enable anisotropic filtering
-    frontTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
-    backTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
-    leftTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
-    rightTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
-    topTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
-    bottomTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+    const textures = [frontTexture, backTexture, leftTexture, rightTexture, topTexture, bottomTexture];
+    for (const texture of textures) {
+      texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+    }
 
     // Create a material for each side of the cube
     const frontMaterial = new THREE.MeshPhysicalMaterial({ map: frontTexture });
@@ -61,6 +65,12 @@ const BoxModel = () => {
     const rightMaterial = new THREE.MeshPhysicalMaterial({ map: rightTexture });
     const topMaterial = new THREE.MeshPhysicalMaterial({ map: topTexture });
     const bottomMaterial = new THREE.MeshPhysicalMaterial({ map: bottomTexture });
+
+    // Adjust the roughness of each material
+    const roughness = [frontMaterial, backMaterial, leftMaterial, rightMaterial, topMaterial, bottomMaterial];
+    for (const specular of roughness) {
+      specular.roughness = 0.66;
+    }
 
     // Create a cube and add the materials to each face
     const cube = new THREE.Mesh(geometry, [
@@ -71,12 +81,38 @@ const BoxModel = () => {
       leftMaterial,
       rightMaterial
     ]);
+
+    // Have the cube cast and receive shadows
+    cube.castShadow = true;
+    cube.receiveShadow = true;
+
     // Add the cube to the scene
     scene.add(cube);
 
+    // Add a plane to the scene
+    const planeGeometry = new THREE.PlaneGeometry( 512, 512, 32, 32 );
+    const planeMaterial = new THREE.MeshPhysicalMaterial({ color: 0xBBBBBB })
+    planeMaterial.roughness = 0.66;
+    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+    plane.rotation.x = Math.PI / -2;
+    plane.position.set(0, -3, 0);
+    plane.receiveShadow = true;
+    scene.add(plane);
+
     // Add a light
-    const ambientLight = new THREE.AmbientLight(0xFFFFFF, 1);
-    scene.add(ambientLight);
+    const hemisphereLight = new THREE.HemisphereLight(0xFFFFFF, 1);
+    hemisphereLight.position.set(0, 0, 0);
+    scene.add(hemisphereLight);
+    
+    // Add another light
+    const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.75);
+    scene.add(directionalLight);
+    directionalLight.position.set(2, 1.5, 1);
+
+    // Cast shadows
+    directionalLight.castShadow = true;
+    directionalLight.shadow.mapSize.width = 1024;
+    directionalLight.shadow.mapSize.height = 1024;
 
     // Add orbit controls
     const orbitControls = new OrbitControls(camera, renderer.domElement);
@@ -84,7 +120,6 @@ const BoxModel = () => {
     // Animate the scene
     const animate = () => {
       requestAnimationFrame(animate);
- 
       renderer.render(scene, camera);
     };
     animate();
