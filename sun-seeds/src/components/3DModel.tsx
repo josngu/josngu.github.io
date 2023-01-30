@@ -154,7 +154,6 @@ const BoxModel = () => {
     orbitControls.enableDamping = true;
     orbitControls.dampingFactor = 0.05;
     orbitControls.rotateSpeed = 0.1;
-    orbitControls.enablePan = false;
 
     // Autorotate
     orbitControls.autoRotate = false; // Default: true
