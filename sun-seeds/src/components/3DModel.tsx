@@ -21,18 +21,20 @@ const BoxModel = () => {
     // Create camera
     const viewPortHeight = 720;
     const camera = new THREE.PerspectiveCamera(60, window.innerWidth / viewPortHeight, 0.1, 1000);
-    camera.position.z = 10;
+    camera.position.x = 6;
+    camera.position.y = 4;
+    camera.position.z = 3;
     scene.add(camera);
 
     // Create fog
-    scene.fog = new THREE.FogExp2(0xffffff, 0.01);
+    scene.fog = new THREE.FogExp2(0xFFFFFF, 0.01);
 
     // Create the renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, viewPortHeight);
-    renderer.setClearColor(new THREE.Color(0xffffff));
+    renderer.setClearColor(new THREE.Color(0xffefc8));
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.type = THREE.VSMShadowMap;
 
     if (containerRef.current) {
       containerRef.current.appendChild(renderer.domElement);
@@ -69,7 +71,7 @@ const BoxModel = () => {
     // Adjust the roughness of each material
     const roughness = [frontMaterial, backMaterial, leftMaterial, rightMaterial, topMaterial, bottomMaterial];
     for (const specular of roughness) {
-      specular.roughness = 0.66;
+      specular.roughness = 0.5;
     }
 
     // Create a cube and add the materials to each face
@@ -89,36 +91,78 @@ const BoxModel = () => {
     // Add the cube to the scene
     scene.add(cube);
 
-    // Add a plane to the scene
-    const planeGeometry = new THREE.PlaneGeometry( 512, 512, 32, 32 );
-    const planeMaterial = new THREE.MeshPhysicalMaterial({ color: 0xBBBBBB })
-    planeMaterial.roughness = 0.66;
-    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-    plane.rotation.x = Math.PI / -2;
-    plane.position.set(0, -3, 0);
-    plane.receiveShadow = true;
-    scene.add(plane);
+    // Add the ground + shadows
+    const planeGround = new THREE.Mesh(
+      new THREE.PlaneGeometry(512, 512, 1, 1),
+      new THREE.ShadowMaterial({
+        color: 0x000000,
+        opacity: 0.5
+      }));
+    planeGround.rotation.x = Math.PI / -2;
+    planeGround.position.set(0, -3, 0);
+    planeGround.receiveShadow = true;
+    scene.add(planeGround);
 
-    // Add a light
+    // Add hemisphere light
     const hemisphereLight = new THREE.HemisphereLight(0xFFFFFF, 1);
     hemisphereLight.position.set(0, 0, 0);
     scene.add(hemisphereLight);
     
-    // Add another light
-    const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.75);
-    scene.add(directionalLight);
-    directionalLight.position.set(2, 1.5, 1);
+    // Add directional light
+    const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.6);
+    const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 1);
+    camera.add(directionalLight);
+    camera.add(directionalLightHelper);
+    directionalLight.position.set(8, 8, 8);
 
     // Cast shadows
     directionalLight.castShadow = true;
     directionalLight.shadow.mapSize.width = 1024;
     directionalLight.shadow.mapSize.height = 1024;
+    directionalLight.shadow.bias = -0.0001;
+    directionalLight.shadow.camera.right = 16;
+		directionalLight.shadow.camera.left = - 16;
+		directionalLight.shadow.camera.top	= 16;
+		directionalLight.shadow.camera.bottom = - 16;
+    directionalLight.shadow.camera.near = 0.01;
+    directionalLight.shadow.camera.far = 500;
+    directionalLight.shadow.blurSamples = 16;
+    directionalLight.shadow.radius = 4;
+
+    // Add spotlight
+    const spotLight = new THREE.SpotLight(0xFFFFFF, 1);
+    const spotLightHelper = new THREE.SpotLightHelper(spotLight, 1);
+    //scene.add(spotLight);
+    //scene.add(spotLightHelper);
+    spotLight.position.set(4, 4, 0);
+    spotLight.angle = Math.PI / 4;
+    spotLight.penumbra = 0.2;
+
+    // Cast shadows
+    spotLight.castShadow = true;
+    spotLight.shadow.mapSize.width = 1024;
+    spotLight.shadow.mapSize.height = 1024;
+    spotLight.shadow.bias = -0.0001;
+    spotLight.shadow.camera.near = 1;
+    spotLight.shadow.camera.far = 500;
+    spotLight.shadow.blurSamples = 16;
+    spotLight.shadow.radius = 8;
 
     // Add orbit controls
     const orbitControls = new OrbitControls(camera, renderer.domElement);
+    // Smooth rotate controls
+    orbitControls.enableDamping = true;
+    orbitControls.dampingFactor = 0.05;
+    orbitControls.rotateSpeed = 0.1;
+    orbitControls.enablePan = false;
+
+    // Autorotate
+    orbitControls.autoRotate = false; // Default: true
+    orbitControls.autoRotateSpeed = 0.1;
 
     // Animate the scene
     const animate = () => {
+      orbitControls.update();
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
     };
