@@ -5,7 +5,7 @@ import boxBackRetailBefore from '../images/box-back-retail-before.webp';
 import boxBackRetailAfter from '../images/box-back-retail-after.webp';
 import 'two-up-element/dist/two-up';
 
-//Extend IntrinsicElements interface
+//Extend IntrinsicElements interface; for TypeScript
 declare global {
   namespace JSX {
     interface IntrinsicElements {

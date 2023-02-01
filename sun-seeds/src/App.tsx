@@ -16,13 +16,15 @@ function App() {
     <HashRouter>
       <ScrollToTop />
       <NavigationBar />
-      <Routes>
-        <Route path='/' element={<Homepage />} />
-        <Route path='/development-process' element={<DevelopmentProcessPage />} />
-        <Route path='/next-steps' element={<NextStepsPage />} />
-        <Route path='/3d-model' element={<ModelViewerPage />} />
-        <Route element={<NotFoundPage />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path='/' element={<Homepage />} />
+          <Route path='/development-process' element={<DevelopmentProcessPage />} />
+          <Route path='/next-steps' element={<NextStepsPage />} />
+          <Route path='/3d-model' element={<ModelViewerPage />} />
+          <Route element={<NotFoundPage />} />
+        </Routes>
+      </main>
       <Footer />
     </HashRouter>
   );
