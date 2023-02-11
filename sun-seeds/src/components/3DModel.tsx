@@ -8,7 +8,6 @@ import boxRight from '../images/box-right.webp';
 import boxFront from '../images/box-front.webp';
 import boxBack from '../images/box-back.webp';
 
-
 // Render the three.js scene as a component
 const BoxModel = () => {
   // This div element is of type HTMLDivElement so that the .appendChild method would work
@@ -20,18 +19,18 @@ const BoxModel = () => {
 
     // Create camera
     const viewPortHeight = 720;
-    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / viewPortHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.x = 6;
     camera.position.y = 4;
     camera.position.z = 3;
     scene.add(camera);
 
     // Create fog
-    scene.fog = new THREE.FogExp2(0xFFFFFF, 0.01);
+    scene.fog = new THREE.FogExp2(0xFFEFC8, 0.01);
 
     // Create the renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, viewPortHeight);
+    renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(new THREE.Color(0xffefc8));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.VSMShadowMap;
@@ -112,7 +111,7 @@ const BoxModel = () => {
     const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.6);
     const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 1);
     camera.add(directionalLight);
-    camera.add(directionalLightHelper);
+    //camera.add(directionalLightHelper);
     directionalLight.position.set(8, 8, 8);
 
     // Cast shadows
@@ -162,12 +161,18 @@ const BoxModel = () => {
     // Animate the scene
     const animate = () => {
       orbitControls.update();
+
+      // Dynamically resize everything proportionally when the user resizes their window
+      camera.aspect = window.innerWidth / window.innerHeight;
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      camera.updateProjectionMatrix();
+
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
     };
     animate();
     return () => {
-      // Cleanup function
+      // Removes the second canvas that is created for some reason
       if (containerRef.current) {
         containerRef.current.removeChild(renderer.domElement);
       }

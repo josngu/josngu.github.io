@@ -10,7 +10,6 @@ import ModelViewerPage from './components/ModelViewerPage';
 import NotFoundPage from './components/NotFoundPage';
 import ScrollToTop from './components/ScrollToTop';
 
-
 function App() {
   return (
     <HashRouter>

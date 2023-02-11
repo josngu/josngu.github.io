@@ -100,6 +100,13 @@ body {
   overflow-y: scroll;
 }
 
+h1 {
+  font-size: 4rem;
+  color: #6d4a2e;
+  text-align: center;
+  text-shadow: clamp(2px, 0.25vw, 4px) clamp(2px, 0.25vw, 4px) 0px #ffefc8;
+}
+
 h2 {
   font-size: 2rem;
   text-align: center;
@@ -129,8 +136,11 @@ code {
 }
 
 header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   width: 100%;
-  margin-bottom: 6em;
+  z-index: 1000;
 }
 
 main {
@@ -159,14 +169,12 @@ main {
 
 nav {
   display: flex;
-  position: fixed;
   padding: 0 5vw;
   width: 100%;
   background-color: white;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 0 2px hsl(0deg, 0%, 66%);
-  z-index: 1000;
 }
 nav #logo {
   height: 42px;
@@ -197,6 +205,7 @@ nav a:hover {
   font-family: "Keep on Truckin";
   font-size: 4.8rem;
   letter-spacing: 4px;
+  text-align: left;
   font-weight: 600;
   color: #6d4a2e;
   text-shadow: 6px 6px 0px #ffefc8;
@@ -204,7 +213,7 @@ nav a:hover {
 
 #subtitle-home {
   margin: 8px 0;
-  font-family: "Keep on Truckin";
+  font-weight: 600;
   font-size: 2.4rem;
   color: #6d4a2e;
 }
@@ -221,7 +230,6 @@ nav a:hover {
   padding: 2em;
   gap: clamp(0em, 2vw, 2em);
   max-width: 1440px;
-  margin: auto;
 }
 .container-bg div {
   display: flex;
@@ -293,6 +301,24 @@ nav a:hover {
   z-index: -3;
 }
 
+canvas {
+  max-width: 100%;
+}
+
 footer {
   padding: 1em 1em;
+  text-align: center;
+}
+
+.diagonal-lh {
+  position: relative;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 50px));
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 50px));
+}
+.diagonal-lh::after {
+  content: "";
+  background-color: #f4a033;
+  position: absolute;
+  z-index: -1;
+  inset: 0;
 }/*# sourceMappingURL=index.css.map */
