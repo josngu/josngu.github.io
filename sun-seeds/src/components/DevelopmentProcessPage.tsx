@@ -1,9 +1,9 @@
 import React from 'react';
-import HomeHero from '../components/HomeHero';
 import BlogSection from '../components/BlogSection';
 import boxSketch1 from '../images/box-sketch-1.webp';
 import boxSketch2 from '../images/box-sketch-2.webp';
 import dieline from '../images/first-dieline.webp';
+import dielineInsert from '../images/first-dieline-insert.webp';
 import dieline2 from '../images/second-dieline.webp';
 
 function DevelopmentProcessPage() {
@@ -21,23 +21,23 @@ function DevelopmentProcessPage() {
       />
       <BlogSection 
         title="Step 2: Create"
-        text="In this phase, we created a dieline that would fulfill the requirements that we had set."
+        text="In this phase, we created a dieline that would fulfill the requirements that we had set. The dieline was cut using the Esko Kongsberg V20 cutting table and was assembled by hand."
         imgURL={dieline}
-        altText=""
-        imgURL2={dieline2}
-        altText2={''}
+        altText="Dieline and art for a sunflower seed box that uses an insert to divide the inside into two compartments"
+        imgURL2={dielineInsert}
+        altText2='An assembled dieline that shows what the box would look like structurally'
       />
       <BlogSection 
         title="Step 3: Analyze"
-        text="The first iteration of the packaging had some major issues. First, the disposed shells would fall out of the box if the user tried to pour more sunflower seeds to eat. Second, the box was too thick to hold in the hand."
+        text="The first iteration of the packaging had several issues. First, the disposed shells would fall out of the box if the user tried to pour more sunflower seeds to eat. Second, the box was too thick to hold in the hand comfortably. Lastly, we did not want to ship packaging where 50% of it is empty."
         imgURL={boxSketch1}
-        altText=""
+        altText=''
         imgURL2={boxSketch1}
-        altText2={''}
+        altText2=''
       />
       <BlogSection 
         title="Step 4: Refine"
-        text='The width of the first design was decreased from 2" to 1.5", which made it considerable more comfortable to hold. The box was redesigned so that the two compartments could be created with one dieline. Additionally, the new design now has two tuck flaps at the top to prevent the seed disposal compartment from emptying itself whenever the user tried to pour seeds into their palm.'
+        text='The width of the first design was decreased from 2" to 1.5", which made it considerable more comfortable to hold. The dual compartment design was remade so that the two compartments could be created with one dieline, saving on materials. Additionally, the new design now has two tuck flaps at the top to prevent the seed disposal compartment from emptying itself whenever the user tried to pour seeds into their palm.'
         imgURL={dieline2}
         altText=""
         imgURL2={dieline2}

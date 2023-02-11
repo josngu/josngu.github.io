@@ -23,29 +23,46 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Raleway", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Outfit", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-y: scroll;
 }
 
 h1 {
+  width: 100%;
+  max-width: 1080px;
   font-size: 4rem;
+  margin: 1em 0 0 0;
+  padding: 0 2rem;
   color: $clr-brown;
-  text-align: center;
   text-shadow: clamp(2px, 0.25vw, 4px) clamp(2px, 0.25vw, 4px) 0px #ffefc8;
 }
 
+#missing-page-text {
+  margin: 0;
+  margin-bottom: 1em;
+}
+
 h2 {
+  width: 100%;
   font-size: 2rem;
-  text-align: center;
+  color: $clr-font-black;
 }
 
 p {
   font-size: 1.2rem;
+  color: $clr-font-black;
 }
 
 section {
@@ -78,7 +95,9 @@ header {
 main {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  flex-grow: 1;
 }
 
 .button {
@@ -120,7 +139,7 @@ nav {
     text-decoration: none;
     padding: 0px 16px;
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 400;
     color: black;
     height: 42px;
     transition-duration: $dur-short;
@@ -130,8 +149,14 @@ nav {
   }
 }
 
+// nav-link active
+.active {
+  color: $clr-brown;
+}
+
 #title-home {
   margin: 8px 0;
+  padding: 0;
   font-family: "Keep on Truckin";
   font-size: 4.8rem;
   letter-spacing: 4px;
@@ -144,7 +169,7 @@ nav {
 #subtitle-home {
   margin: 8px 0;
   font-weight: 600;
-  font-size: 2.4rem;
+  font-size: 2rem;
   color: $clr-brown;
 }
 

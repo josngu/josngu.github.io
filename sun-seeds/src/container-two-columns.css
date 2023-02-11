@@ -16,6 +16,7 @@
 .lr-two-columns p,
 .rl-two-columns p {
   text-align: right;
+  margin: 0.5em 0;
 }
 .lr-two-columns img,
 .rl-two-columns img {
@@ -34,5 +35,5 @@
 }
 
 .benefit-point {
-  margin: 4em 0;
+  margin: 3em 0;
 }/*# sourceMappingURL=container-two-columns.css.map */

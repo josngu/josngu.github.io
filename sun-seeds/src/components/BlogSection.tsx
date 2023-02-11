@@ -9,7 +9,7 @@ interface blogSection {
   altText2: string;
 }
 
-function BlogSection({title, text, imgURL, altText, imgURL2, altText2}: blogSection) {
+function BlogSection({title='', text='', imgURL='', altText='', imgURL2='', altText2=''}: blogSection) {
   return (
       <section className='blog-section'>
         <h2>{title}</h2>

@@ -18,8 +18,8 @@ const BoxModel = () => {
     const scene = new THREE.Scene();
 
     // Create camera
-    const viewPortHeight = 720;
-    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
+    let viewPortHeight = window.innerHeight;
+    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / viewPortHeight, 0.1, 1000);
     camera.position.x = 6;
     camera.position.y = 4;
     camera.position.z = 3;
@@ -163,8 +163,8 @@ const BoxModel = () => {
       orbitControls.update();
 
       // Dynamically resize everything proportionally when the user resizes their window
-      camera.aspect = window.innerWidth / window.innerHeight;
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      camera.aspect = window.innerWidth / (window.innerHeight - 115);
+      renderer.setSize(window.innerWidth, (window.innerHeight - 115));
       camera.updateProjectionMatrix();
 
       requestAnimationFrame(animate);
