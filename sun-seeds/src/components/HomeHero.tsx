@@ -19,7 +19,7 @@ function HomeHero() {
           liking with a new packaging design that upholds the value of
           convenience for on-the-go customers.
         </p>
-        <Button url='#/3d-model' text='View 3D Model' />
+        <Button url='#/3d-model' text='View 3D model' />
       </div>
       <div id='hero-images'>
         <img

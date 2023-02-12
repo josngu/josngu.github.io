@@ -7,7 +7,7 @@ function BenefitsSection() {
       <div className='rl-two-columns'>
         <div>
           <div className='benefit-point'>
-            <h2>Dual Compartment Design</h2>
+            <h2>Convenient Shell Disposal</h2>
             <p>
               Our dual compartment design allows for the clean disposal of
               sunflower seed shells.
