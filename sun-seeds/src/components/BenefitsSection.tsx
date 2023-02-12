@@ -29,10 +29,10 @@ function BenefitsSection() {
             </p>
           </div>
         </div>
-        <div>
+        <div id='benefits-image-container'>
           <img
             src={boxTopDown}
-            alt='A top down view of a sunflower seeds box with two compartments'
+            alt='A top down rotated view of a sunflower seeds box with two compartments'
           />
         </div>
       </div>

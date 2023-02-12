@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import './media-queries.css';
 import './mockup-component.css';
 import './container-two-columns.css';
 import './blog-section.css';

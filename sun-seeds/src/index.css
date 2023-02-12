@@ -126,15 +126,17 @@ h2 {
   margin-bottom: 1rem;
   width: 100%;
   font-size: 2rem;
-  color: hsl(0deg, 0%, 10%);
+  color: hsl(240deg, 5%, 15%);
 }
 
 p {
   font-size: 1.2rem;
-  color: hsl(0deg, 0%, 10%);
+  color: hsl(240deg, 5%, 15%);
 }
 
 section {
+  max-width: 1080px;
+  width: 100%;
   padding: 2rem;
 }
 
@@ -142,7 +144,8 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 4rem;
+  margin: 2rem 0;
+  text-align: center;
 }
 .cta-section a {
   margin: 1rem 0;
@@ -165,11 +168,16 @@ code {
 }
 
 header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   width: 100%;
   z-index: 1000;
+  background-color: white;
+  box-shadow: 0 0 2px hsl(0deg, 0%, 66%);
 }
 
 main {
@@ -178,6 +186,7 @@ main {
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  max-width: 100%;
 }
 
 .button {
@@ -200,12 +209,12 @@ main {
 
 nav {
   display: flex;
-  padding: 0 5vw;
+  margin: 0;
+  padding: 0 1rem;
   width: 100%;
-  background-color: white;
+  max-width: 1440px;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 0 2px hsl(0deg, 0%, 66%);
 }
 nav #logo {
   height: 42px;

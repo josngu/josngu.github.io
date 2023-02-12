@@ -1,37 +1,21 @@
-.lr-two-columns,
 .rl-two-columns {
   display: flex;
+  flex-direction: row-reverse;
   justify-content: center;
   align-items: center;
-  margin: 4em 0;
-  max-width: 1080px;
   border-radius: 1em;
   gap: 4em;
 }
-.lr-two-columns h2,
 .rl-two-columns h2 {
   margin: 0;
-  text-align: right;
+  text-align: left;
 }
-.lr-two-columns p,
 .rl-two-columns p {
-  text-align: right;
+  text-align: left;
   margin: 0.5em 0;
 }
-.lr-two-columns img,
 .rl-two-columns img {
-  width: auto;
   max-height: 600px;
-}
-
-.rl-two-columns {
-  flex-direction: row-reverse;
-}
-.rl-two-columns h2 {
-  text-align: left;
-}
-.rl-two-columns p {
-  text-align: left;
 }
 
 .benefit-point {

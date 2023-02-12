@@ -1,4 +1,4 @@
-@import 'variables';
+@import 'variables.scss';
 @import 'animations';
 
 @font-face {
@@ -68,6 +68,8 @@ p {
 }
 
 section {
+  max-width: 1080px;
+  width: 100%;
   padding: 2rem;
 }
 
@@ -75,7 +77,8 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 4rem;
+  margin: 2rem 0;
+  text-align: center;
   a {
     margin: 1rem 0;
   }
@@ -99,10 +102,15 @@ code {
 }
 
 header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: sticky;
   top: 0;
   width: 100%;
   z-index: 1000;
+  background-color: white;
+  box-shadow: 0 0 2px hsl(0, 0%, 66%);
 }
 
 main {
@@ -111,6 +119,7 @@ main {
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  max-width: 100%;
 }
 
 .button {
@@ -131,12 +140,13 @@ main {
 
 nav {
   display: flex;
-  padding: 0 5vw;
+  margin: 0;
+  padding: 0 1rem;
   width: 100%;
-  background-color: white;
+  max-width: 1440px;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 0 2px hsl(0, 0%, 66%);
+
   #logo {
     height: 42px;
   }
@@ -278,6 +288,4 @@ footer {
     z-index: -1;
     inset: 0;
   }
-}
-.diagonal-hl {
 }
