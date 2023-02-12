@@ -5,9 +5,11 @@ interface button {
   text: string;
 }
 
-function Button({url, text}: button) {
+function Button({ url, text }: button) {
   return (
-    <a className='button' href={url}>{text}</a>
+    <a className='button' href={url}>
+      {text}
+    </a>
   );
 }
 

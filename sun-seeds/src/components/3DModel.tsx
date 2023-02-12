@@ -1,12 +1,12 @@
-import React, { useRef, useEffect } from 'react';
-import * as THREE from 'three';
-import { OrbitControls} from '@three-ts/orbit-controls';
-import boxTop from '../images/box-top.webp';
-import boxBottom from '../images/box-bottom.webp';
-import boxLeft from '../images/box-left.webp';
-import boxRight from '../images/box-right.webp';
-import boxFront from '../images/box-front.webp';
-import boxBack from '../images/box-back.webp';
+import React, { useRef, useEffect } from "react";
+import * as THREE from "three";
+import { OrbitControls } from "@three-ts/orbit-controls";
+import boxTop from "../images/box-top.webp";
+import boxBottom from "../images/box-bottom.webp";
+import boxLeft from "../images/box-left.webp";
+import boxRight from "../images/box-right.webp";
+import boxFront from "../images/box-front.webp";
+import boxBack from "../images/box-back.webp";
 
 // Render the three.js scene as a component
 const BoxModel = () => {
@@ -19,14 +19,19 @@ const BoxModel = () => {
 
     // Create camera
     let viewPortHeight = window.innerHeight;
-    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / viewPortHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(
+      70,
+      window.innerWidth / viewPortHeight,
+      0.1,
+      1000
+    );
     camera.position.x = 6;
     camera.position.y = 4;
     camera.position.z = 3;
     scene.add(camera);
 
     // Create fog
-    scene.fog = new THREE.FogExp2(0xFFEFC8, 0.01);
+    scene.fog = new THREE.FogExp2(0xffefc8, 0.01);
 
     // Create the renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -54,7 +59,14 @@ const BoxModel = () => {
     const bottomTexture = textureLoader.load(boxBottom);
 
     // Enable anisotropic filtering
-    const textures = [frontTexture, backTexture, leftTexture, rightTexture, topTexture, bottomTexture];
+    const textures = [
+      frontTexture,
+      backTexture,
+      leftTexture,
+      rightTexture,
+      topTexture,
+      bottomTexture,
+    ];
     for (const texture of textures) {
       texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
     }
@@ -65,10 +77,19 @@ const BoxModel = () => {
     const leftMaterial = new THREE.MeshPhysicalMaterial({ map: leftTexture });
     const rightMaterial = new THREE.MeshPhysicalMaterial({ map: rightTexture });
     const topMaterial = new THREE.MeshPhysicalMaterial({ map: topTexture });
-    const bottomMaterial = new THREE.MeshPhysicalMaterial({ map: bottomTexture });
+    const bottomMaterial = new THREE.MeshPhysicalMaterial({
+      map: bottomTexture,
+    });
 
     // Adjust the roughness of each material
-    const roughness = [frontMaterial, backMaterial, leftMaterial, rightMaterial, topMaterial, bottomMaterial];
+    const roughness = [
+      frontMaterial,
+      backMaterial,
+      leftMaterial,
+      rightMaterial,
+      topMaterial,
+      bottomMaterial,
+    ];
     for (const specular of roughness) {
       specular.roughness = 0.5;
     }
@@ -80,7 +101,7 @@ const BoxModel = () => {
       topMaterial,
       bottomMaterial,
       leftMaterial,
-      rightMaterial
+      rightMaterial,
     ]);
 
     // Have the cube cast and receive shadows
@@ -95,21 +116,25 @@ const BoxModel = () => {
       new THREE.PlaneGeometry(512, 512, 1, 1),
       new THREE.ShadowMaterial({
         color: 0x000000,
-        opacity: 0.5
-      }));
+        opacity: 0.5,
+      })
+    );
     planeGround.rotation.x = Math.PI / -2;
     planeGround.position.set(0, -3, 0);
     planeGround.receiveShadow = true;
     scene.add(planeGround);
 
     // Add hemisphere light
-    const hemisphereLight = new THREE.HemisphereLight(0xFFFFFF, 1);
+    const hemisphereLight = new THREE.HemisphereLight(0xffffff, 1);
     hemisphereLight.position.set(0, 0, 0);
     scene.add(hemisphereLight);
-    
+
     // Add directional light
-    const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.6);
-    const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 1);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    const directionalLightHelper = new THREE.DirectionalLightHelper(
+      directionalLight,
+      1
+    );
     camera.add(directionalLight);
     //camera.add(directionalLightHelper);
     directionalLight.position.set(8, 8, 8);
@@ -120,16 +145,16 @@ const BoxModel = () => {
     directionalLight.shadow.mapSize.height = 1024;
     directionalLight.shadow.bias = -0.0001;
     directionalLight.shadow.camera.right = 16;
-		directionalLight.shadow.camera.left = - 16;
-		directionalLight.shadow.camera.top	= 16;
-		directionalLight.shadow.camera.bottom = - 16;
+    directionalLight.shadow.camera.left = -16;
+    directionalLight.shadow.camera.top = 16;
+    directionalLight.shadow.camera.bottom = -16;
     directionalLight.shadow.camera.near = 0.01;
     directionalLight.shadow.camera.far = 500;
     directionalLight.shadow.blurSamples = 16;
     directionalLight.shadow.radius = 4;
 
     // Add spotlight
-    const spotLight = new THREE.SpotLight(0xFFFFFF, 1);
+    const spotLight = new THREE.SpotLight(0xffffff, 1);
     const spotLightHelper = new THREE.SpotLightHelper(spotLight, 1);
     //scene.add(spotLight);
     //scene.add(spotLightHelper);
@@ -164,7 +189,7 @@ const BoxModel = () => {
 
       // Dynamically resize everything proportionally when the user resizes their window
       camera.aspect = window.innerWidth / (window.innerHeight - 115);
-      renderer.setSize(window.innerWidth, (window.innerHeight - 115));
+      renderer.setSize(window.innerWidth, window.innerHeight - 115);
       camera.updateProjectionMatrix();
 
       requestAnimationFrame(animate);
@@ -176,11 +201,10 @@ const BoxModel = () => {
       if (containerRef.current) {
         containerRef.current.removeChild(renderer.domElement);
       }
-    }
+    };
   }, []);
 
   return <div ref={containerRef} />;
 };
 
 export default BoxModel;
-

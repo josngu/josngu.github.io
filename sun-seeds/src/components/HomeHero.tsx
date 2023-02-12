@@ -13,18 +13,26 @@ function HomeHero() {
       <div>
         <h1 id='title-home'>SUN SEEDS</h1>
         <p id='subtitle-home'>Sunflower Seeds Packaging Mockup</p>
-        <p id='sales-pitch'>Craving a healthy, crunchy snack but don't want to deal with the mess? Look no further! Sun Seeds' sunflower seeds are seasoned to your liking with a new packaging design that upholds the value of convenience for on-the-go customers.</p>
-        <Button
-        url="#/3d-model"
-        text="View 3D Model"
-        />
+        <p id='sales-pitch'>
+          Craving a healthy, crunchy snack but don't want to deal with the mess?
+          Look no further! Sun Seeds' sunflower seeds are seasoned to your
+          liking with a new packaging design that upholds the value of
+          convenience for on-the-go customers.
+        </p>
+        <Button url='#/3d-model' text='View 3D Model' />
       </div>
       <div id='hero-images'>
-        <img src={boxOrthographicLines} alt='Sunflower seeds packaging mockup frame'/>
-        <img src={boxOrthographicFront} alt='Sunflower seeds packaging mockup graphics'/>
-        <img src={boxOrthographicLeftLid} alt=''/>
-        <img src={boxOrthographicRightLid} alt=''/>
-        <img src={boxOrthographicSide} alt=''/>
+        <img
+          src={boxOrthographicLines}
+          alt='Sunflower seeds packaging mockup frame'
+        />
+        <img
+          src={boxOrthographicFront}
+          alt='Sunflower seeds packaging mockup graphics'
+        />
+        <img src={boxOrthographicLeftLid} alt='' />
+        <img src={boxOrthographicRightLid} alt='' />
+        <img src={boxOrthographicSide} alt='' />
       </div>
     </div>
   );

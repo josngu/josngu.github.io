@@ -1,9 +1,9 @@
-@import "variables";
-@import "animations";
+@import 'variables';
+@import 'animations';
 
 @font-face {
-  font-family: "Keep on Truckin";
-  src: url("fonts/KeeponTruckin.ttf");
+  font-family: 'Keep on Truckin';
+  src: url('fonts/KeeponTruckin.ttf');
 }
 
 @keyframes img-packaging-loading {
@@ -32,8 +32,8 @@ body,
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Outfit", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Outfit', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -43,7 +43,7 @@ h1 {
   width: 100%;
   max-width: 1080px;
   font-size: 4rem;
-  margin: 1em 0 0 0;
+  margin: 4rem 0 0 0;
   padding: 0 2rem;
   color: $clr-brown;
   text-shadow: clamp(2px, 0.25vw, 4px) clamp(2px, 0.25vw, 4px) 0px #ffefc8;
@@ -51,10 +51,12 @@ h1 {
 
 #missing-page-text {
   margin: 0;
-  margin-bottom: 1em;
+  margin-bottom: 4rem;
 }
 
 h2 {
+  margin: 0;
+  margin-bottom: 1rem;
   width: 100%;
   font-size: 2rem;
   color: $clr-font-black;
@@ -66,7 +68,7 @@ p {
 }
 
 section {
-  padding: 2em;
+  padding: 2rem;
 }
 
 img {
@@ -78,10 +80,11 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
+  white-space: pre-line;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
@@ -155,9 +158,9 @@ nav {
 }
 
 #title-home {
-  margin: 8px 0;
+  margin: 0.5rem 0;
   padding: 0;
-  font-family: "Keep on Truckin";
+  font-family: 'Keep on Truckin';
   font-size: 4.8rem;
   letter-spacing: 4px;
   text-align: left;
@@ -250,7 +253,7 @@ canvas {
 }
 
 footer {
-  padding: 1em 1em;
+  padding: 1rem 1rem;
   text-align: center;
 }
 
@@ -259,7 +262,7 @@ footer {
   position: relative;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 50px));
   &::after {
-    content: "";
+    content: '';
     background-color: $clr-orange;
     position: absolute;
     z-index: -1;

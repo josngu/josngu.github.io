@@ -9,10 +9,19 @@ interface blogSection {
   altText2: string;
 }
 
-function BlogSection({title='', text='', imgURL='', altText='', imgURL2='', altText2=''}: blogSection) {
+function BlogSection({
+  title = '',
+  text = '',
+  imgURL = '',
+  altText = '',
+  imgURL2 = '',
+  altText2 = '',
+}: blogSection) {
   return (
-      <section className='blog-section'>
-        <h2>{title}</h2>
+    <section className='blog-section'>
+      <h2>{title}</h2>
+      {/*Conditionally renders the images if there is an image present*/}
+      {(imgURL || imgURL2) && (
         <div>
           <div>
             <img src={imgURL} alt={altText}></img>
@@ -21,8 +30,9 @@ function BlogSection({title='', text='', imgURL='', altText='', imgURL2='', altT
             <img src={imgURL2} alt={altText2}></img>
           </div>
         </div>
-        <p>{text}</p>
-      </section>
+      )}
+      <p>{text}</p>
+    </section>
   );
 }
 

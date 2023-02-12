@@ -1,13 +1,16 @@
-@import "variables";
+@import 'variables';
+
+.mockup-section {
+}
 
 .mockup-two-columns {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 1em;
-  gap: 2em;
+  padding: 0 2rem 2rem 2rem;
+  border-radius: 1rem;
+  gap: 2rem;
   max-width: 1080px;
-
   img {
     width: 100%;
     height: auto;

@@ -1,5 +1,6 @@
 #overview-text {
-  padding: 0 32px;
+  padding: 0 2rem;
+  margin: 1rem 0 2rem 0;
   max-width: 1080px;
 }
 
@@ -7,7 +8,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2em;
   max-width: 1080px;
 }
 .blog-section img {
@@ -18,6 +18,14 @@
 .blog-section div {
   display: flex;
   justify-content: center;
-  gap: 2em;
+  align-items: center;
+  gap: 2rem;
+  margin: 1rem 0;
   height: 100%;
+}
+.blog-section div div {
+  margin-top: 0;
+}
+.blog-section p {
+  margin: 0;
 }/*# sourceMappingURL=blog-section.css.map */

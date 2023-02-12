@@ -9,34 +9,46 @@ import 'two-up-element/dist/two-up';
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'two-up':React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>,HTMLElement>;
+      'two-up': React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >;
     }
   }
 }
 
 function MockupComparison() {
   return (
-    <section>
-      <h2>Interactive Mockups</h2>
-      <div className='mockup-two-columns'>
-        <two-up>
-          <div>
-            <img src={boxFrontRetailBefore} alt='A white box with two compartments'/>
-          </div>
-          <div>
-            <img src={boxFrontRetailAfter} alt='A sunflower seeds box with two compartments'/>
-          </div>
-        </two-up>
-        <two-up>
-          <div>
-            <img src={boxBackRetailBefore} alt='A white box with two compartments'/>
-          </div>
-          <div>
-            <img src={boxBackRetailAfter} alt='A sunflower seeds box with two compartments'/>
-          </div>
-        </two-up>
-      </div>
-    </section>
+    <div className='mockup-two-columns'>
+      <two-up>
+        <div>
+          <img
+            src={boxFrontRetailBefore}
+            alt='A white box with two compartments'
+          />
+        </div>
+        <div>
+          <img
+            src={boxFrontRetailAfter}
+            alt='A sunflower seeds box with two compartments'
+          />
+        </div>
+      </two-up>
+      <two-up>
+        <div>
+          <img
+            src={boxBackRetailBefore}
+            alt='A white box with two compartments'
+          />
+        </div>
+        <div>
+          <img
+            src={boxBackRetailAfter}
+            alt='A sunflower seeds box with two compartments'
+          />
+        </div>
+      </two-up>
+    </div>
   );
 }
 

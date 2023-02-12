@@ -17,7 +17,10 @@ function App() {
       <main>
         <Routes>
           <Route path='/' element={<Homepage />} />
-          <Route path='/development-process' element={<DevelopmentProcessPage />} />
+          <Route
+            path='/development-process'
+            element={<DevelopmentProcessPage />}
+          />
           <Route path='/3d-model' element={<ModelViewerPage />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
