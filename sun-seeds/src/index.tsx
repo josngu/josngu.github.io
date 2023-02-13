@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import './media-queries.css';
 import './mockup-component.css';
 import './container-two-columns.css';
 import './blog-section.css';
+import './media-queries.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

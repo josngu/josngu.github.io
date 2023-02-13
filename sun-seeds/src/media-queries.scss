@@ -11,7 +11,7 @@
     flex-direction: column;
   }
   section {
-    padding: 1rem;
+    padding: 2rem 1rem;
   }
   section * {
     flex-direction: column;
@@ -28,8 +28,7 @@
   }
   .rl-two-columns {
     flex-direction: column;
-    //Can't get this to override without !important? BUT THE SPECIFICITY IS THE SAME
-    gap: 0 !important;
+    gap: 0;
     img {
       max-width: 100%;
       max-height: 100%;
@@ -39,7 +38,6 @@
     }
   }
   .mockup-two-columns {
-    // WHY
-    padding: 0 1rem 1rem 1rem !important;
+    padding: 0 1rem 1rem 1rem;
   }
 }

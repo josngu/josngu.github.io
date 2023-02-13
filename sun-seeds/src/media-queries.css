@@ -9,7 +9,7 @@
     flex-direction: column;
   }
   section {
-    padding: 1rem;
+    padding: 2rem 1rem;
   }
   section * {
     flex-direction: column;
@@ -26,7 +26,7 @@
   }
   .rl-two-columns {
     flex-direction: column;
-    gap: 0 !important;
+    gap: 0;
   }
   .rl-two-columns img {
     max-width: 100%;
@@ -36,6 +36,6 @@
     flex-direction: column-reverse;
   }
   .mockup-two-columns {
-    padding: 0 1rem 1rem 1rem !important;
+    padding: 0 1rem 1rem 1rem;
   }
 }/*# sourceMappingURL=media-queries.css.map */
