@@ -1,12 +1,12 @@
-import React, { useRef, useEffect } from "react";
-import * as THREE from "three";
-import { OrbitControls } from "@three-ts/orbit-controls";
-import boxTop from "../images/box-top.webp";
-import boxBottom from "../images/box-bottom.webp";
-import boxLeft from "../images/box-left.webp";
-import boxRight from "../images/box-right.webp";
-import boxFront from "../images/box-front.webp";
-import boxBack from "../images/box-back.webp";
+import React, { useRef, useEffect } from 'react';
+import * as THREE from 'three';
+import { OrbitControls } from '@three-ts/orbit-controls';
+import boxTop from '../images/box-top.webp';
+import boxBottom from '../images/box-bottom.webp';
+import boxLeft from '../images/box-left.webp';
+import boxRight from '../images/box-right.webp';
+import boxFront from '../images/box-front.webp';
+import boxBack from '../images/box-back.webp';
 
 // Render the three.js scene as a component
 const BoxModel = () => {
@@ -188,8 +188,8 @@ const BoxModel = () => {
       orbitControls.update();
 
       // Dynamically resize everything proportionally when the user resizes their window
-      camera.aspect = window.innerWidth / (window.innerHeight - 115);
-      renderer.setSize(window.innerWidth, window.innerHeight - 115);
+      camera.aspect = window.innerWidth / (window.innerHeight - 105);
+      renderer.setSize(window.innerWidth, window.innerHeight - 105);
       camera.updateProjectionMatrix();
 
       requestAnimationFrame(animate);

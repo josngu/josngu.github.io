@@ -1,25 +1,9 @@
-@-webkit-keyframes fade-out {
-  0% {
-    opacity: 100%;
-  }
-  100% {
-    opacity: 0%;
-  }
-}
 @keyframes fade-out {
   0% {
     opacity: 100%;
   }
   100% {
     opacity: 0%;
-  }
-}
-@-webkit-keyframes fade-in {
-  0% {
-    opacity: 0%;
-  }
-  100% {
-    opacity: 100%;
   }
 }
 @keyframes fade-in {
@@ -30,28 +14,12 @@
     opacity: 100%;
   }
 }
-@-webkit-keyframes translate-down {
-  0% {
-    transform: translateY(-4rem);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
 @keyframes translate-down {
   0% {
     transform: translateY(-4rem);
   }
   100% {
     transform: translateY(0);
-  }
-}
-@-webkit-keyframes translate-left {
-  0% {
-    transform: translateX(4rem);
-  }
-  100% {
-    transform: translateX(0);
   }
 }
 @keyframes translate-left {
@@ -65,16 +33,6 @@
 @font-face {
   font-family: "Keep on Truckin";
   src: url("fonts/KeeponTruckin.ttf");
-}
-@-webkit-keyframes img-packaging-loading {
-  0% {
-    transform: translateY(2rem);
-    opacity: 0%;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 100%;
-  }
 }
 @keyframes img-packaging-loading {
   0% {
@@ -145,7 +103,9 @@ section {
   flex-direction: column;
   align-items: center;
   margin: 2rem 0;
+  max-width: 640px;
   text-align: center;
+  border-radius: 8px;
 }
 .cta-section a {
   margin: 1rem 0;
@@ -171,7 +131,6 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   width: 100%;
@@ -192,7 +151,6 @@ main {
 
 .button {
   padding: 12px 16px;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   border-radius: 4px;
@@ -247,14 +205,23 @@ nav li a:hover {
 
 #menu {
   display: none;
+  padding: 0 4px;
 }
 
 #menu-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: none;
   border: none;
   cursor: pointer;
   width: 32px;
   height: 32px;
+  opacity: 60%;
+  transition-duration: 0.2s;
+}
+#menu-button:hover {
+  opacity: 100%;
 }
 #menu-button img {
   border-radius: 0;
@@ -308,8 +275,7 @@ nav li a:hover {
 }
 
 #hero-images {
-  -webkit-animation: img-packaging-loading 0.5s forwards;
-          animation: img-packaging-loading 0.5s forwards;
+  animation: img-packaging-loading 0.5s forwards;
   position: relative;
   top: 0;
   left: 0;
@@ -320,45 +286,35 @@ nav li a:hover {
   left: 0;
 }
 #hero-images img:first-child {
-  -webkit-animation: fade-out 0.5s forwards;
-          animation: fade-out 0.5s forwards;
-  -webkit-animation-delay: 1.25s;
-          animation-delay: 1.25s;
+  animation: fade-out 0.5s forwards;
+  animation-delay: 1.25s;
   pointer-events: none;
   z-index: 0;
 }
 #hero-images img:nth-child(2) {
-  -webkit-animation: fade-in 0.5s forwards;
-          animation: fade-in 0.5s forwards;
-  -webkit-animation-delay: 1.25s;
-          animation-delay: 1.25s;
+  animation: fade-in 0.5s forwards;
+  animation-delay: 1.25s;
   position: absolute;
   opacity: 0%;
   z-index: -2;
 }
 #hero-images img:nth-child(3) {
-  -webkit-animation: translate-down 0.5s forwards, fade-in 0.5s forwards;
-          animation: translate-down 0.5s forwards, fade-in 0.5s forwards;
-  -webkit-animation-delay: 1.5s;
-          animation-delay: 1.5s;
+  animation: translate-down 0.5s forwards, fade-in 0.5s forwards;
+  animation-delay: 1.5s;
   position: absolute;
   opacity: 0%;
   z-index: -3;
 }
 #hero-images img:nth-child(4) {
-  -webkit-animation: translate-down 0.5s forwards, fade-in 0.5s forwards;
-          animation: translate-down 0.5s forwards, fade-in 0.5s forwards;
-  -webkit-animation-delay: 1.75s;
-          animation-delay: 1.75s;
+  animation: translate-down 0.5s forwards, fade-in 0.5s forwards;
+  animation-delay: 1.75s;
   position: absolute;
   opacity: 0%;
   z-index: -3;
 }
 #hero-images img:last-child {
-  -webkit-animation: translate-left 0.5s forwards, fade-in 0.5s forwards;
-          animation: translate-left 0.5s forwards, fade-in 0.5s forwards;
-  -webkit-animation-delay: 2s;
-          animation-delay: 2s;
+  animation: translate-left 0.5s forwards, fade-in 0.5s forwards;
+  animation-delay: 2s;
   position: absolute;
   opacity: 0%;
   z-index: -3;
@@ -370,7 +326,9 @@ canvas {
 
 footer {
   padding: 1rem 1rem;
+  font-size: 0.875rem;
   text-align: center;
+  color: #6d4a2e;
 }
 
 #footer-embellishment-container {
