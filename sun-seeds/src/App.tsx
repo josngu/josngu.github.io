@@ -1,8 +1,9 @@
 import React from 'react';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
+import FooterEmbellishment from './components/FooterEmbellishment';
 import Homepage from './components/Homepage';
 import DevelopmentProcessPage from './components/DevelopmentProcessPage';
 import ModelViewerPage from './components/ModelViewerPage';
@@ -11,7 +12,7 @@ import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
-    <HashRouter>
+    <>
       <ScrollToTop />
       <NavigationBar />
       <main>
@@ -25,8 +26,9 @@ function App() {
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </main>
+      {useLocation().pathname !== '/3d-model' && <FooterEmbellishment />}
       <Footer />
-    </HashRouter>
+    </>
   );
 }
 

@@ -96,7 +96,7 @@ html,
 body,
 #root {
   min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 100svh;
 }
 
 body {
@@ -187,6 +187,7 @@ main {
   align-items: center;
   flex-grow: 1;
   max-width: 100%;
+  overflow-x: hidden;
 }
 
 .button {
@@ -212,6 +213,7 @@ nav {
   margin: 0;
   padding: 0 1rem;
   width: 100%;
+  height: 55px;
   max-width: 1440px;
   justify-content: space-between;
   align-items: center;
@@ -224,24 +226,40 @@ nav ul {
   padding: 0;
   list-style-type: none;
 }
-nav li {
-  padding: 4px 0px;
-}
 nav a {
-  text-decoration: none;
   padding: 0px 16px;
+}
+nav li a {
+  text-decoration: none;
+  padding: 8px 16px;
   font-size: 1.1rem;
   font-weight: 400;
   color: black;
-  height: 42px;
   transition-duration: 0.2s;
 }
-nav a:hover {
+nav li a:hover {
   color: #6d4a2e;
 }
 
 .active {
   color: #6d4a2e;
+}
+
+#menu {
+  display: none;
+}
+
+#menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+}
+#menu-button img {
+  border-radius: 0;
+  width: 16px;
+  height: 16px;
 }
 
 #title-home {
@@ -353,6 +371,28 @@ canvas {
 footer {
   padding: 1rem 1rem;
   text-align: center;
+}
+
+#footer-embellishment-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 1080px;
+  padding: 0 2rem;
+  transform: translateY(16px);
+}
+#footer-embellishment-container img {
+  height: 64px;
+  width: auto;
+}
+#footer-embellishment-container div:nth-child(2) img,
+#footer-embellishment-container div:nth-child(4) img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#footer-embellishment-container div:last-child {
+  transform: scaleX(-1);
 }
 
 .diagonal-lh {

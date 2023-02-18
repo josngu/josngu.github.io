@@ -26,8 +26,9 @@
 html,
 body,
 #root {
+  // Legacy fallback
   min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 100svh;
 }
 
 body {
@@ -120,6 +121,7 @@ main {
   align-items: center;
   flex-grow: 1;
   max-width: 100%;
+  overflow-x: hidden;
 }
 
 .button {
@@ -143,10 +145,10 @@ nav {
   margin: 0;
   padding: 0 1rem;
   width: 100%;
+  height: 55px;
   max-width: 1440px;
   justify-content: space-between;
   align-items: center;
-
   #logo {
     height: 42px;
   }
@@ -155,16 +157,15 @@ nav {
     padding: 0;
     list-style-type: none;
   }
-  li {
-    padding: 4px 0px;
-  }
   a {
-    text-decoration: none;
     padding: 0px 16px;
+  }
+  li a {
+    text-decoration: none;
+    padding: 8px 16px;
     font-size: 1.1rem;
     font-weight: 400;
     color: black;
-    height: 42px;
     transition-duration: $dur-short;
     &:hover {
       color: $clr-brown;
@@ -175,6 +176,21 @@ nav {
 // nav-link active
 .active {
   color: $clr-brown;
+}
+#menu {
+  display: none;
+}
+#menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  img {
+    border-radius: 0;
+    width: 16px;
+    height: 16px;
+  }
 }
 
 #title-home {
@@ -272,9 +288,32 @@ canvas {
   max-width: 100%;
 }
 
+//Footer stuff
 footer {
   padding: 1rem 1rem;
   text-align: center;
+}
+#footer-embellishment-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 1080px;
+  padding: 0 2rem;
+  transform: translateY(16px);
+  img {
+    height: 64px;
+    width: auto;
+  }
+  div:nth-child(2),
+  div:nth-child(4) {
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  div:last-child {
+    transform: scaleX(-1);
+  }
 }
 
 // Auxillary classes for styling
