@@ -15,6 +15,7 @@
 }
 .rl-two-columns img {
   max-height: 600px;
+  border-radius: 16em;
 }
 
 .benefit-point {

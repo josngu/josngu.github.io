@@ -76,7 +76,7 @@ h1 {
 
 #missing-page-text {
   margin: 0;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 h2 {
@@ -95,20 +95,20 @@ p {
 section {
   max-width: 1080px;
   width: 100%;
-  padding: 2rem;
+  padding: 2em;
 }
 
 .cta-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 2rem 0;
+  margin: 2em 0;
   max-width: 640px;
   text-align: center;
   border-radius: 8px;
 }
 .cta-section a {
-  margin: 1rem 0;
+  margin: 1em 0;
 }
 
 img {
@@ -189,7 +189,7 @@ nav a {
 }
 nav li a {
   text-decoration: none;
-  padding: 8px 16px;
+  padding: 12px 16px;
   font-size: 1.1rem;
   font-weight: 400;
   color: black;
@@ -205,7 +205,13 @@ nav li a:hover {
 
 #menu {
   display: none;
-  padding: 0 4px;
+  background-color: #ffefc8;
+  border-radius: 8px;
+  outline: 1px solid transparent;
+  transition-duration: 0.2s;
+}
+#menu:hover {
+  outline: 1px solid #6d4a2e;
 }
 
 #menu-button {
@@ -215,13 +221,13 @@ nav li a:hover {
   background: none;
   border: none;
   cursor: pointer;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   opacity: 60%;
   transition-duration: 0.2s;
 }
 #menu-button:hover {
-  opacity: 100%;
+  opacity: 80%;
 }
 #menu-button img {
   border-radius: 0;
@@ -257,7 +263,7 @@ nav li a:hover {
 .container-bg {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  padding: 2em;
+  padding: 4em 2em;
   gap: clamp(0em, 2vw, 2em);
   max-width: 1440px;
 }
@@ -355,8 +361,6 @@ footer {
 
 .diagonal-lh {
   position: relative;
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 50px));
-          clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 50px));
 }
 .diagonal-lh::after {
   content: "";
@@ -364,4 +368,5 @@ footer {
   position: absolute;
   z-index: -1;
   inset: 0;
+  transform: skewY(-3deg);
 }/*# sourceMappingURL=index.css.map */
