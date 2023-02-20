@@ -1,13 +1,13 @@
 @font-face {
-    /*ACES07 typeface was reproduced in Adobe Illustrator
+  /*ACES07 typeface was reproduced in Adobe Illustrator
     and Fontforge by ElectronicOldMen and HoshinoComet.
     The orginal typeface was produced for Project ACES.*/
-    font-family: "Aces07";
-    src: url("aces07.ttf");
+  font-family: 'Aces07';
+  src: url('aces07.ttf');
 }
 $clr-light: hsl(0, 0%, 100%);
 $clr-dark: hsl(0, 0%, 5%);
-$font-family: "Aces07", sans-serif;
+$font-family: 'Aces07', sans-serif;
 $font-size-small: 1.26em;
 $font-size-body: 1.5em;
 $font-size-large: 2em;
@@ -15,515 +15,525 @@ $clr-primary: hsl(180, 100%, 83%);
 $clr-primary-translucent: hsla(204, 100%, 62%, 0.15);
 $clr-primary-shadow: hsl(196, 100%, 53%);
 $clr-bg: hsl(220, 40%, 8%);
-$gradient-text-overlay: radial-gradient(circle, rgba(15,191,255,1) 80%, rgba(17,125,238,1) 100%);
+$gradient-text-overlay: radial-gradient(
+  circle,
+  rgba(15, 191, 255, 1) 80%,
+  rgba(17, 125, 238, 1) 100%
+);
 $overlay-animation: overlay-effect 0.75s forwards;
 $overlay-text-animation: overlay-effect-text 0.75s forwards;
 $fade-in: fade-in 0.5s forwards;
 
 @keyframes overlay-effect {
-    0% {
-        width: 100%;
-        height: 0%;
-    }
-    33% {
-        width: 100%;
-        height: 100%;
-    }
-    100% {
-        width: 0%;
-    }
+  0% {
+    width: 100%;
+    height: 0%;
+  }
+  33% {
+    width: 100%;
+    height: 100%;
+  }
+  100% {
+    width: 0%;
+  }
 }
 @keyframes overlay-effect-text {
-    0% {
-        color: hsl(180, 100%, 83%, 0);
-        text-shadow: 0 0 8px $clr-primary-shadow,
-        0 0 24px $clr-primary-shadow,
-        0 0 32px $clr-primary-shadow;
-    }
-    33% {
-        color: hsl(180, 100%, 83%, 0);
-        text-shadow: 0 0 8px $clr-primary-shadow,
-        0 0 24px $clr-primary-shadow,
-        0 0 32px $clr-primary-shadow;
-    }
-    50% {
-        color: $clr-primary;
-        text-shadow: 0 0 8px $clr-primary-shadow,
-        0 0 24px $clr-primary-shadow,
-        0 0 32px $clr-primary-shadow;
-    }
+  0% {
+    color: hsl(180, 100%, 83%, 0);
+    text-shadow: 0 0 8px $clr-primary-shadow, 0 0 24px $clr-primary-shadow,
+      0 0 32px $clr-primary-shadow;
+  }
+  33% {
+    color: hsl(180, 100%, 83%, 0);
+    text-shadow: 0 0 8px $clr-primary-shadow, 0 0 24px $clr-primary-shadow,
+      0 0 32px $clr-primary-shadow;
+  }
+  50% {
+    color: $clr-primary;
+    text-shadow: 0 0 8px $clr-primary-shadow, 0 0 24px $clr-primary-shadow,
+      0 0 32px $clr-primary-shadow;
+  }
 }
 @keyframes alert-enter {
-    from {
-        opacity: 0%;
-        transform: translateY(100%);
-    }
-    to {
-        opacity: 100%;
-        transform: translateY(0%);
-    }
+  from {
+    opacity: 0%;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0%);
+  }
 }
 @keyframes alert-leave {
-    from {
-        opacity: 100%;
-    }
-    to {
-        opacity: 0%;
-    }
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
 }
 @keyframes fade-in {
-    from {
-        opacity: 0%;
-    }
-    to {
-        opacity: 100%;
-    }
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
 }
 @keyframes add-person {
-    from {
-        opacity: 0%;
-        transform: translateY(144px);
-    }
-    to {
-        opacity: 100%;
-        transform: translateY(0px);
-    }
+  from {
+    opacity: 0%;
+    transform: translateY(144px);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0px);
+  }
 }
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-    outline: 1px solid $clr-primary-shadow;
+  width: 8px;
+  height: 8px;
+  outline: 1px solid $clr-primary-shadow;
 }
 ::-webkit-scrollbar-track {
-    background: transparent;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: $clr-primary-shadow;
-    &:hover {
-        background: $clr-primary;
-    }
+  background: $clr-primary-shadow;
+  &:hover {
+    background: $clr-primary;
+  }
 }
 @mixin typeface {
-    font-family: $font-family;
-    color: $clr-primary;
-    letter-spacing: 1px;
-    text-shadow: 0 0 8px $clr-primary-shadow,
-    0 0 24px $clr-primary-shadow,
+  font-family: $font-family;
+  color: $clr-primary;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px $clr-primary-shadow, 0 0 24px $clr-primary-shadow,
     0 0 32px $clr-primary-shadow;
 }
 @mixin button {
-    @include typeface;
-    background-color: transparent;
-    border: 1px solid $clr-primary-translucent;
-    padding: 8px 12px;
-    font-size: $font-size-small;
-    text-align: center;
-    flex-grow: 1;
-    cursor: pointer;
-    &:hover {
-        border: 1px solid $clr-primary;
-        box-shadow: 0 0 2px 0 $clr-primary-shadow;
-    }
+  @include typeface;
+  background-color: transparent;
+  border: 1px solid $clr-primary-translucent;
+  padding: 8px 12px;
+  font-size: $font-size-small;
+  text-align: center;
+  flex-grow: 1;
+  cursor: pointer;
+  &:hover {
+    border: 1px solid $clr-primary;
+    box-shadow: 0 0 2px 0 $clr-primary-shadow;
+  }
 }
 @mixin overlay-effect {
-    content: "";
-    animation: $overlay-animation;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0;
-    width: 0%;
-    height: 100%;
-    background: $gradient-text-overlay;
-    box-shadow: 0 0 32px $clr-primary-shadow;;
+  content: '';
+  animation: $overlay-animation;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: $gradient-text-overlay;
+  box-shadow: 0 0 32px $clr-primary-shadow;
 }
 :root {
-    background: hsl(211, 100%, 0%);
+  background: hsl(211, 100%, 0%);
 }
-*, ::before, ::after {
-    box-sizing: border-box;
+*,
+::before,
+::after {
+  box-sizing: border-box;
 }
 *:focus-visible {
-    outline: 2px solid white !important;
-    outline-offset: -2px;
-    border-radius: 4px;
+  outline: 2px solid white !important;
+  outline-offset: -2px;
+  border-radius: 4px;
 }
 html {
-    scroll-behavior: smooth;
-    scrollbar-color: $clr-primary-shadow transparent;
-    overflow: hidden;
+  scroll-behavior: smooth;
+  overscroll-behavior: none;
+  scrollbar-color: $clr-primary-shadow transparent;
+  overflow: hidden;
 }
 body {
-    background-image: url(images/bg.webp);
-    background-size: auto 100%;
-    background-position: 50%;
-    background-repeat: no-repeat;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
+  background-image: url(images/bg.webp);
+  background-size: auto 100%;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
 }
 header {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 main {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 h1 {
-    @include typeface;
-    animation: $overlay-text-animation;
-    font-weight: 400;
-    text-align: right;
-    font-size: $font-size-large;
-    margin: 2em 0.5em 1em 0.5em;
-    position: relative;
-    &::after {
-        @include overlay-effect;
-    }
+  @include typeface;
+  animation: $overlay-text-animation;
+  font-weight: 400;
+  text-align: right;
+  font-size: $font-size-large;
+  margin: 2em 0.5em 1em 0.5em;
+  position: relative;
+  &::after {
+    @include overlay-effect;
+  }
 }
 h2 {
-    @include typeface;
-    animation: $overlay-text-animation;
-    margin-bottom: 0.5em;
-    font-weight: 400;
-    font-size: $font-size-body;
-    position: relative;
-    &::after {
-        @include overlay-effect;
-    }
+  @include typeface;
+  animation: $overlay-text-animation;
+  margin-bottom: 0.5em;
+  font-weight: 400;
+  font-size: $font-size-body;
+  position: relative;
+  &::after {
+    @include overlay-effect;
+  }
 }
 p {
-    @include typeface;
-    font-size: $font-size-large;
+  @include typeface;
+  font-size: $font-size-large;
 }
 button {
-    @include button;
-    animation: $overlay-text-animation;
-    margin: 1em 0;
-    position: relative;
-    &::after {
-        @include overlay-effect;
-    }
+  @include button;
+  animation: $overlay-text-animation;
+  margin: 1em 0;
+  position: relative;
+  &::after {
+    @include overlay-effect;
+  }
 }
 .alert {
-    @include typeface;
-    animation: alert-enter 0.25s forwards, $overlay-text-animation;
-    background-color: $clr-bg;
-    border-top: 1px solid $clr-primary-shadow;
-    font-size: $font-size-body;
-    letter-spacing: 0px;
-    position: fixed;
-    bottom: 0;
-    padding: 1em;
-    text-align: center;
-    width: 100%;
-    &::after {
-        @include overlay-effect;
-    }
+  @include typeface;
+  animation: alert-enter 0.25s forwards, $overlay-text-animation;
+  background-color: $clr-bg;
+  border-top: 1px solid $clr-primary-shadow;
+  font-size: $font-size-body;
+  letter-spacing: 0px;
+  position: fixed;
+  bottom: 0;
+  padding: 1em;
+  text-align: center;
+  width: 100%;
+  &::after {
+    @include overlay-effect;
+  }
 }
 #timer {
-    animation: $overlay-text-animation;
-    width: 240px;
-    margin: 2em 0.5em 1em 0.5em;
-    position: relative;
-    &::after {
-        @include overlay-effect;
-    }
+  animation: $overlay-text-animation;
+  width: 240px;
+  margin: 2em 0.5em 1em 0.5em;
+  position: relative;
+  &::after {
+    @include overlay-effect;
+  }
 }
 .button-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 4px;
-    p {
-        font-size: $font-size-small;
-    }
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  p {
+    font-size: $font-size-small;
+  }
 }
 .button-group {
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-    > p {
-        animation: $overlay-text-animation;
-        position: relative;
-        text-align: center;
-        &::after {
-            @include overlay-effect;
-        }
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  > p {
+    animation: $overlay-text-animation;
+    position: relative;
+    text-align: center;
+    &::after {
+      @include overlay-effect;
     }
+  }
 }
 //COLUMN 1
 #instructions {
-    margin: 0 1em;
-    width: 364px;
-    p {
-        animation: $overlay-text-animation;
-        margin: 0;
-        font-size: $font-size-body;
-        letter-spacing: 0px;
-        line-height: 1.2;
-        position: relative;
-        &::after {
-            @include overlay-effect;
-        }
+  margin: 0 1em;
+  width: 364px;
+  p {
+    animation: $overlay-text-animation;
+    margin: 0;
+    font-size: $font-size-body;
+    letter-spacing: 0px;
+    line-height: 1.2;
+    position: relative;
+    &::after {
+      @include overlay-effect;
     }
+  }
 }
 #profile-editor {
-    display: none;
-    margin: 0 1em;
+  display: none;
+  margin: 0 1em;
 }
 #profile-buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 2px;
-    > label {
-        @include button;
-        width: auto;
-        margin: 1em 0;
-        position: relative;
-        &::after {
-            @include overlay-effect;
-        }
+  display: flex;
+  justify-content: space-between;
+  gap: 2px;
+  > label {
+    @include button;
+    width: auto;
+    margin: 1em 0;
+    position: relative;
+    &::after {
+      @include overlay-effect;
     }
-    > label:focus-within {
-        outline: 2px solid white !important;
-        outline-offset: -2px;
-        border-radius: 4px;
-    }
+  }
+  > label:focus-within {
+    outline: 2px solid white !important;
+    outline-offset: -2px;
+    border-radius: 4px;
+  }
 }
 #upload-picture {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 #editor-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
 }
 .row {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    align-items: center;
-    gap: 4em;
-    &::after {
-        @include overlay-effect;
-    }
-    p {
-        @include typeface;
-        animation: $overlay-text-animation;
-        font-size: $font-size-body;
-        text-align: right;
-        margin: 0;
-        &:empty:not(:focus)::before {
-            content: attr(data-placeholder);
-            pointer-events: none;
-        }
-        &:hover {
-            background-color: hsl(0, 0%, 100%, 0.1);
-        }
-        &:focus {
-            outline: none;
-        }
-    }
-}
-label {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
+  gap: 4em;
+  &::after {
+    @include overlay-effect;
+  }
+  p {
     @include typeface;
     animation: $overlay-text-animation;
     font-size: $font-size-body;
-    width: 256px;
+    text-align: right;
+    margin: 0;
+    &:empty:not(:focus)::before {
+      content: attr(data-placeholder);
+      pointer-events: none;
+    }
+    &:hover {
+      background-color: hsl(0, 0%, 100%, 0.1);
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}
+label {
+  @include typeface;
+  animation: $overlay-text-animation;
+  font-size: $font-size-body;
+  width: 256px;
 }
 //COLUMN 2
 #squadron-list {
-    margin: 0 1em;
-    h2 {
-        text-align: right;
-    }
+  margin: 0 1em;
+  h2 {
+    text-align: right;
+  }
 }
 #squadron-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 1px 2px 1px 1px;
-    gap: 1px;
-    max-height: 369px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    background-color: $clr-bg;
-    border: 1px solid $clr-primary-shadow;
-    box-shadow: 0 0 4px 0 $clr-primary-shadow;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 1px 2px 1px 1px;
+  gap: 1px;
+  max-height: 369px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: $clr-bg;
+  border: 1px solid $clr-primary-shadow;
+  box-shadow: 0 0 4px 0 $clr-primary-shadow;
 }
 .person-container {
-    height: 182px;
-    flex-shrink: 0;
-    padding: 8px;
-    outline: 1px solid $clr-primary-translucent;
-    width: 144px;
-    cursor: pointer;
-    overflow: hidden;
-    &:hover {
-        outline: 1px solid $clr-primary;
+  height: 182px;
+  flex-shrink: 0;
+  padding: 8px;
+  outline: 1px solid $clr-primary-translucent;
+  width: 144px;
+  cursor: pointer;
+  overflow: hidden;
+  &:hover {
+    outline: 1px solid $clr-primary;
+  }
+  h3,
+  p,
+  img {
+    animation: add-person 0.5s forwards;
+  }
+  h3 {
+    @include typeface;
+    color: hsl(0, 0%, 100%);
+    font-weight: 400;
+    font-size: 17px;
+    margin: 1px 0;
+    text-shadow: -2px 2px 0 hsl(0, 0%, 100%, 0.25);
+    &:empty:not(:focus)::before {
+      content: attr(data-placeholder);
+      pointer-events: none;
     }
-    h3, p, img {
-        animation: add-person 0.5s forwards;
+  }
+  p {
+    font-size: 11px;
+    font-weight: 400;
+    color: hsl(170, 50%, 50%);
+    margin: 1px 0;
+    text-shadow: -2px 2px 0 hsl(170, 50%, 50%, 0.33);
+    &:empty:not(:focus)::before {
+      content: attr(data-placeholder);
+      pointer-events: none;
     }
-    h3 {
-        @include typeface;
-        color:hsl(0, 0%, 100%);
-        font-weight: 400;
-        font-size: 17px;
-        margin: 1px 0;
-        text-shadow: -2px 2px 0 hsl(0, 0%, 100%, 0.25);
-        &:empty:not(:focus)::before {
-            content: attr(data-placeholder);
-            pointer-events: none;
-        }
-    }
-    p {
-        font-size: 11px;
-        font-weight: 400;
-        color: hsl(170, 50%, 50%);
-        margin: 1px 0;
-        text-shadow: -2px 2px 0 hsl(170, 50%, 50%, 0.33);
-        &:empty:not(:focus)::before {
-            content: attr(data-placeholder);
-            pointer-events: none;
-        }
-    }
+  }
 }
 .add-person {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
-    outline: 1px solid $clr-primary-translucent;
-    cursor: pointer;
-    height: 182px;
-    width: 144px;
-    &:hover {
-        outline: 1px solid $clr-primary;
-    }
-    p {
-        font-size: $font-size-small;
-        text-align: center;
-        margin: 0.5em;
-        user-select: none;
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  outline: 1px solid $clr-primary-translucent;
+  cursor: pointer;
+  height: 182px;
+  width: 144px;
+  &:hover {
+    outline: 1px solid $clr-primary;
+  }
+  p {
+    font-size: $font-size-small;
+    text-align: center;
+    margin: 0.5em;
+    user-select: none;
+  }
 }
 #add-person {
-    @include typeface;
-    font-family: sans-serif;
-    line-height: 0.5;
-    font-size: 6em;
-    margin: 0.2em 0em;
-    user-select: none;
-    + p {
-        animation: $overlay-text-animation;
-        position: relative;
-        &::after {
-            @include overlay-effect;
-        }
+  @include typeface;
+  font-family: sans-serif;
+  line-height: 0.5;
+  font-size: 6em;
+  margin: 0.2em 0em;
+  user-select: none;
+  + p {
+    animation: $overlay-text-animation;
+    position: relative;
+    &::after {
+      @include overlay-effect;
     }
+  }
 }
 .person-image {
-    width: 128px;
-    height: 128px;
-    object-fit: cover;
+  width: 128px;
+  height: 128px;
+  object-fit: cover;
 }
 //Classes that are not bound to HTML elements
 .person-container-selected {
-    outline: 1px solid white;
+  outline: 1px solid white;
 }
 @media screen and (min-height: 1000px) {
-    #squadron-container {
-        max-height: 552px;
-    }
+  #squadron-container {
+    max-height: 552px;
+  }
 }
 @media screen and (max-width: 1100px) {
-    html {
-        overflow-y: auto;
+  html {
+    overflow-y: auto;
+  }
+  header {
+    flex-direction: column-reverse;
+    h1 {
+      margin: 1em 0.5em 0 0.5em;
+      text-align: left;
     }
-    header {
-        flex-direction: column-reverse;
-        h1 {
-            margin: 1em 0.5em 0 0.5em;
-            text-align: left;
-        }
-        #timer {
-            margin: 0.25em 0.5em 0.25em 0.5em;
-        }
+    #timer {
+      margin: 0.25em 0.5em 0.25em 0.5em;
     }
-    main {
-        flex-direction: column;
-    }
-    #instructions {
-        width: auto;
-    }
-    h2, #squadron-list > h2 {
-        margin-top: 2em;
-        text-align: left;
-    }
-    #squadron-container {
-        display: flex;
-        padding: 1px;
-        gap: 1px;
-        max-height: 552px;
-        overflow-y: auto;
-        overflow-x: scroll;
-    }
+  }
+  main {
+    flex-direction: column;
+  }
+  #instructions {
+    width: auto;
+  }
+  h2,
+  #squadron-list > h2 {
+    margin-top: 2em;
+    text-align: left;
+  }
+  #squadron-container {
+    display: flex;
+    padding: 1px;
+    gap: 1px;
+    max-height: 552px;
+    overflow-y: auto;
+    overflow-x: scroll;
+  }
 }
 @media screen and (max-width: 500px) {
-    header {
-        h1 {
-            font-size: $font-size-body;
-        }
-        #timer {
-            font-size: $font-size-body;
-        }
+  header {
+    h1 {
+      font-size: $font-size-body;
     }
-    #instructions > p {
-        animation: none;
-        font-size: $font-size-small;
+    #timer {
+      font-size: $font-size-body;
     }
-    .row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.25em;
-        margin-bottom: 1em;
-        p {
-            animation: none;
-        }
+  }
+  #instructions > p {
+    animation: none;
+    font-size: $font-size-small;
+  }
+  .row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25em;
+    margin-bottom: 1em;
+    p {
+      animation: none;
     }
-    label, h1, h2, button, #timer {
-        animation: none;
+  }
+  label,
+  h1,
+  h2,
+  button,
+  #timer {
+    animation: none;
+  }
+  .alert {
+    animation: alert-enter 0.25s forwards;
+  }
+  #add-person + p {
+    animation: none;
+  }
+  .button-group {
+    p {
+      animation: none;
+      margin-bottom: 0;
     }
-    .alert {
-        animation: alert-enter 0.25s forwards;
+  }
+  .button-container {
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 1em;
+    button {
+      margin-bottom: 0;
     }
-    #add-person + p {
-        animation: none;
-    }
-    .button-group {
-        p {
-            animation: none;
-            margin-bottom: 0;
-        }
-    }
-    .button-container {
-        flex-direction: column;
-        gap: 0;
-        margin-bottom: 1em;
-        button {
-            margin-bottom: 0;
-        }
-    }
-    *::after {
-        display: none;
-    }
+  }
+  *::after {
+    display: none;
+  }
 }
 //Used to prevent a flash of unstyled content on page load
 html {
-    visibility: visible;
-    opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
