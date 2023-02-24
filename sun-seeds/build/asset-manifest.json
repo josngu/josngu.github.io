@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.css": "./static/css/main.c9309b24.css",
-    "main.js": "./static/js/main.70072cd5.js",
+    "main.css": "./static/css/main.9eb354be.css",
+    "main.js": "./static/js/main.7733d59f.js",
     "static/js/787.5e1ca9c3.chunk.js": "./static/js/787.5e1ca9c3.chunk.js",
     "static/media/box-back-retail-after.webp": "./static/media/box-back-retail-after.5d7662a34b54208b110c.webp",
     "static/media/box-front-retail-after.webp": "./static/media/box-front-retail-after.81e582d125edf5305f19.webp",
     "static/media/box-back-retail-before.webp": "./static/media/box-back-retail-before.643de332d1eadb4f8a74.webp",
     "static/media/box-front-retail-before.webp": "./static/media/box-front-retail-before.16631f02461f5355871e.webp",
+    "static/media/box-compartments.webp": "./static/media/box-compartments.53148105a88c60671bae.webp",
     "static/media/second-dieline.webp": "./static/media/second-dieline.697315c1d62b2315c8c1.webp",
     "static/media/KeeponTruckin.ttf": "./static/media/KeeponTruckin.691b4ef0e8996f89a639.ttf",
     "static/media/box-back.webp": "./static/media/box-back.6ba5e8b3117a4ee82386.webp",
@@ -21,18 +22,22 @@
     "static/media/logo.svg": "./static/media/logo.abb66b8867dfa36e29a7e8779d8d7fc3.svg",
     "static/media/box-orthographic-side.svg": "./static/media/box-orthographic-side.7e56750fbf4d76e09fabcafe66b363ac.svg",
     "static/media/first-dieline-insert.webp": "./static/media/first-dieline-insert.ec10c93bdfba91d0ee8f.webp",
+    "static/media/footer-embellishment-center.svg": "./static/media/footer-embellishment-center.d363fd21addb612a1bf05558416ef3b7.svg",
     "static/media/box-top.webp": "./static/media/box-top.971822e47a4af4bde5de.webp",
     "static/media/box-bottom.webp": "./static/media/box-bottom.299d578573892578f8e8.webp",
     "static/media/box-orthographic-lines.svg": "./static/media/box-orthographic-lines.3df2f6e8a9b7c65077211536ec76dc14.svg",
+    "static/media/footer-embellishment-end.svg": "./static/media/footer-embellishment-end.6ec92dda6118831c76aa39a09eb25ee3.svg",
     "static/media/box-orthographic-left-lid.svg": "./static/media/box-orthographic-left-lid.ec6bd4e896b49596e9daff2f3faa81e5.svg",
     "static/media/box-orthographic-right-lid.svg": "./static/media/box-orthographic-right-lid.c7a8026034225085e33bfc50b0b1e3f5.svg",
     "index.html": "./index.html",
-    "main.c9309b24.css.map": "./static/css/main.c9309b24.css.map",
-    "main.70072cd5.js.map": "./static/js/main.70072cd5.js.map",
+    "static/media/menu-icon.svg": "./static/media/menu-icon.2a82e5d799cf19b4bc567058bdd7784c.svg",
+    "static/media/footer-embellishment-line.svg": "./static/media/footer-embellishment-line.ce89c70e5157fc50075ff2c7c5a6645f.svg",
+    "main.9eb354be.css.map": "./static/css/main.9eb354be.css.map",
+    "main.7733d59f.js.map": "./static/js/main.7733d59f.js.map",
     "787.5e1ca9c3.chunk.js.map": "./static/js/787.5e1ca9c3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c9309b24.css",
-    "static/js/main.70072cd5.js"
+    "static/css/main.9eb354be.css",
+    "static/js/main.7733d59f.js"
   ]
 }
