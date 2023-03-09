@@ -159,9 +159,19 @@ nav {
     display: flex;
     padding: 0;
     list-style-type: none;
+    // Fade out the other links when the user hovers over a link
+    &:hover > li {
+      opacity: 0.5;
+    }
+    &:hover > li:hover {
+      opacity: 1;
+    }
   }
   a {
     padding: 0px 16px;
+  }
+  li {
+    transition-duration: $dur-short;
   }
   li a {
     text-decoration: none;

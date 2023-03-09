@@ -184,8 +184,17 @@ nav ul {
   padding: 0;
   list-style-type: none;
 }
+nav ul:hover > li {
+  opacity: 0.5;
+}
+nav ul:hover > li:hover {
+  opacity: 1;
+}
 nav a {
   padding: 0px 16px;
+}
+nav li {
+  transition-duration: 0.2s;
 }
 nav li a {
   text-decoration: none;
