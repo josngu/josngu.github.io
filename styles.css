@@ -181,6 +181,8 @@ p {
   -o-object-fit: scale-down;
      object-fit: scale-down;
   border-radius: 0.5em;
+  box-shadow:  0 0 16px -12px black;
+  z-index: 1;
 }
 
 .three-columns {
