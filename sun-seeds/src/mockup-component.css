@@ -21,7 +21,7 @@ two-up svg {
   transition-duration: 0.2s;
 }
 two-up div:nth-child(3)::before {
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
   width: 2px;
   box-shadow: none;
 }

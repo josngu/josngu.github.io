@@ -1,13 +1,13 @@
 @font-face {
   /*Belgrad typeface was created by Vinzent Britz*/
-  font-family: "Belgrad";
-  src: url("Belgrad.ttf");
+  font-family: 'Belgrad';
+  src: url('Belgrad.ttf');
 }
 $clr-light: hsl(0, 0%, 100%);
 $clr-dark: hsl(0, 0%, 12%);
-$font-h1: "Belgrad", sans-serif;
-$font-h2: "Plus Jakarta Sans", sans-serif;
-$font-body: "Plus Jakarta Sans", sans-serif;
+$font-h1: 'Belgrad', sans-serif;
+$font-h2: 'Plus Jakarta Sans', sans-serif;
+$font-body: 'Plus Jakarta Sans', sans-serif;
 $font-size-large: 1.2rem;
 $font-size-body: 1rem;
 $font-size-small: 0.8rem;
@@ -80,7 +80,7 @@ header {
   justify-content: center;
   height: 100vh;
   margin-bottom: 3em;
-  background-image: url("images/bg.webp");
+  background-image: url('images/bg.webp');
   > h1 {
     animation: title-enter 1.25s forwards;
     margin-left: 0.5em;
@@ -149,6 +149,7 @@ p {
     width: 100%;
     object-fit: scale-down;
     border-radius: 0.5em;
+    box-shadow: 0 0 16px -12px black;
   }
 }
 .three-columns {
