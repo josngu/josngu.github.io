@@ -3,19 +3,6 @@
   font-family: "Belgrad";
   src: url("Belgrad.ttf");
 }
-@-webkit-keyframes title-enter {
-  0% {
-    opacity: 0%;
-    transform: scale(0.5);
-  }
-  50% {
-    opacity: 0%;
-  }
-  100% {
-    opacity: 100%;
-    transform: scale(1);
-  }
-}
 @keyframes title-enter {
   0% {
     opacity: 0%;
@@ -29,17 +16,6 @@
     transform: scale(1);
   }
 }
-@-webkit-keyframes bg-load {
-  0% {
-    filter: brightness(50%);
-  }
-  50% {
-    filter: brightness(50%);
-  }
-  100% {
-    filter: brightness(100%);
-  }
-}
 @keyframes bg-load {
   0% {
     filter: brightness(50%);
@@ -49,14 +25,6 @@
   }
   100% {
     filter: brightness(100%);
-  }
-}
-@-webkit-keyframes bg-overlay-load {
-  0% {
-    background-position: 100% 0%;
-  }
-  100% {
-    background-position: 0% 0%;
   }
 }
 @keyframes bg-overlay-load {
@@ -72,14 +40,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(0deg, 0%, 12%);
+  background: hsl(0, 0%, 12%);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsla(0deg, 0%, 100%, 0.5);
+  background: hsla(0, 0%, 100%, 0.5);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: hsla(0deg, 0%, 100%, 0.75);
+  background: hsla(0, 0%, 100%, 0.75);
 }
 
 *,
@@ -90,7 +58,7 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
   scrollbar-color: transparent;
 }
 
@@ -100,8 +68,7 @@ body {
 }
 
 header {
-  -webkit-animation: bg-load 1s forwards;
-          animation: bg-load 1s forwards;
+  animation: bg-load 1s forwards;
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
@@ -112,30 +79,26 @@ header {
   background-image: url("images/bg.webp");
 }
 header > h1 {
-  -webkit-animation: title-enter 1.25s forwards;
-          animation: title-enter 1.25s forwards;
+  animation: title-enter 1.25s forwards;
   margin-left: 0.5em;
   margin-right: 0.5em;
   font-weight: 400;
 }
 header > h2 {
-  -webkit-animation: title-enter 1.25s forwards;
-          animation: title-enter 1.25s forwards;
+  animation: title-enter 1.25s forwards;
   margin-left: 1em;
   margin-right: 1em;
-  color: hsl(0deg, 0%, 100%);
+  color: hsl(0, 0%, 100%);
 }
 header > p {
-  -webkit-animation: title-enter 1.25s forwards;
-          animation: title-enter 1.25s forwards;
+  animation: title-enter 1.25s forwards;
   margin: 1em;
-  color: hsl(0deg, 0%, 100%);
+  color: hsl(0, 0%, 100%);
 }
 
 .bg-overlay {
-  -webkit-animation: bg-overlay-load 2s forwards;
-          animation: bg-overlay-load 2s forwards;
-  background: linear-gradient(120deg, hsla(0deg, 0%, 100%, 0) 0%, hsla(0deg, 0%, 100%, 0) 25%, hsl(207deg, 80%, 56%) 50%, hsl(336deg, 100%, 58%) 75%, hsl(266deg, 89%, 50%) 100%);
+  animation: bg-overlay-load 2s forwards;
+  background: linear-gradient(120deg, hsla(0, 0%, 100%, 0) 0%, hsla(0, 0%, 100%, 0) 25%, hsl(207, 80%, 56%) 50%, hsl(336, 100%, 58%) 75%, hsl(266, 89%, 50%) 100%);
   background-size: 400% 400%;
   position: absolute;
   top: 0;
@@ -155,7 +118,7 @@ main {
 
 h1 {
   font-family: "Belgrad", sans-serif;
-  color: hsl(0deg, 0%, 100%);
+  color: hsl(0, 0%, 100%);
   text-align: center;
   font-size: clamp(3em, 6vw, 5em);
   font-weight: 600;
@@ -165,13 +128,13 @@ h1 {
 h2 {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 600;
-  color: hsl(0deg, 0%, 12%);
+  color: hsl(0, 0%, 12%);
   margin: 1em 0 0 0;
   text-align: center;
 }
 
 p {
-  color: hsl(0deg, 0%, 12%);
+  color: hsl(0, 0%, 12%);
   font-family: "Plus Jakarta Sans", sans-serif;
   text-align: center;
 }
@@ -181,6 +144,7 @@ p {
   -o-object-fit: scale-down;
      object-fit: scale-down;
   border-radius: 0.5em;
+  box-shadow: 0 0 16px -12px black;
 }
 
 .three-columns {
@@ -204,7 +168,7 @@ p {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 1.2rem;
   font-weight: 600;
-  color: hsl(0deg, 0%, 12%);
+  color: hsl(0, 0%, 12%);
   margin: 16px;
 }
 .description-container p {
@@ -223,33 +187,33 @@ p {
 }
 .button-pair a {
   display: block;
-  color: hsl(0deg, 0%, 12%);
+  color: hsl(0, 0%, 12%);
   text-decoration: none;
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 500;
-  border: 2px solid hsl(0deg, 0%, 12%);
+  border: 2px solid hsl(0, 0%, 12%);
   border-radius: 4px;
   padding: 0.5em 0.5em;
   text-align: center;
   transition-duration: 0.2s;
 }
 .button-pair a:hover {
-  background-color: hsl(0deg, 0%, 12%);
-  color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 12%);
+  color: hsl(0, 0%, 100%);
 }
 
 address {
   margin: 1em 0 1em 0;
 }
 address a {
-  color: hsl(0deg, 0%, 12%);
+  color: hsl(0, 0%, 12%);
   font-family: "Plus Jakarta Sans", sans-serif;
   font-style: normal;
 }
 
 footer {
-  background-color: hsl(230deg, 20%, 12%);
-  color: hsl(0deg, 0%, 100%);
+  background-color: hsl(230, 20%, 12%);
+  color: hsl(0, 0%, 100%);
   font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 0.8rem;
   text-align: center;

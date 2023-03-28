@@ -5,7 +5,7 @@ function BenefitsSection() {
   return (
     <section>
       <div className='rl-two-columns'>
-        <div>
+        <div className='benefits-container'>
           <div className='benefit-point'>
             <h2>Convenient Shell Disposal</h2>
             <p>
@@ -29,7 +29,7 @@ function BenefitsSection() {
             </p>
           </div>
         </div>
-        <div id='benefits-image-container'>
+        <div className='benefits-image-container'>
           <img
             src={boxTopDown}
             alt='A top down rotated view of a sunflower seeds box with two compartments'

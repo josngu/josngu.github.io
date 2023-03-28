@@ -1,4 +1,10 @@
 @media screen and (max-width: 1000px) {
+  nav ul {
+    display: none;
+  }
+  #menu {
+    display: block;
+  }
   h1 {
     padding: 0 1rem;
   }
@@ -37,5 +43,8 @@
   }
   .mockup-two-columns {
     padding: 0 1rem 1rem 1rem;
+  }
+  #footer-embellishment-container {
+    padding: 0 1rem;
   }
 }/*# sourceMappingURL=media-queries.css.map */

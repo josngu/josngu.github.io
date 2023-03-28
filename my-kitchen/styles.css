@@ -209,6 +209,8 @@ body {
   margin: auto;
   padding: 0;
   background-color: #111111;
+  overflow-x: hidden;
+
 }
 p {
   font-family: "Outfit", sans-serif;
@@ -748,6 +750,10 @@ STEW FUSION
   padding: 0 8px;
   margin: 16px 0 16px 0;
 }
+#stew-fusion-container {
+  margin: 32px 0 32px 0;
+  
+}
 #stew-fusion-image {
   image-rendering: pixelated;
   height: clamp(120px, 16vw, 160px);
@@ -1023,9 +1029,6 @@ MEDIA QUERIES
   }
   #stew-fusion-title {
     animation: background 15s ease infinite;
-  }
-  #stew-fusion-button {
-    margin-top: 0;
   }
   #stew-fusion-image {
     margin: auto;

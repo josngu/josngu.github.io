@@ -1,7 +1,8 @@
-"use strict";
-var minute = 0;
-var sec = 0;
-var msec = 0;
+var stopwatch = {
+    minute: '00',
+    sec: '00',
+    msec: '00'
+};
 //The following variable only ensures that there will be no identical element IDs
 var people = 0;
 var numberOfPeople = 0;
@@ -9,8 +10,31 @@ var squadron = [];
 var selection = 0;
 var longAlert = 5000;
 var shortAlert = 2500;
+// Do all of this once the page actually loads
 $(function () {
     checkFormChanges();
+    var timerDOM = $("#timer");
+    function timer() {
+        // Need this to avoid type mismatches
+        let msecNum = parseInt(stopwatch.msec, 10);
+        let secNum = parseInt(stopwatch.sec, 10);
+        let minuteNum = parseInt(stopwatch.minute, 10);
+        msecNum++;
+        if (msecNum == 100) {
+            secNum++;
+            msecNum = 0;
+        }
+        if (secNum == 60) {
+            minuteNum++;
+            secNum = 0;
+        }
+        stopwatch.msec = msecNum < 10 ? "0" + msecNum : msecNum.toString();
+        stopwatch.sec = secNum < 10 ? "0" + secNum : secNum.toString();
+        stopwatch.minute = minuteNum < 10 ? "0" + minuteNum : minuteNum.toString();
+        let formattedTime = `TIME ${stopwatch.minute}:${stopwatch.sec}:${stopwatch.msec}`;
+        timerDOM.text(formattedTime);
+    }
+    setInterval(timer, 10);
 });
 function checkFormChanges() {
     $("#name").on("focusout", function () {
@@ -182,29 +206,3 @@ function load() {
         checkFormChanges();
     }
 }
-function timer() {
-    msec = parseInt(msec);
-    sec = parseInt(sec);
-    minute = parseInt(minute);
-    msec++;
-    if (msec == 100) {
-        sec++;
-        msec = 0;
-    }
-    if (sec == 60) {
-        minute++;
-        sec = 0;
-    }
-    if (msec < 10 || msec == 0) {
-        msec = "0" + msec;
-    }
-    if (sec < 10 || sec == 0) {
-        sec = "0" + sec;
-    }
-    if (minute < 10 || minute == 0) {
-        minute = "0" + minute;
-    }
-    $("#timer").text(`TIME ${minute}:${sec}:${msec}`);
-    setTimeout("timer()", 10);
-}
-timer();

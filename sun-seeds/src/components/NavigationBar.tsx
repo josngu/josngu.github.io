@@ -7,6 +7,8 @@ import {
   useLocation,
 } from 'react-router-dom';
 import logo from '../logo.svg';
+import menuIcon from '../images/menu-icon.svg';
+import closeIcon from '../images/close-icon.svg';
 
 function NavigationBar() {
   const location = useLocation();
@@ -19,6 +21,7 @@ function NavigationBar() {
         </Link>
         <ul>
           <li>
+            {/*If the current path is equal to the set path, change the class*/}
             <Link
               className={
                 location.pathname === '/' ? 'nav-link active' : 'nav-link'
@@ -53,6 +56,11 @@ function NavigationBar() {
             </Link>
           </li>
         </ul>
+        <div id='menu'>
+          <button id='menu-button' aria-label='Menu'>
+            <img src={menuIcon} alt='Menu button' />
+          </button>
+        </div>
       </nav>
     </header>
   );

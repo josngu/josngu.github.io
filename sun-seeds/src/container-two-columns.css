@@ -3,7 +3,6 @@
   flex-direction: row-reverse;
   justify-content: center;
   align-items: center;
-  border-radius: 1em;
   gap: 4em;
 }
 .rl-two-columns h2 {
@@ -16,6 +15,7 @@
 }
 .rl-two-columns img {
   max-height: 600px;
+  border-radius: 16em;
 }
 
 .benefit-point {

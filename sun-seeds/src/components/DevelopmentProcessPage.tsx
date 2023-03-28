@@ -40,7 +40,7 @@ function DevelopmentProcessPage() {
       />
       <BlogSection
         title='Step 3: Analyze'
-        text={`The first iteration of the packaging had several issues. First, the disposed shells would fall out of the box if the user tried to pour more sunflower seeds to eat. Second, the box was too thick to hold in the hand comfortably. Lastly, 50% of the packaging is empty, and would be inefficient to ship.`}
+        text={`The first iteration of the packaging had several issues. The disposed shells would fall out of the box if the user tried to pour more sunflower seeds to eat, which defeats the whole purpose of our packaging. Additionally, the box was too thick to hold in the hand comfortably, and 50% of the packaging is empty, making it inefficient to ship. Addressing these issues would require a complete redesign of the dieline.`}
         imgURL=''
         altText=''
         imgURL2=''
@@ -48,11 +48,13 @@ function DevelopmentProcessPage() {
       />
       <BlogSection
         title='Step 4: Refine'
-        text={`The width of the first design was decreased from 2" to 1.5", making it more comfortable to hold. The dual compartment design was remade so that the two compartments could be created with one dieline, saving on materials.
+        text={`With the second iteration, we decreased the width of our first design from 2" to 1.5", making it more comfortable to hold. The dual compartment design was also remade so that the two compartments could be created with one dieline, saving on materials. In addition, the new design has two tuck flaps at the top to prevent the seed disposal compartment from emptying itself whenever the user tried to pour the seeds into their palm. Although this refined design addresses most of the issues with our first prototype, one challenge that remains is the empty space, which we have identified two possible solutions:
+
+        1. Provide a seasoning packet for the user to season their seeds to their liking. This would provide a purpose for the wasted space.
         
-        Additionally, the new design has two tuck flaps at the top to prevent the seed disposal compartment from emptying itself whenever the user tried to pour the seeds into their palm.
+        2. Insert the sunflower seed box inside another box, in which the user would remove the extra box to use as a seed shell disposal area. This would increase shipping efficiency by almost 100% at the cost of increasing material usage.
         
-        We created some mockups below to visualize how our packaging would look on retail shelves.`}
+        Both of these solutions would not require the existing dieline and artwork to be remade. With this in mind, we created some mockups below to visualize how our packaging would look on retail shelves.`}
         imgURL={dieline2}
         altText='Sunflower seed box dieline'
         imgURL2={boxCompartments}
@@ -61,8 +63,7 @@ function DevelopmentProcessPage() {
       <MockupComparison />
       <BlogSection
         title='Conclusion'
-        text={`Our vision for a plastic-free sunflower seed packaging is difficult to achieve. Although our packaging is biodegradable, this comes at a cost in food preservation. Certain coatings could increase the preservation capabilities of our packaging, but not all coatings are biodegradable.
-        
+        text={`Our vision for a plastic-free sunflower seed packaging is difficult to achieve. Although our packaging is biodegradable, this comes at a cost in food preservation. Certain coatings could increase the preservation capabilities of our packaging, but not all coatings are biodegradable. More research is needed to determine the ideal balance between sustainability and food preservation.
         `}
         imgURL=''
         altText=''
