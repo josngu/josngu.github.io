@@ -3,6 +3,7 @@
     display: none;
   }
   #navigation-menu-mobile {
+    visibility: visible;
     opacity: 100%;
     pointer-events: auto;
   }

@@ -226,6 +226,7 @@ nav li a:hover {
 }
 
 #navigation-menu-mobile {
+  visibility: hidden;
   transform: translateY(-240px);
   justify-content: right;
   position: fixed;

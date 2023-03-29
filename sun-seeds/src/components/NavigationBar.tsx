@@ -40,6 +40,7 @@ function NavigationBar() {
                 location.pathname === '/' ? 'nav-link active' : 'nav-link'
               }
               to='/'
+              tabIndex={0}
             >
               Home
             </Link>
@@ -52,6 +53,7 @@ function NavigationBar() {
                   : 'nav-link'
               }
               to='/development-process'
+              tabIndex={0}
             >
               Development Process
             </Link>
@@ -64,6 +66,7 @@ function NavigationBar() {
                   : 'nav-link'
               }
               to='/3d-model'
+              tabIndex={0}
             >
               View 3D Model
             </Link>

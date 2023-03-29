@@ -35,6 +35,7 @@ function NavigationMenuMobile({
             }
             to='/'
             onClick={() => toggleMenu()}
+            tabIndex={0}
           >
             Home
           </Link>
@@ -48,6 +49,7 @@ function NavigationMenuMobile({
             }
             to='/development-process'
             onClick={() => toggleMenu()}
+            tabIndex={0}
           >
             Development Process
           </Link>
@@ -59,6 +61,7 @@ function NavigationMenuMobile({
             }
             to='/3d-model'
             onClick={() => toggleMenu()}
+            tabIndex={0}
           >
             View 3D Model
           </Link>

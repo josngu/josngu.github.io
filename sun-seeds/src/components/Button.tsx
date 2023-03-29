@@ -7,7 +7,7 @@ interface button {
 
 function Button({ url, text }: button) {
   return (
-    <a className='button' href={url}>
+    <a className='button' href={url} tabIndex={0}>
       {text}
     </a>
   );
