@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -9,13 +9,16 @@ import {
 import logo from '../logo.svg';
 import menuIcon from '../images/menu-icon.svg';
 import closeIcon from '../images/close-icon.svg';
+import NavigationMenuMobile from './NavigationMenuMobile';
 
 function NavigationBar() {
   const location = useLocation();
+  // Set the state of the mobile nav menu
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header>
-      <nav>
+      <nav id='navigation-menu'>
         <Link to='/'>
           <img src={logo} id='logo' alt='Sun Seeds Logo' />
         </Link>
@@ -57,11 +60,16 @@ function NavigationBar() {
           </li>
         </ul>
         <div id='menu'>
-          <button id='menu-button' aria-label='Menu'>
+          <button
+            id='menu-button'
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label='Menu'
+          >
             <img src={menuIcon} alt='Menu button' />
           </button>
         </div>
       </nav>
+      <NavigationMenuMobile isOpen={isOpen} setIsOpen={setIsOpen} />
     </header>
   );
 }
