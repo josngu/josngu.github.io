@@ -219,11 +219,11 @@ nav {
 }
 
 .nav-menu-slide-in {
-  animation: menu-slide-in 0.25s forwards;
+  animation: menu-slide-in $dur-short forwards;
 }
 
 .nav-menu-slide-out {
-  animation: menu-slide-out 0.25s forwards;
+  animation: menu-slide-out $dur-short forwards;
 }
 
 // nav-link active

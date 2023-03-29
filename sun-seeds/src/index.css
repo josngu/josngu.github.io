@@ -240,11 +240,11 @@ nav li a:hover {
 }
 
 .nav-menu-slide-in {
-  animation: menu-slide-in 0.25s forwards;
+  animation: menu-slide-in 0.2s forwards;
 }
 
 .nav-menu-slide-out {
-  animation: menu-slide-out 0.25s forwards;
+  animation: menu-slide-out 0.2s forwards;
 }
 
 .active {
