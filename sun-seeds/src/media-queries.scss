@@ -2,8 +2,23 @@
 
 @media screen and (max-width: 1000px) {
   // Navigation bar
-  nav ul {
+  #navigation-menu ul {
     display: none;
+  }
+  #navigation-menu-mobile {
+    display: block;
+  }
+  #navigation-menu-mobile ul {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    li {
+      padding: 0.5em 0;
+    }
+    a {
+      font-size: 1.4rem;
+      padding: 0;
+    }
   }
   #menu {
     display: block;
