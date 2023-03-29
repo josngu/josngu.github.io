@@ -15,6 +15,16 @@ function NavigationBar() {
   const location = useLocation();
   // Set the state of the mobile nav menu
   const [isOpen, setIsOpen] = useState(false);
+  const [navMenuClass, setNavMenuClass] = useState('');
+
+  function toggleMenu() {
+    setIsOpen(!isOpen);
+    if (isOpen === true) {
+      setNavMenuClass('nav-menu-slide-out');
+    } else {
+      setNavMenuClass('nav-menu-slide-in');
+    }
+  }
 
   return (
     <header>
@@ -62,14 +72,22 @@ function NavigationBar() {
         <div id='menu'>
           <button
             id='menu-button'
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => toggleMenu()}
             aria-label='Menu'
           >
-            <img src={menuIcon} alt='Menu button' />
+            <img
+              src={isOpen === true ? closeIcon : menuIcon}
+              alt='Menu button'
+            />
           </button>
         </div>
       </nav>
-      <NavigationMenuMobile isOpen={isOpen} setIsOpen={setIsOpen} />
+      <NavigationMenuMobile
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        navMenuClass={navMenuClass}
+        toggleMenu={toggleMenu}
+      />
     </header>
   );
 }

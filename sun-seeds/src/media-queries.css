@@ -3,7 +3,8 @@
     display: none;
   }
   #navigation-menu-mobile {
-    display: block;
+    opacity: 100%;
+    pointer-events: auto;
   }
   #navigation-menu-mobile ul {
     display: flex;

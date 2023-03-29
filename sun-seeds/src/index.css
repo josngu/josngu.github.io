@@ -46,7 +46,7 @@
 }
 @keyframes menu-slide-in {
   0% {
-    transform: translateY(-256px);
+    transform: translateY(-240px);
   }
   100% {
     transform: translateY(0);
@@ -57,7 +57,7 @@
     transform: translateY(0);
   }
   100% {
-    transform: translateY(-256px);
+    transform: translateY(-240px);
   }
 }
 *,
@@ -226,11 +226,12 @@ nav li a:hover {
 }
 
 #navigation-menu-mobile {
-  display: none;
-  transform: translateY(-256px);
+  transform: translateY(-240px);
   justify-content: right;
   position: fixed;
   top: 55px;
+  opacity: 0;
+  pointer-events: none;
   background-color: white;
   height: auto;
   box-shadow: 0 0 2px hsl(0, 0%, 66%);

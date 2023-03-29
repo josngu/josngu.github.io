@@ -12,17 +12,17 @@ import logo from '../logo.svg';
 interface navigationMenuMobile {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  navMenuClass: string;
+  toggleMenu: () => void;
 }
 
-function NavigationMenuMobile({ isOpen, setIsOpen }: navigationMenuMobile) {
+function NavigationMenuMobile({
+  isOpen,
+  setIsOpen,
+  navMenuClass,
+  toggleMenu,
+}: navigationMenuMobile) {
   const location = useLocation();
-  let navMenuClass = '';
-
-  if (isOpen === false) {
-    navMenuClass = 'nav-menu-slide-out';
-  } else {
-    navMenuClass = 'nav-menu-slide-in';
-  }
 
   return (
     <nav id='navigation-menu-mobile' className={navMenuClass}>
@@ -34,6 +34,7 @@ function NavigationMenuMobile({ isOpen, setIsOpen }: navigationMenuMobile) {
               location.pathname === '/' ? 'nav-link active' : 'nav-link'
             }
             to='/'
+            onClick={() => toggleMenu()}
           >
             Home
           </Link>
@@ -46,6 +47,7 @@ function NavigationMenuMobile({ isOpen, setIsOpen }: navigationMenuMobile) {
                 : 'nav-link'
             }
             to='/development-process'
+            onClick={() => toggleMenu()}
           >
             Development Process
           </Link>
@@ -56,6 +58,7 @@ function NavigationMenuMobile({ isOpen, setIsOpen }: navigationMenuMobile) {
               location.pathname === '/3d-model' ? 'nav-link active' : 'nav-link'
             }
             to='/3d-model'
+            onClick={() => toggleMenu()}
           >
             View 3D Model
           </Link>
