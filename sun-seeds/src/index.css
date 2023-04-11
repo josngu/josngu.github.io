@@ -83,7 +83,7 @@ body {
 h1 {
   width: 100%;
   max-width: 1080px;
-  font-size: 4rem;
+  font-size: clamp(3rem, 6vw, 4rem);
   margin: 4rem 0 0 0;
   padding: 0 2rem;
   color: #31366d;
