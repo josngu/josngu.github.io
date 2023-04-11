@@ -235,9 +235,6 @@ nav li a {
   box-shadow: 0 0 2px hsl(0, 0%, 66%);
   z-index: -1;
 }
-#navigation-menu-mobile ul a {
-  padding: 8px 16px;
-}
 
 .nav-menu-slide-in {
   animation: menu-slide-in 0.2s forwards;

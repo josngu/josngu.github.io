@@ -13,11 +13,11 @@
     text-align: right;
   }
   #navigation-menu-mobile ul li {
-    padding: 0.5em 0;
+    padding: 0.75em 0;
   }
   #navigation-menu-mobile ul a {
     font-size: 1.4rem;
-    padding: 0;
+    padding: 0.5em 1em;
   }
   #menu {
     display: block;
@@ -60,6 +60,9 @@
   }
   .mockup-two-columns {
     padding: 0 1rem 1rem 1rem;
+  }
+  .four-images-section div {
+    grid-template-columns: 1fr;
   }
   #footer-embellishment-container {
     padding: 0 1rem;

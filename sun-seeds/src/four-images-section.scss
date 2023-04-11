@@ -1,0 +1,29 @@
+@import 'variables';
+
+.four-images-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: $max-width-section;
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }
+  div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 1rem 0;
+    height: 100%;
+    div {
+      display: block;
+      margin: 0;
+    }
+  }
+  p {
+    margin: 0;
+  }
+}

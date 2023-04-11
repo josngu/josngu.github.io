@@ -15,11 +15,11 @@
     flex-direction: column;
     text-align: right;
     li {
-      padding: 0.5em 0;
+      padding: 0.75em 0;
     }
     a {
       font-size: 1.4rem;
-      padding: 0;
+      padding: 0.5em 1em;
     }
   }
   #menu {
@@ -64,6 +64,11 @@
   }
   .mockup-two-columns {
     padding: 0 1rem 1rem 1rem;
+  }
+  .four-images-section {
+    div {
+      grid-template-columns: 1fr;
+    }
   }
   #footer-embellishment-container {
     padding: 0 1rem;

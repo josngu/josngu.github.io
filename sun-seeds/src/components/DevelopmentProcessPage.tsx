@@ -1,5 +1,6 @@
 import React from 'react';
 import BlogSection from '../components/BlogSection';
+import FourImagesSection from '../components/FourImagesSection';
 import MockupComparison from './MockupComparison';
 import boxSketch1 from '../images/box-sketch-1.webp';
 import boxSketch2 from '../images/box-sketch-2.webp';
@@ -7,6 +8,10 @@ import dieline from '../images/first-dieline.webp';
 import dielineInsert from '../images/first-dieline-insert.webp';
 import dieline2 from '../images/second-dieline.webp';
 import boxCompartments from '../images/box-compartments.webp';
+import box1 from '../images/sun-seeds-box-1.webp';
+import box2 from '../images/sun-seeds-box-2.webp';
+import box3 from '../images/sun-seeds-box-3.webp';
+import box4 from '../images/sun-seeds-box-4.webp';
 
 function DevelopmentProcessPage() {
   return (
@@ -61,6 +66,18 @@ function DevelopmentProcessPage() {
         altText2='A sunflower seed box with both of its tuck flaps opened, revealing two compartments'
       />
       <MockupComparison />
+      <FourImagesSection
+        title='2023 AmeriStar Competition: Final Design'
+        text={``}
+        imgURL={box1}
+        altText={`The front of Sun Seeds' sunflower seeds box`}
+        imgURL2={box2}
+        altText2={`Sun Seeds' sunflower seeds box with one lid opened`}
+        imgURL3={box3}
+        altText3={`The back of Sun Seeds' sunflower seeds box with the nutrition facts`}
+        imgURL4={box4}
+        altText4={`The front of Sun Seeds' sunflower seeds box at an angle that shows three sides`}
+      />
       <BlogSection
         title='Conclusion'
         text={`Our vision for a plastic-free sunflower seed packaging is difficult to achieve. Although our packaging is biodegradable, this comes at a cost in food preservation. Certain coatings could increase the preservation capabilities of our packaging, but not all coatings are biodegradable. More research is needed to determine the ideal balance between sustainability and food preservation.
