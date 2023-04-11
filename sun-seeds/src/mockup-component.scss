@@ -18,7 +18,7 @@ two-up {
   flex-direction: column;
   //Arrows
   svg {
-    color: $clr-beige;
+    color: white;
     transition-duration: $dur-short;
   }
   //Separator line
@@ -30,7 +30,7 @@ two-up {
   //Circle background, not the ideal selector.
   //Let's hope that the ending of this class doesn't change.
   .styles_scrubber__39cN6 {
-    background-color: $clr-brown;
+    background-color: $clr-blue;
     width: 2em;
     height: 2em;
     border: 2px solid white;
@@ -38,9 +38,9 @@ two-up {
     box-shadow: none;
     transition-duration: $dur-short;
     &:hover {
-      background-color: $clr-beige;
+      background-color: white;
       svg {
-        color: $clr-brown;
+        color: $clr-blue;
       }
     }
   }

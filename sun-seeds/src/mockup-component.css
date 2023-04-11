@@ -17,7 +17,7 @@ two-up {
   flex-direction: column;
 }
 two-up svg {
-  color: #ffefc8;
+  color: white;
   transition-duration: 0.2s;
 }
 two-up div:nth-child(3)::before {
@@ -26,7 +26,7 @@ two-up div:nth-child(3)::before {
   box-shadow: none;
 }
 two-up .styles_scrubber__39cN6 {
-  background-color: #6d4a2e;
+  background-color: #61ccf0;
   width: 2em;
   height: 2em;
   border: 2px solid white;
@@ -35,8 +35,8 @@ two-up .styles_scrubber__39cN6 {
   transition-duration: 0.2s;
 }
 two-up .styles_scrubber__39cN6:hover {
-  background-color: #ffefc8;
+  background-color: white;
 }
 two-up .styles_scrubber__39cN6:hover svg {
-  color: #6d4a2e;
+  color: #61ccf0;
 }/*# sourceMappingURL=mockup-component.css.map */

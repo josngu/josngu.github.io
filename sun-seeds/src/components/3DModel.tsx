@@ -31,12 +31,13 @@ const BoxModel = () => {
     scene.add(camera);
 
     // Create fog
-    scene.fog = new THREE.FogExp2(0xffefc8, 0.01);
+    scene.fog = new THREE.FogExp2(0xffffff, 0.01);
 
     // Create the renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(new THREE.Color(0xffefc8));
+    // Set background colour
+    renderer.setClearColor(new THREE.Color(0xffffff));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.VSMShadowMap;
 
