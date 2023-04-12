@@ -145,18 +145,18 @@ main {
 }
 
 .button {
-  padding: 12px 16px;
+  padding: 12px 18px;
   width: fit-content;
-  border-radius: 4px;
+  border-radius: 64px;
   text-decoration: none;
   color: black;
   background-color: $clr-blue;
   font-size: 1.2rem;
-  box-shadow: 6px 6px 0 $clr-light-blue;
+  outline: solid 12px transparent;
   transition: $dur-short;
   &:hover {
-    background-color: $clr-light-blue;
-    box-shadow: 0px 0px 0 $clr-light-blue;
+    background-color: white;
+    outline: solid 4px $clr-blue;
   }
 }
 
@@ -185,6 +185,7 @@ nav {
       opacity: 1;
     }
   }
+  // Logo padding
   a {
     padding: 0px 16px;
   }
@@ -193,7 +194,7 @@ nav {
   }
   li a {
     text-decoration: none;
-    padding: 10px 16px;
+    padding: 10px 18px;
     font-size: 1.1rem;
     font-weight: 400;
     border-radius: 64px;
