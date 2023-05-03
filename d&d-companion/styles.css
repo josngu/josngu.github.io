@@ -1,13 +1,3 @@
-@-webkit-keyframes alert-enter {
-  from {
-    opacity: 0%;
-    transform: translateY(100%);
-  }
-  to {
-    opacity: 100%;
-    transform: translateY(0%);
-  }
-}
 @keyframes alert-enter {
   from {
     opacity: 0%;
@@ -18,14 +8,6 @@
     transform: translateY(0%);
   }
 }
-@-webkit-keyframes alert-leave {
-  from {
-    opacity: 100%;
-  }
-  to {
-    opacity: 0%;
-  }
-}
 @keyframes alert-leave {
   from {
     opacity: 100%;
@@ -34,34 +16,11 @@
     opacity: 0%;
   }
 }
-@-webkit-keyframes fade-in {
-  from {
-    opacity: 0%;
-  }
-  to {
-    opacity: 100%;
-  }
-}
 @keyframes fade-in {
   from {
     opacity: 0%;
   }
   to {
-    opacity: 100%;
-  }
-}
-@-webkit-keyframes add-person {
-  0% {
-    opacity: 0%;
-    line-height: 0;
-    padding: 0px;
-  }
-  50% {
-    opacity: 0%;
-    line-height: auto;
-    padding: 8px;
-  }
-  100% {
     opacity: 100%;
   }
 }
@@ -80,16 +39,6 @@
     opacity: 100%;
   }
 }
-@-webkit-keyframes enter {
-  from {
-    opacity: 0%;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 100%;
-    transform: translateY(0px);
-  }
-}
 @keyframes enter {
   from {
     opacity: 0%;
@@ -100,37 +49,12 @@
     transform: translateY(0px);
   }
 }
-@-webkit-keyframes enter-image {
-  from {
-    height: 0px;
-  }
-  to {
-    height: 128px;
-  }
-}
 @keyframes enter-image {
   from {
     height: 0px;
   }
   to {
     height: 128px;
-  }
-}
-@-webkit-keyframes enter-column-2 {
-  0% {
-    opacity: 0%;
-    width: 0px;
-    margin: 0 0em;
-  }
-  66% {
-    opacity: 0%;
-    width: 360px;
-    margin: 0 clamp(1em, 1.5vw, 2em);
-    transform: translateY(16px);
-  }
-  100% {
-    opacity: 100%;
-    transform: translateY(0px);
   }
 }
 @keyframes enter-column-2 {
@@ -148,25 +72,6 @@
   100% {
     opacity: 100%;
     transform: translateY(0px);
-  }
-}
-@-webkit-keyframes leave-column-2 {
-  0% {
-    opacity: 100%;
-    width: 360px;
-    margin: 0 clamp(1em, 1.5vw, 2em);
-    transform: translateY(0px);
-  }
-  33% {
-    opacity: 0%;
-    width: 360px;
-    margin: 0 clamp(1em, 1.5vw, 2em);
-    transform: translateY(-16px);
-  }
-  100% {
-    opacity: 0%;
-    width: 0px;
-    margin: 0;
   }
 }
 @keyframes leave-column-2 {
@@ -188,19 +93,6 @@
     margin: 0;
   }
 }
-@-webkit-keyframes enter-nav {
-  0% {
-    opacity: 0%;
-    height: 0px;
-  }
-  50% {
-    opacity: 0%;
-    height: 40px;
-  }
-  100% {
-    opacity: 100%;
-  }
-}
 @keyframes enter-nav {
   0% {
     opacity: 0%;
@@ -212,20 +104,6 @@
   }
   100% {
     opacity: 100%;
-  }
-}
-@-webkit-keyframes leave-nav {
-  0% {
-    opacity: 100%;
-    height: 40px;
-  }
-  50% {
-    opacity: 0%;
-    height: 40px;
-  }
-  100% {
-    opacity: 0%;
-    height: 0px;
   }
 }
 @keyframes leave-nav {
@@ -243,7 +121,7 @@
   }
 }
 ::-webkit-scrollbar {
-  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.5);
+  box-shadow: inset -2px -2px 4px 0 hsla(0, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0, 0%, 0%, 0.5);
   border-radius: 4px;
   width: 8px;
   height: 8px;
@@ -254,12 +132,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.5);
-  background: hsl(180deg, 100%, 100%);
+  box-shadow: inset -2px -2px 4px 0 hsla(0, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0, 0%, 0%, 0.5);
+  background: hsl(180, 100%, 100%);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(180deg, 100%, 100%);
+  background: hsl(180, 100%, 100%);
 }
 
 input::-webkit-outer-spin-button,
@@ -274,10 +152,12 @@ input[type=number] {
 }
 
 :root {
-  background: hsl(225deg, 7%, 11%);
+  background: hsl(225, 7%, 11%);
 }
 
-*, ::before, ::after {
+*,
+::before,
+::after {
   box-sizing: border-box;
 }
 
@@ -290,7 +170,7 @@ input[type=number] {
 html {
   scroll-behavior: smooth;
   overflow-y: scroll;
-  scrollbar-color: hsl(180deg, 1%, 13%) white transparent;
+  scrollbar-color: hsl(180, 1%, 13%) white transparent;
 }
 
 body {
@@ -304,7 +184,7 @@ header {
   top: 0;
   display: flex;
   flex-direction: column;
-  background-color: hsl(0deg, 0%, 5%);
+  background-color: hsl(0, 0%, 5%);
   width: 100%;
   z-index: 1;
 }
@@ -315,13 +195,11 @@ nav {
 }
 
 .nav-enter {
-  -webkit-animation: enter-nav 0.8s forwards;
-          animation: enter-nav 0.8s forwards;
+  animation: enter-nav 0.8s forwards;
 }
 
 .nav-leave {
-  -webkit-animation: leave-nav 0.8s forwards;
-          animation: leave-nav 0.8s forwards;
+  animation: leave-nav 0.8s forwards;
 }
 
 nav ul {
@@ -330,9 +208,9 @@ nav ul {
   margin: 0;
   padding: 0;
   list-style: none;
-  font-family: "Roboto", sans-serif;
+  font-family: "Crimson Text", serif;
   font-size: 1.2em;
-  color: hsl(0deg, 0%, 100%);
+  color: hsl(0, 0%, 100%);
 }
 nav ul li {
   cursor: pointer;
@@ -340,15 +218,15 @@ nav ul li {
 }
 nav ul a {
   display: block;
-  background-color: hsl(0deg, 0%, 5%);
-  color: hsla(0deg, 0%, 100%, 0.5);
+  background-color: hsl(0, 0%, 5%);
+  color: hsla(0, 0%, 100%, 0.5);
   padding: 8px 16px 8px 16px;
   height: 40px;
   border-bottom: 2px solid transparent;
   transition-duration: 0.2s;
 }
 nav ul a:hover {
-  color: hsl(0deg, 0%, 100%);
+  color: hsl(0, 0%, 100%);
 }
 
 main {
@@ -359,9 +237,9 @@ main {
 
 h1 {
   visibility: hidden;
-  font-family: "Roboto", sans-serif;
-  color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
+  font-family: "Crimson Text", serif;
+  color: hsl(180, 100%, 100%);
+  text-shadow: 0px 0px 4px hsl(0, 0%, 5%);
   font-weight: 600;
   text-align: center;
   font-size: 0;
@@ -369,31 +247,30 @@ h1 {
 }
 
 h2 {
-  font-family: "Roboto", sans-serif;
-  color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
-  -webkit-animation: enter 0.5s forwards;
-          animation: enter 0.5s forwards;
+  font-family: "Crimson Text", serif;
+  color: hsl(180, 100%, 100%);
+  text-shadow: 0px 0px 4px hsl(0, 0%, 5%);
+  animation: enter 0.5s forwards;
   margin-bottom: 0.5em;
-  border-bottom: 1px solid hsla(0deg, 0%, 100%, 0.5);
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.5);
   font-weight: 400;
   font-size: 1.5em;
   position: relative;
 }
 
 p {
-  font-family: "Roboto", sans-serif;
-  color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
+  font-family: "Crimson Text", serif;
+  color: hsl(180, 100%, 100%);
+  text-shadow: 0px 0px 4px hsl(0, 0%, 5%);
   font-size: 1.5em;
 }
 
 button {
-  font-family: "Roboto", sans-serif;
-  color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
-  background-color: hsl(0deg, 46%, 10%);
-  border: 1px solid hsl(0deg, 46%, 40%);
+  font-family: "Crimson Text", serif;
+  color: hsl(180, 100%, 100%);
+  text-shadow: 0px 0px 4px hsl(0, 0%, 5%);
+  background-color: hsl(0, 46%, 10%);
+  border: 1px solid hsl(0, 46%, 40%);
   border-radius: 4px;
   padding: 4px 8px;
   font-size: 1.2em;
@@ -405,7 +282,7 @@ button {
   position: relative;
 }
 button:hover {
-  background-color: hsl(0deg, 46%, 40%);
+  background-color: hsl(0, 46%, 40%);
 }
 
 .tabs-container {
@@ -418,15 +295,15 @@ button:hover {
   margin: 0;
   flex-grow: 0;
   background-color: transparent;
-  color: hsla(0deg, 0%, 100%, 0.5);
+  color: hsla(0, 0%, 100%, 0.5);
   border: 0;
   border-radius: 32px;
   width: 32px;
   height: 32px;
 }
 .btn-tab:hover {
-  background-color: hsl(0deg, 0%, 5%);
-  color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 5%);
+  color: hsl(0, 0%, 100%);
 }
 
 .btn-close {
@@ -434,15 +311,14 @@ button:hover {
 }
 
 .alert {
-  font-family: "Roboto", sans-serif;
-  color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
-  -webkit-animation: alert-enter 0.25s forwards;
-          animation: alert-enter 0.25s forwards;
+  font-family: "Crimson Text", serif;
+  color: hsl(180, 100%, 100%);
+  text-shadow: 0px 0px 4px hsl(0, 0%, 5%);
+  animation: alert-enter 0.25s forwards;
   position: fixed;
   bottom: 0;
-  background-color: hsl(225deg, 7%, 11%);
-  border-top: 1px solid hsl(180deg, 1%, 13%);
+  background-color: hsl(225, 7%, 11%);
+  border-top: 1px solid hsl(180, 1%, 13%);
   font-size: 1.5em;
   letter-spacing: 0px;
   padding: 1em;
@@ -476,12 +352,12 @@ button:hover {
   gap: 1em;
 }
 .row input[type=text] {
-  font-family: "Roboto", sans-serif;
-  color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
+  font-family: "Crimson Text", serif;
+  color: hsl(180, 100%, 100%);
+  text-shadow: 0px 0px 4px hsl(0, 0%, 5%);
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid hsla(0deg, 0%, 100%, 0.5);
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.5);
   font-size: 1.2em;
   margin: 0;
   padding: 2px 4px;
@@ -489,14 +365,14 @@ button:hover {
   transition-duration: 0.2s;
 }
 .row input[type=text]:hover {
-  background-color: hsla(0deg, 0%, 100%, 0.05);
+  background-color: hsla(0, 0%, 100%, 0.05);
 }
 .row input[type=number] {
-  font-family: "Roboto", sans-serif;
-  color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
+  font-family: "Crimson Text", serif;
+  color: hsl(180, 100%, 100%);
+  text-shadow: 0px 0px 4px hsl(0, 0%, 5%);
   background-color: transparent;
-  border: 1px solid hsla(0deg, 0%, 100%, 0.5);
+  border: 1px solid hsla(0, 0%, 100%, 0.5);
   padding: 2px;
   width: 37px;
   font-size: 1.5em;
@@ -505,23 +381,21 @@ button:hover {
 }
 
 label {
-  font-family: "Roboto", sans-serif;
-  color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
+  font-family: "Crimson Text", serif;
+  color: hsl(180, 100%, 100%);
+  text-shadow: 0px 0px 4px hsl(0, 0%, 5%);
   font-size: 1.2em;
   text-align: right;
   width: 92px;
 }
 
 #instructions {
-  -webkit-animation: enter 0.5s forwards;
-          animation: enter 0.5s forwards;
+  animation: enter 0.5s forwards;
   margin: 0 clamp(1em, 1.5vw, 2em);
   min-width: 25vw;
 }
 #instructions p {
-  -webkit-animation: enter 0.5s forwards;
-          animation: enter 0.5s forwards;
+  animation: enter 0.5s forwards;
   margin: 0;
   font-size: 1.5em;
   letter-spacing: 0px;
@@ -536,8 +410,7 @@ label {
 }
 
 #editor-container {
-  -webkit-animation: enter 0.5s forwards;
-          animation: enter 0.5s forwards;
+  animation: enter 0.5s forwards;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -549,11 +422,11 @@ label {
   gap: 1em;
 }
 #profile-buttons > label {
-  font-family: "Roboto", sans-serif;
-  color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
-  background-color: hsl(0deg, 46%, 10%);
-  border: 1px solid hsl(0deg, 46%, 40%);
+  font-family: "Crimson Text", serif;
+  color: hsl(180, 100%, 100%);
+  text-shadow: 0px 0px 4px hsl(0, 0%, 5%);
+  background-color: hsl(0, 46%, 10%);
+  border: 1px solid hsl(0, 46%, 40%);
   border-radius: 4px;
   padding: 4px 8px;
   font-size: 1.2em;
@@ -565,7 +438,7 @@ label {
   margin: 1em 0;
 }
 #profile-buttons > label:hover {
-  background-color: hsl(0deg, 46%, 40%);
+  background-color: hsl(0, 46%, 40%);
 }
 #profile-buttons > label:focus-within {
   outline: 1px solid white !important;
@@ -583,36 +456,40 @@ label {
   height: 0;
 }
 
-#character-freetext, #character-freetext-2 {
+#character-freetext,
+#character-freetext-2 {
   display: none;
   margin: 0 clamp(1em, 1.5vw, 2em);
   width: 360px;
 }
 
-#traits-container, #traits-container-2 {
-  -webkit-animation: enter 0.5s forwards;
-          animation: enter 0.5s forwards;
+#traits-container,
+#traits-container-2 {
+  animation: enter 0.5s forwards;
   display: flex;
   flex-direction: column;
 }
-#traits-container > :first-child, #traits-container-2 > :first-child {
+#traits-container > :first-child,
+#traits-container-2 > :first-child {
   padding-right: 8px;
 }
-#traits-container label, #traits-container-2 label {
+#traits-container label,
+#traits-container-2 label {
   width: 100%;
   text-align: left;
 }
-#traits-container button, #traits-container-2 button {
+#traits-container button,
+#traits-container-2 button {
   margin: 0.5em 0;
 }
 
 textarea {
-  background-color: hsl(0deg, 0%, 5%);
-  color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 5%);
+  color: hsl(0, 0%, 100%);
   border-radius: 4px;
   border: none;
   flex-shrink: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Crimson Text", serif;
   font-size: 1em;
   width: 100%;
   min-height: 1.8em;
@@ -634,10 +511,10 @@ textarea {
   margin: 0 clamp(1em, 1.5vw, 2em);
 }
 
-#stats-container, #stats-container-2 {
+#stats-container,
+#stats-container-2 {
   display: flex;
-  -webkit-animation: enter 0.5s forwards;
-          animation: enter 0.5s forwards;
+  animation: enter 0.5s forwards;
   flex-direction: column;
   gap: 4px;
 }
@@ -681,11 +558,11 @@ textarea {
   margin: 4px 0;
 }
 .three-element-group input {
-  font-family: "Roboto", sans-serif;
-  color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
+  font-family: "Crimson Text", serif;
+  color: hsl(180, 100%, 100%);
+  text-shadow: 0px 0px 4px hsl(0, 0%, 5%);
   background-color: transparent;
-  border: 1px solid hsla(0deg, 0%, 100%, 0.5);
+  border: 1px solid hsla(0, 0%, 100%, 0.5);
   padding: 2px;
   width: 96px;
   font-size: 1.5em;
@@ -699,51 +576,58 @@ textarea {
   gap: 1em;
 }
 
-.hp-container, .exp-container {
+.hp-container,
+.exp-container {
   display: flex;
   flex-direction: column;
-  background-color: hsl(0deg, 0%, 5%);
+  background-color: hsl(0, 0%, 5%);
   border-radius: 4px;
   padding: 0.75em 1em;
   gap: 8px;
 }
-.hp-container input[type=text], .exp-container input[type=text] {
-  font-family: "Roboto", sans-serif;
-  color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
+.hp-container input[type=text],
+.exp-container input[type=text] {
+  font-family: "Crimson Text", serif;
+  color: hsl(180, 100%, 100%);
+  text-shadow: 0px 0px 4px hsl(0, 0%, 5%);
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid hsla(0deg, 0%, 100%, 0.5);
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.5);
   font-size: 1.2em;
   margin: 0;
   padding: 2px 4px;
 }
-.hp-container input[type=number], .exp-container input[type=number] {
-  font-family: "Roboto", sans-serif;
-  color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
+.hp-container input[type=number],
+.exp-container input[type=number] {
+  font-family: "Crimson Text", serif;
+  color: hsl(180, 100%, 100%);
+  text-shadow: 0px 0px 4px hsl(0, 0%, 5%);
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid hsla(0deg, 0%, 100%, 0.5);
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.5);
   padding: 2px;
   height: 32px;
   width: 48px;
   font-size: 1.5em;
   text-align: center;
 }
-.hp-container #characterLevel, .exp-container #characterLevel {
+.hp-container #characterLevel,
+.exp-container #characterLevel {
   width: 32px;
 }
-.hp-container div, .exp-container div {
+.hp-container div,
+.exp-container div {
   display: flex;
   justify-content: space-between;
 }
-.hp-container p, .exp-container p {
+.hp-container p,
+.exp-container p {
   margin: 0;
   font-size: 1.5em;
 }
 
-.hp-text label, .exp-text label {
+.hp-text label,
+.exp-text label {
   width: 0;
   height: 0;
   opacity: 0;
@@ -754,28 +638,31 @@ textarea {
   width: 80px;
 }
 
-.hp-bar, .exp-bar {
+.hp-bar,
+.exp-bar {
   position: relative;
   height: 24px;
 }
 
-.hp-bar-large-bg, .exp-bar-large-bg {
-  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.5);
+.hp-bar-large-bg,
+.exp-bar-large-bg {
+  box-shadow: inset -2px -2px 4px 0 hsla(0, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0, 0%, 0%, 0.5);
   position: absolute;
-  background-color: hsla(0deg, 74%, 35%, 0.2);
+  background-color: hsla(0, 74%, 35%, 0.2);
   width: 100%;
   height: 24px;
   border-radius: 4px;
 }
 
 .exp-bar-large-bg {
-  background-color: hsla(212deg, 74%, 35%, 0.2);
+  background-color: hsla(212, 74%, 35%, 0.2);
 }
 
-.hp-bar-large, .exp-bar-large {
-  box-shadow: inset -2px -2px 4px 0 hsla(0deg, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0deg, 0%, 0%, 0.5);
+.hp-bar-large,
+.exp-bar-large {
+  box-shadow: inset -2px -2px 4px 0 hsla(0, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsla(0, 0%, 0%, 0.5);
   position: absolute;
-  background-color: hsl(0deg, 74%, 35%);
+  background-color: hsl(0, 74%, 35%);
   top: 0;
   left: 0;
   width: 100%;
@@ -784,15 +671,17 @@ textarea {
 }
 
 .exp-bar-large {
-  background-color: hsl(212deg, 74%, 35%);
+  background-color: hsl(212, 74%, 35%);
 }
 
-.temporary-hp-container, .character-level-container {
+.temporary-hp-container,
+.character-level-container {
   display: flex;
   justify-content: flex-start !important;
   gap: 0.5em;
 }
-.temporary-hp-container label, .character-level-container label {
+.temporary-hp-container label,
+.character-level-container label {
   display: flex;
   align-items: center;
   width: auto;
@@ -806,8 +695,7 @@ textarea {
 }
 
 #skills-container {
-  -webkit-animation: enter 0.5s forwards;
-          animation: enter 0.5s forwards;
+  animation: enter 0.5s forwards;
   padding-right: 1em;
   border-radius: 4px;
 }
@@ -831,31 +719,30 @@ textarea {
 #skills-container input[type=number] {
   border-radius: 0;
   border: none;
-  border-bottom: 1px solid hsla(0deg, 0%, 100%, 0.5);
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.5);
 }
 
 input[type=checkbox] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-color: hsla(0deg, 0%, 100%, 0);
+  background-color: hsla(0, 0%, 100%, 0);
   height: 1.5em;
   width: 1.5em;
   margin-top: 0;
   margin-bottom: 0;
   cursor: pointer;
-  border: 1px solid hsla(0deg, 0%, 100%, 0.8);
+  border: 1px solid hsla(0, 0%, 100%, 0.8);
   border-radius: 32px;
   transition-duration: 0.2s;
 }
 
 input[type=checkbox]:checked {
-  background-color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
 }
 
 #character-list {
-  -webkit-animation: enter 0.5s forwards;
-          animation: enter 0.5s forwards;
+  animation: enter 0.5s forwards;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -864,16 +751,15 @@ input[type=checkbox]:checked {
   position: fixed;
   top: 0;
   right: 0;
-  border: 1px solid hsla(0deg, 0%, 100%, 0.5);
+  border: 1px solid hsla(0, 0%, 100%, 0.5);
   border-radius: 4px;
-  background-color: hsl(225deg, 7%, 11%);
-  box-shadow: 0 0 64px 0 hsl(0deg, 0%, 5%);
+  background-color: hsl(225, 7%, 11%);
+  box-shadow: 0 0 64px 0 hsl(0, 0%, 5%);
   z-index: 100;
 }
 
 #character-container {
-  -webkit-animation: enter 0.5s forwards;
-          animation: enter 0.5s forwards;
+  animation: enter 0.5s forwards;
   display: flex;
   flex-direction: column;
   padding: 1px 2px 1px 1px;
@@ -883,12 +769,11 @@ input[type=checkbox]:checked {
   width: 360px;
   overflow-y: scroll;
   overflow-x: hidden;
-  background-color: hsl(0deg, 0%, 5%);
+  background-color: hsl(0, 0%, 5%);
 }
 
 .person-container {
-  -webkit-animation: add-person 0.5s forwards;
-          animation: add-person 0.5s forwards;
+  animation: add-person 0.5s forwards;
   display: flex;
   flex-shrink: 0;
   gap: 8px;
@@ -900,17 +785,16 @@ input[type=checkbox]:checked {
   transition-duration: 0.2s;
 }
 .person-container:hover {
-  outline: 1px solid hsl(180deg, 100%, 100%);
+  outline: 1px solid hsl(180, 100%, 100%);
 }
 .person-container img {
-  -webkit-animation: enter-image 0.5s forwards;
-          animation: enter-image 0.5s forwards;
+  animation: enter-image 0.5s forwards;
 }
 .person-container h3 {
-  font-family: "Roboto", sans-serif;
-  color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
-  color: hsl(0deg, 0%, 100%);
+  font-family: "Crimson Text", serif;
+  color: hsl(180, 100%, 100%);
+  text-shadow: 0px 0px 4px hsl(0, 0%, 5%);
+  color: hsl(0, 0%, 100%);
   font-weight: 400;
   font-size: 1.2em;
   margin: 0;
@@ -922,7 +806,7 @@ input[type=checkbox]:checked {
 .person-container p {
   font-size: 1em;
   font-weight: 400;
-  color: hsl(170deg, 50%, 50%);
+  color: hsl(170, 50%, 50%);
   margin: 0;
 }
 .person-container p:empty:not(:focus)::before {
@@ -930,7 +814,8 @@ input[type=checkbox]:checked {
   pointer-events: none;
 }
 
-.add-person, .delete-person {
+.add-person,
+.delete-person {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -940,30 +825,30 @@ input[type=checkbox]:checked {
   cursor: pointer;
   transition-duration: 0.2s;
 }
-.add-person:hover, .delete-person:hover {
-  outline: 1px solid hsl(180deg, 100%, 100%);
+.add-person:hover,
+.delete-person:hover {
+  outline: 1px solid hsl(180, 100%, 100%);
 }
-.add-person p, .delete-person p {
+.add-person p,
+.delete-person p {
   font-size: 1.2em;
   text-align: center;
   margin: 0.5em;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 
 #add-person {
-  font-family: "Roboto", sans-serif;
-  color: hsl(180deg, 100%, 100%);
-  text-shadow: 0px 0px 4px hsl(0deg, 0%, 5%);
+  font-family: "Crimson Text", serif;
+  color: hsl(180, 100%, 100%);
+  text-shadow: 0px 0px 4px hsl(0, 0%, 5%);
   font-family: sans-serif;
   line-height: 0.5;
   font-size: 6em;
   margin: 0.2em 0em;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 #add-person + p {
@@ -982,7 +867,7 @@ footer {
   bottom: 0;
   width: 100%;
   text-align: center;
-  background-color: hsl(0deg, 0%, 5%);
+  background-color: hsl(0, 0%, 5%);
 }
 
 #toggle-footer {
@@ -994,17 +879,17 @@ footer {
 }
 
 .person-container-selected {
-  outline: 1px solid hsla(0deg, 0%, 100%, 0.5);
+  outline: 1px solid hsla(0, 0%, 100%, 0.5);
 }
 
 .tab-selected {
-  border-bottom: 2px solid hsl(0deg, 46%, 40%);
-  color: hsl(0deg, 0%, 100%);
+  border-bottom: 2px solid hsl(0, 46%, 40%);
+  color: hsl(0, 0%, 100%);
 }
 
 .tab-number-selected {
-  background-color: hsl(0deg, 0%, 5%);
-  color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0, 0%, 5%);
+  color: hsl(0, 0%, 100%);
 }
 
 @media screen and (max-width: 1100px) {

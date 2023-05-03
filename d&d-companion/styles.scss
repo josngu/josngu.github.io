@@ -1,6 +1,6 @@
 $clr-light: hsl(0, 0%, 100%);
 $clr-dark: hsl(0, 0%, 5%);
-$font-family: "Roboto", sans-serif;
+$font-family: 'Crimson Text', serif;
 $font-size-smallest: 1em;
 $font-size-small: 1.2em;
 $font-size-body: 1.5em;
@@ -21,818 +21,830 @@ $duration-long: 0.8s;
 $duration-longer: 1s;
 
 @keyframes alert-enter {
-    from {
-        opacity: 0%;
-        transform: translateY(100%);
-    }
-    to {
-        opacity: 100%;
-        transform: translateY(0%);
-    }
+  from {
+    opacity: 0%;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0%);
+  }
 }
 @keyframes alert-leave {
-    from {
-        opacity: 100%;
-    }
-    to {
-        opacity: 0%;
-    }
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
 }
 @keyframes fade-in {
-    from {
-        opacity: 0%;
-    }
-    to {
-        opacity: 100%;
-    }
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
 }
 @keyframes add-person {
-    0% {
-        opacity: 0%;
-        line-height: 0;
-        padding: 0px;
-    }
-    50% {
-        opacity: 0%;
-        line-height: auto;
-        padding: 8px;
-    }
-    100% {
-        opacity: 100%;
-    }
+  0% {
+    opacity: 0%;
+    line-height: 0;
+    padding: 0px;
+  }
+  50% {
+    opacity: 0%;
+    line-height: auto;
+    padding: 8px;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
 @keyframes enter {
-    from {
-        opacity: 0%;
-        transform: translateY(16px);
-    }
-    to {
-        opacity: 100%;
-        transform: translateY(0px);
-    }
+  from {
+    opacity: 0%;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0px);
+  }
 }
 @keyframes enter-image {
-    from {
-        height: 0px;
-    }
-    to {
-        height: 128px;
-    }
+  from {
+    height: 0px;
+  }
+  to {
+    height: 128px;
+  }
 }
 @keyframes enter-column-2 {
-    0% {
-        opacity: 0%;
-        width: 0px;
-        margin: 0 0em;
-    }
-    66% {
-        opacity: 0%;
-        width: 360px;
-        margin: $margin-section;
-        transform: translateY(16px);
-    }
-    100% {
-        opacity: 100%;
-        transform: translateY(0px);
-    }
+  0% {
+    opacity: 0%;
+    width: 0px;
+    margin: 0 0em;
+  }
+  66% {
+    opacity: 0%;
+    width: 360px;
+    margin: $margin-section;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateY(0px);
+  }
 }
 @keyframes leave-column-2 {
-    0% {
-        opacity: 100%;
-        width: 360px;
-        margin: $margin-section;
-        transform: translateY(0px);
-    }
-    33% {
-        opacity: 0%;
-        width: 360px;
-        margin: $margin-section;
-        transform: translateY(-16px);
-    }
-    100% {
-        opacity: 0%;
-        width: 0px;
-        margin: 0;
-    }
+  0% {
+    opacity: 100%;
+    width: 360px;
+    margin: $margin-section;
+    transform: translateY(0px);
+  }
+  33% {
+    opacity: 0%;
+    width: 360px;
+    margin: $margin-section;
+    transform: translateY(-16px);
+  }
+  100% {
+    opacity: 0%;
+    width: 0px;
+    margin: 0;
+  }
 }
 @keyframes enter-nav {
-    0% {
-        opacity: 0%;
-        height: 0px;
-    }
-    50% {
-        opacity: 0%;
-        height: $nav-height;
-    }
-    100% {
-        opacity: 100%;
-    }
+  0% {
+    opacity: 0%;
+    height: 0px;
+  }
+  50% {
+    opacity: 0%;
+    height: $nav-height;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
 @keyframes leave-nav {
-    0% {
-        opacity: 100%;
-        height: $nav-height;
-    }
-    50% {
-        opacity: 0%;
-        height: $nav-height;
-    }
-    100% {
-        opacity: 0%;
-        height: 0px;
-    }
+  0% {
+    opacity: 100%;
+    height: $nav-height;
+  }
+  50% {
+    opacity: 0%;
+    height: $nav-height;
+  }
+  100% {
+    opacity: 0%;
+    height: 0px;
+  }
 }
 @mixin shadow {
-    box-shadow: -2px -2px 8px 0 hsl(0, 0%, 100%, 0.05), 2px 2px 8px 0 hsl(0, 0%, 0%, 0.5);
+  box-shadow: -2px -2px 8px 0 hsl(0, 0%, 100%, 0.05),
+    2px 2px 8px 0 hsl(0, 0%, 0%, 0.5);
 }
 @mixin shadow-inset {
-    box-shadow: inset -2px -2px 4px 0 hsl(0, 0%, 100%, 0.05), inset 2px 2px 4px 0 hsl(0, 0%, 0%, 0.5);
+  box-shadow: inset -2px -2px 4px 0 hsl(0, 0%, 100%, 0.05),
+    inset 2px 2px 4px 0 hsl(0, 0%, 0%, 0.5);
 }
 @mixin typeface {
-    font-family: $font-family;
-    color: $clr-primary;
-    text-shadow: 0px 0px 4px $clr-dark;
+  font-family: $font-family;
+  color: $clr-primary;
+  text-shadow: 0px 0px 4px $clr-dark;
 }
 @mixin button {
-    @include typeface;
-    background-color: $clr-accent-faded;
-    border: 1px solid $clr-accent;
-    border-radius: $border-radius;
-    padding: 4px 8px;
-    font-size: $font-size-small;
-    text-align: center;
-    flex-grow: 1;
-    cursor: pointer;
-    transition-duration: $duration-short;
-    &:hover {
-        background-color: $clr-accent;
-    }
+  @include typeface;
+  background-color: $clr-accent-faded;
+  border: 1px solid $clr-accent;
+  border-radius: $border-radius;
+  padding: 4px 8px;
+  font-size: $font-size-small;
+  text-align: center;
+  flex-grow: 1;
+  cursor: pointer;
+  transition-duration: $duration-short;
+  &:hover {
+    background-color: $clr-accent;
+  }
 }
 ::-webkit-scrollbar {
-    @include shadow-inset;
-    border-radius: $border-radius;
-    width: 8px;
-    height: 8px;
+  @include shadow-inset;
+  border-radius: $border-radius;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-    background: transparent;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    @include shadow-inset;
+  @include shadow-inset;
+  background: $clr-primary;
+  border-radius: $border-radius;
+  &:hover {
     background: $clr-primary;
-    border-radius: $border-radius;
-    &:hover {
-        background: $clr-primary;
-    }
+  }
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    appearance: none;
-    margin: 0;
+  appearance: none;
+  margin: 0;
 }
 //Removes the arrow buttons on number textfields on Firefox
-input[type=number] {
-    -moz-appearance: textfield;
+input[type='number'] {
+  -moz-appearance: textfield;
 }
 :root {
-    background: $clr-bg;
+  background: $clr-bg;
 }
-*, ::before, ::after {
-    box-sizing: border-box;
+*,
+::before,
+::after {
+  box-sizing: border-box;
 }
 *:focus-visible {
-    outline: 1px solid white !important;
-    outline-offset: -2px;
-    border-radius: $border-radius;
+  outline: 1px solid white !important;
+  outline-offset: -2px;
+  border-radius: $border-radius;
 }
 html {
-    scroll-behavior: smooth;
-    overflow-y: scroll;
-    scrollbar-color: $clr-primary-shadow white transparent;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  scrollbar-color: $clr-primary-shadow white transparent;
 }
 body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
 }
 header {
-    position: fixed;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    background-color: $clr-dark;
-    width: 100%;
-    z-index: 1;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: $clr-dark;
+  width: 100%;
+  z-index: 1;
 }
 nav {
-    display: none;
-    height: $nav-height;
+  display: none;
+  height: $nav-height;
 }
 .nav-enter {
-    animation: enter-nav $duration-long forwards;
+  animation: enter-nav $duration-long forwards;
 }
 .nav-leave {
-    animation: leave-nav $duration-long forwards;
+  animation: leave-nav $duration-long forwards;
 }
 nav ul {
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    font-family: $font-family;
-    font-size: $font-size-small;
-    color: $clr-light;
-    li {
-        cursor: pointer;
-        height: $nav-height;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: $font-family;
+  font-size: $font-size-small;
+  color: $clr-light;
+  li {
+    cursor: pointer;
+    height: $nav-height;
+  }
+  a {
+    display: block;
+    background-color: $clr-dark;
+    color: $clr-primary-translucent;
+    padding: 8px 16px 8px 16px;
+    height: $nav-height;
+    border-bottom: 2px solid transparent;
+    transition-duration: $duration-short;
+    &:hover {
+      color: $clr-light;
     }
-    a {
-        display: block;
-        background-color: $clr-dark;
-        color: $clr-primary-translucent;
-        padding: 8px 16px 8px 16px;
-        height: $nav-height;
-        border-bottom: 2px solid transparent;
-        transition-duration: $duration-short;
-        &:hover {
-            color: $clr-light;
-        }
-    }
+  }
 }
 main {
-    display: flex;
-    justify-content: center;
-    padding: 5em 0;
+  display: flex;
+  justify-content: center;
+  padding: 5em 0;
 }
 h1 {
-    visibility: hidden;
-    @include typeface;
-    font-weight: 600;
-    text-align: center;
-    font-size: 0;
-    margin: 0;
+  visibility: hidden;
+  @include typeface;
+  font-weight: 600;
+  text-align: center;
+  font-size: 0;
+  margin: 0;
 }
 h2 {
-    @include typeface;
-    animation: enter $duration-medium forwards;
-    margin-bottom: 0.5em;
-    border-bottom: 1px solid $clr-primary-translucent;
-    font-weight: 400;
-    font-size: $font-size-body;
-    position: relative;
+  @include typeface;
+  animation: enter $duration-medium forwards;
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid $clr-primary-translucent;
+  font-weight: 400;
+  font-size: $font-size-body;
+  position: relative;
 }
 p {
-    @include typeface;
-    font-size: $font-size-body;
+  @include typeface;
+  font-size: $font-size-body;
 }
 button {
-    @include button;
-    margin: 1em 0;
-    position: relative;
+  @include button;
+  margin: 1em 0;
+  position: relative;
 }
 .tabs-container {
-    display: flex;
-    justify-content: center;
-    gap: 2px;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
 }
 .btn-tab {
-    margin: 0;
-    flex-grow: 0;
-    background-color: transparent;
-    color: $clr-primary-translucent;
-    border: 0;
-    border-radius: 32px;
-    width: 32px;
-    height: 32px;
-    &:hover {
-        background-color: $clr-dark;
-        color: $clr-light;
-    }
+  margin: 0;
+  flex-grow: 0;
+  background-color: transparent;
+  color: $clr-primary-translucent;
+  border: 0;
+  border-radius: 32px;
+  width: 32px;
+  height: 32px;
+  &:hover {
+    background-color: $clr-dark;
+    color: $clr-light;
+  }
 }
 .btn-close {
-    max-height: 32px;
+  max-height: 32px;
 }
 .alert {
-    @include typeface;
-    animation: alert-enter 0.25s forwards;
-    position: fixed;
-    bottom: 0;
-    background-color: $clr-bg;
-    border-top: 1px solid $clr-primary-shadow;
-    font-size: $font-size-body;
-    letter-spacing: 0px;
-    padding: 1em;
-    text-align: center;
-    width: 100%;
-    z-index: 100;
+  @include typeface;
+  animation: alert-enter 0.25s forwards;
+  position: fixed;
+  bottom: 0;
+  background-color: $clr-bg;
+  border-top: 1px solid $clr-primary-shadow;
+  font-size: $font-size-body;
+  letter-spacing: 0px;
+  padding: 1em;
+  text-align: center;
+  width: 100%;
+  z-index: 100;
 }
 .button-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 1em;
-    p {
-        font-size: $font-size-small;
-    }
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  p {
+    font-size: $font-size-small;
+  }
 }
 .move-buttons {
-    display: flex;
-    flex-direction: row;
-    button {
-        width: 50%;
-        margin: 0;
-        font-size: $font-size-smallest;
-    }
+  display: flex;
+  flex-direction: row;
+  button {
+    width: 50%;
+    margin: 0;
+    font-size: $font-size-smallest;
+  }
 }
 .row {
-    display: flex;
-    align-items: center;
-    gap: 1em;
-    input[type=text] {
-        @include typeface;
-        background-color: transparent;
-        border: none;
-        border-bottom: 1px solid $clr-primary-translucent;
-        font-size: $font-size-small;
-        margin: 0;
-        padding: 2px 4px;
-        flex-grow: 2;
-        transition-duration: $duration-short;
-        &:hover {
-            background-color: hsl(0, 0%, 100%, 0.05);
-        }
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  input[type='text'] {
+    @include typeface;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid $clr-primary-translucent;
+    font-size: $font-size-small;
+    margin: 0;
+    padding: 2px 4px;
+    flex-grow: 2;
+    transition-duration: $duration-short;
+    &:hover {
+      background-color: hsl(0, 0%, 100%, 0.05);
     }
-    input[type=number] {
-        @include typeface;
-        background-color: transparent;
-        border: 1px solid $clr-primary-translucent;
-        padding: 2px;
-        width: 37px;
-        font-size: $font-size-body;
-        text-align: center;
-        border-radius: 32px;
-    }
+  }
+  input[type='number'] {
+    @include typeface;
+    background-color: transparent;
+    border: 1px solid $clr-primary-translucent;
+    padding: 2px;
+    width: 37px;
+    font-size: $font-size-body;
+    text-align: center;
+    border-radius: 32px;
+  }
 }
 label {
-    @include typeface;
-    font-size: $font-size-small;
-    text-align: right;
-    width: 92px;
+  @include typeface;
+  font-size: $font-size-small;
+  text-align: right;
+  width: 92px;
 }
 //COLUMN 1
 #instructions {
+  animation: enter $duration-medium forwards;
+  margin: $margin-section;
+  min-width: 25vw;
+  p {
     animation: enter $duration-medium forwards;
-    margin: $margin-section;
-    min-width: 25vw;
-    p {
-        animation: enter $duration-medium forwards;
-        margin: 0;
-        font-size: $font-size-body;
-        letter-spacing: 0px;
-        line-height: 1.2;
-        position: relative;
-    }
+    margin: 0;
+    font-size: $font-size-body;
+    letter-spacing: 0px;
+    line-height: 1.2;
+    position: relative;
+  }
 }
 #character-editor {
-    display: none;
-    margin: $margin-section;
-    width: 360px;
+  display: none;
+  margin: $margin-section;
+  width: 360px;
 }
 #editor-container {
-    animation: enter $duration-medium forwards;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  animation: enter $duration-medium forwards;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 #profile-buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 1em;
-    > label {
-        @include button;
-        width: 50%;
-        margin: 1em 0;
-    }
-    > label:focus-within {
-        outline: 1px solid white !important;
-        outline-offset: -2px;
-        border-radius: $border-radius;
-    }
-    > button {
-        width: 50%;
-    }
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  > label {
+    @include button;
+    width: 50%;
+    margin: 1em 0;
+  }
+  > label:focus-within {
+    outline: 1px solid white !important;
+    outline-offset: -2px;
+    border-radius: $border-radius;
+  }
+  > button {
+    width: 50%;
+  }
 }
 #upload-picture {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 //COLUMN 2
-#character-freetext, #character-freetext-2 {
-    display: none;
-    margin: $margin-section;
-    width: 360px;
+#character-freetext,
+#character-freetext-2 {
+  display: none;
+  margin: $margin-section;
+  width: 360px;
 }
-#traits-container, #traits-container-2 {
-    animation: enter $duration-medium forwards;
-    display: flex;
-    flex-direction: column;
-    > :first-child {
-        padding-right: 8px;
-    }
-    label {
-        width: 100%;
-        text-align: left;
-    }
-    button {
-        margin: 0.5em 0;
-    }
+#traits-container,
+#traits-container-2 {
+  animation: enter $duration-medium forwards;
+  display: flex;
+  flex-direction: column;
+  > :first-child {
+    padding-right: 8px;
+  }
+  label {
+    width: 100%;
+    text-align: left;
+  }
+  button {
+    margin: 0.5em 0;
+  }
 }
 textarea {
-    background-color: $clr-dark;
-    color: $clr-light;
-    border-radius: 4px;
-    border: none;
-    flex-shrink: 0;
-    font-family: $font-family;
-    font-size: $font-size-smallest;
-    width: 100%;
-    min-height: 1.8em;
-    height: 6em;
-    resize: vertical;
-    padding: 4px;
-    margin: 4px 0 8px 0;
+  background-color: $clr-dark;
+  color: $clr-light;
+  border-radius: 4px;
+  border: none;
+  flex-shrink: 0;
+  font-family: $font-family;
+  font-size: $font-size-smallest;
+  width: 100%;
+  min-height: 1.8em;
+  height: 6em;
+  resize: vertical;
+  padding: 4px;
+  margin: 4px 0 8px 0;
 }
 //COLUMN 1 (ABILITY SCORES)
 #ability-scores {
-    display: none;
-    width: 360px;
-    margin: $margin-section;
+  display: none;
+  width: 360px;
+  margin: $margin-section;
 }
 
 //COLUMN 2 (CHARACTER STATS TAB)
 #character-stats {
-    display: none;
-    width: 360px;
-    margin: $margin-section;
+  display: none;
+  width: 360px;
+  margin: $margin-section;
 }
-#stats-container, #stats-container-2 {
-    display: flex;
-    animation: enter $duration-medium forwards;
-    flex-direction: column;
-    gap: 4px;
+#stats-container,
+#stats-container-2 {
+  display: flex;
+  animation: enter $duration-medium forwards;
+  flex-direction: column;
+  gap: 4px;
 }
 .stat-modifier {
-    font-size: $font-size-body;
-    border-radius: 4px;
-    margin: 0;
-    text-align: center;
+  font-size: $font-size-body;
+  border-radius: 4px;
+  margin: 0;
+  text-align: center;
 }
 .btn-minus-plus {
-    margin: 0;
-    width: 33px;
+  margin: 0;
+  width: 33px;
 }
 .btn-stats-container {
-    display: flex;
-    gap: 4px;
-    + p {
-        font-size: $font-size-small;
-        margin: 0;
-    }
+  display: flex;
+  gap: 4px;
+  + p {
+    font-size: $font-size-small;
+    margin: 0;
+  }
 }
 .three-element-group {
+  display: flex;
+  justify-content: center;
+  margin: 1em 0;
+  div {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    margin: 1em 0;
-    div {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 33%;
-    }
-    label {
-        width: auto;
-        text-align: center;
-        margin: 4px 0;
-    }
-    input {
-        @include typeface;
-        background-color: transparent;
-        border: 1px solid $clr-primary-translucent;
-        padding: 2px;
-        width: 96px;
-        font-size: $font-size-body;
-        text-align: center;
-        border-radius: 32px;
-    }
+    align-items: center;
+    width: 33%;
+  }
+  label {
+    width: auto;
+    text-align: center;
+    margin: 4px 0;
+  }
+  input {
+    @include typeface;
+    background-color: transparent;
+    border: 1px solid $clr-primary-translucent;
+    padding: 2px;
+    width: 96px;
+    font-size: $font-size-body;
+    text-align: center;
+    border-radius: 32px;
+  }
 }
 .bars {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
-.hp-container, .exp-container {
+.hp-container,
+.exp-container {
+  display: flex;
+  flex-direction: column;
+  background-color: $clr-dark;
+  border-radius: $border-radius;
+  padding: 0.75em 1em;
+  gap: 8px;
+  input[type='text'] {
+    @include typeface;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid $clr-primary-translucent;
+    font-size: $font-size-small;
+    margin: 0;
+    padding: 2px 4px;
+  }
+  input[type='number'] {
+    @include typeface;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid $clr-primary-translucent;
+    padding: 2px;
+    height: 32px;
+    width: 48px;
+    font-size: $font-size-body;
+    text-align: center;
+  }
+  #characterLevel {
+    width: 32px;
+  }
+  div {
     display: flex;
-    flex-direction: column;
-    background-color: $clr-dark;
-    border-radius: $border-radius;
-    padding: 0.75em 1em;
-    gap: 8px;
-    input[type=text] {
-        @include typeface;
-        background-color: transparent;
-        border: none;
-        border-bottom: 1px solid $clr-primary-translucent;
-        font-size: $font-size-small;
-        margin: 0;
-        padding: 2px 4px;
-    }
-    input[type=number] {
-        @include typeface;
-        background-color: transparent;
-        border: none;
-        border-bottom: 1px solid $clr-primary-translucent;
-        padding: 2px;
-        height: 32px;
-        width: 48px;
-        font-size: $font-size-body;
-        text-align: center;
-    }
-    #characterLevel {
-        width: 32px;
-    }
-    div {
-        display: flex;
-        justify-content: space-between;
-    }
-    p {
-        margin: 0;
-        font-size: $font-size-body;
-    }
+    justify-content: space-between;
+  }
+  p {
+    margin: 0;
+    font-size: $font-size-body;
+  }
 }
-.hp-text, .exp-text {
-    label {
-        width: 0;
-        height: 0;
-        opacity: 0;
-        pointer-events: none;
-    }
+.hp-text,
+.exp-text {
+  label {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 .exp-text {
-    input[type=number] {
-        width: 80px;
-    }
+  input[type='number'] {
+    width: 80px;
+  }
 }
-.hp-bar, .exp-bar {
-    position: relative;
-    height: 24px;
+.hp-bar,
+.exp-bar {
+  position: relative;
+  height: 24px;
 }
-.hp-bar-large-bg, .exp-bar-large-bg {
-    @include shadow-inset;
-    position: absolute;
-    background-color: hsla(0, 74%, 35%, 0.2);
-    width: 100%;
-    height: 24px;
-    border-radius: $border-radius;
+.hp-bar-large-bg,
+.exp-bar-large-bg {
+  @include shadow-inset;
+  position: absolute;
+  background-color: hsla(0, 74%, 35%, 0.2);
+  width: 100%;
+  height: 24px;
+  border-radius: $border-radius;
 }
 .exp-bar-large-bg {
-    background-color: hsl(212, 74%, 35%, 0.2);
+  background-color: hsl(212, 74%, 35%, 0.2);
 }
-.hp-bar-large, .exp-bar-large {
-    @include shadow-inset;
-    position: absolute;
-    background-color: hsl(0, 74%, 35%);
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 24px;
-    border-radius: $border-radius;
+.hp-bar-large,
+.exp-bar-large {
+  @include shadow-inset;
+  position: absolute;
+  background-color: hsl(0, 74%, 35%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 24px;
+  border-radius: $border-radius;
 }
 .exp-bar-large {
-    background-color: hsl(212, 74%, 35%);
+  background-color: hsl(212, 74%, 35%);
 }
-.temporary-hp-container, .character-level-container {
+.temporary-hp-container,
+.character-level-container {
+  display: flex;
+  justify-content: flex-start !important;
+  gap: 0.5em;
+  label {
     display: flex;
-    justify-content: flex-start !important;
-    gap: 0.5em;
-    label {
-        display: flex;
-        align-items: center;
-        width: auto;
-        font-size: $font-size-body;
-    }
+    align-items: center;
+    width: auto;
+    font-size: $font-size-body;
+  }
 }
 
 //COLUMN 3 (CHARACTER SKILLS SECTION)
 #character-skills {
-    display: none;
-    width: 360px;
-    margin: $margin-section;
+  display: none;
+  width: 360px;
+  margin: $margin-section;
 }
 #skills-container {
-    animation: enter $duration-medium forwards;
-    padding-right: 1em;
-    border-radius: $border-radius;
-    .row {
-        justify-content: space-between;
-        div {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        //Hides the first label from view
-        div > :first-child {
-            font-size: 0;
-        }
-        div > :last-child {
-            margin-left: 4px;
-        }
+  animation: enter $duration-medium forwards;
+  padding-right: 1em;
+  border-radius: $border-radius;
+  .row {
+    justify-content: space-between;
+    div {
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
-    label {
-        width: auto;
+    //Hides the first label from view
+    div > :first-child {
+      font-size: 0;
     }
-    input[type=number] {
-        border-radius: 0;
-        border: none;
-        border-bottom: 1px solid $clr-primary-translucent;
+    div > :last-child {
+      margin-left: 4px;
     }
+  }
+  label {
+    width: auto;
+  }
+  input[type='number'] {
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid $clr-primary-translucent;
+  }
 }
-input[type=checkbox] {
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
-    background-color: hsla(0, 0%, 100%, 0);
-    height: 1.5em;
-    width: 1.5em;
-    margin-top: 0;
-    margin-bottom: 0;
-    cursor: pointer;
-    border: 1px solid hsla(0, 0%, 100%, 0.8);
-    border-radius: 32px;
-    transition-duration: 0.2s;
+input[type='checkbox'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: hsla(0, 0%, 100%, 0);
+  height: 1.5em;
+  width: 1.5em;
+  margin-top: 0;
+  margin-bottom: 0;
+  cursor: pointer;
+  border: 1px solid hsla(0, 0%, 100%, 0.8);
+  border-radius: 32px;
+  transition-duration: 0.2s;
 }
-input[type=checkbox]:checked {
-    background-color: hsl(0, 0%, 100%);
+input[type='checkbox']:checked {
+  background-color: hsl(0, 0%, 100%);
 }
 
 //RIGHT PANEL
 #character-list {
-    animation: enter $duration-medium forwards;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 1em;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    right: 0;
-    border: 1px solid $clr-primary-translucent;
-    border-radius: $border-radius;
-    background-color: $clr-bg;
-    box-shadow: 0 0 64px 0 $clr-dark;
-    z-index: 100;
+  animation: enter $duration-medium forwards;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1em;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  border: 1px solid $clr-primary-translucent;
+  border-radius: $border-radius;
+  background-color: $clr-bg;
+  box-shadow: 0 0 64px 0 $clr-dark;
+  z-index: 100;
 }
 #character-container {
-    animation: enter $duration-medium forwards;
-    display: flex;
-    flex-direction: column;
-    padding: 1px 2px 1px 1px;
-    gap: 1px;
-    border-radius: $border-radius;
-    height: 582px;
-    width: 360px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    background-color: $clr-dark;
+  animation: enter $duration-medium forwards;
+  display: flex;
+  flex-direction: column;
+  padding: 1px 2px 1px 1px;
+  gap: 1px;
+  border-radius: $border-radius;
+  height: 582px;
+  width: 360px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: $clr-dark;
 }
 .person-container {
-    animation: add-person $duration-medium forwards;
-    display: flex;
-    flex-shrink: 0;
-    gap: 8px;
-    outline: 1px solid transparent;
-    border-radius: $border-radius;
-    padding: 8px;
-    cursor: pointer;
-    overflow: hidden;
-    transition-duration: $duration-short;
-    &:hover {
-        outline: 1px solid $clr-primary;
+  animation: add-person $duration-medium forwards;
+  display: flex;
+  flex-shrink: 0;
+  gap: 8px;
+  outline: 1px solid transparent;
+  border-radius: $border-radius;
+  padding: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  transition-duration: $duration-short;
+  &:hover {
+    outline: 1px solid $clr-primary;
+  }
+  img {
+    animation: enter-image $duration-medium forwards;
+  }
+  h3 {
+    @include typeface;
+    color: hsl(0, 0%, 100%);
+    font-weight: 400;
+    font-size: $font-size-small;
+    margin: 0;
+    &:empty:not(:focus)::before {
+      content: attr(data-placeholder);
+      pointer-events: none;
     }
-    img {
-        animation: enter-image $duration-medium forwards;
+  }
+  p {
+    font-size: $font-size-smallest;
+    font-weight: 400;
+    color: hsl(170, 50%, 50%);
+    margin: 0;
+    &:empty:not(:focus)::before {
+      content: attr(data-placeholder);
+      pointer-events: none;
     }
-    h3 {
-        @include typeface;
-        color:hsl(0, 0%, 100%);
-        font-weight: 400;
-        font-size: $font-size-small;
-        margin: 0;
-        &:empty:not(:focus)::before {
-            content: attr(data-placeholder);
-            pointer-events: none;
-        }
-    }
-    p {
-        font-size: $font-size-smallest;
-        font-weight: 400;
-        color: hsl(170, 50%, 50%);
-        margin: 0;
-        &:empty:not(:focus)::before {
-            content: attr(data-placeholder);
-            pointer-events: none;
-        }
-    }
+  }
 }
-.add-person, .delete-person {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
-    outline: 1px solid transparent;
-    border-radius: $border-radius;
-    cursor: pointer;
-    transition-duration: $duration-short;
-    &:hover {
-        outline: 1px solid $clr-primary;
-    }
-    p {
-        font-size: $font-size-small;
-        text-align: center;
-        margin: 0.5em;
-        user-select: none;
-    }
+.add-person,
+.delete-person {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  outline: 1px solid transparent;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition-duration: $duration-short;
+  &:hover {
+    outline: 1px solid $clr-primary;
+  }
+  p {
+    font-size: $font-size-small;
+    text-align: center;
+    margin: 0.5em;
+    user-select: none;
+  }
 }
 #add-person {
-    @include typeface;
-    font-family: sans-serif;
-    line-height: 0.5;
-    font-size: 6em;
-    margin: 0.2em 0em;
-    user-select: none;
-    + p {
-        position: relative;
-    }
+  @include typeface;
+  font-family: sans-serif;
+  line-height: 0.5;
+  font-size: 6em;
+  margin: 0.2em 0em;
+  user-select: none;
+  + p {
+    position: relative;
+  }
 }
 .person-image {
-    width: 128px;
-    height: 128px;
-    object-fit: cover;
+  width: 128px;
+  height: 128px;
+  object-fit: cover;
 }
 footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    background-color: $clr-dark;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: $clr-dark;
 }
 #toggle-footer {
-    margin: 0;
-    padding: 0.25em 0;
-    font-size: $font-size-small;
-    width: 100%;
-    border-radius: 0;
+  margin: 0;
+  padding: 0.25em 0;
+  font-size: $font-size-small;
+  width: 100%;
+  border-radius: 0;
 }
 //Classes that are not bound to HTML elements
 .person-container-selected {
-    outline: 1px solid $clr-primary-translucent
+  outline: 1px solid $clr-primary-translucent;
 }
 .tab-selected {
-    border-bottom: 2px solid $clr-accent;
-    color: $clr-light;
+  border-bottom: 2px solid $clr-accent;
+  color: $clr-light;
 }
 .tab-number-selected {
-    background-color: $clr-dark;
-    color: $clr-light;
+  background-color: $clr-dark;
+  color: $clr-light;
 }
 //Media queries
 @media screen and (min-height: 1000px) {
-    
 }
 @media screen and (max-width: 1100px) {
-    html {
-        overflow-y: auto;
-    }
-    main {
-        flex-direction: column;
-    }
-    #character-container {
-        display: flex;
-        padding: 1px;
-        gap: 1px;
-        max-height: 552px;
-        overflow-y: auto;
-        overflow-x: scroll;
-    }
+  html {
+    overflow-y: auto;
+  }
+  main {
+    flex-direction: column;
+  }
+  #character-container {
+    display: flex;
+    padding: 1px;
+    gap: 1px;
+    max-height: 552px;
+    overflow-y: auto;
+    overflow-x: scroll;
+  }
 }
 @media screen and (max-width: 500px) {
-
 }
 //Used to prevent a flash of unstyled content on page load
 html {
-    visibility: visible;
-    opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
