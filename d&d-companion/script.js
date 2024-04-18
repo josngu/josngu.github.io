@@ -1,3 +1,4 @@
+"use strict";
 //The following variable only ensures that there will be no identical element IDs
 var people = 0;
 var numberOfPeople = 0;
