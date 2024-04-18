@@ -1,3 +1,4 @@
+"use strict";
 var stopwatch = {
     minute: '00',
     sec: '00',
