@@ -3,7 +3,7 @@ var day = 1;
 var hour = 7;
 var minute = 0;
 var clockCycle = "AM";
-var clockLength = 200;
+var clockLength = 150;
 var username = "";
 var warningCount = 0;
 var startDay = false;
@@ -678,7 +678,7 @@ function dayStart() {
         case 2:
             $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting reports of employees accidentally uploading the wrong files to our DAM system.<br><br>Check the transcript and make sure that the file name extension matches the user's response.</p>`);
             violationList.push("file name extension");
-            clockLength = 250;
+            clockLength = 175;
             break;
         case 3:
             $("#notifications-container div").prepend(`<p class="notif-regular">We have identified some discrepancies in the metadata within some of our files. Inaccurate or empty entries make it difficult to find and identify files. Make sure that all metadata fields are filled out.<br><br>Be sure to look over the dates. The published date should not exceed today's date, and the expiry date should not be in the past.<br><br>You have been authorized to access the metadata of all files. Your rulebook has been updated with a new page.</p>`);
@@ -692,19 +692,20 @@ function dayStart() {
             violationList.push("missing metadata entry");
             violationList.push("invalid published date");
             violationList.push("invalid expiry date");
-            clockLength = 300;
+            clockLength = 200;
             break;
         case 4:
             $("#notifications-container div").prepend(`<p class="notif-regular">We have been getting some complaints from employees who are saying that the assets are not easily searchable due to an insufficient number of keywords. From now on, all assets must have at least 5 keywords.<br><br>Your rulebook has been updated.</p>`);
             $("#rules-metadata").append(`<p>4. All files must have a minimum of five keywords.</p>`);
             violationList.push("insufficient keywording");
             keywordMinimum = 5;
+            clockLength = 225;
             break;
         case 5:
             $("#notifications-container div").prepend(`<p class="notif-regular">We have been involved in several lawsuits regarding the inappropriate use of some copyrighted assets. From now on, we can only use assets that we either own, that are licensed for commercial use, or that are in the public domain.<br><br>Your rulebook has been updated.</p>`);
             $("#rules-metadata").append(`<p>5. Assets can only be used if either:<br>&emsp;a. They are owned by the government.<br>&emsp;b. They are licensed for commercial use.<br>&emsp;c. They are in the public domain.</p>`);
             violationList.push("copyright infringement");
-            clockLength = 350;
+            clockLength = 250;
             break;
         default:
             $("#notifications-container div").prepend(`<p class="notif-regular">You've reached the end of the game. From now on, there will be no more additional rules. Thanks for playing!</p>`);
