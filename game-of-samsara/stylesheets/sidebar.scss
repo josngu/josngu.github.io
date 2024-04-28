@@ -1,0 +1,147 @@
+@use "./index" as *;
+
+@keyframes spell-leave {
+    0% {
+        opacity: 100%;
+        padding: 6px 8px;
+        line-height: 1.333;
+        transform: translateX(0px);
+    }
+
+    50% {
+        opacity: 100%;
+        padding: 6px 8px;
+        line-height: 1.333;
+        transform: translateX(100%);
+    }
+
+    100% {
+        opacity: 0;
+        padding: 0 8px;
+        line-height: 0;
+        transform: translateX(100%);
+    }
+}
+
+@keyframes spell-contents-leave {
+    0% {
+        opacity: 100%;
+        line-height: 1.333;
+    }
+
+    50% {
+        opacity: 100%;
+        line-height: 1.333;
+    }
+
+    100% {
+        opacity: 0;
+        line-height: 0;
+    }
+}
+
+#sidebar {
+    display: none;
+    flex-direction: column;
+    background: rgb(0, 0, 0, 0.8);
+    position: absolute;
+    right: 1rem;
+    margin: 0;
+    padding: 0;
+    height: 480px;
+    width: 256px;
+    outline: 1px solid rgb(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px) saturate(50%);
+    transition-duration: $duration-long;
+    z-index: 99;
+}
+
+#sidebar-tabs {
+    display: flex;
+    flex-direction: row;
+
+    button {
+        width: 100%;
+        outline: 0;
+        border: none;
+
+        &:hover {
+            letter-spacing: 2px;
+        }
+    }
+}
+
+#player-spells-page,
+#player-stats-page {
+    animation: enter-from-right $duration-medium forwards;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+}
+
+#player-stats-page {
+    display: none;
+}
+
+#player-spells-page {
+    overflow-x: hidden;
+    .spell {
+        border-bottom: 1px solid rgb(255, 255, 255, 0.15);
+        cursor: pointer;
+        transition-duration: $duration-short;
+
+        h3,
+        p {
+            transition-duration: $duration-short;
+        }
+
+        &:hover {
+            background: white;
+
+            h3,
+            p {
+                color: black;
+            }
+        }
+    }
+}
+
+// Inner elements for stats/spells pages
+.spell,
+#no-spells-text,
+.stats-progenitor,
+.stats-row {
+    padding: 6px 8px;
+}
+
+#player-stats-page {
+    .stats-progenitor {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid rgb(255, 255, 255, 0.15);
+    }
+
+    .stats-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border-bottom: 1px solid rgb(255, 255, 255, 0.15);
+    }
+}
+
+.show-sidebar {
+    animation: enter-from-right $duration-long forwards;
+}
+
+.hide-sidebar {
+    animation: exit-to-right $duration-medium forwards;
+}
+
+.spell-leave {
+    animation: spell-leave $duration-medium forwards;
+}
+
+.spell-contents-leave {
+    animation: spell-contents-leave $duration-medium forwards;
+}

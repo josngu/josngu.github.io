@@ -1,0 +1,279 @@
+@use "./index" as *;
+
+@keyframes active-player-enter {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {}
+
+    100% {
+        transform: translateX(32px);
+    }
+}
+
+@keyframes active-player-exit {
+    0% {
+        transform: translateX(32px);
+    }
+
+    50% {}
+
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes active-player-pulse {
+    0% {
+        filter: contrast(1) saturate(100%);
+    }
+
+    50% {
+        filter: contrast(0.8) saturate(150%);
+    }
+
+    100% {
+        filter: contrast(1) saturate(100%);
+    }
+}
+
+@keyframes pulsing-orb {
+    0% {
+        opacity: 0.8;
+        box-shadow: 0px 0px 2px 1px rgb(255, 217, 0, 40%);
+    }
+
+    50% {
+        opacity: 1;
+        box-shadow: 0px 0px 4px 1px rgb(255, 217, 0, 80%);
+    }
+
+    100% {
+        opacity: 0.8;
+        box-shadow: 0px 0px 2px 1px rgb(255, 217, 0, 40%);
+    }
+}
+
+@keyframes orb-enter {
+    0% {
+        opacity: 0%;
+        transform: scale(0);
+        outline: 12px solid rgb(255, 217, 0, 100%);
+        outline-offset: 0px;
+    }
+
+    100% {
+        opacity: 100%;
+        transform: scale(1);
+        outline: 12px solid rgb(255, 217, 0, 0%);
+        outline-offset: 0.75rem;
+    }
+
+}
+
+@keyframes low-health-pulse {
+    0% {
+        background-color: rgb(0, 0, 0, 1);
+    }
+
+    50% {
+        background-color: rgb(134, 34, 34);
+    }
+
+    100% {
+        background-color: rgb(0, 0, 0, 1);
+    }
+
+}
+
+#player-cards {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    left: 0rem;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    z-index: 99;
+    transition-duration: $duration-long;
+}
+
+.player-card {
+    animation: enter-from-left $duration-long forwards;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0.5rem 4rem 0.5rem 2rem;
+    width: 256px;
+    //transform: perspective(5cm) rotateY(15deg);
+    transform-style: preserve-3d;
+    gap: 0px;
+
+    .player-title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .secondary-player-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 4px;
+        padding-bottom: 1px;
+        border-bottom: 1px solid rgb(255, 255, 255, 0.1);
+        .player-class-name {
+            animation: enter-from-left $duration-long forwards;
+        }
+    }
+}
+
+.player-hp-container,
+.player-sp-container,
+.player-karma-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    margin-top: 4px;
+
+    .player-hp,
+    .player-sp,
+    .player-karma {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: end;
+
+        // Reduces the padding of the spans in the hp/sp/karma bars
+        div {
+            font-size: 8px;
+        }
+
+        h4 {
+            font-weight: 200;
+            margin-bottom: 1px;
+        }
+
+        span {
+            font-size: 1.4rem;
+            color: white;
+            font-weight: 200;
+            font-variant-numeric: tabular-nums;
+        }
+
+        span:last-child,
+        span:nth-child(2) {
+            font-size: 1rem;
+            color: white;
+        }
+    }
+}
+
+.player-lives-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+
+    p {
+        display: flex;
+        gap: 2px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.player-wp-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+
+    p {
+        display: flex;
+        gap: 2px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h4 {
+        color: rgb(255, 255, 255, 0.5);
+        font-size: 0.8rem;
+        font-weight: 200;
+        margin-bottom: 1px;
+        letter-spacing: 1px;
+    }
+}
+
+.wp-orb-filled {
+    animation: pulsing-orb 2s infinite linear, orb-enter $duration-medium forwards;
+    background-color: rgb(255, 217, 0);
+    width: 8px;
+    height: 8px;
+    border-radius: 32px;
+}
+
+.wp-orb-empty {
+    width: 8px;
+    height: 8px;
+    border-radius: 32px;
+    border: 1px solid rgb(255, 255, 255, 0.25);
+}
+
+.player-hp-bar-container,
+.player-sp-bar-container {
+    background-color: rgb(0, 0, 0, 1);
+    width: 100%;
+    height: 8px;
+    outline: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.player-karma-bar-container {
+    background-color: rgb(0, 0, 0, 1);
+    width: 100%;
+    height: 8px;
+    outline: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.player-karma-bar {
+    background: linear-gradient(30deg, rgb(228, 224, 25) 50%, rgb(255, 252, 99) 100%);
+    height: 100%;
+    width: 0%;
+    max-width: 100%;
+}
+
+.player-hp-bar {
+    background: linear-gradient(30deg, rgb(0, 141, 87) 50%, rgb(69, 255, 168) 100%);
+    height: 100%;
+    width: 100%;
+}
+
+.player-sp-bar {
+    background: linear-gradient(30deg, rgb(52, 143, 204) 50%, rgb(97, 176, 255) 100%);
+    height: 100%;
+    width: 100%;
+}
+
+.player-karma-bar, .player-hp-bar, .player-sp-bar {
+    transition-duration: $duration-medium;
+}
+
+.player-cards-enter {
+    animation: enter-from-left $duration-long forwards;
+}
+
+.player-cards-exit {
+    animation: exit-to-left $duration-medium forwards;
+}
+
+.hp-bar-low {
+    animation: low-health-pulse $duration-long infinite linear;
+}

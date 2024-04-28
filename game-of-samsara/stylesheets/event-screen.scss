@@ -1,0 +1,124 @@
+@use "./index" as *;
+
+@keyframes move-up {
+    0% {
+        opacity: 0%;
+        transform: translateY(64px);
+    }
+
+    100% {
+        opacity: 100%;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes move-down {
+    0% {
+        opacity: 0%;
+        transform: translateY(-64px);
+    }
+
+    100% {
+        opacity: 100%;
+        transform: translateY(0px);
+    }
+
+}
+
+#event-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    border: 1px solid rgb(255, 255, 255, 0.25);
+    background: rgb(0, 0, 0, 0);
+    backdrop-filter: blur(128px);
+    gap: 1rem;
+    min-width: 960px;
+    width: 66vw;
+    min-height: 540px;
+    height: 66vh;
+    z-index: 100;
+
+    #event-screen-message {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+        outline: 1px solid white;
+        height: 10rem;
+        font-size: 1.4rem;
+    }
+
+    #event-screen-options {
+        opacity: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+        pointer-events: none;
+
+        .event-screen-option {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            border: 1px solid white;
+            padding: 6px 12px;
+            cursor: pointer;
+            outline: 8px solid transparent;
+            gap: 2px;
+            transition-duration: $duration-short;
+
+            &:hover {
+                outline: 3px solid white;
+                text-shadow: 0 0 8px white;
+            }
+
+            &:active {
+                outline: 0px solid transparent;
+                background-color: white;
+
+                * {
+                    color: black;
+                }
+
+                text-shadow: 0 0 8px white;
+            }
+
+            .event-screen-option-stat-changes {
+                display: flex;
+                flex-direction: column;
+                // Right side
+                .stat-change-row {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 2px 0;
+                    border-top: 1px solid rgb(255, 255, 255, 0.15);
+                }
+            }
+        }
+
+    }
+}
+
+.move-up {
+    animation: move-up $duration-long forwards;
+}
+
+.move-down {
+    animation: move-down $duration-long forwards;
+}
+
+.fade-in {
+    animation: fade-in $duration-medium forwards;
+}
+
+.fade-out {
+    animation: fade-out $duration-medium forwards;
+}

@@ -1,0 +1,518 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
+@keyframes enter-from-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-128px);
+    filter: brightness(5);
+  }
+  25% {
+    filter: brightness(5);
+  }
+  75% {
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+}
+@keyframes enter-from-right {
+  0% {
+    opacity: 0;
+    transform: translateX(128px);
+  }
+  75% {
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes enter-from-top {
+  0% {
+    opacity: 0;
+    transform: translateY(-128px);
+    filter: brightness(5);
+  }
+  25% {
+    filter: brightness(5);
+  }
+  75% {
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+}
+@keyframes exit-to-right {
+  0% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(128px);
+  }
+}
+@keyframes exit-to-left {
+  0% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-128px);
+  }
+}
+@keyframes screen-transition {
+  0% {
+    opacity: 0;
+    letter-spacing: 5rem;
+  }
+  33% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+    letter-spacing: 0rem;
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fullscreen-transition-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fullscreen-transition-exit {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes dialog-box-enter {
+  0% {
+    opacity: 0;
+    scale: 0.33;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+@keyframes dialog-box-exit {
+  0% {
+    opacity: 1;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+    scale: 0.33;
+  }
+}
+:root {
+  background-color: black;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border: 1px solid rgb(255, 255, 255);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #FFFFFF;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  animation-duration: 0.2s;
+  font-family: "Red Hat Display", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+pre {
+  margin: 0;
+  color: white;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+#game-title-name {
+  font-weight: 100;
+  letter-spacing: 8px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  height: 100dvh;
+  width: 100dvw;
+  overflow: hidden;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+input {
+  animation: enter-from-left 0.5s forwards;
+  font-family: "Red Hat Display", sans-serif;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: white;
+  border: none;
+  box-shadow: inset 0 0 4px -2px black;
+}
+
+button {
+  font-family: "Red Hat Display", sans-serif;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid white;
+  outline: 8px solid transparent;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 2px 4px -4px black;
+  transition-duration: 0.2s;
+}
+button:hover {
+  outline: 3px solid white;
+  text-shadow: 0 0 8px white;
+}
+button:active {
+  outline: 0px solid transparent;
+  background-color: white;
+  color: black;
+  text-shadow: 0 0 8px white;
+}
+
+.btn-small {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.btn-large {
+  font-size: 1.4rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+
+#transition-screen {
+  animation: screen-transition 1.2s forwards;
+  position: absolute;
+  display: flex;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 25%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.75) 75%, rgba(0, 0, 0, 0) 100%);
+  padding: 0;
+  width: 100%;
+  white-space: nowrap;
+  height: 128px;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 100;
+  overflow-x: hidden;
+}
+
+#dialog-box {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  transform-origin: 0% 0%;
+  gap: 1rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 360px;
+  height: 160px;
+  outline: 1px solid rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  z-index: 1000;
+}
+#dialog-box #btn-dialog-box {
+  justify-self: flex-end;
+}
+
+#title-screen,
+#player-setup,
+#progenitor-selection-screen {
+  animation: fullscreen-transition-enter 0.4s forwards;
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  background-color: black;
+  padding: 2rem;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  box-shadow: 0 0 4px -2px black;
+  z-index: 50;
+}
+
+#player-setup {
+  display: none;
+}
+#player-setup #player-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 360px;
+  overflow-y: auto;
+}
+#player-setup #player-list div {
+  display: flex;
+  gap: 4px;
+}
+#player-setup #player-list input[type=color] {
+  padding: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+#debug-menu {
+  display: none;
+  position: absolute;
+  bottom: 8px;
+  z-index: 100000000;
+}
+
+.animate-fullscreen-exit {
+  animation: fullscreen-transition-exit 0.4s forwards !important;
+}
+
+.btn-active {
+  background-color: white;
+  color: black;
+}
+
+.animate-dialog-box-enter {
+  animation: dialog-box-enter 0.2s forwards;
+}
+
+.animate-dialog-box-exit {
+  animation: dialog-box-exit 0.2s forwards;
+}
+
+@keyframes tile-appear {
+  0% {
+    opacity: 0;
+    transform: scale(2) translateY(-64px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0px);
+  }
+}
+@keyframes tile-disappear {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5) translateY(64px);
+  }
+}
+@keyframes tile-glow {
+  0% {
+    filter: drop-shadow(0 0 0px white);
+  }
+  50% {
+    filter: drop-shadow(0 0 16px white);
+  }
+  100% {
+    filter: drop-shadow(0 0 0px white);
+  }
+}
+@keyframes dice-roll {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    outline: 32px solid transparent;
+  }
+  50% {
+    outline: 1px solid white;
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+  }
+}
+@keyframes player-token-pulse {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(0.25);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+#gameboard {
+  display: grid;
+  grid-template-areas: "t1 t2 t3 t4 t5 t6 t7 t8 t9 t10" "t30 e e e e e e e e t11" "t29 e e e e e e e e t12" "t28 e e e e e e e e t13" "t27 e e e e e e e e t14" "t26 e e e e e e e e t15" "t25 t24 t23 t22 t21 t20 t19 t18 t17 t16";
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transform: perspective(20cm) rotateX(30deg);
+  transform-style: preserve-3d;
+  gap: 0;
+  border-radius: 8px;
+  box-shadow: inset 0 0 4px -2px white;
+  z-index: 1;
+  overflow: hidden;
+  transition-duration: 0.8s;
+}
+
+#gameboard-center {
+  grid-area: e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tile {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(42%, 1fr));
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  opacity: 0;
+  background: transparent;
+  outline: 1px solid white;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  box-shadow: inset 0 0 4px -2px white;
+  z-index: 0;
+}
+
+.tile-good {
+  background-color: rgb(18, 113, 201);
+  box-shadow: inset 0 0 16px -4px black;
+}
+
+.tile-bad {
+  background-color: rgb(148, 18, 46);
+  box-shadow: inset 0 0 16px -4px black;
+}
+
+.tile-start-end {
+  background-color: rgb(255, 238, 0);
+  box-shadow: inset 0 0 16px -4px black;
+}
+
+.player-token {
+  height: 100%;
+  outline: 1px solid white;
+  box-shadow: 0 0 4px 0px black;
+  z-index: 2;
+}
+
+#dice-roll-result {
+  display: none;
+  padding: 1rem;
+  width: 96px;
+  outline: 1px solid white;
+  font-size: 4rem;
+  font-weight: 600;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+#spell-name-message {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 4px 12px;
+  font-size: 1.2rem;
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  box-shadow: 0 0 16px -4px black;
+  z-index: 1000;
+}
+
+.dice-roll-in {
+  animation: dice-roll 1.2s forwards, fade-in 0.4s forwards;
+}
+
+.dice-roll-out {
+  animation: fade-out 0.2s forwards;
+}/*# sourceMappingURL=gameboard.css.map */

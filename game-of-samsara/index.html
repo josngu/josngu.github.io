@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samsara Party 8</title>
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <link rel="stylesheet" href="stylesheets/index.css">
+    <link rel="stylesheet" href="stylesheets/gameboard.css">
+    <link rel="stylesheet" href="stylesheets/player-card.css">
+    <link rel="stylesheet" href="stylesheets/sidebar.css">
+    <link rel="stylesheet" href="stylesheets/progenitor-selection.css">
+    <link rel="stylesheet" href="stylesheets/event-screen.css">
+    <link rel="stylesheet" href="stylesheets/log.css">
+    <script type="module" src="scripts/index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <section id="title-screen">
+        <h1 id="game-title-name">SAMSARA PARTY 8</h1>
+        <button id="btn-start">Start</button>
+    </section>
+    <section id="player-setup">
+        <div id="player-list">
+
+        </div>
+        <button id="btn-add-player" class="btn-small">Add New Player</button>
+        <button id="btn-select-progenitor">Done</button>
+    </section>
+    <section id="progenitor-selection-screen">
+        <div id="player-cards-setup-container">
+            <h2>Player Order</h2>
+        </div>
+        <div id="progenitor-selection-container">
+            <h1 id="progenitor-selection-title"><span>Player</span>Select a Progenitor</h1>
+            <div id="progenitor-portrait-description-container">
+                <h3 id="progenitor-name"></h3>
+                <div id="progenitor-portrait"></div>
+                <div id="progenitor-description">
+                    <pre></pre>
+                </div>
+            </div>
+            <div id="progenitor-list">
+                <div id="brahma-portrait" class="progenitor-thumbnail">
+                    <img src="https://glorioushinduism.com/wp-content/uploads/2016/12/brahma.jpg" alt="Brahma">
+                </div>
+                <div id="shiva-portrait" class="progenitor-thumbnail">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Shiva_Painting.jpg" alt="Shiva">
+                </div>
+                <div id="vishnu-portrait" class="progenitor-thumbnail">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/VishnuHindu.jpg" alt="Vishnu">
+                </div>
+            </div>
+            <button id="btn-begin-game" class="btn-large">Begin Game</button>
+        </div>
+    </section>
+
+    <main>
+        <section id="log">
+
+        </section>
+        <section id="player-cards">
+
+        </section>
+        <section id="gameboard">
+            <div id="gameboard-center">
+                <p id="dice-roll-result"></p>
+            </div>
+        </section>
+        <section id="sidebar">
+            <div id="sidebar-tabs">
+                <button id="btn-player-spells-page" class="sidebar-tab btn-active">ॐ Spells</button>
+                <button id="btn-player-stats-page" class="sidebar-tab">Stats</button>
+            </div>
+            <div id="player-spells-page">
+
+            </div>
+            <div id="player-stats-page">
+
+            </div>
+            <button id="btn-roll-dice">Roll Dice</button>
+        </section>
+    </main>
+
+    <section id="debug-menu">
+        <button id="btn-advance-turn">Advance Turn</button>
+        <button id="btn-crossfade">Crossfade</button>
+        <button id="btn-show-player-objects">List Player Objects</button>
+        <button id="btn-subtract-life">-Life</button>
+        <button id="btn-subtract-health">-HP</button>
+        <button id="btn-add-health">+HP</button>
+        <button id="btn-add-karma">+Karma</button>
+        <button id="btn-add-spell">+Spell</button>
+    </section>
+</body>
+
+</html>

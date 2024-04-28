@@ -1,0 +1,178 @@
+@use "./index" as *;
+
+@keyframes tile-appear {
+    0% {
+        opacity: 0;
+        transform: scale(2) translateY(-64px);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0px);
+    }
+}
+
+@keyframes tile-disappear {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0px);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.5) translateY(64px);
+    }
+}
+
+@keyframes tile-glow {
+    0% {
+        filter: drop-shadow(0 0 0px white);
+    }
+
+    50% {
+        filter: drop-shadow(0 0 16px white);
+    }
+
+    100% {
+        filter: drop-shadow(0 0 0px white);
+    }
+}
+
+@keyframes dice-roll {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+        outline: 32px solid transparent;
+    }
+
+    50% {
+        outline: 1px solid white;
+    }
+
+    100% {
+        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+    }
+
+}
+
+@keyframes player-token-pulse {
+    0% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(0.25);
+    }
+
+    100% {
+        filter: brightness(1);
+    }
+}
+
+#gameboard {
+    display: grid;
+    grid-template-areas:
+        "t1 t2 t3 t4 t5 t6 t7 t8 t9 t10"
+        "t30 e e e e e e e e t11"
+        "t29 e e e e e e e e t12"
+        "t28 e e e e e e e e t13"
+        "t27 e e e e e e e e t14"
+        "t26 e e e e e e e e t15"
+        "t25 t24 t23 t22 t21 t20 t19 t18 t17 t16";
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transform: perspective(20cm) rotateX(30deg); // Set the rotation value in TS instead
+    transform-style: preserve-3d;
+    gap: 0;
+    border-radius: 8px;
+    box-shadow: inset 0 0 4px -2px white;
+    z-index: 1;
+    overflow: hidden;
+    transition-duration: $duration-medium * 2;
+}
+
+#gameboard-center {
+    grid-area: e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tile {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(42%, 1fr));
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    opacity: 0;
+    background: transparent;
+    outline: 1px solid white;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    box-shadow: inset 0 0 4px -2px white;
+    z-index: 0;
+}
+
+.tile-good {
+    background-color: rgb(18, 113, 201);
+    box-shadow: inset 0 0 16px -4px black;
+}
+
+.tile-bad {
+    background-color: rgb(148, 18, 46);
+    box-shadow: inset 0 0 16px -4px black;
+}
+
+.tile-start-end {
+    background-color: rgb(255, 238, 0, 1);
+    box-shadow: inset 0 0 16px -4px black;
+}
+
+.player-token {
+    height: 100%;
+    outline: 1px solid white;
+    box-shadow: 0 0 4px 0px black;
+    z-index: 2;
+}
+
+#dice-roll-result {
+    display: none;
+    padding: 1rem;
+    width: 96px;
+    outline: 1px solid white;
+    font-size: 4rem;
+    font-weight: 600;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+#spell-name-message {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 4px 12px;
+    font-size: 1.2rem;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 16px -4px black;
+    z-index: 1000;
+}
+
+.dice-roll-in {
+    animation: dice-roll 1.2s forwards, fade-in 0.4s forwards;
+}
+
+.dice-roll-out {
+    animation: fade-out 0.2s forwards;
+}

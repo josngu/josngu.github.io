@@ -1,0 +1,529 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
+@keyframes enter-from-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-128px);
+    filter: brightness(5);
+  }
+  25% {
+    filter: brightness(5);
+  }
+  75% {
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+}
+@keyframes enter-from-right {
+  0% {
+    opacity: 0;
+    transform: translateX(128px);
+  }
+  75% {
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes enter-from-top {
+  0% {
+    opacity: 0;
+    transform: translateY(-128px);
+    filter: brightness(5);
+  }
+  25% {
+    filter: brightness(5);
+  }
+  75% {
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+}
+@keyframes exit-to-right {
+  0% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(128px);
+  }
+}
+@keyframes exit-to-left {
+  0% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-128px);
+  }
+}
+@keyframes screen-transition {
+  0% {
+    opacity: 0;
+    letter-spacing: 5rem;
+  }
+  33% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+    letter-spacing: 0rem;
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fullscreen-transition-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fullscreen-transition-exit {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+:root {
+  background-color: black;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border: 1px solid rgb(255, 255, 255);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #FFFFFF;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  animation-duration: 0.2s;
+  font-family: "Red Hat Display", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+pre {
+  margin: 0;
+  color: white;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+#game-title-name {
+  font-weight: 100;
+  letter-spacing: 8px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  height: 100dvh;
+  width: 100dvw;
+  overflow: hidden;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+input {
+  animation: enter-from-left 0.5s forwards;
+  font-family: "Red Hat Display", sans-serif;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: white;
+  border: none;
+  box-shadow: inset 0 0 4px -2px black;
+}
+
+button {
+  font-family: "Red Hat Display", sans-serif;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid white;
+  outline: 8px solid transparent;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  box-shadow: inset 0px 0px 0px -4px rgba(255, 255, 255, 0);
+  transition-duration: 0.2s;
+}
+button:hover {
+  outline: 3px solid white;
+  text-shadow: 0 0 8px white;
+  box-shadow: inset 0px 0px 8px -4px rgb(255, 255, 255);
+}
+button:active {
+  outline: 0px solid transparent;
+  background-color: white;
+  color: black;
+  text-shadow: 0 0 8px white;
+}
+
+.btn-small {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.btn-large {
+  font-size: 1.4rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+
+#transition-screen {
+  animation: screen-transition 1.2s forwards;
+  position: absolute;
+  display: flex;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 25%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.75) 75%, rgba(0, 0, 0, 0) 100%);
+  padding: 0;
+  width: 100%;
+  white-space: nowrap;
+  height: 128px;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 100;
+  overflow-x: hidden;
+}
+
+#title-screen,
+#player-setup,
+#progenitor-selection-screen {
+  animation: fullscreen-transition-enter 0.4s forwards;
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  background-color: black;
+  padding: 2rem;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  box-shadow: 0 0 4px -2px black;
+  z-index: 50;
+}
+
+#player-setup {
+  display: none;
+}
+#player-setup #player-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 360px;
+  overflow-y: auto;
+}
+#player-setup #player-list div {
+  display: flex;
+  gap: 4px;
+}
+#player-setup #player-list input[type=color] {
+  padding: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+#debug-menu {
+  display: none;
+  position: absolute;
+  bottom: 8px;
+  z-index: 100000000;
+}
+
+.animate-fullscreen-exit {
+  animation: fullscreen-transition-exit 0.4s forwards !important;
+}
+
+.btn-active {
+  background-color: white;
+  color: black;
+}
+
+@keyframes portrait-enter {
+  0% {
+    opacity: 0;
+    transform: scale(1.1) translateY(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0px);
+  }
+}
+@keyframes progenitor-name-enter {
+  0% {
+    opacity: 0;
+    color: red;
+    transform: translateX(-4rem);
+  }
+  100% {
+    opacity: 1;
+    color: white;
+    transform: translateX(0px);
+  }
+}
+@keyframes progenitor-description-enter {
+  0% {
+    opacity: 0;
+    filter: brightness(0);
+    transform: translateX(-1rem);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+    transform: translateX(0px);
+  }
+}
+#progenitor-selection-screen {
+  animation: none !important;
+  display: flex;
+  flex-direction: row !important;
+  gap: 2rem !important;
+}
+#progenitor-selection-screen h1 {
+  width: 100%;
+}
+#progenitor-selection-screen #progenitor-selection-container {
+  animation: fade-in 0.8s forwards;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+#progenitor-selection-screen #progenitor-selection-container button {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+#progenitor-selection-screen #progenitor-selection-container #progenitor-selection-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+#progenitor-selection-screen #progenitor-selection-container #progenitor-selection-title span {
+  animation: enter-from-left 0.8s forwards;
+  background: white;
+  color: black;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0px 12px;
+  font-size: 2rem;
+  font-weight: 600;
+}
+#progenitor-selection-screen #player-cards-setup-container {
+  animation: enter-from-left 0.8s forwards;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 4rem 0;
+  width: 360px;
+  max-height: 100vh;
+}
+#progenitor-selection-screen #player-cards-setup-container .player-cards-setup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1rem;
+  outline: 12px solid transparent;
+  gap: 1rem;
+  height: 128px;
+  cursor: pointer;
+  overflow: hidden;
+  transition-duration: 0.2s;
+}
+#progenitor-selection-screen #player-cards-setup-container .player-cards-setup:hover {
+  outline: 3px solid white;
+  text-shadow: 0 0 8px white;
+}
+#progenitor-selection-screen #player-cards-setup-container .player-cards-setup div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+#progenitor-selection-screen #player-cards-setup-container .player-cards-setup div:first-child #order-number {
+  color: rgba(255, 255, 255, 0.25) !important;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 600;
+  color: white;
+  width: 48px;
+}
+#progenitor-selection-screen #player-cards-setup-container .player-cards-setup div:first-child .player-cards-title {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#progenitor-selection-screen #player-cards-setup-container .player-cards-setup div:first-child .player-cards-title .player-cards-progenitor-name {
+  animation: fade-in 0.8s forwards;
+}
+#progenitor-selection-screen #player-cards-setup-container .player-cards-setup .player-cards-progenitor {
+  animation: portrait-enter 0.4s forwards;
+}
+#progenitor-selection-screen #player-cards-setup-container .player-cards-setup .player-cards-progenitor img {
+  max-width: 128px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 4px;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 255, 255));
+  -webkit-mask-image: linear-gradient(to left, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+          mask-image: linear-gradient(to left, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+}
+
+#progenitor-portrait-description-container {
+  display: flex;
+  position: relative;
+  gap: 1rem;
+}
+#progenitor-portrait-description-container #progenitor-name {
+  animation: progenitor-name-enter 0.4s forwards;
+  position: absolute;
+  bottom: 4px;
+  left: 1rem;
+  text-transform: uppercase;
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  z-index: 9999;
+  text-shadow: 0 0 32px black, 0 0 16px black;
+}
+#progenitor-portrait-description-container #progenitor-portrait {
+  animation: portrait-enter 0.4s forwards;
+  width: 320px;
+  height: 440px;
+  max-height: 50vh;
+}
+#progenitor-portrait-description-container #progenitor-portrait img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgb(255, 255, 255));
+  -webkit-mask-image: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+          mask-image: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+}
+#progenitor-portrait-description-container #progenitor-description {
+  animation: progenitor-description-enter 0.4s forwards;
+  flex-grow: 2;
+  width: 480px;
+  font-size: 1.2rem;
+  white-space: pre-wrap;
+}
+
+#progenitor-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 6px;
+  transform: perspective(5cm) rotateX(5deg);
+}
+
+.progenitor-thumbnail {
+  width: 96px;
+  height: 160px;
+  border: 2px solid white;
+  cursor: pointer;
+  transition-duration: 0.2s;
+}
+.progenitor-thumbnail:hover {
+  border: 2px solid red;
+}
+.progenitor-thumbnail img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  filter: brightness(0.66);
+  box-shadow: 0 0 0px 0px transparent;
+  transition-duration: 0.2s;
+}
+.progenitor-thumbnail img:hover {
+  box-shadow: 0 0 32px 0px red;
+  scale: 1.05;
+  filter: brightness(1);
+}
+.progenitor-thumbnail img:active {
+  box-shadow: 0 0 32px 0px white;
+}
+
+.player-card-active {
+  outline: 3px solid white !important;
+  text-shadow: 0 0 8px white;
+}/*# sourceMappingURL=progenitor-selection.css.map */
