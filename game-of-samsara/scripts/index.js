@@ -226,7 +226,8 @@ export function updateVisualPlayerStats(updateAllPlayers) {
             // Check if karma is 100 or more
             document.getElementById(`player-karma-${i}`).style.color = `${player.currentKarma >= 100 ? 'yellow' : 'white'}`;
             // Update the WP orbs
-            let filledOrbs = document.getElementById(`player-wp-current-${i}`).getElementsByClassName('wp-orb-filled');
+            const PLAYER_WP_CONTAINER = document.getElementById(`player-wp-current-${i}`);
+            let filledOrbs = PLAYER_WP_CONTAINER.getElementsByClassName('wp-orb-filled');
             //if the number of filled orbs is less than the current WP, remove the last empty orb and add a filled orb after the last filled orb
             if (filledOrbs.length < player.currentWp) {
                 while (filledOrbs.length != player.currentWp) {
@@ -235,18 +236,18 @@ export function updateVisualPlayerStats(updateAllPlayers) {
                     }
                     catch (e) {
                         // If there are no filled orbs, add a filled orb at the beginning of the empty orbs
-                        document.getElementById(`player-wp-current-${i}`).insertAdjacentHTML('afterbegin', '<span class="wp-orb-filled"></span>');
+                        PLAYER_WP_CONTAINER.insertAdjacentHTML('afterbegin', '<span class="wp-orb-filled"></span>');
                     }
-                    document.getElementById(`player-wp-current-${i}`).getElementsByClassName('wp-orb-empty')[0].remove();
+                    PLAYER_WP_CONTAINER.getElementsByClassName('wp-orb-empty')[0].remove();
                 }
             }
             //if the number of filled orbs is greater than the current WP, remove the last filled orb and add an empty orb after the last empty orb
             if (filledOrbs.length > player.currentWp) {
                 while (filledOrbs.length != player.currentWp) {
-                    document.getElementById(`player-wp-current-${i}`).getElementsByClassName('wp-orb-filled')[0].remove();
-                    document.getElementById(`player-wp-current-${i}`).insertAdjacentHTML('beforeend', '<span class="wp-orb-empty"></span>');
+                    filledOrbs[0].remove();
+                    PLAYER_WP_CONTAINER.insertAdjacentHTML('beforeend', '<span class="wp-orb-empty"></span>');
                     // Update the filledOrbs variable
-                    filledOrbs = document.getElementById(`player-wp-current-${i}`).getElementsByClassName('wp-orb-filled');
+                    filledOrbs = PLAYER_WP_CONTAINER.getElementsByClassName('wp-orb-filled');
                 }
             }
         }
@@ -264,8 +265,8 @@ export function updateVisualPlayerStats(updateAllPlayers) {
         // Check if karma is 100 or more
         document.getElementById(`player-karma-${gameState.currentPlayerNumber}`).style.color = `${CURRENT_PLAYER.currentKarma >= 100 ? 'yellow' : 'white'}`;
         // Update the WP orbs
-        const CURRENT_WP_CONTAINER = document.getElementById(`player-wp-current-${gameState.currentPlayerNumber}`);
-        let filledOrbs = CURRENT_WP_CONTAINER.getElementsByClassName('wp-orb-filled');
+        const PLAYER_WP_CONTAINER = document.getElementById(`player-wp-current-${gameState.currentPlayerNumber}`);
+        let filledOrbs = PLAYER_WP_CONTAINER.getElementsByClassName('wp-orb-filled');
         //if the number of filled orbs is less than the current WP, remove the last empty orb and add a filled orb after the last filled orb
         if (filledOrbs.length < CURRENT_PLAYER.currentWp) {
             while (filledOrbs.length != CURRENT_PLAYER.currentWp) {
@@ -274,18 +275,18 @@ export function updateVisualPlayerStats(updateAllPlayers) {
                 }
                 catch (e) {
                     // If there are no filled orbs, add a filled orb at the beginning of the empty orbs
-                    CURRENT_WP_CONTAINER.insertAdjacentHTML('afterbegin', '<span class="wp-orb-filled"></span>');
+                    PLAYER_WP_CONTAINER.insertAdjacentHTML('afterbegin', '<span class="wp-orb-filled"></span>');
                 }
-                CURRENT_WP_CONTAINER.getElementsByClassName('wp-orb-empty')[0].remove();
+                PLAYER_WP_CONTAINER.getElementsByClassName('wp-orb-empty')[0].remove();
             }
         }
         //if the number of filled orbs is greater than the current WP, remove the last filled orb and add an empty orb after the last empty orb
         if (filledOrbs.length > CURRENT_PLAYER.currentWp) {
             while (filledOrbs.length != CURRENT_PLAYER.currentWp) {
-                CURRENT_WP_CONTAINER.getElementsByClassName('wp-orb-filled')[0].remove();
-                CURRENT_WP_CONTAINER.insertAdjacentHTML('beforeend', '<span class="wp-orb-empty"></span>');
+                filledOrbs[0].remove();
+                PLAYER_WP_CONTAINER.insertAdjacentHTML('beforeend', '<span class="wp-orb-empty"></span>');
                 // Update the filledOrbs variable
-                filledOrbs = CURRENT_WP_CONTAINER.getElementsByClassName('wp-orb-filled');
+                filledOrbs = PLAYER_WP_CONTAINER.getElementsByClassName('wp-orb-filled');
             }
         }
     }
