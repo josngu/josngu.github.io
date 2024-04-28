@@ -19,7 +19,7 @@ export const RED_EVENT_LIST: Event[] = [{
     chance: 1
 },
 {
-    message: 'You get caught in a lahar (mudslide). Your chances of living through this do not look good.',
+    message: `You get caught in a lahar (mudslide). Your chances of living through this don't look good.`,
     options: [
         { label: 'Try to get out.', description: 'You have a 50% chance of dying.', effect: { customEffect: () => mudslide() } },
         { label: 'Escape with all your might.', description: 'You have a 99% chance of living.', effect: { wpChange: -3, customEffect: () => mudslide(-1) } }

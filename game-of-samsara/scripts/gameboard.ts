@@ -190,9 +190,8 @@ export async function movePlayer(diceRoll: number) {
     if (gameboard[game.getCurrentPlayer().boardPosition - 1].type == 'good') {
         await events.blueTile();
     } else if (gameboard[game.getCurrentPlayer().boardPosition - 1].type == 'bad') {
-        music.crossFadeMusic();
-
-        zoomIntoPlayerToken();
+        //music.crossFadeMusic();
+        //zoomIntoPlayerToken();
         await events.redTile();
     }
 

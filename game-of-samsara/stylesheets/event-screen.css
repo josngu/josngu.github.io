@@ -122,6 +122,26 @@
     opacity: 0;
   }
 }
+@keyframes dialog-box-enter {
+  0% {
+    opacity: 0;
+    scale: 0.33;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+@keyframes dialog-box-exit {
+  0% {
+    opacity: 1;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+    scale: 0.33;
+  }
+}
 :root {
   background-color: black;
 }
@@ -213,13 +233,12 @@ button {
   background-color: transparent;
   color: white;
   cursor: pointer;
-  box-shadow: inset 0px 0px 0px -4px rgba(255, 255, 255, 0);
+  box-shadow: 0 2px 4px -4px black;
   transition-duration: 0.2s;
 }
 button:hover {
   outline: 3px solid white;
   text-shadow: 0 0 8px white;
-  box-shadow: inset 0px 0px 8px -4px rgb(255, 255, 255);
 }
 button:active {
   outline: 0px solid transparent;
@@ -257,6 +276,28 @@ button:active {
   pointer-events: none;
   z-index: 100;
   overflow-x: hidden;
+}
+
+#dialog-box {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  transform-origin: 0% 0%;
+  gap: 1rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 360px;
+  height: 160px;
+  outline: 1px solid rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  z-index: 1000;
+}
+#dialog-box #btn-dialog-box {
+  justify-self: flex-end;
 }
 
 #title-screen,
@@ -313,6 +354,14 @@ button:active {
   color: black;
 }
 
+.animate-dialog-box-enter {
+  animation: dialog-box-enter 0.2s forwards;
+}
+
+.animate-dialog-box-exit {
+  animation: dialog-box-exit 0.2s forwards;
+}
+
 @keyframes move-up {
   0% {
     opacity: 0%;
@@ -339,28 +388,27 @@ button:active {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 2rem;
+  padding-left: 20rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-self: center;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  outline: 1px solid rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0);
   -webkit-backdrop-filter: blur(128px);
           backdrop-filter: blur(128px);
   gap: 1rem;
-  min-width: 960px;
-  width: 66vw;
-  min-height: 540px;
-  height: 66vh;
+  width: 100%;
+  height: 100%;
   z-index: 100;
 }
 #event-screen #event-screen-message {
   display: none;
   justify-content: center;
   align-items: center;
+  padding: 1rem 5rem;
   color: white;
   text-align: center;
-  outline: 1px solid white;
   height: 10rem;
   font-size: 1.4rem;
 }
@@ -368,6 +416,7 @@ button:active {
   opacity: 0;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
   pointer-events: none;
@@ -375,6 +424,7 @@ button:active {
 #event-screen #event-screen-options .event-screen-option {
   display: flex;
   flex-direction: column;
+  flex-basis: 32%;
   width: 100%;
   border: 1px solid white;
   padding: 6px 12px;

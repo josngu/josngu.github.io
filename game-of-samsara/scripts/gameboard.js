@@ -172,8 +172,8 @@ export async function movePlayer(diceRoll) {
         await events.blueTile();
     }
     else if (gameboard[game.getCurrentPlayer().boardPosition - 1].type == 'bad') {
-        music.crossFadeMusic();
-        zoomIntoPlayerToken();
+        //music.crossFadeMusic();
+        //zoomIntoPlayerToken();
         await events.redTile();
     }
     // Do stuff here like add passive health regen to Brahma

@@ -17,12 +17,22 @@ function loseRandomSpell() {
     game.getCurrentPlayer().spells.splice(Math.floor(Math.random() * game.getCurrentPlayer().spells.length), 1);
 }
 export async function blueTile() {
-    await createEventScreen(chooseRandomEvent(BLUE_EVENT_LIST));
+    await createEventScreen(chooseRandomEvent(BLUE_EVENT_LIST), 'blue');
 }
 export async function redTile() {
-    await createEventScreen(chooseRandomEvent(RED_EVENT_LIST));
+    await createEventScreen(chooseRandomEvent(RED_EVENT_LIST), 'red');
 }
-async function createEventScreen(event) {
+async function createEventScreen(event, eventType) {
+    const CURRENT_PLAYER = game.getCurrentPlayer();
+    const EVENT_COLOR = (() => {
+        if (eventType === 'blue') {
+            return window.getComputedStyle(document.querySelector(`.tile-good`)).getPropertyValue('background-color').slice(0, -1);
+        }
+        else if (eventType === 'red') {
+            return window.getComputedStyle(document.querySelector(`.tile-bad`)).getPropertyValue('background-color').slice(0, -1);
+        }
+    })();
+    console.log(EVENT_COLOR);
     let eventScreenOptionsHTML = event.options.map(option => {
         // Check if the player has enough willpower to choose the option
         const WP_REQUIREMENT = Math.abs(option.effect.wpChange < 0 ? option.effect.wpChange : 0) ?? 0;
@@ -42,9 +52,16 @@ async function createEventScreen(event) {
         </div>`;
     }).join('');
     console.log(event.options.map(option => option.effect));
+    const COLOR = `
+            linear-gradient(90deg,
+                ${EVENT_COLOR}, 0) 0%,
+                ${EVENT_COLOR}, 0.25) 25%,
+                ${EVENT_COLOR}, 0.33) 50%,
+                ${EVENT_COLOR}, 0.25) 75%,
+                ${EVENT_COLOR}, 0) 100%)`;
     let eventScreenHTML = `
     <div id="event-screen">
-        <p id="event-screen-message"></p>
+        <p id="event-screen-message" style="background: ${COLOR}"></p>
         <div id="event-screen-options">
             ${eventScreenOptionsHTML}
         </div>

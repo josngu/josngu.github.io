@@ -31,27 +31,31 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 2rem;
+    padding-left: 20rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-self: center;
-    border: 1px solid rgb(255, 255, 255, 0.25);
+    outline: 1px solid rgb(0, 0, 0, 1);
     background: rgb(0, 0, 0, 0);
     backdrop-filter: blur(128px);
     gap: 1rem;
-    min-width: 960px;
-    width: 66vw;
-    min-height: 540px;
-    height: 66vh;
+    //min-width: 960px;
+    //width: 66vw;
+    //min-height: 540px;
+    //height: 66vh;
+    width: 100%;
+    height: 100%;
     z-index: 100;
 
     #event-screen-message {
         display: none;
         justify-content: center;
         align-items: center;
+        padding: 1rem 5rem;
         color: white;
         text-align: center;
-        outline: 1px solid white;
+        //outline: 1px solid white;
         height: 10rem;
         font-size: 1.4rem;
     }
@@ -60,6 +64,7 @@
         opacity: 0;
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         justify-content: center;
         gap: 1rem;
         pointer-events: none;
@@ -67,6 +72,7 @@
         .event-screen-option {
             display: flex;
             flex-direction: column;
+            flex-basis: 32%;
             width: 100%;
             border: 1px solid white;
             padding: 6px 12px;
@@ -94,6 +100,7 @@
             .event-screen-option-stat-changes {
                 display: flex;
                 flex-direction: column;
+
                 // Right side
                 .stat-change-row {
                     display: flex;
