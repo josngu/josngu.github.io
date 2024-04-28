@@ -7,6 +7,16 @@ $duration-long: 0.8s;
 $font-heading: 'Outfit', sans-serif;
 $font-body: 'Red Hat Display', sans-serif;
 
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 @keyframes enter-from-left {
     0% {
         opacity: 0;
@@ -349,6 +359,7 @@ button {
     outline: 1px solid rgb(255, 255, 255, 0.2);
     backdrop-filter: blur(8px);
     z-index: 1000;
+
     #btn-dialog-box {
         justify-self: flex-end;
     }

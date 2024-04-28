@@ -339,7 +339,8 @@ export function updateVisualPlayerStats(updateAllPlayers: boolean) {
         document.getElementById(`player-karma-${gameState.currentPlayerNumber}`).style.color = `${CURRENT_PLAYER.currentKarma >= 100 ? 'yellow' : 'white'}`;
 
         // Update the WP orbs
-        let filledOrbs = document.getElementById(`player-wp-current-${gameState.currentPlayerNumber}`).getElementsByClassName('wp-orb-filled');
+        const CURRENT_WP_CONTAINER = document.getElementById(`player-wp-current-${gameState.currentPlayerNumber}`);
+        let filledOrbs = CURRENT_WP_CONTAINER.getElementsByClassName('wp-orb-filled');
 
         //if the number of filled orbs is less than the current WP, remove the last empty orb and add a filled orb after the last filled orb
         if (filledOrbs.length < CURRENT_PLAYER.currentWp) {
@@ -348,18 +349,18 @@ export function updateVisualPlayerStats(updateAllPlayers: boolean) {
                     filledOrbs[filledOrbs.length - 1].insertAdjacentHTML('afterend', '<span class="wp-orb-filled"></span>');
                 } catch (e) {
                     // If there are no filled orbs, add a filled orb at the beginning of the empty orbs
-                    document.getElementById(`player-wp-current-${gameState.currentPlayerNumber}`).insertAdjacentHTML('afterbegin', '<span class="wp-orb-filled"></span>');
+                    CURRENT_WP_CONTAINER.insertAdjacentHTML('afterbegin', '<span class="wp-orb-filled"></span>');
                 }
-                document.getElementById(`player-wp-current-${gameState.currentPlayerNumber}`).getElementsByClassName('wp-orb-empty')[0].remove();
+                CURRENT_WP_CONTAINER.getElementsByClassName('wp-orb-empty')[0].remove();
             }
         }
         //if the number of filled orbs is greater than the current WP, remove the last filled orb and add an empty orb after the last empty orb
         if (filledOrbs.length > CURRENT_PLAYER.currentWp) {
             while (filledOrbs.length != CURRENT_PLAYER.currentWp) {
-                document.getElementById(`player-wp-current-${gameState.currentPlayerNumber}`).getElementsByClassName('wp-orb-filled')[0].remove();
-                document.getElementById(`player-wp-current-${gameState.currentPlayerNumber}`).insertAdjacentHTML('beforeend', '<span class="wp-orb-empty"></span>');
+                CURRENT_WP_CONTAINER.getElementsByClassName('wp-orb-filled')[0].remove();
+                CURRENT_WP_CONTAINER.insertAdjacentHTML('beforeend', '<span class="wp-orb-empty"></span>');
                 // Update the filledOrbs variable
-                filledOrbs = document.getElementById(`player-wp-current-${gameState.currentPlayerNumber}`).getElementsByClassName('wp-orb-filled');
+                filledOrbs = CURRENT_WP_CONTAINER.getElementsByClassName('wp-orb-filled');
             }
         }
     }

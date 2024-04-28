@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 @keyframes enter-from-left {
   0% {
     opacity: 0;
@@ -407,7 +415,7 @@ button:active {
   0% {
     opacity: 0%;
     transform: scale(0);
-    outline: 12px solid rgb(255, 217, 0);
+    outline: 12px solid #ffd900;
     outline-offset: 0px;
   }
   100% {
@@ -415,6 +423,14 @@ button:active {
     transform: scale(1);
     outline: 12px solid rgba(255, 217, 0, 0);
     outline-offset: 0.75rem;
+  }
+}
+@keyframes orb-drain {
+  0% {
+    background-color: #ffd900;
+  }
+  100% {
+    background-color: rgba(255, 217, 0, 0);
   }
 }
 @keyframes low-health-pulse {
@@ -594,6 +610,7 @@ button:active {
   width: 8px;
   height: 8px;
   border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .wp-orb-empty {
@@ -651,4 +668,8 @@ button:active {
 
 .hp-bar-low {
   animation: low-health-pulse 0.8s infinite linear;
+}
+
+.orb-drain {
+  animation: orb-drain 0.4s forwards;
 }/*# sourceMappingURL=player-card.css.map */
