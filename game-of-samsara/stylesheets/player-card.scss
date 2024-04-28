@@ -226,7 +226,6 @@ $orb-color: rgb(255, 217, 0);
 }
 
 .wp-orb-filled {
-    animation: pulsing-orb 2s infinite linear, orb-enter $duration-medium forwards;
     background-color: $orb-color;
     width: 8px;
     height: 8px;
@@ -291,6 +290,10 @@ $orb-color: rgb(255, 217, 0);
     animation: low-health-pulse $duration-long infinite linear;
 }
 
-.orb-drain {
-    animation: orb-drain $duration-medium forwards;
+.wp-orb-animate {
+    animation: pulsing-orb 2s infinite linear, orb-enter $duration-medium forwards;
+}
+
+.wp-orb-drain {
+    animation: orb-drain 0.1s forwards;
 }

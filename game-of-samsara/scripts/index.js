@@ -232,11 +232,11 @@ export function updateVisualPlayerStats(updateAllPlayers) {
             if (filledOrbs.length < player.currentWp) {
                 while (filledOrbs.length != player.currentWp) {
                     try {
-                        filledOrbs[filledOrbs.length - 1].insertAdjacentHTML('afterend', '<span class="wp-orb-filled"></span>');
+                        filledOrbs[filledOrbs.length - 1].insertAdjacentHTML('afterend', '<span class="wp-orb-filled wp-orb-animate"></span>');
                     }
                     catch (e) {
                         // If there are no filled orbs, add a filled orb at the beginning of the empty orbs
-                        PLAYER_WP_CONTAINER.insertAdjacentHTML('afterbegin', '<span class="wp-orb-filled"></span>');
+                        PLAYER_WP_CONTAINER.insertAdjacentHTML('afterbegin', '<span class="wp-orb-filled wp-orb-animate"></span>');
                     }
                     PLAYER_WP_CONTAINER.getElementsByClassName('wp-orb-empty')[0].remove();
                 }
@@ -245,9 +245,20 @@ export function updateVisualPlayerStats(updateAllPlayers) {
             if (filledOrbs.length > player.currentWp) {
                 while (filledOrbs.length != player.currentWp) {
                     filledOrbs[0].remove();
-                    PLAYER_WP_CONTAINER.insertAdjacentHTML('beforeend', '<span class="wp-orb-empty"></span>');
+                    // insert <span class="wp-orb-empty wp-orb-drain"></span> after the last filled orb, or at the beginning of the empty orbs if there are no filled orbs
+                    if (filledOrbs.length > 0) {
+                        filledOrbs[filledOrbs.length - 1].insertAdjacentHTML('afterend', '<span class="wp-orb-empty wp-orb-drain"></span>');
+                    }
+                    else {
+                        PLAYER_WP_CONTAINER.insertAdjacentHTML('afterbegin', '<span class="wp-orb-empty wp-orb-drain"></span>');
+                    }
                     // Update the filledOrbs variable
                     filledOrbs = PLAYER_WP_CONTAINER.getElementsByClassName('wp-orb-filled');
+                }
+                // clone all the filled orbs, delete the original, then replace it with the clone
+                for (let i = 0; i < filledOrbs.length; i++) {
+                    let filledOrbClone = filledOrbs[i].cloneNode(true);
+                    filledOrbs[i].parentNode.replaceChild(filledOrbClone, filledOrbs[i]);
                 }
             }
         }
@@ -271,11 +282,11 @@ export function updateVisualPlayerStats(updateAllPlayers) {
         if (filledOrbs.length < CURRENT_PLAYER.currentWp) {
             while (filledOrbs.length != CURRENT_PLAYER.currentWp) {
                 try {
-                    filledOrbs[filledOrbs.length - 1].insertAdjacentHTML('afterend', '<span class="wp-orb-filled"></span>');
+                    filledOrbs[filledOrbs.length - 1].insertAdjacentHTML('afterend', '<span class="wp-orb-filled wp-orb-animate"></span>');
                 }
                 catch (e) {
                     // If there are no filled orbs, add a filled orb at the beginning of the empty orbs
-                    PLAYER_WP_CONTAINER.insertAdjacentHTML('afterbegin', '<span class="wp-orb-filled"></span>');
+                    PLAYER_WP_CONTAINER.insertAdjacentHTML('afterbegin', '<span class="wp-orb-filled wp-orb-animate"></span>');
                 }
                 PLAYER_WP_CONTAINER.getElementsByClassName('wp-orb-empty')[0].remove();
             }
@@ -284,9 +295,20 @@ export function updateVisualPlayerStats(updateAllPlayers) {
         if (filledOrbs.length > CURRENT_PLAYER.currentWp) {
             while (filledOrbs.length != CURRENT_PLAYER.currentWp) {
                 filledOrbs[0].remove();
-                PLAYER_WP_CONTAINER.insertAdjacentHTML('beforeend', '<span class="wp-orb-empty"></span>');
+                // insert <span class="wp-orb-empty wp-orb-drain"></span> after the last filled orb, or at the beginning of the empty orbs if there are no filled orbs
+                if (filledOrbs.length > 0) {
+                    filledOrbs[filledOrbs.length - 1].insertAdjacentHTML('afterend', '<span class="wp-orb-empty wp-orb-drain"></span>');
+                }
+                else {
+                    PLAYER_WP_CONTAINER.insertAdjacentHTML('afterbegin', '<span class="wp-orb-empty wp-orb-drain"></span>');
+                }
                 // Update the filledOrbs variable
                 filledOrbs = PLAYER_WP_CONTAINER.getElementsByClassName('wp-orb-filled');
+            }
+            // clone all the filled orbs, delete the original, then replace it with the clone
+            for (let i = 0; i < filledOrbs.length; i++) {
+                let filledOrbClone = filledOrbs[i].cloneNode(true);
+                filledOrbs[i].parentNode.replaceChild(filledOrbClone, filledOrbs[i]);
             }
         }
     }

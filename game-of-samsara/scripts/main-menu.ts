@@ -285,9 +285,9 @@ function gameboardCreatePlayerCards() {
                     <p id="player-class-${i}" class="player-class-name">Pariah</p>
                     <div class="player-wp-container">
                         <p id="player-wp-current-${i}">
-                            <span class="wp-orb-filled"></span>
-                            <span class="wp-orb-filled"></span>
-                            ${game.gameState.playerList[i - 1].progenitor === 'Brahma' ? '<span class="wp-orb-filled"></span>' : ''}
+                            <span class="wp-orb-filled wp-orb-animate"></span>
+                            <span class="wp-orb-filled wp-orb-animate"></span>
+                            ${game.gameState.playerList[i - 1].progenitor === 'Brahma' ? '<span class="wp-orb-filled wp-orb-animate"></span>' : ''}
                             <span class="wp-orb-empty"></span>
                             <span class="wp-orb-empty"></span>
                             <span class="wp-orb-empty"></span>

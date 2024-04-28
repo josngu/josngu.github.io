@@ -605,7 +605,6 @@ button:active {
 }
 
 .wp-orb-filled {
-  animation: pulsing-orb 2s infinite linear, orb-enter 0.4s forwards;
   background-color: rgb(255, 217, 0);
   width: 8px;
   height: 8px;
@@ -670,6 +669,10 @@ button:active {
   animation: low-health-pulse 0.8s infinite linear;
 }
 
-.orb-drain {
-  animation: orb-drain 0.4s forwards;
+.wp-orb-animate {
+  animation: pulsing-orb 2s infinite linear, orb-enter 0.4s forwards;
+}
+
+.wp-orb-drain {
+  animation: orb-drain 0.1s forwards;
 }/*# sourceMappingURL=player-card.css.map */

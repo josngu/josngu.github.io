@@ -205,36 +205,30 @@ export async function applyEventEffects(event: EffectChanges) {
     if (event.hpChangePercentage) changeHealth({ changeValue: event.hpChangePercentage, isPercentage: true });
     if (event.livesChange) {
         CURRENT_PLAYER.lives += event.livesChange;
-        game.updateVisualPlayerStats(false);
     }
     if (event.baseDamageChange) {
         CURRENT_PLAYER.baseDamage += event.baseDamageChange;
-        game.updateVisualPlayerStats(false);
     }
     if (event.critChanceChange) {
         CURRENT_PLAYER.critChance += event.critChanceChange;
-        game.updateVisualPlayerStats(false);
     }
     if (event.wpChange) changeWp({ wpChange: event.wpChange });
     if (event.othersWpChange) changeWp({ wpChange: event.othersWpChange, applyToAllOtherPlayers: true });
     if (event.karmaChange) {
         CURRENT_PLAYER.currentKarma += event.karmaChange;
-        game.updateVisualPlayerStats(false);
     }
     if (event.othersHpChange) changeHealth({ changeValue: event.othersHpChange, applyToAllOtherPlayers: true });
     if (event.othersHpChangePercentage) changeHealth({ changeValue: event.othersHpChangePercentage, isPercentage: true, applyToAllOtherPlayers: true });
     if (event.getRandomSpell) {
         CURRENT_PLAYER.spells.push(await getRandomSpell());
-        game.updateVisualPlayerStats(false);
     }
     if (event.loseRandomSpell) {
         CURRENT_PLAYER.spells.splice(Math.floor(Math.random() * CURRENT_PLAYER.spells.length), 1);
-        game.updateVisualPlayerStats(false);
     }
     if (event.customEffect) {
         event.customEffect();
-        game.checkStatBounds(true);
     }
+    game.checkStatBounds(true);
 }
 
 function previewEventEffects(event: EffectChanges) {
@@ -397,12 +391,8 @@ export function changeHealth(parameters: { changeValue: number, changeMaxHp?: bo
                 PLAYER_LIST[i].currentHp += IS_PERCENTAGE == true ? Math.round(PLAYER_LIST[i].maxHp * (CHANGE_VALUE / 100)) : CHANGE_VALUE;
             }
         }
-        game.checkStatBounds(true);
-
     } else if (APPLY_TO_ALL_OTHER_PLAYERS == false && CHANGE_MAX_HP == false) {
         CURRENT_PLAYER.currentHp += IS_PERCENTAGE == true ? Math.round(CURRENT_PLAYER.maxHp * (CHANGE_VALUE / 100)) : CHANGE_VALUE;
-        game.checkStatBounds(false);
-
         // Change maximum HP code blocks
     } else if (APPLY_TO_ALL_OTHER_PLAYERS == true && CHANGE_MAX_HP == true) {
         for (let i = 0; i < PLAYER_LIST.length; i++) {
@@ -410,11 +400,8 @@ export function changeHealth(parameters: { changeValue: number, changeMaxHp?: bo
                 PLAYER_LIST[i].maxHp += IS_PERCENTAGE == true ? Math.round(PLAYER_LIST[i].maxHp * (CHANGE_VALUE / 100)) : CHANGE_VALUE;
             }
         }
-        game.checkStatBounds(true);
-
     } else if (APPLY_TO_ALL_OTHER_PLAYERS == false && CHANGE_MAX_HP == true) {
         CURRENT_PLAYER.maxHp += IS_PERCENTAGE == true ? Math.round(CURRENT_PLAYER.maxHp * (CHANGE_VALUE / 100)) : CHANGE_VALUE;
-        game.checkStatBounds(false);
     }
 }
 
