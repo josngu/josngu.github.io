@@ -133,8 +133,9 @@ export function rollDice(i) {
 // Moves the player token and checks what tile they are on
 export async function movePlayer(diceRoll: number) {
     for (let i = 0; i < diceRoll; i++) {
-        let CURRENT_PLAYER_BOARD_POSITION = $(`#tile-${game.getCurrentPlayer().boardPosition}`);
         const CURRENT_PLAYER = game.getCurrentPlayer();
+        const CURRENT_PLAYER_BOARD_POSITION = $(`#tile-${CURRENT_PLAYER.boardPosition}`);
+        
         //copy a div based on its id
         let playerToken = CURRENT_PLAYER_BOARD_POSITION.find(`#player-token-${game.gameState.currentPlayerNumber}`).clone();
 

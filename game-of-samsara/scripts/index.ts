@@ -243,6 +243,20 @@ export async function checkAllPlayersHealthState() {
                 gameState.playerList[i].lives--;
                 gameState.playerList[i].currentHp = gameState.playerList[i].maxHp;
                 updatePlayerClass(i + 1);
+
+                // Lot of similarities with the movePlayer function in gameboard.ts
+                // Move the player back to the starting position
+                const CURRENT_PLAYER = getCurrentPlayer();
+                const CURRENT_PLAYER_BOARD_POSITION = $(`#tile-${CURRENT_PLAYER.boardPosition}`);
+                
+                //copy a div based on its id
+                let playerToken = CURRENT_PLAYER_BOARD_POSITION.find(`#player-token-${gameState.currentPlayerNumber}`).clone();
+                //remove the original div
+                CURRENT_PLAYER_BOARD_POSITION.find(`#player-token-${gameState.currentPlayerNumber}`).remove();
+
+                CURRENT_PLAYER.boardPosition = 1;
+                $(`#tile-1`).append(playerToken);
+
                 await checkStatBounds(true);
             } else {
                 // If the player has no lives left, remove them from the game
