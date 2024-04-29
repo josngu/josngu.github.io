@@ -42,20 +42,17 @@ window.onload = async () => {
     document.getElementById('btn-show-player-objects').addEventListener('click', () => {
         console.log(gameState.playerList);
     });
-    document.getElementById('btn-subtract-health').addEventListener('click', () => {
+    document.getElementById('btn-subtract-health').addEventListener('click', async () => {
         getCurrentPlayer().currentHp -= 5;
-        //events.healthChangeAnimation(-10, getCurrentPlayer());
-        checkStatBounds(false);
+        await checkStatBounds(true);
     });
-    document.getElementById('btn-add-health').addEventListener('click', () => {
+    document.getElementById('btn-add-health').addEventListener('click', async () => {
         getCurrentPlayer().currentHp += 5;
-        //events.healthChangeAnimation(10, getCurrentPlayer());
-        checkStatBounds(false);
+        await checkStatBounds(true);
     });
-    document.getElementById('btn-add-karma').addEventListener('click', () => {
+    document.getElementById('btn-add-karma').addEventListener('click', async () => {
         getCurrentPlayer().currentKarma += 5;
-        //events.healthChangeAnimation(-10, getCurrentPlayer());
-        checkStatBounds(false);
+        await checkStatBounds(true);
     });
     document.getElementById('btn-add-spell').addEventListener('click', async () => {
         getCurrentPlayer().spells.push(await events.getRandomSpell());
@@ -174,7 +171,7 @@ export async function checkAllPlayersHealthState() {
                 gameState.playerList[i].lives--;
                 gameState.playerList[i].currentHp = gameState.playerList[i].maxHp;
                 updatePlayerClass(i + 1);
-                checkStatBounds(true);
+                await checkStatBounds(true);
             }
             else {
                 // If the player has no lives left, remove them from the game
@@ -211,22 +208,23 @@ export function updatePlayerClass(playerNumber) {
     playerClassElement.parentNode.replaceChild(playerClassElementClone, playerClassElement);
     document.getElementById(`player-class-${playerNumber}`).innerHTML = gameState.playerList[playerNumber - 1].class;
 }
-export function updateVisualPlayerStats(updateAllPlayers) {
+export async function updateVisualPlayerStats(updateAllPlayers) {
+    let ID = document.getElementById.bind(document);
     if (updateAllPlayers === true) {
         for (let i = 1; i <= gameState.playerList.length; i++) {
             let player = gameState.playerList[i - 1];
-            document.getElementById(`player-hp-${i}`).innerHTML = player.currentHp.toString();
-            document.getElementById(`player-maxHp-${i}`).innerHTML = player.maxHp.toString();
-            document.getElementById(`player-karma-${i}`).innerHTML = player.currentKarma.toString();
-            document.getElementById(`player-maxKarma-${i}`).innerHTML = player.maxKarma.toString();
-            document.getElementById(`player-lives-current-${i}`).innerHTML = "❤️x" + player.lives.toString();
             // Update the bars
-            document.getElementById(`player-hp-bar-${i}`).style.width = `${(player.currentHp / player.maxHp) * 100}%`;
-            document.getElementById(`player-karma-bar-${i}`).style.width = `${(player.currentKarma / player.maxKarma) * 100}%`;
+            ID(`player-hp-bar-${i}`).style.width = `${(player.currentHp / player.maxHp) * 100}%`;
+            ID(`player-karma-bar-${i}`).style.width = `${(player.currentKarma / player.maxKarma) * 100}%`;
+            numberChangeAnimation({ fromValue: +ID(`player-hp-${i}`).innerHTML, toValue: player.currentHp, elementID: `player-hp-${i}` });
+            numberChangeAnimation({ fromValue: +ID(`player-maxHp-${i}`).innerHTML, toValue: player.maxHp, elementID: `player-maxHp-${i}` });
+            numberChangeAnimation({ fromValue: +ID(`player-karma-${i}`).innerHTML, toValue: player.currentKarma, elementID: `player-karma-${i}` });
+            numberChangeAnimation({ fromValue: +ID(`player-maxKarma-${i}`).innerHTML, toValue: player.maxKarma, elementID: `player-maxKarma-${i}` });
+            ID(`player-lives-current-${i}`).innerHTML = "❤️x" + player.lives.toString();
             // Check if karma is 100 or more
-            document.getElementById(`player-karma-${i}`).style.color = `${player.currentKarma >= 100 ? 'yellow' : 'white'}`;
+            ID(`player-karma-${i}`).style.color = `${player.currentKarma >= 100 ? 'yellow' : 'white'}`;
             // Update the WP orbs
-            const PLAYER_WP_CONTAINER = document.getElementById(`player-wp-current-${i}`);
+            const PLAYER_WP_CONTAINER = ID(`player-wp-current-${i}`);
             let filledOrbs = PLAYER_WP_CONTAINER.getElementsByClassName('wp-orb-filled');
             //if the number of filled orbs is less than the current WP, remove the last empty orb and add a filled orb after the last filled orb
             if (filledOrbs.length < player.currentWp) {
@@ -264,19 +262,21 @@ export function updateVisualPlayerStats(updateAllPlayers) {
         }
     }
     else {
+        // Will soon be deprecated
         let CURRENT_PLAYER = getCurrentPlayer();
-        document.getElementById(`player-hp-${gameState.currentPlayerNumber}`).innerHTML = CURRENT_PLAYER.currentHp.toString();
-        document.getElementById(`player-maxHp-${gameState.currentPlayerNumber}`).innerHTML = CURRENT_PLAYER.maxHp.toString();
-        document.getElementById(`player-karma-${gameState.currentPlayerNumber}`).innerHTML = CURRENT_PLAYER.currentKarma.toString();
-        document.getElementById(`player-maxKarma-${gameState.currentPlayerNumber}`).innerHTML = CURRENT_PLAYER.maxKarma.toString();
-        document.getElementById(`player-lives-current-${gameState.currentPlayerNumber}`).innerHTML = "❤️x" + CURRENT_PLAYER.lives.toString();
+        let CURRENT_PLAYER_NUMBER = gameState.currentPlayerNumber;
         // Update the bars
-        document.getElementById(`player-hp-bar-${gameState.currentPlayerNumber}`).style.width = `${(CURRENT_PLAYER.currentHp / CURRENT_PLAYER.maxHp) * 100}%`;
-        document.getElementById(`player-karma-bar-${gameState.currentPlayerNumber}`).style.width = `${(CURRENT_PLAYER.currentKarma / CURRENT_PLAYER.maxKarma) * 100}%`;
+        ID(`player-hp-bar-${CURRENT_PLAYER_NUMBER}`).style.width = `${(CURRENT_PLAYER.currentHp / CURRENT_PLAYER.maxHp) * 100}%`;
+        ID(`player-karma-bar-${CURRENT_PLAYER_NUMBER}`).style.width = `${(CURRENT_PLAYER.currentKarma / CURRENT_PLAYER.maxKarma) * 100}%`;
+        ID(`player-hp-${CURRENT_PLAYER_NUMBER}`).innerHTML = CURRENT_PLAYER.currentHp.toString();
+        ID(`player-maxHp-${CURRENT_PLAYER_NUMBER}`).innerHTML = CURRENT_PLAYER.maxHp.toString();
+        ID(`player-karma-${CURRENT_PLAYER_NUMBER}`).innerHTML = CURRENT_PLAYER.currentKarma.toString();
+        ID(`player-maxKarma-${CURRENT_PLAYER_NUMBER}`).innerHTML = CURRENT_PLAYER.maxKarma.toString();
+        ID(`player-lives-current-${CURRENT_PLAYER_NUMBER}`).innerHTML = "❤️x" + CURRENT_PLAYER.lives.toString();
         // Check if karma is 100 or more
-        document.getElementById(`player-karma-${gameState.currentPlayerNumber}`).style.color = `${CURRENT_PLAYER.currentKarma >= 100 ? 'yellow' : 'white'}`;
+        ID(`player-karma-${CURRENT_PLAYER_NUMBER}`).style.color = `${CURRENT_PLAYER.currentKarma >= 100 ? 'yellow' : 'white'}`;
         // Update the WP orbs
-        const PLAYER_WP_CONTAINER = document.getElementById(`player-wp-current-${gameState.currentPlayerNumber}`);
+        const PLAYER_WP_CONTAINER = ID(`player-wp-current-${CURRENT_PLAYER_NUMBER}`);
         let filledOrbs = PLAYER_WP_CONTAINER.getElementsByClassName('wp-orb-filled');
         //if the number of filled orbs is less than the current WP, remove the last empty orb and add a filled orb after the last filled orb
         if (filledOrbs.length < CURRENT_PLAYER.currentWp) {
@@ -314,7 +314,7 @@ export function updateVisualPlayerStats(updateAllPlayers) {
     }
 }
 // This will also update the player's stats
-export function checkStatBounds(checkAllPlayers) {
+export async function checkStatBounds(checkAllPlayers) {
     const PLAYER_LIST = gameState.playerList;
     if (checkAllPlayers === true) {
         for (let i = 0; i < gameState.playerList.length; i++) {
@@ -332,7 +332,7 @@ export function checkStatBounds(checkAllPlayers) {
                 document.getElementById(`player-hp-bar-container-${i + 1}`).classList.remove('hp-bar-low');
             }
         }
-        updateVisualPlayerStats(true);
+        await updateVisualPlayerStats(true);
     }
     else {
         const CURRENT_PLAYER = getCurrentPlayer();
@@ -349,7 +349,21 @@ export function checkStatBounds(checkAllPlayers) {
         else if (document.getElementById(`player-hp-bar-container-${gameState.currentPlayerNumber}`).classList.contains('hp-bar-low')) {
             document.getElementById(`player-hp-bar-container-${gameState.currentPlayerNumber}`).classList.remove('hp-bar-low');
         }
-        updateVisualPlayerStats(false);
+        await updateVisualPlayerStats(false);
+    }
+}
+async function numberChangeAnimation(parameters) {
+    const { fromValue, toValue, elementID } = parameters;
+    const VALUE_DIFFERENCE = Math.abs(fromValue - toValue);
+    if (VALUE_DIFFERENCE === 0)
+        return;
+    let timeStep = Math.abs(500 / VALUE_DIFFERENCE);
+    console.table(parameters);
+    console.log(VALUE_DIFFERENCE);
+    for (let i = 0; i <= Math.abs(VALUE_DIFFERENCE); i++) {
+        let newValue = fromValue > toValue ? fromValue - i : fromValue + i;
+        document.getElementById(elementID).innerHTML = newValue.toString();
+        await new Promise(resolve => setTimeout(resolve, timeStep));
     }
 }
 //# sourceMappingURL=index.js.map

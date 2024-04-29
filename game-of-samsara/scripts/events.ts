@@ -225,9 +225,7 @@ export async function applyEventEffects(event: EffectChanges) {
     if (event.loseRandomSpell) {
         CURRENT_PLAYER.spells.splice(Math.floor(Math.random() * CURRENT_PLAYER.spells.length), 1);
     }
-    if (event.customEffect) {
-        event.customEffect();
-    }
+    if (event.customEffect) event.customEffect();
     game.checkStatBounds(true);
 }
 
@@ -393,7 +391,7 @@ export function changeHealth(parameters: { changeValue: number, changeMaxHp?: bo
         }
     } else if (APPLY_TO_ALL_OTHER_PLAYERS == false && CHANGE_MAX_HP == false) {
         CURRENT_PLAYER.currentHp += IS_PERCENTAGE == true ? Math.round(CURRENT_PLAYER.maxHp * (CHANGE_VALUE / 100)) : CHANGE_VALUE;
-        // Change maximum HP code blocks
+        // Change maximum HP code snippet
     } else if (APPLY_TO_ALL_OTHER_PLAYERS == true && CHANGE_MAX_HP == true) {
         for (let i = 0; i < PLAYER_LIST.length; i++) {
             if (PLAYER_LIST[i] !== CURRENT_PLAYER) {
@@ -423,60 +421,6 @@ function changeWp(parameters: { wpChange: number, applyToAllOtherPlayers?: boole
     } else {
         CURRENT_PLAYER.currentWp += WP_CHANGE;
         game.checkStatBounds(false);
-    }
-
-}
-
-// Too arduous to implement correctly. 
-export async function healthChangeAnimation(hpChange: number, target: object | Array<object>) {
-    let timeStep = Math.abs(500 / hpChange);
-    console.log(timeStep)
-    console.log(target)
-
-    if (target === game.gameState.playerList) {
-        const PLAYER_LIST = game.gameState.playerList;
-        for (let i = 1; i <= (target as Array<object>).length; i++) {
-            document.getElementById(`player-hp-bar-${i}`).style.width = `${(PLAYER_LIST[i - 1].currentHp / PLAYER_LIST[i - 1].maxHp) * 100}%`;
-            for (let j = 0; j < Math.abs(hpChange); j++) {
-                let playerHPElement = document.getElementById(`player-hp-${i}`);
-                let playerHP = playerHPElement.textContent;
-                playerHPElement.textContent = (parseInt(playerHP) + (hpChange < 0 ? -1 : 1)).toString();
-
-                // Check if the player's visual HP exceeds their max HP
-                if (parseInt(playerHPElement.textContent) > PLAYER_LIST[i - 1].maxHp) {
-                    playerHPElement.textContent = PLAYER_LIST[i - 1].maxHp.toString();
-                    return;
-                }
-                // Check if the player's visual HP is less than 0
-                if (parseInt(playerHPElement.textContent) < 0) {
-                    playerHPElement.textContent = '0';
-                    return;
-                }
-                await new Promise(resolve => setTimeout(resolve, timeStep));
-            }
-        }
-    }
-
-    if (target === game.getCurrentPlayer()) {
-        const CURRENT_PLAYER = game.getCurrentPlayer();
-        document.getElementById(`player-hp-bar-${game.gameState.currentPlayerNumber}`).style.width = `${(CURRENT_PLAYER.currentHp / CURRENT_PLAYER.maxHp) * 100}%`;
-        for (let j = 0; j < Math.abs(hpChange); j++) {
-            let currentPlayerHPElement = document.getElementById(`player-hp-${game.gameState.currentPlayerNumber}`);
-            let currentPlayerHP = currentPlayerHPElement.textContent;
-            currentPlayerHPElement.textContent = (parseInt(currentPlayerHP) + (hpChange < 0 ? -1 : 1)).toString();
-
-            // Check if the player's visual HP exceeds their max HP
-            if (parseInt(currentPlayerHPElement.textContent) > CURRENT_PLAYER.maxHp) {
-                currentPlayerHPElement.textContent = CURRENT_PLAYER.maxHp.toString();
-                return;
-            }
-            // Check if the player's visual HP is less than 0
-            if (parseInt(currentPlayerHPElement.textContent) < 0) {
-                currentPlayerHPElement.textContent = '0';
-                return;
-            }
-            await new Promise(resolve => setTimeout(resolve, timeStep));
-        }
     }
 
 }
