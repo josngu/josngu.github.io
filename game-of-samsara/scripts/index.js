@@ -162,7 +162,6 @@ export async function reincarnatePlayer() {
     await checkAllPlayersHealthState();
 }
 export async function checkAllPlayersHealthState() {
-    await new Promise(resolve => setTimeout(resolve, 500));
     console.log('Checking all players health state');
     for (let i = 0; i < gameState.playerList.length; i++) {
         if (gameState.playerList[i].currentHp <= 0) {
@@ -368,8 +367,7 @@ async function numberChangeAnimation(parameters) {
     if (VALUE_DIFFERENCE === 0)
         return;
     let timeStep = Math.abs(500 / VALUE_DIFFERENCE);
-    console.table(parameters);
-    console.log(VALUE_DIFFERENCE);
+    //console.table(parameters);
     for (let i = 0; i <= Math.abs(VALUE_DIFFERENCE); i++) {
         let newValue = fromValue > toValue ? fromValue - i : fromValue + i;
         document.getElementById(elementID).innerHTML = newValue.toString();

@@ -9,13 +9,16 @@ let earlyGameMusicList = [
     {name: 'tearing-through-heaven', calmOffset: 0.4, rageOffset: 0},
     {name: 'divine-decree', calmOffset: 0, rageOffset: 0},
     {name: 'destiny', calmOffset: 0, rageOffset: 0},
-    {name: 'alight', calmOffset: 0, rageOffset: 0},
+    {name: 'alight', calmOffset: 0.1, rageOffset: 0},
 ];
 
 let midGameMusicList = [
     {name: 'divine-decree', calmOffset: 0, rageOffset: 0},
     {name: 'destiny', calmOffset: 0, rageOffset: 0},
     {name: 'alight', calmOffset: 0.1, rageOffset: 0},
+    {name: 'a-dark-fall', calmOffset: 0, rageOffset: 0.12},
+    {name: 'thorn-in-you', calmOffset: 0, rageOffset: 0},
+    {name: 'contest-of-pride', calmOffset: 0, rageOffset: 0},
 ];
 
 let lateGameMusicList = [
