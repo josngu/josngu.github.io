@@ -78,8 +78,15 @@ window.onload = async () => {
     disableButton('btn-roll-dice');
 
     // Event listeners for the sidebar
-    document.getElementById('btn-player-spells-page').addEventListener('click', sidebar.showSpells);
-    document.getElementById('btn-player-stats-page').addEventListener('click', sidebar.showStats);
+    document.getElementById('btn-player-spells-page').addEventListener('click', () => {
+        music.playButtonSelectSound();
+        sidebar.showSpells();
+    });
+    
+    document.getElementById('btn-player-stats-page').addEventListener('click', () => {
+        music.playButtonSelectSound();
+        sidebar.showStats();
+    });
 
     // Debug
     document.getElementById('btn-advance-turn').addEventListener('click', () => {
@@ -281,7 +288,7 @@ export function updatePlayerClass(playerNumber: number) {
     } else {
         playerClass = 'Brahmin';
     }
-    log(`${gameState.playerList[playerNumber - 1].playerName} dies and reincarnates into a ${playerClass}.`, gameState.playerList[playerNumber - 1].hexColor);
+    log(`${gameState.playerList[playerNumber - 1].playerName} dies and reincarnates into a ${playerClass} (${getCurrentPlayer().lives} lives remaining).`, gameState.playerList[playerNumber - 1].hexColor);
     gameState.playerList[playerNumber - 1].class = playerClass;
 
     // clone `player-class-${playerNumber}`, delete the original, and replace it with the clone

@@ -1,6 +1,7 @@
 import * as game from './index.js';
 import * as gameboard from './gameboard.js';
 import * as sidebar from './sidebar.js';
+import * as music from './music.js';
 import { BLUE_EVENT_LIST } from './blueEventList.js';
 import { RED_EVENT_LIST } from './redEventList.js';
 import { SPELL_LIST } from './spellList.js';
@@ -8,6 +9,7 @@ const LOWERED_NEW_STAT_COLOR = 'red';
 const RAISED_NEW_STAT_COLOR = 'lightblue';
 const SAME_NEW_STAT_COLOR = 'white';
 export async function getRandomSpell() {
+    music.playSpellGetSound();
     const SPELL = SPELL_LIST[Math.floor(Math.random() * SPELL_LIST.length)];
     sidebar.showSpellName(`Got 🕉️ ${SPELL.spellName}!`, 2500);
     game.log(`${game.getCurrentPlayer().playerName} gets 🕉️ ${SPELL.spellName}.`, game.getCurrentPlayer().hexColor);

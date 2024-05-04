@@ -12,10 +12,10 @@ let earlyGameMusicList = [
     { name: 'alight', calmOffset: 0.1, rageOffset: 0 },
 ];
 let midGameMusicList = [
-    { name: 'divine-decree', calmOffset: 0, rageOffset: 0 },
+    { name: 'divine-decree', calmOffset: 0, rageOffset: 0.1 },
     { name: 'destiny', calmOffset: 0, rageOffset: 0 },
     { name: 'alight', calmOffset: 0.1, rageOffset: 0 },
-    { name: 'a-dark-fall', calmOffset: 0, rageOffset: 0.12 },
+    { name: 'a-dark-fall', calmOffset: 0, rageOffset: 0.15 },
     { name: 'thorn-in-you', calmOffset: 0, rageOffset: 0 },
     { name: 'contest-of-pride', calmOffset: 0, rageOffset: 0 },
 ];
@@ -77,5 +77,21 @@ export function playSound(name, volume) {
     let audio = new Audio(`./sound/${name}.mp3`);
     audio.volume = volume;
     audio.play();
+}
+export function playButtonSelectSound() {
+    playSound('button-select', 0.2);
+}
+export function playSpellGetSound() {
+    playSound('gained-something', 0.2);
+    $('#music-calm').animate({ volume: 0 }, 500);
+    $('#music-rage').animate({ volume: 0 }, 500);
+    setTimeout(() => {
+        if (currentlyPlayingMusicType === 'calm') {
+            $('#music-calm').animate({ volume: volume }, 1000);
+        }
+        else {
+            $('#music-rage').animate({ volume: volume }, 1000);
+        }
+    }, 1500);
 }
 //# sourceMappingURL=music.js.map

@@ -21,6 +21,7 @@ export const progenitorDescriptions = {
     - You have a 20% chance of doing an additional follow-up attack at 50% of your base attack power`,
 };
 export async function startGame() {
+    music.playButtonSelectSound();
     document.getElementById('title-screen').style.animation = 'none';
     document.getElementById('title-screen').classList.add('animate-fullscreen-exit');
     await new Promise(resolve => setTimeout(resolve, 250));
@@ -29,6 +30,7 @@ export async function startGame() {
     addPlayer();
 }
 export async function showProgenitorSelectionMenu() {
+    music.playButtonSelectSound();
     createPlayers();
     document.getElementById('player-setup').style.animation = 'none';
     document.getElementById('player-setup').classList.add('animate-fullscreen-exit');
@@ -40,6 +42,7 @@ export async function showProgenitorSelectionMenu() {
 }
 // Actually begins the game lol
 export async function beginGame() {
+    music.playButtonSelectSound();
     document.getElementById('title-screen').remove();
     document.getElementById('player-setup').remove();
     document.getElementById('progenitor-selection-screen').remove();

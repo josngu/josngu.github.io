@@ -97,6 +97,10 @@ export function zoomGameboard(event) {
     document.getElementById('gameboard').style.transform = `perspective(20cm) rotateX(${perspectiveAngle}deg)`;
 }
 export function rollDice(i) {
+    //check if the btn-roll-dice is disabled, if not, play the button-select sound
+    if (!document.getElementById('btn-roll-dice').classList.contains('btn-disabled')) {
+        music.playButtonSelectSound();
+    }
     game.disableButton('btn-roll-dice');
     if (game.gameState.hasUsedSpell == false) {
         sidebar.disableSpells();
@@ -137,7 +141,7 @@ export async function movePlayer(diceRoll) {
             $(`#tile-1`).append(playerToken);
             game.reincarnatePlayer();
             game.createTransition(`${game.gameState.currentPlayerName} Reincarnates`, CURRENT_PLAYER.darkenedRGBColor);
-            game.log(`${game.gameState.currentPlayerName} reached the end of the board and is reincarnated (${CURRENT_PLAYER.lives} lives remaining).`, CURRENT_PLAYER.hexColor);
+            game.log(`${game.gameState.currentPlayerName} reaches the end of the board and reincarnates.`, CURRENT_PLAYER.hexColor);
             remakeGameboard();
             await new Promise(resolve => setTimeout(resolve, 1500));
         }
