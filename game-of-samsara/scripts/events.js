@@ -90,9 +90,16 @@ async function createEventScreen(event, eventType) {
     let chosenOption = await new Promise(resolve => {
         for (let i = 0; i < EVENT_SCREEN_OPTIONS.length; i++) {
             EVENT_SCREEN_OPTIONS[i].addEventListener('click', () => {
+                music.playButtonSelectSound();
                 console.log(event.options[i]);
-                applyEventEffects(event.options[i].effect);
                 resolve(event.options[i]);
+                //wait 500ms before applying the effect
+                setTimeout(() => {
+                    applyEventEffects(event.options[i].effect);
+                }, 500);
+            });
+            EVENT_SCREEN_OPTIONS[i].addEventListener('mouseenter', () => {
+                music.playButtonHoverSound();
             });
         }
     });
@@ -323,6 +330,9 @@ export function changeHealth(parameters) {
     const APPLY_TO_ALL_OTHER_PLAYERS = parameters.applyToAllOtherPlayers ?? false;
     const CURRENT_PLAYER = game.getCurrentPlayer();
     const PLAYER_LIST = game.gameState.playerList;
+    if (CHANGE_VALUE > 0) {
+        music.playHealingSound();
+    }
     if (APPLY_TO_ALL_OTHER_PLAYERS == true && CHANGE_MAX_HP == false) {
         for (let i = 0; i < PLAYER_LIST.length; i++) {
             if (PLAYER_LIST[i] !== CURRENT_PLAYER) {

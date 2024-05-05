@@ -79,7 +79,7 @@ export function playSound(name, volume) {
     audio.play();
 }
 export function playButtonSelectSound() {
-    playSound('button-select', 0.2);
+    playSound('select', 0.25);
 }
 export function playSpellGetSound() {
     playSound('gained-something', 0.2);
@@ -98,9 +98,12 @@ export function playButtonHoverSound() {
     playSound('button-hover', 0.1);
 }
 export function playPreviousPageSound() {
-    playSound('previous-page', 0.5);
+    playSound('previous-page', 0.4);
 }
 export function playNextPageSound() {
-    playSound('next-page', 0.5);
+    playSound('next-page', 0.4);
+}
+export function playHealingSound() {
+    playSound('heal', 0.33);
 }
 //# sourceMappingURL=music.js.map

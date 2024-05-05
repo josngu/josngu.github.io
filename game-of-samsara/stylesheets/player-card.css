@@ -646,8 +646,12 @@ button:active {
 .player-sp-bar {
   background: black;
   height: 100%;
-  width: 100%;
+  width: 0%;
   transition-duration: 0.4s;
+}
+
+.player-karma-bar {
+  width: 100%;
 }
 
 .player-karma-text {

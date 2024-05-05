@@ -89,7 +89,7 @@ export function playSound(name: string, volume: number) {
 }
 
 export function playButtonSelectSound() {
-    playSound('button-select', 0.2);
+    playSound('select', 0.25);
 }
 
 export function playSpellGetSound() {
@@ -112,9 +112,13 @@ export function playButtonHoverSound() {
 }
 
 export function playPreviousPageSound() {
-    playSound('previous-page', 0.5);
+    playSound('previous-page', 0.4);
 }
 
 export function playNextPageSound() {
-    playSound('next-page', 0.5);
+    playSound('next-page', 0.4);
+}
+
+export function playHealingSound() {
+    playSound('heal', 0.33);
 }
