@@ -103,16 +103,12 @@ export function zoomGameboard(event: WheelEvent) {
 }
 
 export function rollDice(i) {
-    //check if the btn-roll-dice is disabled, if not, play the button-select sound
-    if (!document.getElementById('btn-roll-dice').classList.contains('btn-disabled')) {
-        music.playButtonSelectSound();
-    }
     game.disableButton('btn-roll-dice');
-    
+
     if (game.gameState.hasUsedSpell == false) {
         sidebar.disableSpells();
     }
-    
+
     $('#dice-roll-result').show();
     $('#dice-roll-result').addClass('dice-roll-in');
 
@@ -140,7 +136,7 @@ export async function movePlayer(diceRoll: number) {
     for (let i = 0; i < diceRoll; i++) {
         const CURRENT_PLAYER = game.getCurrentPlayer();
         const CURRENT_PLAYER_BOARD_POSITION = $(`#tile-${CURRENT_PLAYER.boardPosition}`);
-        
+
         //copy a div based on its id
         let playerToken = CURRENT_PLAYER_BOARD_POSITION.find(`#player-token-${game.gameState.currentPlayerNumber}`).clone();
 
@@ -172,7 +168,7 @@ export async function movePlayer(diceRoll: number) {
 
         // Wait for the sidebar to hide if the player lands on an empty tile or the start tile once the dice roll result hits 0
         if (document.getElementById('dice-roll-result').innerHTML == '0') {
-            if (gameboard[game.getCurrentPlayer().boardPosition - 1].type == 'neutral' || game.getCurrentPlayer().boardPosition == 1){
+            if (gameboard[game.getCurrentPlayer().boardPosition - 1].type == 'neutral' || game.getCurrentPlayer().boardPosition == 1) {
                 sidebar.hideSidebar();
                 await new Promise(resolve => setTimeout(resolve, game.getAnimationDuration('hide-sidebar')));
             }
@@ -217,14 +213,19 @@ async function advanceTurn() {
 
         game.gameState.hasUsedSpell = false;
 
-        // fill up everyone's WP by 1
-        game.gameState.playerList.forEach(player => {
-            player.currentWp++;
-        });
-        game.checkStatBounds(true);
+        music.playNextTurnSound();
+
+        setTimeout(() => {
+            // fill up everyone's WP by 1
+            game.gameState.playerList.forEach(player => {
+                player.currentWp++;
+            });
+            game.checkStatBounds(true);
+        }, 300);
 
         await game.createTransition(`Turn ${game.gameState.turn.toString()}`, game.TRANSITION_SCREEN_BG_RGB_COLOR);
         game.log(`Turn ${game.gameState.turn.toString()}`);
+
         setTimeout(async () => {
             await game.createTransition(`${game.gameState.currentPlayerName}'s Turn`, game.getCurrentPlayer().darkenedRGBColor);
             game.log(`${game.gameState.currentPlayerName}'s Turn`, game.getCurrentPlayer().hexColor);

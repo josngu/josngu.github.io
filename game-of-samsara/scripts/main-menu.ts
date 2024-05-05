@@ -26,7 +26,6 @@ export const progenitorDescriptions = {
 }
 
 export async function startGame() {
-    music.playButtonSelectSound();
     document.getElementById('title-screen').style.animation = 'none';
     document.getElementById('title-screen').classList.add('animate-fullscreen-exit');
     await new Promise(resolve => setTimeout(resolve, 250));
@@ -37,7 +36,6 @@ export async function startGame() {
 }
 
 export async function showProgenitorSelectionMenu() {
-    music.playButtonSelectSound();
     createPlayers();
     document.getElementById('player-setup').style.animation = 'none';
     document.getElementById('player-setup').classList.add('animate-fullscreen-exit');
@@ -47,12 +45,10 @@ export async function showProgenitorSelectionMenu() {
 
     document.getElementById('progenitor-selection-title').innerHTML = `<span id="progenitor-player-name" style="background-color: ${game.gameState.playerList[game.gameState.currentPlayerNumber - 1].hexColor}">${game.gameState.currentPlayerName}</span>Select a Progenitor`;
     createPlayerCardsOrder();
-
 }
 
 // Actually begins the game lol
 export async function beginGame() {
-    music.playButtonSelectSound();
     document.getElementById('title-screen').remove();
     document.getElementById('player-setup').remove();
     document.getElementById('progenitor-selection-screen').remove();
@@ -354,6 +350,7 @@ function gameboardCreatePlayerCards() {
         game.createTransition(`GAME START`, game.TRANSITION_SCREEN_BG_RGB_COLOR);
     }, 1200);
     setTimeout(() => {
+        music.playNextTurnSound();
         game.createTransition(`Turn ${game.gameState.turn.toString()}`, game.TRANSITION_SCREEN_BG_RGB_COLOR);
         game.log(`Turn ${game.gameState.turn.toString()}`);
     }, 2400);

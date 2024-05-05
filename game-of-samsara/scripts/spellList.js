@@ -1,5 +1,6 @@
 import * as gameboard from './gameboard.js';
 import * as game from './index.js';
+import * as music from './music.js';
 export const SPELL_LIST = [{
         spellName: 'Essence of Vishnu',
         description: 'Fully heals the player, increases their max HP by 10%, and gives an extra life.',
@@ -31,6 +32,7 @@ export const SPELL_LIST = [{
         effect: { customEffect: gameboard.remakeGameboard },
     },];
 function essenceOfShiva() {
+    music.playSound('earthquake', 0.5);
     for (let player in game.gameState.playerList) {
         game.gameState.playerList[player].currentHp = 1;
     }

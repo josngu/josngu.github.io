@@ -2,8 +2,8 @@ import * as game from './index.js';
 export const RED_EVENT_LIST = [{
         message: 'You believe your neighbour is a heretic. You decide to teach them a lesson.',
         options: [
-            { label: `Vandalize your neighbour's shrine`, effect: { karmaChange: -5 } },
-            { label: `Destroy your neighbour's shrine`, effect: { karmaChange: -10, getRandomSpell: true } }
+            { label: `Vandalize your neighbour's shrine`, effect: { karmaChange: -4 } },
+            { label: `Destroy your neighbour's shrine`, effect: { karmaChange: -8, getRandomSpell: true } }
         ],
         chance: 1
     },
@@ -20,7 +20,16 @@ export const RED_EVENT_LIST = [{
         message: `You get caught in a lahar (mudslide). Your chances of living through this don't look good.`,
         options: [
             { label: 'Try to get out.', description: 'You have a 50% chance of dying.', effect: { customEffect: () => mudslide() } },
-            { label: 'Escape with all your might.', description: 'You have a 99% chance of living.', effect: { wpChange: -3, customEffect: () => mudslide(-1) } }
+            { label: 'Escape with all your might.', description: 'You have a 99% chance of living.', effect: { wpChange: -2, customEffect: () => mudslide(-1) } }
+        ],
+        chance: 1
+    },
+    {
+        message: `You catch your neighbour watching indecent content.`,
+        options: [
+            { label: 'Scold them.', description: 'Your neighbour has a 60% chance of hitting you for 30 HP.', effect: { karmaChange: 2, customEffect: () => neighbourCaughtWatchingIndecentContent() } },
+            { label: 'Join them.', effect: { wpChange: 1, karmaChange: -3 } },
+            { label: 'Ignore them.', effect: {} }
         ],
         chance: 2
     },
@@ -37,6 +46,12 @@ function mudslide(wpChange) {
             game.getCurrentPlayer().currentHp = 0;
             console.log(game.getCurrentPlayer());
         }
+    }
+}
+function neighbourCaughtWatchingIndecentContent() {
+    // Your neighbour has a 60% chance of hitting you for 30 HP.
+    if (Math.random() < 0.6) {
+        game.getCurrentPlayer().currentHp -= 30;
     }
 }
 //# sourceMappingURL=redEventList.js.map

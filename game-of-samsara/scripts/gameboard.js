@@ -97,10 +97,6 @@ export function zoomGameboard(event) {
     document.getElementById('gameboard').style.transform = `perspective(20cm) rotateX(${perspectiveAngle}deg)`;
 }
 export function rollDice(i) {
-    //check if the btn-roll-dice is disabled, if not, play the button-select sound
-    if (!document.getElementById('btn-roll-dice').classList.contains('btn-disabled')) {
-        music.playButtonSelectSound();
-    }
     game.disableButton('btn-roll-dice');
     if (game.gameState.hasUsedSpell == false) {
         sidebar.disableSpells();
@@ -191,11 +187,14 @@ async function advanceTurn() {
         game.gameState.currentPlayerNumber = 1;
         game.gameState.currentPlayerName = game.gameState.playerList[0].playerName;
         game.gameState.hasUsedSpell = false;
-        // fill up everyone's WP by 1
-        game.gameState.playerList.forEach(player => {
-            player.currentWp++;
-        });
-        game.checkStatBounds(true);
+        music.playNextTurnSound();
+        setTimeout(() => {
+            // fill up everyone's WP by 1
+            game.gameState.playerList.forEach(player => {
+                player.currentWp++;
+            });
+            game.checkStatBounds(true);
+        }, 300);
         await game.createTransition(`Turn ${game.gameState.turn.toString()}`, game.TRANSITION_SCREEN_BG_RGB_COLOR);
         game.log(`Turn ${game.gameState.turn.toString()}`);
         setTimeout(async () => {

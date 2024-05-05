@@ -120,5 +120,17 @@ export function playNextPageSound() {
 }
 
 export function playHealingSound() {
-    playSound('heal', 0.33);
+    playSound('heal', 0.2);
+}
+
+export function playWillpowerGainSound() {
+    playSound('willpower-gain', 0.1);
+}
+
+export function playWillpowerLossSound() {
+    playSound('willpower-loss', 0.1);
+}
+
+export function playNextTurnSound(){
+    playSound('next-turn', 0.5);
 }

@@ -104,6 +104,15 @@ export function playNextPageSound() {
     playSound('next-page', 0.4);
 }
 export function playHealingSound() {
-    playSound('heal', 0.33);
+    playSound('heal', 0.2);
+}
+export function playWillpowerGainSound() {
+    playSound('willpower-gain', 0.1);
+}
+export function playWillpowerLossSound() {
+    playSound('willpower-loss', 0.1);
+}
+export function playNextTurnSound() {
+    playSound('next-turn', 0.5);
 }
 //# sourceMappingURL=music.js.map

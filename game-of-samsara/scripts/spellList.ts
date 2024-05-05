@@ -1,6 +1,7 @@
 import { Spell } from './events.js';
 import * as gameboard from './gameboard.js';
 import * as game from './index.js';
+import * as music from './music.js';
 
 export const SPELL_LIST: Spell[] = [{
     spellName: 'Essence of Vishnu',
@@ -37,6 +38,7 @@ export const SPELL_LIST: Spell[] = [{
 },];
 
 function essenceOfShiva() {
+    music.playSound('earthquake', 0.5);
     for (let player in game.gameState.playerList) {
         game.gameState.playerList[player].currentHp = 1;
     }

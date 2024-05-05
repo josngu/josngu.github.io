@@ -57,8 +57,12 @@ export const TRANSITION_SCREEN_BG_RGB_COLOR: [number, number, number] = [0, 0, 0
 window.onload = async () => {
     document.addEventListener('mouseover', function (event) {
         if ((event.target as HTMLElement).tagName === 'BUTTON') {
-            // Play sound
             music.playButtonHoverSound();
+        }
+    });
+    document.addEventListener('click', function (event) {
+        if ((event.target as HTMLElement).tagName === 'BUTTON') {
+            music.playButtonSelectSound();
         }
     });
 
@@ -255,6 +259,7 @@ export async function reincarnatePlayer() {
     await checkAllPlayersHealthState();
 }
 
+// This function is called when a player dies, no natural reincarnation
 export async function checkAllPlayersHealthState() {
     console.log('Checking all players health state');
     for (let i = 0; i < gameState.playerList.length; i++) {
@@ -316,6 +321,8 @@ export function updatePlayerClass(playerNumber: number) {
 export async function updateVisualPlayerStats(updateAllPlayers: boolean) {
     let ID = document.getElementById.bind(document);
     if (updateAllPlayers === true) {
+        let wpHasIncreased = false; // Only purpose of this is to play the WP gain sound
+        let wpHasDecreased = false; // Only purpose of this is to play the WP loss sound
         for (let i = 1; i <= gameState.playerList.length; i++) {
             let player = gameState.playerList[i - 1];
 
@@ -338,6 +345,7 @@ export async function updateVisualPlayerStats(updateAllPlayers: boolean) {
 
             //if the number of filled orbs is less than the current WP, remove the last empty orb and add a filled orb after the last filled orb
             if (filledOrbs.length < player.currentWp) {
+                wpHasIncreased = true; // Only purpose of this is to play the WP gain sound
                 while (filledOrbs.length != player.currentWp) {
                     try {
                         filledOrbs[filledOrbs.length - 1].insertAdjacentHTML('afterend', '<span class="wp-orb-filled wp-orb-animate"></span>');
@@ -350,6 +358,7 @@ export async function updateVisualPlayerStats(updateAllPlayers: boolean) {
             }
             //if the number of filled orbs is greater than the current WP, remove the last filled orb and add an empty orb after the last empty orb
             if (filledOrbs.length > player.currentWp) {
+                wpHasDecreased = true; // Only purpose of this is to play the WP loss sound
                 while (filledOrbs.length != player.currentWp) {
                     filledOrbs[0].remove();
                     // insert <span class="wp-orb-empty wp-orb-drain"></span> after the last filled orb, or at the beginning of the empty orbs if there are no filled orbs
@@ -368,6 +377,8 @@ export async function updateVisualPlayerStats(updateAllPlayers: boolean) {
                 }
             }
         }
+        if (wpHasIncreased) music.playWillpowerGainSound();
+        if (wpHasDecreased) music.playWillpowerLossSound();
     } else {
         // Will soon be deprecated
         let CURRENT_PLAYER = getCurrentPlayer();
@@ -391,6 +402,7 @@ export async function updateVisualPlayerStats(updateAllPlayers: boolean) {
 
         //if the number of filled orbs is less than the current WP, remove the last empty orb and add a filled orb after the last filled orb
         if (filledOrbs.length < CURRENT_PLAYER.currentWp) {
+            music.playWillpowerGainSound();
             while (filledOrbs.length != CURRENT_PLAYER.currentWp) {
                 try {
                     filledOrbs[filledOrbs.length - 1].insertAdjacentHTML('afterend', '<span class="wp-orb-filled wp-orb-animate"></span>');
@@ -403,6 +415,7 @@ export async function updateVisualPlayerStats(updateAllPlayers: boolean) {
         }
         //if the number of filled orbs is greater than the current WP, remove the last filled orb and add an empty orb after the last empty orb
         if (filledOrbs.length > CURRENT_PLAYER.currentWp) {
+            music.playWillpowerLossSound();
             while (filledOrbs.length != CURRENT_PLAYER.currentWp) {
                 filledOrbs[0].remove();
                 // insert <span class="wp-orb-empty wp-orb-drain"></span> after the last filled orb, or at the beginning of the empty orbs if there are no filled orbs
