@@ -87,7 +87,7 @@
 
 #player-spells-page {
     overflow-x: hidden;
-    .spell {
+    .btn-spell {
         border: 1px solid transparent;
         border-bottom: 1px solid rgb(255, 255, 255, 0.15);
         cursor: pointer;
@@ -107,7 +107,7 @@
 }
 
 // Inner elements for stats/spells pages
-.spell,
+.btn-spell,
 #no-spells-text,
 .stats-progenitor,
 .stats-row {

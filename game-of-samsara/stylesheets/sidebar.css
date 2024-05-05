@@ -451,22 +451,22 @@ button:active {
 #player-spells-page {
   overflow-x: hidden;
 }
-#player-spells-page .spell {
+#player-spells-page .btn-spell {
   border: 1px solid transparent;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
   transition-duration: 0.2s;
 }
-#player-spells-page .spell h3,
-#player-spells-page .spell p {
+#player-spells-page .btn-spell h3,
+#player-spells-page .btn-spell p {
   transition-duration: 0.2s;
 }
-#player-spells-page .spell:hover {
+#player-spells-page .btn-spell:hover {
   box-shadow: inset 0 0 8px -4px white;
   border: 1px solid white;
 }
 
-.spell,
+.btn-spell,
 #no-spells-text,
 .stats-progenitor,
 .stats-row {

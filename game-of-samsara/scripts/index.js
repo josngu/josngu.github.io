@@ -14,6 +14,12 @@ export let gameState = {
 };
 export const TRANSITION_SCREEN_BG_RGB_COLOR = [0, 0, 0];
 window.onload = async () => {
+    document.addEventListener('mouseover', function (event) {
+        if (event.target.tagName === 'BUTTON') {
+            // Play sound
+            music.playButtonHoverSound();
+        }
+    });
     document.getElementById('title-screen').style.display = 'flex';
     // Add event listeners
     document.getElementById('btn-crossfade').addEventListener('click', await music.crossFadeMusic);
@@ -33,11 +39,11 @@ window.onload = async () => {
     disableButton('btn-roll-dice');
     // Event listeners for the sidebar
     document.getElementById('btn-player-spells-page').addEventListener('click', () => {
-        music.playButtonSelectSound();
+        music.playPreviousPageSound();
         sidebar.showSpells();
     });
     document.getElementById('btn-player-stats-page').addEventListener('click', () => {
-        music.playButtonSelectSound();
+        music.playNextPageSound();
         sidebar.showStats();
     });
     // Debug
@@ -48,6 +54,7 @@ window.onload = async () => {
     document.getElementById('btn-show-player-objects').addEventListener('click', () => {
         console.log(gameState.playerList);
     });
+    document.getElementById('btn-reincarnate-player').addEventListener('click', reincarnatePlayer);
     document.getElementById('btn-subtract-health').addEventListener('click', async () => {
         getCurrentPlayer().currentHp -= 5;
         await checkStatBounds(true);
@@ -156,15 +163,18 @@ export function getAnimationDuration(className) {
     let duration = window.getComputedStyle(document.querySelector(`.${className}`)).getPropertyValue('animation-duration');
     return parseFloat(duration) * 1000;
 }
+// Only used for natural reincarnations
 export async function reincarnatePlayer() {
     const CURRENT_PLAYER = getCurrentPlayer();
-    CURRENT_PLAYER.currentHp = 0;
-    updateVisualPlayerStats(false);
-    // Naturally dying players get a 10% max HP increase
-    CURRENT_PLAYER.maxHp = Math.round(CURRENT_PLAYER.maxHp * 1.1);
-    // Naturally dying players get +2 base damage
-    CURRENT_PLAYER.baseDamage += 2;
     log(`Natural reincarnation bonus: +10% Max HP, +2 Base Damage`, CURRENT_PLAYER.hexColor);
+    events.applyEventEffects({ hpChange: -CURRENT_PLAYER.currentHp }); // Set HP to 0
+    await new Promise(resolve => setTimeout(resolve, 750));
+    // Naturally dying players get a 10% max HP increase and +2 base damage
+    events.applyEventEffects({ maxHpChangePercentage: 10, baseDamageChange: 2 });
+    // If there is a natural reincarnation and the stats page is opened, we need to update the page
+    if (document.getElementById('player-stats-page').style.display !== 'none') {
+        sidebar.showStats();
+    }
     await checkAllPlayersHealthState();
 }
 export async function checkAllPlayersHealthState() {
@@ -229,8 +239,8 @@ export async function updateVisualPlayerStats(updateAllPlayers) {
         for (let i = 1; i <= gameState.playerList.length; i++) {
             let player = gameState.playerList[i - 1];
             // Update the bars
-            ID(`player-hp-bar-${i}`).style.width = `${(player.currentHp / player.maxHp) * 100}%`;
-            ID(`player-karma-bar-${i}`).style.width = `${(player.currentKarma / player.maxKarma) * 100}%`;
+            ID(`player-hp-bar-${i}`).style.width = `${Math.abs((player.currentHp / player.maxHp) - 1) * 100}%`;
+            ID(`player-karma-bar-${i}`).style.width = `${Math.abs((Math.min(player.currentKarma, 100) / player.maxKarma) - 1) * 100}%`;
             numberChangeAnimation({ fromValue: +ID(`player-hp-${i}`).innerHTML, toValue: player.currentHp, elementID: `player-hp-${i}` });
             numberChangeAnimation({ fromValue: +ID(`player-maxHp-${i}`).innerHTML, toValue: player.maxHp, elementID: `player-maxHp-${i}` });
             numberChangeAnimation({ fromValue: +ID(`player-karma-${i}`).innerHTML, toValue: player.currentKarma, elementID: `player-karma-${i}` });
@@ -281,8 +291,8 @@ export async function updateVisualPlayerStats(updateAllPlayers) {
         let CURRENT_PLAYER = getCurrentPlayer();
         let CURRENT_PLAYER_NUMBER = gameState.currentPlayerNumber;
         // Update the bars
-        ID(`player-hp-bar-${CURRENT_PLAYER_NUMBER}`).style.width = `${(CURRENT_PLAYER.currentHp / CURRENT_PLAYER.maxHp) * 100}%`;
-        ID(`player-karma-bar-${CURRENT_PLAYER_NUMBER}`).style.width = `${(CURRENT_PLAYER.currentKarma / CURRENT_PLAYER.maxKarma) * 100}%`;
+        ID(`player-hp-bar-${CURRENT_PLAYER_NUMBER}`).style.width = `${Math.abs((CURRENT_PLAYER.currentHp / CURRENT_PLAYER.maxHp) - 1) * 100}%`;
+        ID(`player-karma-bar-${CURRENT_PLAYER_NUMBER}`).style.width = `${Math.abs((Math.min(CURRENT_PLAYER.currentKarma, 100) / CURRENT_PLAYER.maxKarma) - 1) * 100}%`;
         ID(`player-hp-${CURRENT_PLAYER_NUMBER}`).innerHTML = CURRENT_PLAYER.currentHp.toString();
         ID(`player-maxHp-${CURRENT_PLAYER_NUMBER}`).innerHTML = CURRENT_PLAYER.maxHp.toString();
         ID(`player-karma-${CURRENT_PLAYER_NUMBER}`).innerHTML = CURRENT_PLAYER.currentKarma.toString();
@@ -341,10 +351,10 @@ export async function checkStatBounds(checkAllPlayers) {
                 PLAYER_LIST[i].currentHp = 0;
             // if any player's hp is less than 20% of their max hp, add a hp-bar-low class to id player-hp-bar-container-i
             if (PLAYER_LIST[i].currentHp <= PLAYER_LIST[i].maxHp * 0.2) {
-                document.getElementById(`player-hp-bar-container-${i + 1}`).classList.add('hp-bar-low');
+                document.getElementById(`player-hp-bar-${i + 1}`).classList.add('hp-bar-low');
             }
-            else if (document.getElementById(`player-hp-bar-container-${i + 1}`).classList.contains('hp-bar-low')) {
-                document.getElementById(`player-hp-bar-container-${i + 1}`).classList.remove('hp-bar-low');
+            else if (document.getElementById(`player-hp-bar-${i + 1}`).classList.contains('hp-bar-low')) {
+                document.getElementById(`player-hp-bar-${i + 1}`).classList.remove('hp-bar-low');
             }
         }
         await updateVisualPlayerStats(true);
@@ -359,10 +369,10 @@ export async function checkStatBounds(checkAllPlayers) {
             CURRENT_PLAYER.currentHp = 0;
         // if the player's hp is less than 20% of their max hp, add a hp-bar-low class to id player-hp-bar-container-i
         if (CURRENT_PLAYER.currentHp <= CURRENT_PLAYER.maxHp * 0.2) {
-            document.getElementById(`player-hp-bar-container-${gameState.currentPlayerNumber}`).classList.add('hp-bar-low');
+            document.getElementById(`player-hp-bar-${gameState.currentPlayerNumber}`).classList.add('hp-bar-low');
         }
-        else if (document.getElementById(`player-hp-bar-container-${gameState.currentPlayerNumber}`).classList.contains('hp-bar-low')) {
-            document.getElementById(`player-hp-bar-container-${gameState.currentPlayerNumber}`).classList.remove('hp-bar-low');
+        else if (document.getElementById(`player-hp-bar-${gameState.currentPlayerNumber}`).classList.contains('hp-bar-low')) {
+            document.getElementById(`player-hp-bar-${gameState.currentPlayerNumber}`).classList.remove('hp-bar-low');
         }
         await updateVisualPlayerStats(false);
     }

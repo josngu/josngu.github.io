@@ -22,7 +22,7 @@ export const RED_EVENT_LIST = [{
             { label: 'Try to get out.', description: 'You have a 50% chance of dying.', effect: { customEffect: () => mudslide() } },
             { label: 'Escape with all your might.', description: 'You have a 99% chance of living.', effect: { wpChange: -3, customEffect: () => mudslide(-1) } }
         ],
-        chance: 54
+        chance: 2
     },
 ];
 function mudslide(wpChange) {

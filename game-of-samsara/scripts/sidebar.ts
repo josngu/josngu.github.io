@@ -1,6 +1,7 @@
 import * as game from './index.js';
 import * as mainMenu from './main-menu.js';
 import * as events from './events.js';
+import * as music from './music.js';
 
 export function showSpells() {
     document.getElementById('btn-player-stats-page').classList.remove('btn-active');
@@ -22,13 +23,19 @@ export function showSpells() {
     for (let i = 0; i < game.getCurrentPlayer().spells.length; i++) {
         let spell = game.getCurrentPlayer().spells[i];
         let spellHTML = `
-        <div id="spell-${game.gameState.currentPlayerNumber}-${i}" class="spell">
+        <div id="spell-${game.gameState.currentPlayerNumber}-${i}" class="btn-spell">
             <h3>${spell.spellName}</h3>
             <p>${spell.description}</p>
         </div>`;
         document.getElementById('player-spells-page').insertAdjacentHTML('afterbegin', spellHTML);
 
+        // add mouse enter event listener to play the button hover sound fx
+        document.getElementById(`spell-${game.gameState.currentPlayerNumber}-${i}`).addEventListener('mouseenter', () => {
+            music.playButtonHoverSound();
+        });
+
         if (game.gameState.hasUsedSpell == false) {
+
             document.getElementById(`spell-${game.gameState.currentPlayerNumber}-${i}`).addEventListener('click', () => {
                 if (game.gameState.hasUsedSpell) return;
                 disableSpells();
@@ -50,9 +57,14 @@ export function showSpells() {
                 }, game.getAnimationDuration('spell-leave'));
 
                 // Then apply the effect
-                events.applyEventEffects(spell.effect);
                 showSpellName(spell.spellName);
                 game.log(`${game.getCurrentPlayer().playerName} uses "${spell.spellName}".`, game.getCurrentPlayer().hexColor);
+
+                // wait 500ms
+                setTimeout(() => {
+                    // apply the effect
+                    events.applyEventEffects(spell.effect);
+                }, 500);
             });
         }
     }
@@ -63,13 +75,14 @@ export function showSpells() {
 export function disableSpells() {
     game.gameState.hasUsedSpell = true;
     for (let i = 0; i < game.getCurrentPlayer().spells.length; i++) {
-        if (document.getElementById(`spell-${game.gameState.currentPlayerNumber}-${i}`)){
+        if (document.getElementById(`spell-${game.gameState.currentPlayerNumber}-${i}`)) {
             document.getElementById(`spell-${game.gameState.currentPlayerNumber}-${i}`).classList.add('btn-disabled');
         }
     }
 }
 
 export function showStats() {
+    const CURRENT_PLAYER = game.getCurrentPlayer();
     document.getElementById('btn-player-spells-page').classList.remove('btn-active');
     document.getElementById('btn-player-stats-page').classList.add('btn-active');
 
@@ -83,28 +96,28 @@ export function showStats() {
     <div id="stats">
         <div class='stats-progenitor'>
             <p>Progenitor</p>
-            <h3>${game.getCurrentPlayer().progenitor}</h3>
+            <h3>${CURRENT_PLAYER.progenitor}</h3>
         </div>
         <div class='stats-row'>
-            <p>Base Attack</p><p>${game.getCurrentPlayer().baseDamage}</p>
+            <p>Base Attack</p><p>${CURRENT_PLAYER.baseDamage}</p>
         </div>
         <div class='stats-row'>
-            <p>Crit Chance</p><p>${game.getCurrentPlayer().critChance}%</p>
+            <p>Crit Chance</p><p>${CURRENT_PLAYER.critChance}%</p>
         </div>
         <div class='stats-row'>
-            <p>Crit Multiplier</p><p>${game.getCurrentPlayer().critDamageMultiplier}x</p>
+            <p>Crit Multiplier</p><p>${CURRENT_PLAYER.critDamageMultiplier}x</p>
         </div>
         <div class='stats-row'>
-            <p>Dmg Resistance</p><p>${game.getCurrentPlayer().damageResistance}%</p>
+            <p>Dmg Resistance</p><p>${CURRENT_PLAYER.damageResistance}%</p>
         </div>
         <div class='stats-row'>
-            <p>Evasion</p><p>${game.getCurrentPlayer().evasionChance}%</p>
+            <p>Evasion</p><p>${CURRENT_PLAYER.evasionChance}%</p>
         </div>
         <div class='stats-row'>
-            <p>Lifesteal</p><p>${game.getCurrentPlayer().lifeSteal}%</p>
+            <p>Lifesteal</p><p>${CURRENT_PLAYER.lifeSteal}%</p>
         </div>
         <div class='stats-row'>
-            <p>Follow-Up Atk Chance</p><p>${game.getCurrentPlayer().attackFollowUpChance}%</p>
+            <p>Follow-Up Atk Chance</p><p>${CURRENT_PLAYER.attackFollowUpChance}%</p>
         </div>
     </div>`;
     document.getElementById('player-stats-page').insertAdjacentHTML('afterbegin', statsHTML);
@@ -143,7 +156,7 @@ export function showSpellName(spellName: string, duration?: number) {
 
     document.getElementById('spell-name-message').style.backgroundColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.6)`;
     document.getElementById('spell-name-message').style.outline = `1px solid rgb(${color[0]}, ${color[1]}, ${color[2]}, 0.8)`;
-    
+
     setTimeout(() => {
         //remove fade-in class and add fade-out class
         document.getElementById('spell-name-message').classList.remove('fade-in');

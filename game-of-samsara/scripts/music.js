@@ -94,4 +94,13 @@ export function playSpellGetSound() {
         }
     }, 1500);
 }
+export function playButtonHoverSound() {
+    playSound('button-hover', 0.1);
+}
+export function playPreviousPageSound() {
+    playSound('previous-page', 0.5);
+}
+export function playNextPageSound() {
+    playSound('next-page', 0.5);
+}
 //# sourceMappingURL=music.js.map

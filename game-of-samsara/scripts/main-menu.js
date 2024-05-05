@@ -291,7 +291,7 @@ function gameboardCreatePlayerCards() {
                     <div class="player-karma">
                         <h4>Karma</h4>
                         <div>
-                            <span id="player-karma-${i}">${game.gameState.playerList[i - 1].currentKarma}</span>
+                            <span id="player-karma-${i}" class="player-karma-text">${game.gameState.playerList[i - 1].currentKarma}</span>
                             <span>/</span>
                             <span id="player-maxKarma-${i}">${game.gameState.playerList[i - 1].maxKarma}</span>
                         </div>
